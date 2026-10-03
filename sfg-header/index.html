@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scholarships for Ghazza</title>
+  <meta name="description" content="Scholarships for Ghazza pairs students in Gaza with mentors who help them apply to universities abroad." />
+  <!-- Fallback web fonts. Thmanyah is used first when it is bundled by the build pipeline (see README). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,700&family=Readex+Pro:wght@400;500;700&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ==========================================================
+       SFG design tokens (sfg-design-system / tokens.md)
+       ========================================================== */
+    :root{
+      /* Primitives */
+      --red-50:#FAF2F0;--red-100:#F3E1DD;--red-200:#EFBEB3;--red-300:#E69A89;--red-400:#E27760;
+      --red-500:#D94F30;--red-600:#C24124;--red-700:#9F351D;--red-800:#7D2A17;--red-900:#5A1E11;
+      --green-50:#EEF4F1;--green-100:#D8E6DF;--green-200:#B7D3C6;--green-300:#8DB5A3;--green-400:#5E927B;
+      --green-500:#3A7560;--green-600:#1F5D46;--green-700:#184937;--green-800:#123628;--green-900:#0D261D;
+      --ochre-50:#F7F4ED;--ochre-100:#EEE6D8;--ochre-200:#E6D1AD;--ochre-300:#DBBA80;--ochre-400:#CFA458;
+      --ochre-500:#C8963E;--ochre-600:#A77C30;--ochre-700:#876426;--ochre-800:#674C1D;--ochre-900:#473514;
+      --neutral-white:#FFFFFF;--neutral-paper:#FBF8F2;--neutral-linen:#F7F2E9;--neutral-sand:#EDE4D3;
+      --neutral-border:#DDD2BF;--neutral-muted:#6B6158;--neutral-ink:#1E1A16;
+      --feedback-error:#B42318;
+
+      /* Semantic: light */
+      --color-bg-page:var(--neutral-linen);
+      --color-bg-surface:var(--neutral-paper);
+      --color-bg-surface-alt:var(--neutral-sand);
+      --color-bg-inverse:var(--green-700);
+      --color-text-primary:var(--neutral-ink);
+      --color-text-secondary:var(--neutral-muted);
+      --color-text-heading:var(--green-600);
+      --color-text-on-inverse:var(--neutral-linen);
+      --color-text-on-action:var(--neutral-white);
+      --color-text-achievement:var(--ochre-700);
+      --color-action-primary:var(--red-600);
+      --color-action-primary-hover:var(--red-700);
+      --color-action-secondary:var(--green-600);
+      --color-border-subtle:var(--neutral-border);
+      --color-border-focus:var(--green-600);
+      --color-accent-achievement:var(--ochre-500);
+      --color-pen-default:var(--red-500);
+      --color-pen-soft:var(--red-200);
+      /* Hero-only tokens: scrim over photography (green 900) and the focus ring on dark imagery */
+      --color-scrim-hero:rgb(13 38 29 / .66);
+      --color-scrim-hero-edge:rgb(13 38 29 / .9);
+      --color-border-focus-on-inverse:var(--green-200);
+
+      /* Typography */
+      --font-display:"Thmanyah Serif Display",var(--font-sfg-display,"Newsreader"),"Newsreader","Noto Naskh Arabic",Georgia,serif;
+      --font-text:"Thmanyah Serif Text",var(--font-sfg-text,"Newsreader"),"Newsreader","Noto Naskh Arabic",Georgia,serif;
+      --font-sans:"Thmanyah Sans",var(--font-sfg-sans,"Readex Pro"),"Readex Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+
+      --h1-size:clamp(40px,4.5vw,64px);--h1-lh:1.125;--h1-ls:-1px;
+      --h3-size:clamp(30px,2.8vw,40px);--h3-lh:1.2;--h3-ls:-0.6px;
+      --h5-size:24px;--h5-lh:32px;--h5-ls:-0.2px;
+      --title1-size:20px;--title1-lh:28px;
+      --title3-size:16px;--title3-lh:24px;
+      --body1-size:18px;--body1-lh:28px;
+      --body3-size:14px;--body3-lh:22px;
+
+      /* Layout */
+      --space-4:4px;--space-8:8px;--space-12:12px;--space-16:16px;--space-20:20px;--space-24:24px;
+      --space-28:28px;--space-32:32px;--space-40:40px;--space-48:48px;--space-56:56px;--space-64:64px;
+      --space-88:88px;--space-120:120px;--space-160:160px;
+      --radius-sm:4px;--radius-media:6px;--radius-card:8px;--radius-panel:10px;--radius-full:999px;
+      --container-max:1180px;
+      --ease-out:cubic-bezier(.22,1,.36,1);
+
+      /* Intro scroller */
+      --poem-dim:.18;      /* not yet read */
+      --poem-read:.62;     /* read, ordinary words */
+      --poem-faded:.08;    /* final reveal: everything but the hidden sentence */
+    }
+    @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+      --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
+      --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
+      --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
+      --color-accent-achievement:#DBBA80;--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;
+      --color-scrim-hero:rgb(11 21 16 / .72);--color-scrim-hero-edge:rgb(11 21 16 / .94);
+    }}
+    :root[data-theme="dark"]{
+      --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
+      --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
+      --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
+      --color-accent-achievement:#DBBA80;--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;
+      --color-scrim-hero:rgb(11 21 16 / .72);--color-scrim-hero-edge:rgb(11 21 16 / .94);
+    }
+
+    /* Type scale */
+    .h1{font:700 var(--h1-size)/var(--h1-lh) var(--font-display);letter-spacing:var(--h1-ls)}
+    .h3{font:700 var(--h3-size)/var(--h3-lh) var(--font-display);letter-spacing:var(--h3-ls)}
+    .h5{font:700 var(--h5-size)/var(--h5-lh) var(--font-display);letter-spacing:var(--h5-ls)}
+    .title1{font:500 var(--title1-size)/var(--title1-lh) var(--font-sans)}
+    .title3{font:500 var(--title3-size)/var(--title3-lh) var(--font-sans)}
+    .body1{font:400 var(--body1-size)/var(--body1-lh) var(--font-text)}
+    .body3{font:400 var(--body3-size)/var(--body3-lh) var(--font-text)}
+
+    /* ==========================================================
+       Base
+       ========================================================== */
+    *,*::before,*::after{box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%}
+    body{margin:0;background:var(--color-bg-inverse);color:var(--color-text-primary);overflow-x:hidden}
+    img{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+    :focus-visible{outline:2px solid var(--color-border-focus);outline-offset:3px}
+    .section_intro :focus-visible,.site-header :focus-visible{outline-color:var(--color-border-focus-on-inverse)}
+    .skip-link{position:absolute;left:var(--space-16);top:-80px;z-index:100;background:var(--color-bg-surface);color:var(--color-text-primary);padding:var(--space-12) var(--space-16);border-radius:var(--radius-card)}
+    .skip-link:focus{top:var(--space-16)}
+    .padding-global{padding-inline:var(--space-32)}
+    .container-large{max-width:var(--container-max);margin-inline:auto}
+    @media (max-width:767px){.padding-global{padding-inline:var(--space-16)}}
+
+    /* ==========================================================
+       Header (cloned structure, SFG content)
+       ========================================================== */
+    .site-header{position:fixed;inset:0 0 auto 0;z-index:20;padding-block:var(--space-28);color:var(--color-text-on-inverse);opacity:0;transition:opacity 1s ease,background-color .4s ease,padding .4s ease}
+    .site-header.is-ready{opacity:1}
+    .site-header.is-solid{background:var(--color-bg-inverse);padding-block:var(--space-12)}
+    .header_inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-24)}
+    .header_brand{display:flex;align-items:center;gap:var(--space-12);min-height:44px}
+    .header_logo{width:44px;height:44px;flex:none}
+    .header_wordmark{display:flex;flex-direction:column;font-family:var(--font-display);font-weight:700;line-height:1.05;font-size:19px;letter-spacing:-.2px}
+    .header_wordmark small{font-family:var(--font-sans);font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.8;margin-top:3px}
+    html[lang="ar"] .header_wordmark small{letter-spacing:0;font-size:12px}
+    .header_nav{display:flex;align-items:center;gap:var(--space-28)}
+    .header_nav-list{display:flex;align-items:center;gap:var(--space-24);list-style:none;margin:0;padding:0}
+    .header_nav-link{display:inline-flex;align-items:center;min-height:44px;position:relative}
+    .header_nav-link::after{content:"";position:absolute;inset-inline:0;bottom:8px;height:2px;border-radius:2px;background:currentColor;transform:scaleX(0);transform-origin:var(--origin-start,left);transition:transform .35s var(--ease-out)}
+    .header_nav-link:hover::after{transform:scaleX(1)}
+    .header_actions{display:flex;align-items:center;gap:var(--space-16)}
+    .button-primary{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding-inline:var(--space-20);border-radius:var(--radius-full);background:var(--color-action-primary);color:var(--color-text-on-action);transition:background-color .2s ease}
+    .button-primary:hover{background:var(--color-action-primary-hover)}
+
+    /* Language toggle (cloned pill with sliding knob) */
+    .lang-toggle{position:relative;display:inline-flex;align-items:center;width:84px;height:44px;flex:none}
+    .lang-toggle_track{position:absolute;inset:6px 0;border-radius:var(--radius-full);border:1px solid var(--neutral-ink);background:rgb(255 255 255 / .72)}
+    .lang-toggle_label{position:absolute;top:50%;transform:translateY(-50%);font:500 15px/1 var(--font-sans);color:var(--neutral-ink);transition:opacity .3s ease}
+    .lang-toggle_label[data-lang="en"]{left:14px}
+    .lang-toggle_label[data-lang="ar"]{right:16px;font-family:var(--font-sans);font-size:17px}
+    .lang-toggle_knob{position:absolute;top:50%;left:5px;width:26px;height:26px;margin-top:-13px;border-radius:50%;background:var(--neutral-white);border:1px solid var(--neutral-ink);transition:transform .45s var(--ease-out)}
+    /* Knob covers the current language and shows the other one */
+    html[lang="en"] .lang-toggle_label[data-lang="en"]{opacity:0}
+    html[lang="ar"] .lang-toggle_knob{transform:translateX(47px)}
+    html[lang="ar"] .lang-toggle_label[data-lang="ar"]{opacity:0}
+
+    /* Mobile menu trigger (cloned "Menu" + hamburger) */
+    .menu-trigger{display:none;align-items:center;gap:var(--space-12);min-height:44px;min-width:44px}
+    .menu-trigger_lines{position:relative;width:32px;height:20px}
+    .menu-trigger_line{position:absolute;inset-inline:0;height:2px;background:currentColor;border-radius:2px;transition:transform .35s var(--ease-out),top .35s var(--ease-out),opacity .2s}
+    .menu-trigger_line:nth-child(1){top:0}.menu-trigger_line:nth-child(2){top:9px}.menu-trigger_line:nth-child(3){top:18px}
+    .is-menu-open .menu-trigger_line:nth-child(1){top:9px;transform:rotate(45deg)}
+    .is-menu-open .menu-trigger_line:nth-child(2){opacity:0}
+    .is-menu-open .menu-trigger_line:nth-child(3){top:9px;transform:rotate(-45deg)}
+
+    .menu-panel{position:fixed;inset:0;z-index:15;background:var(--color-bg-inverse);color:var(--color-text-on-inverse);padding:120px var(--space-16) var(--space-40);display:flex;flex-direction:column;gap:var(--space-32);opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s}
+    .is-menu-open .menu-panel{opacity:1;visibility:visible}
+    .menu-panel_list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-4)}
+    .menu-panel_link{display:flex;align-items:center;min-height:56px;border-bottom:1px solid rgb(247 242 233 / .16)}
+    .menu-panel .button-primary{align-self:flex-start}
+
+    @media (max-width:1100px){
+      .header_nav-list{gap:var(--space-16)}
+      .header_nav{gap:var(--space-16)}
+    }
+    @media (max-width:991px){
+      .header_nav-list,.header_nav .button-primary{display:none}
+      .menu-trigger{display:inline-flex}
+      .site-header{padding-block:var(--space-16)}
+    }
+    @media (max-width:600px){.header_wordmark small{display:none}}
+    @media (max-width:420px){
+      .header_wordmark{font-size:16px}
+      .menu-trigger_text{display:none}
+    }
+
+    /* ==========================================================
+       Intro scroller (cloned motion)
+       ========================================================== */
+    .section_intro{position:relative;height:var(--intro-length,720vh);background:var(--color-bg-inverse);color:var(--color-text-on-inverse)}
+    .intro_stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+    .intro_bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity 1.2s ease,transform 6s ease-out}
+    .intro_bg.is-active{opacity:1;transform:scale(1)}
+    .intro_scrim{position:absolute;inset:0;background:linear-gradient(180deg,var(--color-scrim-hero-edge) 0%,var(--color-scrim-hero) 22%,var(--color-scrim-hero) 70%,var(--color-scrim-hero-edge) 100%)}
+    .intro_text{position:absolute;inset:0;will-change:transform}
+    /* Fade the poem out before it reaches the header band */
+    .intro_viewport{position:absolute;inset:0;-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 104px,#000 240px);mask-image:linear-gradient(180deg,transparent 0,transparent 104px,#000 240px)}
+    .intro_poem{margin:0;max-width:1080px;padding-bottom:var(--space-64);color:var(--color-text-on-inverse);transition:opacity .8s ease}
+    .intro_poem .poem_word{opacity:var(--poem-dim);transition:opacity .45s var(--ease-out)}
+    .intro_poem .poem_word.is-read{opacity:var(--poem-read)}
+    .intro_poem .poem_key{position:relative;opacity:var(--poem-dim);transition:opacity .45s var(--ease-out)}
+    .intro_poem .poem_key.is-read{opacity:1}
+    /* The mentor's red pen underlines each word of the hidden sentence as it is read */
+    .poem_key::after{content:"";position:absolute;inset-inline:-2px;bottom:.02em;height:.075em;min-height:3px;border-radius:2px;background:var(--color-pen-default);transform:scaleX(0) rotate(-1.2deg);transform-origin:var(--origin-start,left);transition:transform .7s var(--ease-out) .1s}
+    .poem_key.is-read::after{transform:scaleX(1) rotate(-1.2deg)}
+    .poem_key.is-partial::after{inset-inline:0}
+    .is-reveal .intro_poem .poem_word{opacity:var(--poem-faded);transition-duration:.9s}
+    .is-sentence .intro_poem{opacity:0}
+
+    .intro_sentence{position:absolute;inset:0;display:flex;align-items:center;pointer-events:none}
+    .intro_sentence p{margin:0;max-width:980px;opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s var(--ease-out)}
+    .intro_outro{position:absolute;inset:auto 0 0 0;padding-bottom:clamp(96px,16vh,160px);pointer-events:none}
+    .intro_outro p{margin:0;opacity:0;transform:translateY(24px);transition:opacity .8s ease .15s,transform .8s var(--ease-out) .15s}
+    .is-done .intro_outro p{opacity:1;transform:none}
+    .is-sentence .intro_sentence p{opacity:1;transform:none}
+    .is-done .intro_sentence p{opacity:0;transform:translateY(-24px)}
+
+    .intro_skip{position:absolute;right:var(--space-32);bottom:var(--space-32);display:inline-flex;align-items:center;gap:var(--space-16);min-height:44px;color:var(--color-text-on-inverse);transition:opacity .4s ease}
+    .intro_skip svg{width:28px;height:28px;transition:transform .3s var(--ease-out)}
+    .intro_skip:hover svg{transform:translateX(6px)}
+    html[dir="rtl"] .intro_skip{right:auto;left:var(--space-32)}
+    html[dir="rtl"] .intro_skip svg{transform:scaleX(-1)}
+    html[dir="rtl"] .intro_skip:hover svg{transform:scaleX(-1) translateX(6px)}
+    .is-done .intro_skip{opacity:0;pointer-events:none}
+    @media (max-width:767px){
+      .intro_poem{--h1-size:32px;--h1-lh:1.25;--h1-ls:-.4px}
+      .intro_sentence p{--h1-size:34px}
+      .intro_skip{right:var(--space-16);bottom:var(--space-16)}
+      html[dir="rtl"] .intro_skip{left:var(--space-16)}
+    }
+
+    /* RTL */
+    html[dir="rtl"]{--origin-start:right}
+    html[dir="rtl"] .intro_poem{line-height:1.45;letter-spacing:0}
+    html[dir="rtl"] .h1,html[dir="rtl"] .h3{letter-spacing:0}
+
+    /* Next section placeholder */
+    .section_next{background:var(--color-bg-page);color:var(--color-text-primary);padding-block:var(--space-120)}
+    .next_eyebrow{color:var(--color-text-achievement);margin:0 0 var(--space-16)}
+    .next_heading{color:var(--color-text-heading);margin:0 0 var(--space-24);max-width:760px}
+    .next_body{color:var(--color-text-secondary);margin:0;max-width:640px}
+
+    /* Reduced motion: show final states, no scroll sequence */
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{transition:none!important;animation:none!important}
+      .site-header{opacity:1}
+      .section_intro{height:auto}
+      .intro_stage{position:relative;height:auto;min-height:100vh;padding-block:140px var(--space-120)}
+      .intro_bg{transform:none}
+      .intro_bg:last-of-type{opacity:1}
+      .intro_text,.intro_viewport{position:relative;transform:none!important;-webkit-mask-image:none;mask-image:none}
+      .intro_poem .poem_word{opacity:var(--poem-read)}
+      .intro_poem .poem_key{opacity:1}
+      .poem_key::after{transform:scaleX(1) rotate(-1.2deg)}
+      .intro_sentence{display:none}
+      .intro_outro{position:relative;padding-bottom:0}
+      .intro_outro p{opacity:1;transform:none}
+      .intro_skip{display:none}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link title3" href="#main-content" data-i18n="skipToContent">Skip to main content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="padding-global">
+      <div class="container-large header_inner">
+        <a class="header_brand" href="#" aria-label="Scholarships for Ghazza, home">
+          <!-- Open-book mark, drawn as a reversed single-colour version of the SFG logo for use on photography -->
+          <svg class="header_logo" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <path d="M24 13.5c-4.6-3.4-10.6-4.6-17-3.6v26.3c6.4-1 12.4.2 17 3.6 4.6-3.4 10.6-4.6 17-3.6V9.9c-6.4-1-12.4.2-17 3.6Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+            <path d="M24 13.5v26.3" stroke="currentColor" stroke-width="2.4"/>
+            <path d="M11 15.2c3.6-.2 6.9.6 9.6 2.2M11 20.6c3.6-.2 6.9.6 9.6 2.2M27.4 17.4c2.7-1.6 6-2.4 9.6-2.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+          </svg>
+          <span class="header_wordmark">
+            <span data-i18n="brandLine1">Scholarships for Ghazza</span>
+            <small data-i18n="brandLine2">Supporting education through mentorship</small>
+          </span>
+        </a>
+
+        <nav class="header_nav" aria-label="Main">
+          <ul class="header_nav-list title3">
+            <li><a class="header_nav-link" href="#about" data-i18n="navAbout">About</a></li>
+            <li><a class="header_nav-link" href="#how-it-works" data-i18n="navHow">How it works</a></li>
+            <li><a class="header_nav-link" href="#mentors" data-i18n="navMentors">Mentors</a></li>
+            <li><a class="header_nav-link" href="#students" data-i18n="navStudents">For students</a></li>
+          </ul>
+          <div class="header_actions">
+            <a class="button-primary title3" href="#become-a-mentor" data-i18n="navCta">Become a mentor</a>
+            <button class="lang-toggle" type="button" data-lang-toggle aria-label="Switch to Arabic">
+              <span class="lang-toggle_track"></span>
+              <span class="lang-toggle_label" data-lang="en" lang="en">EN</span>
+              <span class="lang-toggle_label" data-lang="ar" lang="ar">ع</span>
+              <span class="lang-toggle_knob"></span>
+            </button>
+            <button class="menu-trigger title1" type="button" data-menu-trigger aria-expanded="false" aria-controls="menu-panel">
+              <span class="menu-trigger_text" data-i18n="menu">Menu</span>
+              <span class="menu-trigger_lines" aria-hidden="true"><span class="menu-trigger_line"></span><span class="menu-trigger_line"></span><span class="menu-trigger_line"></span></span>
+            </button>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="menu-panel" id="menu-panel" aria-label="Menu">
+    <ul class="menu-panel_list h5">
+      <li><a class="menu-panel_link" href="#about" data-i18n="navAbout">About</a></li>
+      <li><a class="menu-panel_link" href="#how-it-works" data-i18n="navHow">How it works</a></li>
+      <li><a class="menu-panel_link" href="#mentors" data-i18n="navMentors">Mentors</a></li>
+      <li><a class="menu-panel_link" href="#students" data-i18n="navStudents">For students</a></li>
+    </ul>
+    <a class="button-primary title3" href="#become-a-mentor" data-i18n="navCta">Become a mentor</a>
+  </div>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section_intro" data-intro aria-labelledby="intro-sentence">
+      <div class="intro_stage">
+        <img class="intro_bg" src="assets/student-1.webp" alt="" style="object-position:70% 55%" />
+        <img class="intro_bg" src="assets/student-2.webp" alt="" style="object-position:30% 62%" />
+        <img class="intro_bg" src="assets/student-3.webp" alt="" style="object-position:70% 50%" />
+        <img class="intro_bg" src="assets/student-4.webp" alt="" style="object-position:62% 48%" />
+        <div class="intro_scrim"></div>
+
+        <div class="intro_viewport">
+          <div class="intro_text" data-intro-text>
+            <div class="padding-global"><div class="container-large">
+              <p class="intro_poem h1" data-poem></p>
+            </div></div>
+          </div>
+        </div>
+
+        <div class="intro_sentence"><div class="padding-global" style="width:100%"><div class="container-large">
+          <p class="h1" id="intro-sentence" data-i18n="sentence">A highly educated Palestine, rebuilt by its own students.</p>
+        </div></div></div>
+
+        <div class="intro_outro"><div class="padding-global"><div class="container-large">
+          <p class="h3" data-i18n="outro">Here’s how the story begins.</p>
+        </div></div></div>
+
+        <a class="intro_skip title1" href="#about" data-skip-intro>
+          <span data-i18n="skip">Skip Intro</span>
+          <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M3 14h21M16 6l8 8-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="section_next" id="about">
+      <div class="padding-global"><div class="container-large">
+        <p class="next_eyebrow title3" data-i18n="nextEyebrow">About SFG</p>
+        <h2 class="next_heading h3" data-i18n="nextHeading">Next section goes here.</h2>
+        <p class="next_body body1" data-i18n="nextBody">This placeholder marks where the intro hands off to the rest of the page.</p>
+      </div></div>
+    </section>
+  </main>
+
+  <script>
+  /*! SFG Intro Scroller v1.0.0 — scroll-driven poem reveal cloned from the Boulder County climate guide intro.
+      Config via data attributes: [data-intro], [data-poem], [data-intro-text], [data-skip-intro], [data-lang-toggle]. */
+  (function () {
+    "use strict";
+    if (window.__sfgIntro) return; window.__sfgIntro = true;
+
+    // keyword: true segments spell the hidden sentence.
+    var POEM = {
+      en: [
+        [1, "A"],
+        [0, " student in Gaza writes a personal statement between power cuts. The internet drops; the draft is saved again. Twelve universities are gone, so the classroom lives on a phone, and hope survives on a "],
+        [1, "highly"],
+        [0, " unreliable signal. Every sentence is "],
+        [1, "educated"],
+        [0, " guesswork, until a mentor thousands of miles away reads it and writes back: tell me more. The journey can take a year or more. Doors close. Deadlines pass. Still, from shelters and borrowed rooms across "],
+        [1, "Palestine,"],
+        [0, " they apply again. What was broken can be "],
+        [1, "rebuilt"],
+        [0, ", word "],
+        [1, "by"],
+        [0, " word, draft by draft. They refuse the lim"],
+        [1, "its"],
+        [0, " placed on them. Their names are not yet kn"],
+        [1, "own"],
+        [0, ". They are not statistics. They are "],
+        [1, "students."]
+      ],
+      // Draft translation, to be reviewed by a native Arabic editor. Whole words only (no split ligatures).
+      ar: [
+        [0, "في غزة، تكتب طالبةٌ بيانها الشخصي بين انقطاعين للكهرباء. ينقطع الإنترنت؛ فتحفظ المسودة من جديد. اثنتا عشرة جامعة لم تعد قائمة، فصار الصفّ يعيش على هاتف، والأمل ينجو على إشارة ضعيفة جدًا. كل جملة تخمينٌ مدروس، حتى يقرأها مرشدٌ على بُعد آلاف الأميال ويردّ: أخبرني المزيد. قد تستغرق الرحلة عامًا أو أكثر. تُغلق أبواب، وتفوت مواعيد. ومع ذلك، من الملاجئ والغرف المستعارة في أنحاء "],
+        [1, "فلسطين"],
+        [0, "، يتقدّمون من جديد بعقولٍ "],
+        [1, "متعلّمة"],
+        [0, " لا تنكسر. والمدينة التي تهدّمت "],
+        [1, "يعيد"],
+        [0, " "],
+        [1, "بناءها"],
+        [0, " أبناؤها، كلمةً كلمة، ومسودةً بعد مسودة. يرفضون الحدود المفروضة عليهم. أسماؤهم لم تُعرف بعد. ليسوا أرقامًا. إنهم "],
+        [1, "طلابها."]
+      ]
+    };
+
+    var I18N = {
+      en: {
+        skipToContent: "Skip to main content", brandLine1: "Scholarships for Ghazza", brandLine2: "Supporting education through mentorship",
+        navAbout: "About", navHow: "How it works", navMentors: "Mentors", navStudents: "For students", navCta: "Become a mentor",
+        menu: "Menu", skip: "Skip Intro", outro: "Here’s how the story begins.",
+        sentence: "A highly educated Palestine, rebuilt by its own students.",
+        nextEyebrow: "About SFG", nextHeading: "Next section goes here.", nextBody: "This placeholder marks where the intro hands off to the rest of the page.",
+        toggleLabel: "Switch to Arabic", title: "Scholarships for Ghazza"
+      },
+      ar: {
+        skipToContent: "انتقل إلى المحتوى الرئيسي", brandLine1: "منح لغزة", brandLine2: "ندعم التعليم بالإرشاد",
+        navAbout: "من نحن", navHow: "كيف نعمل", navMentors: "المرشدون", navStudents: "للطلاب", navCta: "كن مرشدًا",
+        menu: "القائمة", skip: "تخطَّ المقدمة", outro: "هكذا تبدأ الحكاية.",
+        sentence: "فلسطين متعلّمة، يعيد بناءها طلابها.",
+        nextEyebrow: "عن المبادرة", nextHeading: "القسم التالي هنا.", nextBody: "هذا عنصر مؤقت يحدد موضع انتقال المقدمة إلى بقية الصفحة.",
+        toggleLabel: "Switch to English", title: "منح لغزة"
+      }
+    };
+
+    var root = document.documentElement;
+    var header = document.getElementById("site-header");
+    var intro = document.querySelector("[data-intro]");
+    var textLayer = intro.querySelector("[data-intro-text]");
+    var poemEl = intro.querySelector("[data-poem]");
+    var bgs = Array.prototype.slice.call(intro.querySelectorAll(".intro_bg"));
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var pieces = [];      // { el, top } for every word/keyword span
+    var poemHeight = 0;
+    var state = { bg: -1, phase: "" };
+
+    // Build the poem: split ordinary text on whitespace only (safe for Arabic ligatures);
+    // keywords stay whole and may sit inside a word (lim|its), so no space is inserted.
+    function buildPoem(lang) {
+      poemEl.textContent = "";
+      POEM[lang].forEach(function (seg, i, all) {
+        if (seg[0]) {
+          var k = document.createElement("span");
+          k.className = "poem_key";
+          var prev = all[i - 1], next = all[i + 1];
+          if ((prev && /\S$/.test(prev[1])) || (next && /^[^\s,.;:،]/.test(next[1]))) k.classList.add("is-partial");
+          k.textContent = seg[1];
+          poemEl.appendChild(k);
+          return;
+        }
+        seg[1].split(/(\s+)/).forEach(function (part) {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { poemEl.appendChild(document.createTextNode(part)); return; }
+          var w = document.createElement("span");
+          w.className = "poem_word";
+          w.textContent = part;
+          poemEl.appendChild(w);
+        });
+      });
+      measure();
+    }
+
+    function measure() {
+      pieces = Array.prototype.map.call(poemEl.querySelectorAll(".poem_word,.poem_key"), function (el) {
+        return { el: el, top: el.offsetTop + el.offsetHeight * 0.5 };
+      });
+      poemHeight = poemEl.offsetHeight;
+      // Scroll length scales with the poem so reading speed stays the same at every width.
+      intro.style.setProperty("--intro-length", Math.round(Math.max(520, (poemHeight / window.innerHeight) * 260 + 240)) + "vh");
+    }
+
+    function progress() {
+      var start = intro.offsetTop;
+      var span = intro.offsetHeight - window.innerHeight;
+      return Math.min(1, Math.max(0, (window.scrollY - start) / span));
+    }
+
+    var READ_END = 0.78, REVEAL_END = 0.86, SENTENCE_END = 0.94;
+
+    function render() {
+      header.classList.toggle("is-solid", window.scrollY > intro.offsetTop + intro.offsetHeight - window.innerHeight - 2);
+      if (reduce.matches) return;
+      var vh = window.innerHeight;
+      var p = progress();
+      var readP = Math.min(1, p / READ_END);
+
+      // Poem enters at 62% of the viewport and leaves with its last line at the reading line.
+      var startY = vh * 0.62;
+      var endY = vh * 0.48 - poemHeight + 80;
+      var y = startY + (endY - startY) * readP;
+      textLayer.style.transform = "translate3d(0," + y.toFixed(1) + "px,0)";
+
+      // Words above the reading line are "read".
+      var line = vh * 0.62 - y;
+      for (var i = 0; i < pieces.length; i++) {
+        var read = pieces[i].top < line || readP >= 1;
+        if (pieces[i].read !== read) { pieces[i].read = read; pieces[i].el.classList.toggle("is-read", read); }
+      }
+
+      // Background photos: one bucket each across the reading phase; the last stays for the outro.
+      var bg = Math.min(bgs.length - 1, Math.floor(readP * bgs.length * 0.999));
+      if (bg !== state.bg) {
+        bgs.forEach(function (img, n) { img.classList.toggle("is-active", n === bg); });
+        state.bg = bg;
+      }
+
+      var phase = p < READ_END ? "read" : p < REVEAL_END ? "reveal" : p < SENTENCE_END ? "sentence" : "done";
+      if (phase !== state.phase) {
+        intro.classList.toggle("is-reveal", phase !== "read");
+        intro.classList.toggle("is-sentence", phase === "sentence" || phase === "done");
+        intro.classList.toggle("is-done", phase === "done");
+        state.phase = phase;
+      }
+    }
+
+    var ticking = false;
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(function () { ticking = false; render(); }); } }
+
+    function setLang(lang) {
+      var dict = I18N[lang];
+      root.lang = lang;
+      root.dir = lang === "ar" ? "rtl" : "ltr";
+      document.title = dict.title;
+      document.querySelectorAll("[data-i18n]").forEach(function (el) { el.textContent = dict[el.getAttribute("data-i18n")]; });
+      document.querySelector("[data-lang-toggle]").setAttribute("aria-label", dict.toggleLabel);
+      buildPoem(lang);
+      state.phase = ""; state.bg = -1;
+      pieces.forEach(function (p) { p.read = undefined; });
+      render();
+      try { localStorage.setItem("sfg-lang", lang); } catch (e) {}
+    }
+
+    document.querySelector("[data-lang-toggle]").addEventListener("click", function () {
+      setLang(root.lang === "ar" ? "en" : "ar");
+    });
+
+    // Mobile menu
+    var trigger = document.querySelector("[data-menu-trigger]");
+    function closeMenu() { document.body.classList.remove("is-menu-open"); trigger.setAttribute("aria-expanded", "false"); }
+    trigger.addEventListener("click", function () {
+      var open = document.body.classList.toggle("is-menu-open");
+      trigger.setAttribute("aria-expanded", String(open));
+    });
+    document.querySelectorAll(".menu-panel a").forEach(function (a) { a.addEventListener("click", closeMenu); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMenu(); });
+
+    // Skip intro
+    document.querySelector("[data-skip-intro]").addEventListener("click", function (e) {
+      e.preventDefault();
+      var target = document.getElementById("about");
+      target.scrollIntoView({ behavior: reduce.matches ? "auto" : "smooth" });
+    });
+
+    var startLang = "en";
+    try { startLang = localStorage.getItem("sfg-lang") || "en"; } catch (e) {}
+
+    function boot() {
+      setLang(startLang === "ar" ? "ar" : "en");
+      requestAnimationFrame(function () { header.classList.add("is-ready"); });
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", function () { measure(); render(); });
+    }
+    // Text effects boot after fonts settle so measurements are correct.
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(boot);
+  })();
+  </script>
+</body>
+</html>

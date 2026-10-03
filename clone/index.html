@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intro - Boulder County (local clone)</title>
+  <!-- Local reference clone of the header + intro. Images and logo are hot-linked from the original site for study only; do not publish. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --color-black:#000;
+      --color-spring-wood:#F6F3EF;
+      --color-ink:#292721;
+      --color-scrim:rgb(0 0 0 / .5);
+      --font-degular:"Degular","Instrument Sans",system-ui,sans-serif;
+      --intro-font-size:64px;--intro-line-height:1.2;--intro-font-weight:500;
+      --scroller-dim-text-opacity:.15;
+      --scroller-read-opacity:.55;
+      --scroller-faded-opacity:.06;
+      --container-max:1180px;
+    }
+    @media (max-width:768px){:root{--intro-font-size:32px}}
+    *,*::before,*::after{box-sizing:border-box}
+    body{margin:0;background:var(--color-black);color:var(--color-spring-wood);font-family:var(--font-degular);line-height:1.1;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+    img{display:block;max-width:100%}
+    .skip-link{position:absolute;left:16px;top:-80px;z-index:100;background:#fff;color:#000;padding:12px 16px}
+    .skip-link:focus{top:16px}
+    .padding-global{padding-inline:40px}
+    .container{max-width:var(--container-max);margin-inline:auto}
+    @media (max-width:767px){.padding-global{padding-inline:20px}}
+
+    /* Header */
+    .site-header{position:fixed;inset:0 0 auto 0;z-index:20;padding-block:32px;color:var(--color-spring-wood);opacity:0;transition:opacity 1s ease,color 1s ease}
+    .site-header.is-ready{opacity:1}
+    .header_inner{display:flex;justify-content:space-between;align-items:center;font-size:clamp(18px,1.95vw,28px)}
+    .header_brand{display:flex;align-items:center;gap:18px;max-width:175px}
+    @media (min-width:640px){.header_brand{max-width:none}}
+    .header_logo{height:26px;width:auto;filter:invert(1)}
+    @media (min-width:640px){.header_logo{height:64px}}
+    .header_title{line-height:1.2}
+    .header_actions{display:flex;align-items:center;gap:24px}
+    .lang-toggle{display:flex;align-items:center;justify-content:space-between;gap:8px;width:80px;height:32px;padding:8px 4px;border-radius:999px;border:1px solid var(--color-ink);background:rgb(255 255 255 / .7);color:#000;font-size:16px;line-height:1}
+    .lang-toggle_knob{width:24px;height:24px;border-radius:50%;background:#fff;border:1px solid #000;flex:none;transition:transform .4s ease}
+    .lang-toggle_label{padding-right:12px}
+    .menu-trigger{display:flex;align-items:center;gap:24px}
+    .hamburger{position:relative;width:40px;height:30px}
+    .hamburger_line{position:absolute;left:0;width:100%;height:3px;background:currentColor}
+    .hamburger_line:nth-child(1){top:1.5px}.hamburger_line:nth-child(2){top:49%}.hamburger_line:nth-child(3){top:calc(100% - 3px)}
+    @media (max-width:639px){.menu-trigger_text{display:none}.hamburger{width:32px;height:22px}}
+
+    /* Intro scroller */
+    .section_intro{position:relative;height:var(--intro-length,800vh)}
+    .intro_stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+    .intro_bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity 1.2s ease,transform 6s ease-out}
+    .intro_bg.is-active{opacity:1;transform:scale(1)}
+    .intro_scrim{position:absolute;inset:0;background:var(--color-scrim)}
+    .intro_text{position:absolute;inset:0;will-change:transform}
+    .intro_viewport{position:absolute;inset:0;-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 110px,#000 240px);mask-image:linear-gradient(180deg,transparent 0,transparent 110px,#000 240px)}
+    .intro_poem{margin:0;font-size:var(--intro-font-size);line-height:var(--intro-line-height);font-weight:var(--intro-font-weight);letter-spacing:-.01em;padding-bottom:64px;transition:opacity .8s ease}
+    .poem_word,.poem_key{opacity:var(--scroller-dim-text-opacity);transition:opacity .45s ease-out}
+    .poem_word.is-read{opacity:var(--scroller-read-opacity)}
+    .poem_key.is-read{opacity:1}
+    .is-reveal .poem_word{opacity:var(--scroller-faded-opacity);transition-duration:.9s}
+    .is-done .intro_poem{opacity:0}
+    .intro_outro{position:absolute;inset:0;display:flex;align-items:center;pointer-events:none}
+    .intro_outro p{margin:0;font-size:var(--intro-font-size);line-height:var(--intro-line-height);font-weight:500;opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+    .is-done .intro_outro p{opacity:1;transform:none}
+    .intro_skip{position:absolute;right:32px;bottom:40px;display:flex;align-items:center;gap:20px;font-size:clamp(18px,1.95vw,28px);transition:opacity .4s}
+    .intro_skip svg{width:30px;height:30px}
+    .is-done .intro_skip{opacity:0;pointer-events:none}
+    @media (max-width:767px){.intro_skip{right:20px;bottom:20px}}
+
+    .section_next{background:var(--color-spring-wood);color:#000;min-height:60vh;padding:120px 0}
+    .section_next p{margin:0;font-size:24px}
+
+    @media (prefers-reduced-motion:reduce){
+      *{transition:none!important}
+      .site-header{opacity:1}
+      .section_intro{height:auto}
+      .intro_stage{position:relative;height:auto;padding-block:160px 120px}
+      .intro_bg:first-of-type{opacity:1}
+      .intro_text,.intro_outro,.intro_viewport{position:relative;-webkit-mask-image:none;mask-image:none;transform:none!important}
+      .poem_word{opacity:var(--scroller-read-opacity)}.poem_key{opacity:1}
+      .intro_outro p{opacity:1;transform:none;margin-top:48px}
+      .intro_skip{display:none}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header" id="site-header">
+    <div class="padding-global">
+      <div class="container header_inner">
+        <div class="header_brand">
+          <a href="#"><img class="header_logo" src="https://oscar-wordpress.970design.com/wp-content/uploads/2024/05/main_logo.svg" alt="Boulder County" width="64" height="64" /></a>
+          <a class="header_title" href="#">A Guide to Climate Action</a>
+        </div>
+        <div class="header_actions">
+          <button class="lang-toggle" type="button" aria-label="Cambiar a español"><span class="lang-toggle_knob"></span><span class="lang-toggle_label">esp</span></button>
+          <button class="menu-trigger" type="button" aria-label="Menu"><span class="menu-trigger_text">Menu</span><span class="hamburger" aria-hidden="true"><span class="hamburger_line"></span><span class="hamburger_line"></span><span class="hamburger_line"></span></span></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section_intro" data-intro>
+      <div class="intro_stage">
+        <img class="intro_bg" src="https://oscar-wordpress.970design.com/wp-content/uploads/2024/06/AdobeStock_386451623-2048x1152.jpeg" alt="" />
+        <img class="intro_bg" src="https://oscar-wordpress.970design.com/wp-content/uploads/2024/05/DJI_0550-2048x1229.jpg" alt="" />
+        <img class="intro_bg" src="https://oscar-wordpress.970design.com/wp-content/uploads/2024/04/image1.jpg" alt="" />
+        <img class="intro_bg" src="https://oscar-wordpress.970design.com/wp-content/uploads/2024/06/boulder-farm-2048x1365.jpeg" alt="" />
+        <img class="intro_bg" src="https://oscar-wordpress.970design.com/wp-content/uploads/2025/04/Screenshot-2024-05-20-at-9.26.02%20PM-2048x1109.jpeg" alt="" />
+        <img class="intro_bg" src="https://oscar-wordpress.970design.com/wp-content/uploads/2024/06/MG_8294-1sm-1536x1024.jpg" alt="" />
+        <div class="intro_scrim"></div>
+        <div class="intro_viewport"><div class="intro_text" data-intro-text><div class="padding-global"><div class="container"><p class="intro_poem" data-poem></p></div></div></div></div>
+        <div class="intro_outro"><div class="padding-global" style="width:100%"><div class="container"><p>Here's how we rewrite the story...</p></div></div></div>
+        <a class="intro_skip" href="#next" data-skip-intro>Skip Intro <svg viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M3 15h23M18 7l8 8-8 8" stroke="currentColor" stroke-width="1.5"/></svg></a>
+      </div>
+    </section>
+    <section class="section_next" id="next"><div class="padding-global"><div class="container"><p>Card grid (out of scope for this clone).</p></div></div></section>
+  </main>
+
+  <script>
+  /*! Intro Scroller (reference clone) v1.0.0 */
+  (function () {
+    "use strict";
+    // Poem segments from the supplied page source (introContent.newPoem); 1 = keyword.
+    var POEM = [[1,"We"],[0," know how this ends."],[0," Glaciers melt, oceans boil, starving birds fall mid-migration, and road workers collapse in streets from heat. The "],[1,"can"],[0,"ary in the coal mine has stopped singing and yet we break climate pledges one after another, while Big Oil "],[1,"rewrite"],[0,"s their accountability in gold ink. "],[1,"The"],[0," Amazon burns and Hawaii burns and Boulder burns and we post photos of orange skies as 150 species each blink their "],[1,"story"],[0," to extinction. Every. Single. Day. Corals wither "],[1,"to"],[0," white b"],[1,"one"],[0,"s as farmers tend parched lands "],[1,"where"],[0," soil coughs on pesticides, while heat records shatter, economies teeter, and disasters take the most vulnerable among us. "],[1,"We"],[0," marvel the marching youth when we should "],[1,"ALL"],[0," be fighting the systems that fail to dignify "],[1,"work"],[0,"ers and disregard our right to reach twilight years. The window narrows to reconsider, "],[1,"together"],[0,", how we consume. "],[1,"To"],[0," see all we’re on the cusp of throwing away. We twiddle thumbs and engage in petty "],[1,"fight"],[0,"s, instead of voting in a government that stands "],[1,"for"],[0," a culture of c"],[1,"a"],[0,"ring. this planetary course feels un"],[1,"liveable"],[0,". Our "],[1,"future"],[0,", endangered"],[1,"."]];
+
+    var header = document.getElementById("site-header");
+    var intro = document.querySelector("[data-intro]");
+    var textLayer = intro.querySelector("[data-intro-text]");
+    var poemEl = intro.querySelector("[data-poem]");
+    var bgs = Array.prototype.slice.call(intro.querySelectorAll(".intro_bg"));
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var pieces = [], poemHeight = 0, state = { bg: -1, phase: "" };
+
+    POEM.forEach(function (seg) {
+      if (seg[0]) { var k = document.createElement("span"); k.className = "poem_key"; k.textContent = seg[1]; poemEl.appendChild(k); return; }
+      seg[1].split(/(\s+)/).forEach(function (part) {
+        if (!part) return;
+        if (/^\s+$/.test(part)) { poemEl.appendChild(document.createTextNode(part)); return; }
+        var w = document.createElement("span"); w.className = "poem_word"; w.textContent = part; poemEl.appendChild(w);
+      });
+    });
+
+    function measure() {
+      pieces = Array.prototype.map.call(poemEl.querySelectorAll(".poem_word,.poem_key"), function (el) { return { el: el, top: el.offsetTop + el.offsetHeight / 2 }; });
+      poemHeight = poemEl.offsetHeight;
+      intro.style.setProperty("--intro-length", Math.round(Math.max(520, (poemHeight / innerHeight) * 260 + 240)) + "vh");
+    }
+    var READ_END = .82, REVEAL_END = .9;
+    function render() {
+      if (reduce.matches) return;
+      var vh = innerHeight, span = intro.offsetHeight - vh;
+      var p = Math.min(1, Math.max(0, (scrollY - intro.offsetTop) / span));
+      var readP = Math.min(1, p / READ_END);
+      var startY = vh * .6, endY = vh * .48 - poemHeight + 80;
+      var y = startY + (endY - startY) * readP;
+      textLayer.style.transform = "translate3d(0," + y.toFixed(1) + "px,0)";
+      var line = vh * .62 - y;
+      pieces.forEach(function (pc) { var r = pc.top < line || readP >= 1; if (pc.read !== r) { pc.read = r; pc.el.classList.toggle("is-read", r); } });
+      var bg = Math.min(bgs.length - 1, Math.floor(readP * bgs.length * .999));
+      if (bg !== state.bg) { bgs.forEach(function (img, n) { img.classList.toggle("is-active", n === bg); }); state.bg = bg; }
+      var phase = p < READ_END ? "read" : p < REVEAL_END ? "reveal" : "done";
+      if (phase !== state.phase) { intro.classList.toggle("is-reveal", phase !== "read"); intro.classList.toggle("is-done", phase === "done"); state.phase = phase; }
+    }
+    var ticking = false;
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(function () { ticking = false; render(); }); } }
+    document.querySelector("[data-skip-intro]").addEventListener("click", function (e) { e.preventDefault(); document.getElementById("next").scrollIntoView({ behavior: reduce.matches ? "auto" : "smooth" }); });
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () {
+      measure(); render();
+      requestAnimationFrame(function () { header.classList.add("is-ready"); });
+      addEventListener("scroll", onScroll, { passive: true });
+      addEventListener("resize", function () { measure(); render(); });
+    });
+  })();
+  </script>
+</body>
+</html>
