@@ -11,14 +11,16 @@ Built with the clone-to-webflow workflow, Stage A (local build). Nothing has bee
 
 Open locally: `python3 -m http.server` in this folder, then visit `/sfg-header/` or `/clone/`.
 
-## How the SFG intro works (v2, time-driven, after `Scholarships_for_Ghazza___Intro.html`)
-1. **Opening:** the screen stays dark and only the first sentence shows. After 2.6s the photo, header and "Skip Intro" fade in.
-2. **The paragraph rolls:** the page locks and the paragraph rises on its own. Scrolling, swiping or the arrow keys speed it up. Text styles are unchanged: H1 type, with words dim until read and brighter once they pass the reading line.
-3. **Photos:** they change as lines pass the middle of the screen, in order (Imperial, Sussex, Aberdeen, LSE), each with a slow zoom.
-4. **Keywords fly up:** as each word of the hidden sentence crosses 55% of the screen height, it flies into a centred row near the top. Once the row is complete, the mentor's red pen underlines it.
-5. **The sentence:** the row hands off to a large version of the sentence on the left. The final photo (LSE) settles from zoomed-in to full size beside it.
-6. **Closing:** "Here’s how the story begins." rises in over the LSE photo with a Scroll cue, and the page unlocks so you can scroll to the next section.
-7. **Controls:** "Skip Intro" jumps straight to step 6 and scrolls on when clicked again. Switching EN ⇄ ع replays the intro in the other language. With reduced motion turned on, the page shows the final state at once.
+## How the SFG intro works (v3)
+1. **Opening:** the first sentence shows alone on a dark screen for 1.6s. Then the photos, the navbar and "Skip Intro" fade in.
+2. **The paragraph rolls:** the page is locked and the text rises on its own from the middle of the page, at about 90px/s on desktop and never slower than 10% of the screen height per second. Scrolling or swiping speeds it up.
+3. **One steady text tone:** ordinary words stay at a constant 72% white and never darken as they're read. The hidden-sentence words are full white the whole time.
+4. **Photos:** they change as lines pass the middle of the screen: Imperial, Sussex, Aberdeen, then LSE. The overlay is lighter now, so the photos show through.
+5. **Keywords:** as each hidden-sentence word reaches the top of the text area, it moves up into a small white row and waits there.
+6. **The sentence in the middle:** when the paragraph has finished, the waiting words come down together into the middle of the page, in the paragraph's own type. The LSE photo is behind them.
+7. **Zoom:** the sentence holds for 2.2s, then the photo zooms out.
+8. **The ending follows your scrolling:** scrolling fades the photo to 12% and the sentence to 0, and "Here’s how the story begins." rises from the bottom. Scrolling up reverses it. At the end the page unlocks and the next scroll moves to the next section.
+9. **Skip Intro and language:** "Skip Intro" jumps to the final state. Switching EN ⇄ ع replays the intro. With reduced motion turned on, the page shows the sentence and the closing line without animation.
 
 ## Fonts (Thmanyah licence)
 The page uses `Thmanyah Serif Display`, `Thmanyah Serif Text` and `Thmanyah Sans` whenever they are available. These come from installed fonts, or from the `--font-sfg-*` variables set by a bundler such as `next/font/local`. Otherwise it falls back to Newsreader, Readex Pro and Noto Naskh Arabic. The Thmanyah font files are deliberately **not** in this repository, as the licence requires.
