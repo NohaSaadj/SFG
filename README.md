@@ -6,7 +6,7 @@ Built with the clone-to-webflow workflow, Stage A (local build). Nothing has bee
 |---|---|
 | `clone/index.html` | Faithful local clone of the reference header and scroll intro, kept as the reference. Images and logo are hot-linked from the original site for study only. Do not publish. |
 | `sfg-header/index.html` | The SFG version: your four photos, the SFG paragraph and hidden sentence, the SFG navbar, and an EN ⇄ ع toggle. |
-| `sfg-header/assets/` | Your four photos, compressed to WebP (100–270 KB each). |
+| `sfg-header/assets/` | Your four photos, compressed to WebP (100–270 KB each). They are also embedded in `index.html`, so that file works on its own. |
 | `reference/` | Reference screenshot, motion notes (`notes.md`) and build screenshots. |
 
 Open locally: `python3 -m http.server` in this folder, then visit `/sfg-header/` or `/clone/`.
