@@ -47,6 +47,7 @@
       /* Hero-only tokens: scrim over photography (green 900) and the focus ring on dark imagery */
       --color-scrim-hero:rgb(13 38 29 / .66);
       --color-scrim-hero-edge:rgb(13 38 29 / .9);
+      --color-scrim-hero-soft:rgb(13 38 29 / .18);
       --color-border-focus-on-inverse:var(--green-200);
 
       /* Typography */
@@ -70,24 +71,23 @@
       --container-max:1180px;
       --ease-out:cubic-bezier(.22,1,.36,1);
 
-      /* Intro scroller */
+      /* Intro story roll */
       --poem-dim:.18;      /* not yet read */
       --poem-read:.62;     /* read, ordinary words */
-      --poem-faded:.08;    /* final reveal: everything but the hidden sentence */
     }
     @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
       --color-accent-achievement:#DBBA80;--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;
-      --color-scrim-hero:rgb(11 21 16 / .72);--color-scrim-hero-edge:rgb(11 21 16 / .94);
+      --color-scrim-hero:rgb(11 21 16 / .72);--color-scrim-hero-edge:rgb(11 21 16 / .94);--color-scrim-hero-soft:rgb(11 21 16 / .3);
     }}
     :root[data-theme="dark"]{
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
       --color-accent-achievement:#DBBA80;--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;
-      --color-scrim-hero:rgb(11 21 16 / .72);--color-scrim-hero-edge:rgb(11 21 16 / .94);
+      --color-scrim-hero:rgb(11 21 16 / .72);--color-scrim-hero-edge:rgb(11 21 16 / .94);--color-scrim-hero-soft:rgb(11 21 16 / .3);
     }
 
     /* Type scale */
@@ -180,53 +180,83 @@
     }
 
     /* ==========================================================
-       Intro scroller (cloned motion)
+       Intro (time-driven story roll, after "Scholarships for Ghazza · Intro")
        ========================================================== */
-    .section_intro{position:relative;height:var(--intro-length,720vh);background:var(--color-bg-inverse);color:var(--color-text-on-inverse)}
-    .intro_stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
-    .intro_bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity 1.2s ease,transform 6s ease-out}
-    .intro_bg.is-active{opacity:1;transform:scale(1)}
-    .intro_scrim{position:absolute;inset:0;background:linear-gradient(180deg,var(--color-scrim-hero-edge) 0%,var(--color-scrim-hero) 22%,var(--color-scrim-hero) 70%,var(--color-scrim-hero-edge) 100%)}
-    .intro_text{position:absolute;inset:0;will-change:transform}
-    /* Fade the poem out before it reaches the header band */
-    .intro_viewport{position:absolute;inset:0;-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 104px,#000 240px);mask-image:linear-gradient(180deg,transparent 0,transparent 104px,#000 240px)}
-    .intro_poem{margin:0;max-width:1080px;padding-bottom:var(--space-64);color:var(--color-text-on-inverse);transition:opacity .8s ease}
+    html.is-locked,html.is-locked body{overflow:hidden;height:100%}
+    .section_intro{position:relative;height:100vh;height:100dvh;overflow:hidden;background:var(--color-bg-inverse);color:var(--color-text-on-inverse)}
+
+    /* Photos: crossfade on every line, zoomed in while the story rolls, settle to 1 on the final photo */
+    .intro_bg-list{position:absolute;inset:0;opacity:0;transition:opacity 2.4s ease}
+    .intro_bg-list.is-in{opacity:1}
+    .intro_bg-list.is-dim{opacity:.55;transition:opacity 2.6s ease}
+    .intro_bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.18);transition:opacity 1.4s ease,transform 3.4s cubic-bezier(.22,.61,.36,1)}
+    .intro_bg.is-active{opacity:1}
+    .intro_bg-list.is-out .intro_bg.is-active{transform:scale(1)}
+    .intro_scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,var(--color-scrim-hero-edge) 0%,var(--color-scrim-hero) 30%,var(--color-scrim-hero) 66%,var(--color-scrim-hero-edge) 100%);transition:opacity 2s ease}
+    .intro_scrim-side{position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(var(--side-dir,90deg),var(--color-scrim-hero-edge) 0%,var(--color-scrim-hero) 50%,var(--color-scrim-hero-soft) 100%);transition:opacity 2s ease}
+    .is-out .intro_scrim{opacity:0}
+    .is-out .intro_scrim-side{opacity:1}
+
+    /* Story roll: the paragraph rises through a masked window */
+    .intro_viewport{position:absolute;inset:0;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 24%,#000 40%,#000 86%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,transparent 24%,#000 40%,#000 86%,transparent 100%)}
+    .intro_text{position:absolute;inset-inline:0;top:0;will-change:transform}
+    .intro_poem{margin:0;max-width:1080px;padding-bottom:var(--space-64);color:var(--color-text-on-inverse);transition:opacity 1.2s ease}
     .intro_poem .poem_word{opacity:var(--poem-dim);transition:opacity .45s var(--ease-out)}
     .intro_poem .poem_word.is-read{opacity:var(--poem-read)}
-    .intro_poem .poem_key{position:relative;opacity:var(--poem-dim);transition:opacity .45s var(--ease-out)}
+    .intro_poem .poem_key{display:inline-block;opacity:var(--poem-dim);transition:opacity .35s ease}
     .intro_poem .poem_key.is-read{opacity:1}
-    /* The mentor's red pen underlines each word of the hidden sentence as it is read */
-    .poem_key::after{content:"";position:absolute;inset-inline:-2px;bottom:.02em;height:.075em;min-height:3px;border-radius:2px;background:var(--color-pen-default);transform:scaleX(0) rotate(-1.2deg);transform-origin:var(--origin-start,left);transition:transform .7s var(--ease-out) .1s}
-    .poem_key.is-read::after{transform:scaleX(1) rotate(-1.2deg)}
-    .poem_key.is-partial::after{inset-inline:0}
-    .is-reveal .intro_poem .poem_word{opacity:var(--poem-faded);transition-duration:.9s}
-    .is-sentence .intro_poem{opacity:0}
+    .intro_poem .poem_key.is-pulled{opacity:0}
+    /* Opening beat: only the first sentence, on black */
+    .intro_poem.is-first .poem_word:not(.is-lead),.intro_poem.is-first .poem_key:not(.is-lead){opacity:0}
+    .intro_poem.is-first .is-lead{opacity:var(--poem-read)}
+    .intro_poem.is-gone{opacity:0}
 
-    .intro_sentence{position:absolute;inset:0;display:flex;align-items:center;pointer-events:none}
-    .intro_sentence p{margin:0;max-width:980px;opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s var(--ease-out)}
-    .intro_outro{position:absolute;inset:auto 0 0 0;padding-bottom:clamp(96px,16vh,160px);pointer-events:none}
-    .intro_outro p{margin:0;opacity:0;transform:translateY(24px);transition:opacity .8s ease .15s,transform .8s var(--ease-out) .15s}
-    .is-done .intro_outro p{opacity:1;transform:none}
-    .is-sentence .intro_sentence p{opacity:1;transform:none}
-    .is-done .intro_sentence p{opacity:0;transform:translateY(-24px)}
+    /* A keyword in flight from the paragraph to its slot in the sentence row */
+    .intro_fly{position:fixed;z-index:20;margin:0;white-space:nowrap;color:var(--color-text-on-inverse);transform-origin:0 0;pointer-events:none;transition:transform 1.35s cubic-bezier(.65,0,.25,1)}
 
-    .intro_skip{position:absolute;right:var(--space-32);bottom:var(--space-32);display:inline-flex;align-items:center;gap:var(--space-16);min-height:44px;color:var(--color-text-on-inverse);transition:opacity .4s ease}
+    /* The hidden sentence, assembled at the top */
+    .intro_row{position:absolute;z-index:15;inset-inline:0;top:max(128px,17vh);display:flex;flex-wrap:wrap;justify-content:center;column-gap:.28em;padding-inline:var(--space-32);margin:0;color:var(--color-text-on-inverse);transition:opacity .8s ease,transform .8s ease}
+    .intro_row .row_word{position:relative;visibility:hidden}
+    .intro_row.is-ready .row_word{visibility:visible}
+    /* The mentor's red pen underlines the sentence once it is complete */
+    .row_word::after{content:"";position:absolute;inset-inline:-2px;bottom:.04em;height:.08em;min-height:3px;border-radius:2px;background:var(--color-pen-default);transform:scaleX(0) rotate(-1.2deg);transform-origin:var(--origin-start,left);transition:transform .6s var(--ease-out) var(--pen-delay,0s)}
+    .intro_row.is-penned .row_word::after{transform:scaleX(1) rotate(-1.2deg)}
+    .intro_row.is-leave{opacity:0;transform:translateY(-14px)}
+
+    /* The sentence, large, beside the final photo */
+    .intro_side{position:absolute;z-index:15;inset-inline-start:max(var(--space-32),calc((100vw - var(--container-max)) / 2));top:50%;transform:translateY(-50%);margin:0;width:min(12ch,80vw);color:var(--color-text-on-inverse);transition:opacity 3s ease}
+    .intro_side span{display:inline-block;opacity:0;transform:translateY(.35em);transition:opacity .9s ease,transform 1.1s cubic-bezier(.22,.61,.36,1)}
+    .intro_side.is-in span{opacity:1;transform:none}
+    .intro_side.is-fade{opacity:0}
+
+    /* Closing line over the last photo, then the page scrolls on */
+    .intro_begin{position:absolute;inset:0;z-index:16;display:grid;place-items:center;text-align:center;padding:0 var(--space-24);pointer-events:none;opacity:0;transform:translateY(22vh);transition:opacity 1.8s ease,transform 1.8s cubic-bezier(.22,.61,.36,1)}
+    .intro_begin.is-in{opacity:1;transform:none}
+    .intro_begin p{margin:0}
+    .intro_cue{display:block;margin-top:var(--space-24);opacity:0;transition:opacity 1s 1.2s}
+    .intro_begin.is-in .intro_cue.is-on{opacity:.85}
+    .intro_cue svg{display:block;margin:var(--space-8) auto 0;animation:cue-bob 1.8s ease-in-out infinite}
+    @keyframes cue-bob{50%{transform:translateY(6px)}}
+
+    .intro_skip{position:absolute;z-index:30;right:var(--space-32);bottom:var(--space-32);display:inline-flex;align-items:center;gap:var(--space-16);min-height:44px;color:var(--color-text-on-inverse);opacity:0;transition:opacity 1.2s ease}
+    .intro_skip.is-in{opacity:1}
     .intro_skip svg{width:28px;height:28px;transition:transform .3s var(--ease-out)}
     .intro_skip:hover svg{transform:translateX(6px)}
     html[dir="rtl"] .intro_skip{right:auto;left:var(--space-32)}
     html[dir="rtl"] .intro_skip svg{transform:scaleX(-1)}
     html[dir="rtl"] .intro_skip:hover svg{transform:scaleX(-1) translateX(6px)}
-    .is-done .intro_skip{opacity:0;pointer-events:none}
+    .is-finished .intro_skip{opacity:0;pointer-events:none}
     @media (max-width:767px){
       .intro_poem{--h1-size:32px;--h1-lh:1.25;--h1-ls:-.4px}
-      .intro_sentence p{--h1-size:34px}
+      .intro_row{--h3-size:22px;padding-inline:var(--space-16)}
+      .intro_side{--h1-size:44px;inset-inline-start:var(--space-16)}
       .intro_skip{right:var(--space-16);bottom:var(--space-16)}
       html[dir="rtl"] .intro_skip{left:var(--space-16)}
     }
 
     /* RTL */
-    html[dir="rtl"]{--origin-start:right}
-    html[dir="rtl"] .intro_poem{line-height:1.45;letter-spacing:0}
+    html[dir="rtl"]{--origin-start:right;--side-dir:270deg}
+    html[dir="rtl"] .intro_poem,html[dir="rtl"] .intro_side{line-height:1.45;letter-spacing:0}
     html[dir="rtl"] .h1,html[dir="rtl"] .h3{letter-spacing:0}
 
     /* Next section placeholder */
@@ -235,22 +265,12 @@
     .next_heading{color:var(--color-text-heading);margin:0 0 var(--space-24);max-width:760px}
     .next_body{color:var(--color-text-secondary);margin:0;max-width:640px}
 
-    /* Reduced motion: show final states, no scroll sequence */
+    .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+    /* Reduced motion: final state, no roll */
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{transition:none!important;animation:none!important}
-      .site-header{opacity:1}
-      .section_intro{height:auto}
-      .intro_stage{position:relative;height:auto;min-height:100vh;padding-block:140px var(--space-120)}
-      .intro_bg{transform:none}
-      .intro_bg:last-of-type{opacity:1}
-      .intro_text,.intro_viewport{position:relative;transform:none!important;-webkit-mask-image:none;mask-image:none}
-      .intro_poem .poem_word{opacity:var(--poem-read)}
-      .intro_poem .poem_key{opacity:1}
-      .poem_key::after{transform:scaleX(1) rotate(-1.2deg)}
-      .intro_sentence{display:none}
-      .intro_outro{position:relative;padding-bottom:0}
-      .intro_outro p{opacity:1;transform:none}
-      .intro_skip{display:none}
+      .intro_begin{place-items:end center;padding-bottom:clamp(96px,14vh,140px)}
     }
   </style>
 </head>
@@ -309,35 +329,40 @@
   </div>
 
   <main id="main-content" tabindex="-1">
-    <section class="section_intro" data-intro aria-labelledby="intro-sentence">
-      <div class="intro_stage">
+    <section class="section_intro" data-intro aria-label="Introduction">
+      <div class="intro_bg-list" data-intro-bgs>
+        <!-- Order matters: LSE is last and stays behind the closing line -->
         <img class="intro_bg" src="assets/student-1.webp" alt="" style="object-position:70% 55%" />
         <img class="intro_bg" src="assets/student-2.webp" alt="" style="object-position:30% 62%" />
         <img class="intro_bg" src="assets/student-3.webp" alt="" style="object-position:70% 50%" />
         <img class="intro_bg" src="assets/student-4.webp" alt="" style="object-position:62% 48%" />
-        <div class="intro_scrim"></div>
-
-        <div class="intro_viewport">
-          <div class="intro_text" data-intro-text>
-            <div class="padding-global"><div class="container-large">
-              <p class="intro_poem h1" data-poem></p>
-            </div></div>
-          </div>
-        </div>
-
-        <div class="intro_sentence"><div class="padding-global" style="width:100%"><div class="container-large">
-          <p class="h1" id="intro-sentence" data-i18n="sentence">A highly educated Palestine, rebuilt by its own students.</p>
-        </div></div></div>
-
-        <div class="intro_outro"><div class="padding-global"><div class="container-large">
-          <p class="h3" data-i18n="outro">Here’s how the story begins.</p>
-        </div></div></div>
-
-        <a class="intro_skip title1" href="#about" data-skip-intro>
-          <span data-i18n="skip">Skip Intro</span>
-          <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M3 14h21M16 6l8 8-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
       </div>
+      <div class="intro_scrim" aria-hidden="true"></div>
+      <div class="intro_scrim-side" aria-hidden="true"></div>
+
+      <div class="intro_viewport" aria-hidden="true">
+        <div class="intro_text" data-intro-text>
+          <div class="padding-global"><div class="container-large">
+            <p class="intro_poem h1 is-first" data-poem></p>
+          </div></div>
+        </div>
+      </div>
+
+      <p class="intro_row h3" data-intro-row aria-hidden="true"></p>
+      <p class="intro_side h1" data-intro-side aria-hidden="true"></p>
+
+      <div class="intro_begin" data-intro-begin>
+        <p class="h3"><span data-i18n="outro">Here’s how the story begins.</span>
+          <span class="intro_cue title3" data-intro-cue><span data-i18n="cue">Scroll</span><svg width="16" height="22" viewBox="0 0 16 22" aria-hidden="true"><path d="M8 2v16M2 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </p>
+      </div>
+
+      <a class="intro_skip title1" href="#about" data-skip-intro>
+        <span data-i18n="skip">Skip Intro</span>
+        <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M3 14h21M16 6l8 8-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+
+      <p class="sr-only" data-intro-sr></p>
     </section>
 
     <section class="section_next" id="about">
@@ -350,13 +375,17 @@
   </main>
 
   <script>
-  /*! SFG Intro Scroller v1.0.0 — scroll-driven poem reveal cloned from the Boulder County climate guide intro.
-      Config via data attributes: [data-intro], [data-poem], [data-intro-text], [data-skip-intro], [data-lang-toggle]. */
+  /*! SFG Intro Story Roll v2.0.0
+      Time-driven intro: the page locks, the paragraph rolls up on its own (scroll, swipe or arrow keys speed it up),
+      photos change line by line, each keyword flies up to assemble the hidden sentence, the sentence settles beside
+      the final photo, then "Here's how the story begins." unlocks the page.
+      Hooks: [data-intro] [data-intro-bgs] [data-intro-text] [data-poem] [data-intro-row] [data-intro-side]
+             [data-intro-begin] [data-intro-cue] [data-intro-sr] [data-skip-intro] [data-lang-toggle] [data-menu-trigger] */
   (function () {
     "use strict";
     if (window.__sfgIntro) return; window.__sfgIntro = true;
 
-    // keyword: true segments spell the hidden sentence.
+    // keyword: 1 = part of the hidden sentence. Keywords may sit inside a word (lim|its, kn|own).
     var POEM = {
       en: [
         [1, "A"],
@@ -396,7 +425,7 @@
       en: {
         skipToContent: "Skip to main content", brandLine1: "Scholarships for Ghazza", brandLine2: "Supporting education through mentorship",
         navAbout: "About", navHow: "How it works", navMentors: "Mentors", navStudents: "For students", navCta: "Become a mentor",
-        menu: "Menu", skip: "Skip Intro", outro: "Here’s how the story begins.",
+        menu: "Menu", skip: "Skip Intro", outro: "Here’s how the story begins.", cue: "Scroll",
         sentence: "A highly educated Palestine, rebuilt by its own students.",
         nextEyebrow: "About SFG", nextHeading: "Next section goes here.", nextBody: "This placeholder marks where the intro hands off to the rest of the page.",
         toggleLabel: "Switch to Arabic", title: "Scholarships for Ghazza"
@@ -404,126 +433,233 @@
       ar: {
         skipToContent: "انتقل إلى المحتوى الرئيسي", brandLine1: "منح لغزة", brandLine2: "ندعم التعليم بالإرشاد",
         navAbout: "من نحن", navHow: "كيف نعمل", navMentors: "المرشدون", navStudents: "للطلاب", navCta: "كن مرشدًا",
-        menu: "القائمة", skip: "تخطَّ المقدمة", outro: "هكذا تبدأ الحكاية.",
+        menu: "القائمة", skip: "تخطَّ المقدمة", outro: "هكذا تبدأ الحكاية.", cue: "مرّر للأسفل",
         sentence: "فلسطين متعلّمة، يعيد بناءها طلابها.",
         nextEyebrow: "عن المبادرة", nextHeading: "القسم التالي هنا.", nextBody: "هذا عنصر مؤقت يحدد موضع انتقال المقدمة إلى بقية الصفحة.",
         toggleLabel: "Switch to English", title: "منح لغزة"
       }
     };
 
-    var root = document.documentElement;
-    var header = document.getElementById("site-header");
-    var intro = document.querySelector("[data-intro]");
-    var textLayer = intro.querySelector("[data-intro-text]");
-    var poemEl = intro.querySelector("[data-poem]");
-    var bgs = Array.prototype.slice.call(intro.querySelectorAll(".intro_bg"));
-    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    var pieces = [];      // { el, top } for every word/keyword span
-    var poemHeight = 0;
-    var state = { bg: -1, phase: "" };
+    var TIMING = { black: 2.6, landedToRow: 500, rowToPen: 700, rowToSide: 2600, sideHold: 6000, fadeToBegin: 3600, beginToUnlock: 1400 };
 
-    // Build the poem: split ordinary text on whitespace only (safe for Arabic ligatures);
-    // keywords stay whole and may sit inside a word (lim|its), so no space is inserted.
-    function buildPoem(lang) {
+    var root = document.documentElement;
+    var q = function (s) { return document.querySelector(s); };
+    var header = q("#site-header"), intro = q("[data-intro]"), bgList = q("[data-intro-bgs]"), textLayer = q("[data-intro-text]");
+    var poemEl = q("[data-poem]"), row = q("[data-intro-row]"), side = q("[data-intro-side]"), begin = q("[data-intro-begin]");
+    var cue = q("[data-intro-cue]"), skipBtn = q("[data-skip-intro]"), srEl = q("[data-intro-sr]");
+    var pics = Array.prototype.slice.call(bgList.querySelectorAll(".intro_bg"));
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    var lang = "en", phase = "idle", t = 0, last = 0, boost = 0, riseT = 0, startY = 0, speed = 0;
+    var pieces = [], lines = [], keys = [], slots = [], launched = 0, landed = 0, picIndex = -1, timers = [], poemHeight = 0;
+
+    function later(ms, fn) { timers.push(setTimeout(fn, ms)); }
+    function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+    function showPic(i) {
+      i = Math.max(0, Math.min(pics.length - 1, i));
+      if (i === picIndex) return;
+      if (picIndex >= 0) pics[picIndex].classList.remove("is-active");
+      picIndex = i; pics[i].classList.add("is-active");
+    }
+
+    // ---- Build ----------------------------------------------------------
+    function build() {
       poemEl.textContent = "";
-      POEM[lang].forEach(function (seg, i, all) {
+      var lead = true;
+      POEM[lang].forEach(function (seg) {
         if (seg[0]) {
           var k = document.createElement("span");
-          k.className = "poem_key";
-          var prev = all[i - 1], next = all[i + 1];
-          if ((prev && /\S$/.test(prev[1])) || (next && /^[^\s,.;:،]/.test(next[1]))) k.classList.add("is-partial");
+          k.className = "poem_key" + (lead ? " is-lead" : "");
           k.textContent = seg[1];
           poemEl.appendChild(k);
+          if (/[.]$/.test(seg[1])) lead = false;
           return;
         }
         seg[1].split(/(\s+)/).forEach(function (part) {
           if (!part) return;
           if (/^\s+$/.test(part)) { poemEl.appendChild(document.createTextNode(part)); return; }
           var w = document.createElement("span");
-          w.className = "poem_word";
+          w.className = "poem_word" + (lead ? " is-lead" : "");
           w.textContent = part;
           poemEl.appendChild(w);
+          if (/[.]$/.test(part)) lead = false;   // the opening beat shows the first sentence only
         });
       });
+      keys = Array.prototype.slice.call(poemEl.querySelectorAll(".poem_key"));
+      var words = keys.map(function (k) { return k.textContent; });
+      row.innerHTML = "";
+      words.forEach(function (w, i) {
+        var s = document.createElement("span");
+        s.className = "row_word"; s.textContent = w; s.style.setProperty("--pen-delay", (i * 0.08).toFixed(2) + "s");
+        row.appendChild(s);
+      });
+      slots = Array.prototype.slice.call(row.children);
+      side.innerHTML = "";
+      words.forEach(function (w, i) {
+        var s = document.createElement("span");
+        s.textContent = w; s.style.transitionDelay = (0.5 + i * 0.09).toFixed(2) + "s";
+        side.appendChild(s); side.appendChild(document.createTextNode(" "));
+      });
+      srEl.textContent = poemEl.textContent + " " + I18N[lang].sentence + " " + I18N[lang].outro;
       measure();
     }
 
     function measure() {
       pieces = Array.prototype.map.call(poemEl.querySelectorAll(".poem_word,.poem_key"), function (el) {
-        return { el: el, top: el.offsetTop + el.offsetHeight * 0.5 };
+        return { el: el, top: el.offsetTop, mid: el.offsetTop + el.offsetHeight * 0.5 };
       });
+      var tops = [];
+      pieces.forEach(function (p) { if (!tops.some(function (x) { return Math.abs(x - p.top) < 6; })) tops.push(p.top); });
+      lines = tops.sort(function (a, b) { return a - b; }).map(function (top, i) { return { top: top, passed: i === 0 }; });
       poemHeight = poemEl.offsetHeight;
-      // Scroll length scales with the poem so reading speed stays the same at every width.
-      intro.style.setProperty("--intro-length", Math.round(Math.max(520, (poemHeight / window.innerHeight) * 260 + 240)) + "vh");
+      var lh = parseFloat(getComputedStyle(poemEl).lineHeight) || 48;
+      startY = window.innerHeight * 0.62;
+      speed = lh / 2.2;   // px per second at rest, as in the reference
     }
 
-    function progress() {
-      var start = intro.offsetTop;
-      var span = intro.offsetHeight - window.innerHeight;
-      return Math.min(1, Math.max(0, (window.scrollY - start) / span));
+    function setY(y) { textLayer.style.transform = "translate3d(0," + y.toFixed(1) + "px,0)"; }
+
+    // ---- Keyword flight (FLIP from the paragraph to its slot) -----------
+    function launch(kw) {
+      var i = keys.indexOf(kw); launched++;
+      var r = kw.getBoundingClientRect(), s = slots[i].getBoundingClientRect();
+      var fs = parseFloat(getComputedStyle(kw).fontSize), ts = parseFloat(getComputedStyle(slots[i]).fontSize);
+      var f = document.createElement("span");
+      f.className = "intro_fly h1"; f.textContent = kw.textContent;
+      f.style.fontSize = fs + "px"; f.style.lineHeight = getComputedStyle(kw).lineHeight;
+      f.style.left = r.left + "px"; f.style.top = r.top + "px";
+      document.body.appendChild(f);
+      kw.classList.add("is-pulled");
+      requestAnimationFrame(function () { requestAnimationFrame(function () {
+        f.style.transform = "translate(" + (s.left - r.left) + "px," + (s.top - r.top) + "px) scale(" + (ts / fs) + ")";
+      }); });
+      f.addEventListener("transitionend", function () { landed++; if (landed === keys.length) allLanded(); }, { once: true });
+    }
+    function removeFlies() { document.querySelectorAll(".intro_fly").forEach(function (n) { n.remove(); }); }
+
+    // ---- Sequence -------------------------------------------------------
+    function allLanded() {
+      later(TIMING.landedToRow, function () { row.classList.add("is-ready"); removeFlies(); });
+      later(TIMING.landedToRow + TIMING.rowToPen, function () { row.classList.add("is-penned"); });
+      later(TIMING.rowToSide, toSide);
+    }
+    function toSide() {
+      phase = "side";
+      poemEl.classList.add("is-gone"); row.classList.add("is-leave");
+      showPic(pics.length - 1);                       // the last photo (LSE) carries the ending
+      bgList.classList.add("is-out"); intro.classList.add("is-out");
+      void side.offsetWidth; side.classList.add("is-in");
+      later(TIMING.sideHold, function () {
+        phase = "fade"; bgList.classList.add("is-dim");
+        later(700, function () { side.classList.add("is-fade"); });
+      });
+      later(TIMING.sideHold + TIMING.fadeToBegin, toBegin);
+    }
+    function toBegin() { phase = "begin"; begin.classList.add("is-in"); later(TIMING.beginToUnlock, finish); }
+    function finish() {
+      phase = "done"; root.classList.remove("is-locked");
+      cue.classList.add("is-on"); intro.classList.add("is-finished");
     }
 
-    var READ_END = 0.78, REVEAL_END = 0.86, SENTENCE_END = 0.94;
-
-    function render() {
-      header.classList.toggle("is-solid", window.scrollY > intro.offsetTop + intro.offsetHeight - window.innerHeight - 2);
-      if (reduce.matches) return;
+    function frame(now) {
+      var dt = Math.min(0.05, (now - (last || now)) / 1000); last = now;
+      var k = 1 + boost; boost *= 0.92; t += dt * k;
       var vh = window.innerHeight;
-      var p = progress();
-      var readP = Math.min(1, p / READ_END);
-
-      // Poem enters at 62% of the viewport and leaves with its last line at the reading line.
-      var startY = vh * 0.62;
-      var endY = vh * 0.48 - poemHeight + 80;
-      var y = startY + (endY - startY) * readP;
-      textLayer.style.transform = "translate3d(0," + y.toFixed(1) + "px,0)";
-
-      // Words above the reading line are "read".
-      var line = vh * 0.62 - y;
-      for (var i = 0; i < pieces.length; i++) {
-        var read = pieces[i].top < line || readP >= 1;
-        if (pieces[i].read !== read) { pieces[i].read = read; pieces[i].el.classList.toggle("is-read", read); }
+      if (phase === "black" && t > TIMING.black) {
+        phase = "rise"; poemEl.classList.remove("is-first");
+        bgList.classList.add("is-in"); showPic(0);
+        header.classList.add("is-ready"); skipBtn.classList.add("is-in");
       }
-
-      // Background photos: one bucket each across the reading phase; the last stays for the outro.
-      var bg = Math.min(bgs.length - 1, Math.floor(readP * bgs.length * 0.999));
-      if (bg !== state.bg) {
-        bgs.forEach(function (img, n) { img.classList.toggle("is-active", n === bg); });
-        state.bg = bg;
+      if (phase === "rise") {
+        riseT += dt * k;
+        var y = startY - speed * riseT; setY(y);
+        // Photos change as lines pass the middle, in order, one block of lines per photo.
+        var mid = vh * 0.5;
+        lines.forEach(function (L, i) {
+          if (!L.passed && y + L.top < mid) { L.passed = true; showPic(Math.floor(i * pics.length / lines.length)); }
+        });
+        var readLine = vh * 0.6, trig = vh * 0.55;
+        for (var n = 0; n < pieces.length; n++) {
+          var p = pieces[n];
+          if (!p.read && y + p.mid < readLine) { p.read = true; p.el.classList.add("is-read"); }
+        }
+        keys.forEach(function (kw) {
+          if (!kw.classList.contains("is-pulled") && kw.getBoundingClientRect().top < trig) launch(kw);
+        });
+        if (launched === keys.length && y + poemHeight < vh * 0.2) phase = "wait";
       }
-
-      var phase = p < READ_END ? "read" : p < REVEAL_END ? "reveal" : p < SENTENCE_END ? "sentence" : "done";
-      if (phase !== state.phase) {
-        intro.classList.toggle("is-reveal", phase !== "read");
-        intro.classList.toggle("is-sentence", phase === "sentence" || phase === "done");
-        intro.classList.toggle("is-done", phase === "done");
-        state.phase = phase;
-      }
+      if (phase === "black" || phase === "rise") requestAnimationFrame(frame);
     }
 
-    var ticking = false;
-    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(function () { ticking = false; render(); }); } }
+    function addBoost(v) { if (phase === "rise" || phase === "black") boost = Math.min(6, boost + v); }
+    window.addEventListener("wheel", function (e) { if (e.deltaY > 0) addBoost(Math.min(e.deltaY / 60, 2.5)); }, { passive: true });
+    var touchY = null;
+    window.addEventListener("touchstart", function (e) { touchY = e.touches[0].clientY; }, { passive: true });
+    window.addEventListener("touchmove", function (e) {
+      if (touchY == null) return; var d = touchY - e.touches[0].clientY; if (d > 0) addBoost(d / 40); touchY = e.touches[0].clientY;
+    }, { passive: true });
+    window.addEventListener("keydown", function (e) { if (["ArrowDown", "PageDown", " "].indexOf(e.key) > -1) addBoost(2); });
 
-    function setLang(lang) {
-      var dict = I18N[lang];
-      root.lang = lang;
-      root.dir = lang === "ar" ? "rtl" : "ltr";
-      document.title = dict.title;
-      document.querySelectorAll("[data-i18n]").forEach(function (el) { el.textContent = dict[el.getAttribute("data-i18n")]; });
-      document.querySelector("[data-lang-toggle]").setAttribute("aria-label", dict.toggleLabel);
-      buildPoem(lang);
-      state.phase = ""; state.bg = -1;
-      pieces.forEach(function (p) { p.read = undefined; });
-      render();
-      try { localStorage.setItem("sfg-lang", lang); } catch (e) {}
+    // ---- Reset / skip / start -------------------------------------------
+    function resetVisuals() {
+      clearTimers(); removeFlies();
+      launched = 0; landed = 0; riseT = 0; boost = 0;
+      ["is-first", "is-gone"].forEach(function (c) { poemEl.classList.remove(c); });
+      ["is-ready", "is-penned", "is-leave"].forEach(function (c) { row.classList.remove(c); });
+      ["is-in", "is-fade"].forEach(function (c) { side.classList.remove(c); });
+      begin.classList.remove("is-in"); cue.classList.remove("is-on");
+      ["is-out", "is-dim"].forEach(function (c) { bgList.classList.remove(c); });
+      ["is-out", "is-finished"].forEach(function (c) { intro.classList.remove(c); });
     }
 
-    document.querySelector("[data-lang-toggle]").addEventListener("click", function () {
-      setLang(root.lang === "ar" ? "en" : "ar");
+    function finalState() {
+      phase = "skipped"; clearTimers(); removeFlies();
+      poemEl.classList.add("is-gone"); row.classList.add("is-leave");
+      bgList.classList.add("is-in", "is-out"); intro.classList.add("is-out");
+      showPic(pics.length - 1);
+      header.classList.add("is-ready");
+      begin.classList.add("is-in");
+      if (reduce) side.classList.add("is-in");       // reduced motion keeps the sentence on screen
+      else { side.classList.add("is-fade"); bgList.classList.add("is-dim"); }
+      finish();
+    }
+
+    function start(fromBeat) {
+      resetVisuals();
+      build();
+      if (reduce) { finalState(); return; }
+      poemEl.classList.add("is-first");
+      setY(startY);
+      root.classList.add("is-locked"); window.scrollTo(0, 0);
+      phase = "black"; t = fromBeat || 0; last = 0;
+      requestAnimationFrame(frame);
+    }
+
+    skipBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (phase === "done" || phase === "skipped") { q("#about").scrollIntoView({ behavior: reduce ? "auto" : "smooth" }); return; }
+      finalState();
     });
 
-    // Mobile menu
-    var trigger = document.querySelector("[data-menu-trigger]");
+    // ---- Language -------------------------------------------------------
+    function applyStrings() {
+      var dict = I18N[lang];
+      root.lang = lang; root.dir = lang === "ar" ? "rtl" : "ltr";
+      document.title = dict.title;
+      document.querySelectorAll("[data-i18n]").forEach(function (el) { el.textContent = dict[el.getAttribute("data-i18n")]; });
+      q("[data-lang-toggle]").setAttribute("aria-label", dict.toggleLabel);
+    }
+    q("[data-lang-toggle]").addEventListener("click", function () {
+      var wasFinished = phase === "done" || phase === "skipped";
+      lang = lang === "ar" ? "en" : "ar";
+      applyStrings();
+      try { localStorage.setItem("sfg-lang", lang); } catch (e) {}
+      if (wasFinished) { resetVisuals(); build(); finalState(); }
+      else start(TIMING.black - 0.6);             // replay the roll in the new language
+    });
+
+    // ---- Menu + header state --------------------------------------------
+    var trigger = q("[data-menu-trigger]");
     function closeMenu() { document.body.classList.remove("is-menu-open"); trigger.setAttribute("aria-expanded", "false"); }
     trigger.addEventListener("click", function () {
       var open = document.body.classList.toggle("is-menu-open");
@@ -531,25 +667,15 @@
     });
     document.querySelectorAll(".menu-panel a").forEach(function (a) { a.addEventListener("click", closeMenu); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMenu(); });
-
-    // Skip intro
-    document.querySelector("[data-skip-intro]").addEventListener("click", function (e) {
-      e.preventDefault();
-      var target = document.getElementById("about");
-      target.scrollIntoView({ behavior: reduce.matches ? "auto" : "smooth" });
+    window.addEventListener("scroll", function () { header.classList.toggle("is-solid", window.scrollY > window.innerHeight - 80); }, { passive: true });
+    window.addEventListener("resize", function () {
+      if (phase === "black" || phase === "rise") { measure(); }
     });
 
-    var startLang = "en";
-    try { startLang = localStorage.getItem("sfg-lang") || "en"; } catch (e) {}
-
-    function boot() {
-      setLang(startLang === "ar" ? "ar" : "en");
-      requestAnimationFrame(function () { header.classList.add("is-ready"); });
-      window.addEventListener("scroll", onScroll, { passive: true });
-      window.addEventListener("resize", function () { measure(); render(); });
-    }
-    // Text effects boot after fonts settle so measurements are correct.
-    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(boot);
+    try { lang = localStorage.getItem("sfg-lang") === "ar" ? "ar" : "en"; } catch (e) {}
+    applyStrings();
+    // Boot after fonts settle so line measurements are right.
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () { start(0); });
   })();
   </script>
 </body>

@@ -11,13 +11,14 @@ Built with the clone-to-webflow workflow, Stage A (local build). Nothing has bee
 
 Open locally: `python3 -m http.server` in this folder, then visit `/sfg-header/` or `/clone/`.
 
-## How the SFG intro works
-1. The header fades in. The paragraph enters at about 60% of the viewport height and scrolls up as you scroll.
-2. Words brighten once they pass a reading line. Each word of the hidden sentence ("A highly educated Palestine, rebuilt by its own students.") turns fully white and gets the mentor's red-pen underline (`--color-pen-default`).
-3. The photos crossfade in order: Imperial, Sussex, Aberdeen, LSE.
-4. All other words fade, leaving only the hidden-sentence words. The paragraph then gives way to the full sentence.
-5. "Here’s how the story begins." appears over the last photo (LSE), and the page then scrolls into the next section.
-6. "Skip Intro" jumps straight to the next section. If the visitor has reduced motion turned on, the page shows the final state without animation.
+## How the SFG intro works (v2, time-driven, after `Scholarships_for_Ghazza___Intro.html`)
+1. **Opening:** the screen stays dark and only the first sentence shows. After 2.6s the photo, header and "Skip Intro" fade in.
+2. **The paragraph rolls:** the page locks and the paragraph rises on its own. Scrolling, swiping or the arrow keys speed it up. Text styles are unchanged: H1 type, with words dim until read and brighter once they pass the reading line.
+3. **Photos:** they change as lines pass the middle of the screen, in order (Imperial, Sussex, Aberdeen, LSE), each with a slow zoom.
+4. **Keywords fly up:** as each word of the hidden sentence crosses 55% of the screen height, it flies into a centred row near the top. Once the row is complete, the mentor's red pen underlines it.
+5. **The sentence:** the row hands off to a large version of the sentence on the left. The final photo (LSE) settles from zoomed-in to full size beside it.
+6. **Closing:** "Here’s how the story begins." rises in over the LSE photo with a Scroll cue, and the page unlocks so you can scroll to the next section.
+7. **Controls:** "Skip Intro" jumps straight to step 6 and scrolls on when clicked again. Switching EN ⇄ ع replays the intro in the other language. With reduced motion turned on, the page shows the final state at once.
 
 ## Fonts (Thmanyah licence)
 The page uses `Thmanyah Serif Display`, `Thmanyah Serif Text` and `Thmanyah Sans` whenever they are available. These come from installed fonts, or from the `--font-sfg-*` variables set by a bundler such as `next/font/local`. Otherwise it falls back to Newsreader, Readex Pro and Noto Naskh Arabic. The Thmanyah font files are deliberately **not** in this repository, as the licence requires.
