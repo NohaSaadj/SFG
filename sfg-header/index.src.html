@@ -192,8 +192,8 @@
     .intro_scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,var(--color-scrim-hero-edge) 0%,var(--color-scrim-hero) 26%,var(--color-scrim-hero) 70%,var(--color-scrim-hero-edge) 100%)}
 
     /* Story roll: the paragraph moves through a band centred on the middle of the screen */
-    .intro_viewport{position:absolute;inset:0;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 27%,#000 40%,#000 74%,transparent 92%);mask-image:linear-gradient(180deg,transparent 0,transparent 27%,#000 40%,#000 74%,transparent 92%)}
-    .intro_viewport.is-open{-webkit-mask-image:none;mask-image:none}
+    /* The paragraph hides from the middle of the screen up (as in the reference); --mask-from/--mask-to are set per frame */
+    .intro_viewport{--mask-from:0%;--mask-to:0%;position:absolute;inset:0;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent var(--mask-from),#000 var(--mask-to),#000 90%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,transparent var(--mask-from),#000 var(--mask-to),#000 90%,transparent 100%)}
     .intro_text{position:absolute;inset-inline:0;top:0;will-change:transform}
     .intro_poem{margin:0 auto;max-width:1000px;color:var(--color-text-on-inverse);text-shadow:0 1px 14px rgb(0 0 0 / .35)}
     .intro_poem .poem_word{opacity:var(--poem-text);transition:opacity 1.2s ease}
@@ -207,13 +207,14 @@
 
     /* Layout targets only (never visible): collecting row, centred sentence, start-aligned sentence */
     .intro_target{visibility:hidden;pointer-events:none}
-    .intro_row{position:absolute;inset-inline:0;top:max(118px,19vh);display:flex;flex-wrap:wrap;justify-content:center;column-gap:.28em;padding-inline:var(--space-32);margin:0}
+    .intro_row{position:absolute;inset-inline:0;top:max(112px,14vh)}
+    .intro_row p{margin:0 auto;max-width:1000px}
     .intro_center{position:absolute;inset:0;display:grid;place-items:center;padding-inline:var(--space-32);margin:0}
     .intro_center p{margin:0;max-width:1000px;text-align:center}
-    .intro_start{position:absolute;inset-inline-start:max(var(--space-32),calc((100vw - var(--container-max)) / 2));top:50%;transform:translateY(-50%);width:min(12ch,80vw);margin:0}
+    .intro_start{position:absolute;inset-inline-start:max(var(--space-32),calc((100vw - var(--container-max)) / 2));top:50%;transform:translateY(-50%);max-width:calc(100vw - 2 * var(--space-32));margin:0}
 
     /* Closing line: rises from the bottom into the place the sentence leaves */
-    .intro_begin{position:absolute;z-index:16;inset-inline-start:max(var(--space-32),calc((100vw - var(--container-max)) / 2));top:50%;width:min(14ch,80vw);margin:0;color:var(--color-text-on-inverse);text-shadow:0 2px 18px rgb(0 0 0 / .4);opacity:0;pointer-events:none;will-change:transform,opacity}
+    .intro_begin{position:absolute;z-index:16;inset-inline-start:max(var(--space-32),calc((100vw - var(--container-max)) / 2));top:50%;max-width:calc(100vw - 2 * var(--space-32));margin:0;color:var(--color-text-on-inverse);text-shadow:0 2px 18px rgb(0 0 0 / .4);opacity:0;pointer-events:none;will-change:transform,opacity}
 
     .intro_cue{position:absolute;z-index:30;left:50%;bottom:var(--space-32);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:var(--space-8);color:var(--color-text-on-inverse);opacity:0;transition:opacity .6s ease;pointer-events:none}
     .intro_cue.is-on{opacity:.85}
@@ -229,8 +230,11 @@
     html[dir="rtl"] .intro_skip:hover svg{transform:scaleX(-1) translateX(6px)}
     .is-finished .intro_skip{opacity:0;pointer-events:none}
     @media (max-width:767px){
-      .intro_poem,.intro_center p,.intro_start,.intro_fly{--h1-size:32px;--h1-lh:1.25;--h1-ls:-.4px}
-      .intro_row{--h3-size:20px;padding-inline:var(--space-16);top:92px}
+      .intro_poem,.intro_row p,.intro_center p,.intro_start,.intro_begin,.intro_fly{--h1-size:32px;--h1-lh:1.25;--h1-ls:-.4px}
+      .intro_row{top:92px}
+      /* Phones: the sentence is set a little smaller so it still sits on two lines */
+      .intro_row p,.intro_center p,.intro_start{--h1-size:24px;--h1-lh:1.3}
+      .intro_start,.intro_begin{max-width:calc(100vw - 2 * var(--space-16))}
       .intro_center{padding-inline:var(--space-16)}
       .intro_start,.intro_begin{inset-inline-start:var(--space-16)}
       .intro_skip{right:var(--space-16);bottom:var(--space-16)}
@@ -240,7 +244,7 @@
 
     /* RTL */
     html[dir="rtl"]{--origin-start:right}
-    html[dir="rtl"] .intro_poem,html[dir="rtl"] .intro_center p,html[dir="rtl"] .intro_start,html[dir="rtl"] .intro_fly{line-height:1.45;letter-spacing:0}
+    html[dir="rtl"] .intro_poem,html[dir="rtl"] .intro_row p,html[dir="rtl"] .intro_center p,html[dir="rtl"] .intro_start,html[dir="rtl"] .intro_fly{line-height:1.45;letter-spacing:0}
     html[dir="rtl"] .h1,html[dir="rtl"] .h3{letter-spacing:0}
     /* Next section placeholder */
     .section_next{background:var(--color-bg-page);color:var(--color-text-primary);padding-block:var(--space-120)}
@@ -331,7 +335,7 @@
       </div>
 
       <!-- Layout targets for the hidden sentence (measured, never shown) -->
-      <p class="intro_target intro_row h3" data-target-row aria-hidden="true"></p>
+      <div class="intro_target intro_row" aria-hidden="true"><div class="padding-global"><p class="h1" data-target-row></p></div></div>
       <div class="intro_target intro_center" aria-hidden="true"><p class="h1" data-target-center></p></div>
       <p class="intro_target intro_start h1" data-target-start aria-hidden="true"></p>
 
@@ -436,6 +440,9 @@
     var OPENING_MS = 2000, ENTRY_MS = 1200;
     var ZOOM = 0.12, PHOTO_FLOOR = 0.15;
     var SEG = { fly: 0.35, gather: 0.6, hold: 0.35, side: 0.7, fade: 1.0 };   // × viewport height
+    var LIFT_LINE = 0.55;                          // keywords lift out where the paragraph starts to hide
+    var MASK = { from: 46, to: 58, open: 0.3 };    // paragraph hidden above 46% of the screen, fully visible from 58%
+    var BREAK_AFTER = { en: 3, ar: 1 };            // the sentence is set on two lines: break after this word
 
     var root = document.documentElement;
     var q = function (s) { return document.querySelector(s); };
@@ -482,10 +489,10 @@
       [tRow, tCenter, tStart].forEach(function (el) { el.textContent = ""; });
       flies.forEach(function (f) { f.remove(); }); flies = [];
       words.forEach(function (w, i) {
-        var a = document.createElement("span"); a.textContent = w; tRow.appendChild(a);
-        [tCenter, tStart].forEach(function (el) {
+        [tRow, tCenter, tStart].forEach(function (el) {
           var b = document.createElement("span"); b.textContent = w; el.appendChild(b);
-          if (i < words.length - 1) el.appendChild(document.createTextNode(" "));
+          if (i === BREAK_AFTER[lang]) el.appendChild(document.createElement("br"));
+          else if (i < words.length - 1) el.appendChild(document.createTextNode(" "));
         });
         var f = document.createElement("span"); f.className = "intro_fly h1"; f.textContent = w; f.setAttribute("aria-hidden", "true");
         document.body.appendChild(f); flies.push(f);
@@ -505,16 +512,17 @@
       var F = vh * SEG.fly;
       var src = keys.map(function (k) {
         var r = k.getBoundingClientRect();
-        return { left: r.left, h: r.height, launch: Math.max(1, y0 + r.top + r.height / 2 - mid) };
+        return { left: r.left, h: r.height, launch: Math.max(1, y0 + r.top + r.height / 2 - vh * LIFT_LINE) };
       });
       function rects(el, scale) {
-        return Array.prototype.map.call(el.children, function (c) { var r = c.getBoundingClientRect(); return { left: r.left, cy: r.top + r.height / 2, k: scale }; });
+        return Array.prototype.map.call(el.querySelectorAll("span"), function (c) { var r = c.getBoundingClientRect(); return { left: r.left, cy: r.top + r.height / 2, k: scale }; });
       }
-      var rowScale = parseFloat(getComputedStyle(tRow).fontSize) / flyFs;
+      function scaleOf(el) { return parseFloat(getComputedStyle(el).fontSize) / flyFs; }
+      var rowScale = scaleOf(tRow);
       var roll = src[src.length - 1].launch + F + vh * 0.05;
       var m = {
-        vh: vh, mid: mid, y0: y0, F: F, src: src,
-        row: rects(tRow, rowScale), center: rects(tCenter, 1), start: rects(tStart, 1),
+        vh: vh, mid: mid, lift: vh * LIFT_LINE, y0: y0, F: F, src: src,
+        row: rects(tRow, rowScale), center: rects(tCenter, scaleOf(tCenter)), start: rects(tStart, scaleOf(tStart)),
         flyH: flies.map(function (f) { return f.offsetHeight; }),
         roll: roll
       };
@@ -538,7 +546,10 @@
       if (!M) return;
       var n = keys.length;
 
-      // Paragraph roll
+      // Paragraph roll; the hiding line slides from the top of the screen down to the middle as the roll begins
+      var mk = smooth(s / (M.vh * MASK.open));
+      viewport.style.setProperty("--mask-from", (MASK.from * mk).toFixed(2) + "%");
+      viewport.style.setProperty("--mask-to", (MASK.to * mk).toFixed(2) + "%");
       var y = M.y0 - Math.min(s, M.roll);
       textLayer.style.transform = "translate3d(0," + y.toFixed(1) + "px,0)";
       poemEl.style.opacity = (1 - clamp((s - M.gather0) / (M.vh * SEG.gather * 0.4))).toFixed(3);
@@ -550,7 +561,7 @@
         keys[i].classList.toggle("is-out", out);
         flies[i].classList.toggle("is-on", out);
         if (!out) continue;
-        var from = { left: sc.left, cy: M.mid, k: 1 };
+        var from = { left: sc.left, cy: M.lift, k: 1 };
         var p = mix(from, M.row[i], ease((s - sc.launch) / M.F));
         var g = ease((s - M.gather0) / (M.vh * SEG.gather) * (1 + n * stg) - i * stg);
         if (g > 0) p = mix(M.row[i], M.center[i], g);

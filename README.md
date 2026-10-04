@@ -11,18 +11,18 @@ Built with the clone-to-webflow workflow, Stage A (local build). Nothing has bee
 
 Open locally: `python3 -m http.server` in this folder, then visit `/sfg-header/` or `/clone/`.
 
-## How the SFG intro works (v4, scroll-controlled)
+## How the SFG intro works (v5, scroll-controlled)
 The whole intro follows the mouse wheel, trackpad, touch or arrow keys. Scrolling down plays it forward and scrolling up plays it back.
 
 1. **Opening (2s, automatic):** a dark screen with only the first sentence, in the middle of the page. Then the rest of the paragraph, the photos, the navbar and "Skip Intro" fade in.
-2. **Roll:** the paragraph moves through a band centred on the middle of the screen. Each hidden-sentence word lifts out as it crosses the centre line and settles into a small row above the band.
+2. **Roll:** the paragraph rises and hides from the middle of the screen up, so it shows only in the lower half. Each hidden-sentence word lifts out where the paragraph starts to hide and builds the sentence above, at full paragraph size and on two lines.
 3. **Photos:** each one gets an equal share of the time, from the start of the roll until the sentence is complete. Each one slowly zooms in, then crossfades into the next with the same transition. The order is Imperial, Sussex, Aberdeen, LSE.
-4. **Sentence:** the collected words come down together into the middle of the page, in the paragraph's own type. The LSE photo is at its closest zoom.
+4. **Sentence:** the collected words come down together into the middle of the page, still on two lines, in the paragraph's own type. On phones the sentence is set at 24px so it stays on two lines. The LSE photo is at its closest zoom.
 5. **Left alignment:** the LSE photo zooms out while the words glide to a left-aligned block (right-aligned in Arabic).
 6. **Ending:** the photo fades to 15% and the sentence to 0%. Halfway through, "Here’s how the story begins." rises from the bottom into the place the sentence left.
 7. **Next section:** after that the page unlocks. Scrolling back to the top re-enters the intro and plays it backwards.
 
-The photos are wide 1920×1080 frames: each is shown at its real resolution, with soft blurred copies of itself filling the sides, so nothing is stretched or pixelated. `index.html` has them embedded, so it works as a single file. `index.src.html` is the same page with links to `assets/` instead, for editing.
+The photos are wide 1920×1080 frames. Each is shown at its real resolution, and the sides are filled by stretching the photo's own edge colours with only a light blur, so there are no ghosted copies and nothing is pixelated. `index.html` has them embedded, so it works as a single file. `index.src.html` is the same page with links to `assets/` instead, for editing.
 
 ## Fonts (Thmanyah licence)
 The page uses `Thmanyah Serif Display`, `Thmanyah Serif Text` and `Thmanyah Sans` whenever they are available. These come from installed fonts, or from the `--font-sfg-*` variables set by a bundler such as `next/font/local`. Otherwise it falls back to Newsreader, Readex Pro and Noto Naskh Arabic. The Thmanyah font files are deliberately **not** in this repository, as the licence requires.
