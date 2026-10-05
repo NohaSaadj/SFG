@@ -322,7 +322,7 @@
         <img class="intro_bg" src="assets/student-1.webp" alt="" style="object-position:66% 50%" />
         <img class="intro_bg" src="assets/student-2.webp" alt="" style="object-position:31% 50%" />
         <img class="intro_bg" src="assets/student-3.webp" alt="" style="object-position:71% 50%" />
-        <img class="intro_bg" src="assets/student-4.webp" alt="" style="object-position:71% 50%" />
+        <img class="intro_bg" src="assets/student-4.webp" data-src-rtl="assets/student-4-rtl.webp" data-pos-rtl="30% 50%" alt="" style="object-position:71% 50%" />
       </div>
       <div class="intro_scrim" aria-hidden="true"></div>
 
@@ -365,9 +365,9 @@
 
   <script>
   /*! SFG Intro Story Roll v4.0.0 (scroll-controlled)
-      Scroll-controlled intro: after a 2s dark opening the wheel, trackpad, touch or arrow keys move the story forward
-      and back. The paragraph rolls through the middle, keywords lift into a row and gather into the sentence, the last
-      photo zooms out as the sentence moves to start alignment, then the photo fades to 15% and the closing line rises.
+      After a 2s dark opening the story plays on its own; the wheel, trackpad, touch or arrow keys speed it up or play it
+      back. The paragraph hides from mid-screen up, keywords lift into a two-line sentence that moves straight to start
+      alignment, the last photo zooms out, then fades to 15% while the closing line rises into the sentence's place.
       Hooks: [data-intro] [data-intro-bgs] [data-intro-viewport] [data-intro-text] [data-poem] [data-target-row] [data-target-center] [data-target-start]
              [data-intro-begin] [data-intro-cue] [data-intro-sr] [data-skip-intro] [data-lang-toggle] [data-menu-trigger] */
   (function () {
@@ -438,6 +438,8 @@
     //   SIDE    the last photo zooms out while the words glide to start alignment
     //   FADE    photo → 15%, sentence → 0, closing line rises from the bottom into the sentence's place
     var OPENING_MS = 2000, ENTRY_MS = 1200;
+    var AUTO_SECONDS = 34;          // autoplay runs the whole intro in about this long
+    var AUTO_RESUME_MS = 1400;      // after scrolling back, autoplay waits this long before carrying on
     var ZOOM = 0.12, PHOTO_FLOOR = 0.15;
     var SEG = { fly: 0.35, gather: 0.6, hold: 0.35, side: 0.7, fade: 1.0 };   // × viewport height
     var LIFT_LINE = 0.55;                          // keywords lift out where the paragraph starts to hide
@@ -564,9 +566,7 @@
         var from = { left: sc.left, cy: M.lift, k: 1 };
         var p = mix(from, M.row[i], ease((s - sc.launch) / M.F));
         var g = ease((s - M.gather0) / (M.vh * SEG.gather) * (1 + n * stg) - i * stg);
-        if (g > 0) p = mix(M.row[i], M.center[i], g);
-        var sd = ease((s - M.side0) / (M.vh * SEG.side) * (1 + n * stg) - i * stg);
-        if (sd > 0) p = mix(M.center[i], M.start[i], sd);
+        if (g > 0) p = mix(M.row[i], M.start[i], g);
         place(i, p, (1 - fadeK).toFixed(3));
       }
 
@@ -599,7 +599,12 @@
 
     function setLocked(v) { locked = v; root.classList.toggle("is-locked", v); if (v) window.scrollTo(0, 0); }
 
-    function loop() {
+    var lastTick = 0, holdAuto = 0;
+    function loop(now) {
+      var dt = Math.min(0.05, ((now || 0) - (lastTick || now || 0)) / 1000); lastTick = now;
+      if (entered && locked && M && target < M.end && now > holdAuto) {
+        target = Math.min(M.end, target + (M.end / AUTO_SECONDS) * dt);
+      }
       var d = target - s;
       s = Math.abs(d) < 0.3 ? target : s + d * 0.14;
       render();
@@ -613,6 +618,7 @@
         if (window.scrollY <= 0 && d < 0) { setLocked(true); }   // scrolling back up into the intro replays it backwards
         else return;
       }
+      if (d < 0) holdAuto = performance.now() + AUTO_RESUME_MS;   // going back pauses autoplay briefly
       target = Math.max(0, Math.min(M.end, target + d));
     }
     window.addEventListener("wheel", function (e) {
@@ -651,6 +657,12 @@
       document.title = dict.title;
       document.querySelectorAll("[data-i18n]").forEach(function (el) { el.textContent = dict[el.getAttribute("data-i18n")]; });
       q("[data-lang-toggle]").setAttribute("aria-label", dict.toggleLabel);
+      pics.forEach(function (img) {
+        if (!img.dataset.srcRtl) return;
+        if (!img.dataset.srcLtr) { img.dataset.srcLtr = img.getAttribute("src"); img.dataset.posLtr = img.style.objectPosition; }
+        img.src = lang === "ar" ? img.dataset.srcRtl : img.dataset.srcLtr;
+        img.style.objectPosition = lang === "ar" ? img.dataset.posRtl : img.dataset.posLtr;
+      });
     }
     q("[data-lang-toggle]").addEventListener("click", function () {
       var wasDone = finished;
