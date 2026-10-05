@@ -322,7 +322,7 @@
         <img class="intro_bg" src="assets/student-1.webp" alt="" style="object-position:66% 50%" />
         <img class="intro_bg" src="assets/student-2.webp" alt="" style="object-position:31% 50%" />
         <img class="intro_bg" src="assets/student-3.webp" alt="" style="object-position:71% 50%" />
-        <img class="intro_bg" src="assets/student-4.webp" data-src-rtl="assets/student-4-rtl.webp" data-pos-rtl="30% 50%" alt="" style="object-position:71% 50%" />
+        <img class="intro_bg" src="assets/student-4.webp" data-mirror-rtl data-pos-rtl="29% 50%" alt="" style="object-position:71% 50%" />
       </div>
       <div class="intro_scrim" aria-hidden="true"></div>
 
@@ -441,7 +441,7 @@
     var AUTO_SECONDS = 34;          // autoplay runs the whole intro in about this long
     var AUTO_RESUME_MS = 1400;      // after scrolling back, autoplay waits this long before carrying on
     var ZOOM = 0.12, PHOTO_FLOOR = 0.15;
-    var SEG = { fly: 0.35, gather: 0.6, hold: 0.35, side: 0.7, fade: 1.0 };   // × viewport height
+    var SEG = { fly: 0.35, gather: 0.6, hold: 0.6, side: 0, fade: 1.0 };      // × viewport height (the move to the left and the zoom-out share "gather")
     var LIFT_LINE = 0.55;                          // keywords lift out where the paragraph starts to hide
     var MASK = { from: 46, to: 58, open: 0.3 };    // paragraph hidden above 46% of the screen, fully visible from 58%
     var BREAK_AFTER = { en: 3, ar: 1 };            // the sentence is set on two lines: break after this word
@@ -577,11 +577,12 @@
         var op = i === 0 ? 1 : smooth((s - startAt) / w);
         var z = 1 + ZOOM * clamp((s - startAt) / (M.slot + w));
         if (i === pics.length - 1) {
-          z = 1 + ZOOM * clamp((s - startAt) / (M.gather1 - startAt));        // closest when the sentence completes
-          z = lerp(z, 1, ease((s - M.side0) / (M.vh * SEG.side)));             // then zooms out
+          z = 1 + ZOOM * clamp((s - startAt) / (M.gather0 - startAt));        // closest when the sentence completes
+          z = lerp(z, 1, ease((s - M.gather0) / (M.vh * SEG.gather)));         // zooms out while the sentence moves left
         }
         img.style.opacity = op.toFixed(3);
-        img.style.transform = "scale(" + z.toFixed(4) + ")";
+        var flip = lang === "ar" && img.hasAttribute("data-mirror-rtl") ? -1 : 1;
+        img.style.transform = "scale(" + (flip * z).toFixed(4) + "," + z.toFixed(4) + ")";
       });
       var f5 = clamp((s - M.fade0) / (M.vh * SEG.fade));
       if (entered) bgList.style.opacity = (1 - (1 - PHOTO_FLOOR) * smooth(f5)).toFixed(3);
@@ -658,9 +659,8 @@
       document.querySelectorAll("[data-i18n]").forEach(function (el) { el.textContent = dict[el.getAttribute("data-i18n")]; });
       q("[data-lang-toggle]").setAttribute("aria-label", dict.toggleLabel);
       pics.forEach(function (img) {
-        if (!img.dataset.srcRtl) return;
-        if (!img.dataset.srcLtr) { img.dataset.srcLtr = img.getAttribute("src"); img.dataset.posLtr = img.style.objectPosition; }
-        img.src = lang === "ar" ? img.dataset.srcRtl : img.dataset.srcLtr;
+        if (!img.hasAttribute("data-mirror-rtl")) return;
+        if (!img.dataset.posLtr) img.dataset.posLtr = img.style.objectPosition;
         img.style.objectPosition = lang === "ar" ? img.dataset.posRtl : img.dataset.posLtr;
       });
     }
