@@ -438,7 +438,14 @@
     //   SIDE    the last photo zooms out while the words glide to start alignment
     //   FADE    photo → 15%, sentence → 0, closing line rises from the bottom into the sentence's place
     var OPENING_MS = 2000, ENTRY_MS = 1200;
-    var AUTO_SECONDS = 34;          // autoplay runs the whole intro in about this long
+    // Autoplay pace, per part of the intro
+    var AUTO = {
+      rollLinesPerSecond: 0.75,     // the paragraph: slow enough to read (about one line every 1.3s)
+      gatherSeconds: 1.4,           // the sentence moving to the left (with the photo zoom-out)
+      holdSeconds: 1.2,             // the settled sentence
+      fadeSeconds: 2.4              // photo → 15%, sentence → 0, closing line rises
+    };
+    var ROLL_WHEEL = 0.7;           // scrolling through the paragraph by hand is also a little gentler
     var AUTO_RESUME_MS = 1400;      // after scrolling back, autoplay waits this long before carrying on
     var ZOOM = 0.12, PHOTO_FLOOR = 0.15;
     var SEG = { fly: 0.35, gather: 0.6, hold: 0.6, side: 0, fade: 1.0 };      // × viewport height (the move to the left and the zoom-out share "gather")
@@ -526,7 +533,8 @@
         vh: vh, mid: mid, lift: vh * LIFT_LINE, y0: y0, F: F, src: src,
         row: rects(tRow, rowScale), center: rects(tCenter, scaleOf(tCenter)), start: rects(tStart, scaleOf(tStart)),
         flyH: flies.map(function (f) { return f.offsetHeight; }),
-        roll: roll
+        roll: roll,
+        lh: parseFloat(getComputedStyle(poemEl).lineHeight) || 48
       };
       m.gather0 = roll;                 m.gather1 = m.gather0 + vh * SEG.gather;
       m.side0 = m.gather1 + vh * SEG.hold; m.side1 = m.side0 + vh * SEG.side;
@@ -601,10 +609,16 @@
     function setLocked(v) { locked = v; root.classList.toggle("is-locked", v); if (v) window.scrollTo(0, 0); }
 
     var lastTick = 0, holdAuto = 0;
+    function autoRate(at) {                       // px of timeline per second at position `at`
+      if (at < M.roll) return M.lh * AUTO.rollLinesPerSecond;
+      if (at < M.gather1) return (M.gather1 - M.gather0) / AUTO.gatherSeconds;
+      if (at < M.fade0) return Math.max(1, M.fade0 - M.gather1) / AUTO.holdSeconds;
+      return (M.end - M.fade0) / AUTO.fadeSeconds;
+    }
     function loop(now) {
       var dt = Math.min(0.05, ((now || 0) - (lastTick || now || 0)) / 1000); lastTick = now;
       if (entered && locked && M && target < M.end && now > holdAuto) {
-        target = Math.min(M.end, target + (M.end / AUTO_SECONDS) * dt);
+        target = Math.min(M.end, target + autoRate(target) * dt);
       }
       var d = target - s;
       s = Math.abs(d) < 0.3 ? target : s + d * 0.14;
@@ -620,6 +634,7 @@
         else return;
       }
       if (d < 0) holdAuto = performance.now() + AUTO_RESUME_MS;   // going back pauses autoplay briefly
+      if (target < M.roll) d *= ROLL_WHEEL;
       target = Math.max(0, Math.min(M.end, target + d));
     }
     window.addEventListener("wheel", function (e) {

@@ -11,13 +11,13 @@ Built with the clone-to-webflow workflow, Stage A (local build). Nothing has bee
 
 Open locally: `python3 -m http.server` in this folder, then visit `/sfg-header/` or `/clone/`.
 
-## How the SFG intro works (v7)
-The intro **plays on its own** and takes about 34 seconds. Scrolling down (mouse wheel, trackpad, touch or arrow keys) speeds it up. Scrolling up plays it back, and after 1.4 seconds without input it carries on forward again.
+## How the SFG intro works (v8)
+The intro **plays on its own**, at a different pace for each part: the paragraph rolls at about one line every 1.3s so it can be read (about 30s on desktop, longer on phones where it has more lines), the sentence moves left in 1.4s, holds for 1.2s, then the fade to the closing line takes 2.4s. Scrolling down (mouse wheel, trackpad, touch or arrow keys) speeds it up; through the paragraph, scrolling is damped a little so it stays readable. Scrolling up plays it back, and after 1.4 seconds without input it carries on forward again. The pace values sit together in `AUTO` at the top of the script.
 
 1. **Opening (2s):** a dark screen with only the first sentence, in the middle of the page. Then the rest of the paragraph, the photos, the navbar and "Skip Intro" fade in.
 2. **Roll:** the paragraph rises and hides from the middle of the screen up. Each hidden-sentence word lifts out where the paragraph starts to hide and builds the sentence above, at full paragraph size and on two lines.
 3. **Photos:** each one gets an equal share of the time until the sentence is complete. Each one slowly zooms in, then crossfades into the next. The order is Imperial, Sussex, Aberdeen, LSE.
-4. **Sentence and zoom-out together:** once the roll is done, the sentence moves in one go to its left-aligned place, still on two lines, over the same length the old move to the middle had. At the same time the LSE photo zooms out. On phones the sentence is set at 24px so it stays on two lines.
+4. **Sentence and zoom-out together:** once the roll is done, the sentence moves in one go to its left-aligned place, still on two lines. At the same time the LSE photo zooms out. On phones the sentence is set at 24px so it stays on two lines.
 5. **Hold:** the sentence holds briefly on the settled photo.
 6. **Ending:** the photo fades to 15% and the sentence to 0%. Halfway through, "Here’s how the story begins." rises from the bottom into the place the sentence left.
 7. **Next section:** the page unlocks. Scrolling back to the top re-enters the intro and plays it backwards.
