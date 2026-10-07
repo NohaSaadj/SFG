@@ -293,17 +293,12 @@
 
 /* Right column: native scroll, one 100vh panel per station, card on a daraj texture */
 .sb_right{flex:1;min-width:0}
-.sb_panel{position:relative;height:100vh;height:100dvh;display:grid;place-items:center;padding:var(--space-96) var(--space-64);background:var(--color-bg-surface-alt);overflow:hidden}
+.sb_panel{position:relative;height:100vh;height:100dvh;overflow:hidden;background:var(--color-bg-surface-alt)}
 .sb_panel+.sb_panel{border-top:1px solid var(--color-border-subtle)}
-.sb_texture{position:absolute;inset:0;width:100%;height:100%;color:var(--color-accent-achievement);opacity:.16;pointer-events:none}
-.sb_card{position:relative;margin:0;max-width:100%;max-height:100%;border-radius:var(--radius-card);overflow:hidden;background:var(--color-bg-surface);box-shadow:0 1px 0 var(--color-border-subtle)}
+/* The photo fills the panel, as in the inspiration */
+.sb_card{position:absolute;inset:0;margin:0}
 .sb_card img{display:block;width:100%;height:100%;object-fit:cover}
-.sb_card.is-portrait{height:100%;aspect-ratio:4/5}
-.sb_card.is-story{height:100%;aspect-ratio:700/1136;border-radius:var(--radius-card)}
-.sb_card.is-wide{width:100%;aspect-ratio:1000/570}
-.sb_card.is-land{width:100%;aspect-ratio:1100/733}
-.sb_card.is-mosaic{height:min(100%,100vw);aspect-ratio:1;display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);background:var(--color-bg-surface-alt)}
-.sb_card.is-mosaic img{border-radius:var(--radius-media)}
+.sb_card.is-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:var(--space-4);background:var(--color-bg-page)}
 .sb_tag{position:absolute;left:var(--space-12);bottom:var(--space-12);padding:var(--space-4) var(--space-12);border-radius:var(--radius-full);background:var(--color-bg-surface);color:var(--color-text-primary);font:500 var(--body3-size)/var(--body3-lh) var(--font-sans)}
 
 /* Mobile: slider like the reference (counter + arrows, swipe) */
@@ -317,7 +312,7 @@
   .sb_track::-webkit-scrollbar{display:none}
   .sb_slide{flex:0 0 100%;scroll-snap-align:start}
   .sb_slide .sb_info-body{margin-top:var(--space-16)}
-  .sb_slide .sb_panel{height:auto;aspect-ratio:4/5;margin-top:var(--space-24);padding:var(--space-24);border-radius:var(--radius-card)}
+  .sb_slide .sb_panel{height:auto;aspect-ratio:4/5;margin-top:var(--space-24);border-radius:var(--radius-card)}
 }
 @media (prefers-reduced-motion:reduce){.sb_info,.sb_pager-fill{transition:none}}
 
@@ -835,9 +830,10 @@ const pad=i=>String(i+1).padStart(2,"0");
 const caption=i=>i<N-1?`Next · ${STEPS[i+1].t}`:"The story continues below";
 const credit=`<a class="sb_credit" href="${AJ}" target="_blank" rel="noopener">Watch on Al Jazeera’s The Stream<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>`;
 const info=(d,i)=>`<p class="sb_num h1${d.gold?" is-gold":""}">${d.n}</p><p class="sb_info-title title1">${d.t}</p><p class="sb_info-body body1">${d.b}</p>${d.credit?credit:""}`;
+const FOCUS={story:"50% 8%",aj:"40% 50%",promise:"45% 50%"};   // object-position for photos cropped to the panel
 const card=d=>{
-  const imgs=d.img.map(([k,a],j)=>`<img src="${SB[k]}" alt="${a}" ${j>1?'loading="lazy"':''} decoding="async">`).join("");
-  return `<svg class="sb_texture" aria-hidden="true"><rect width="100%" height="100%" fill="url(#darajTexture)"/></svg><figure class="sb_card is-${d.card}">${imgs}</figure>`;
+  const imgs=d.img.map(([k,a],j)=>`<img src="${SB[k]}" alt="${a}"${FOCUS[k]?` style="object-position:${FOCUS[k]}"`:""} ${j>1?'loading="lazy"':''} decoding="async">`).join("");
+  return `<figure class="sb_card is-${d.card}">${imgs}</figure>`;
 };
 const stage=document.getElementById("sbStage"),right=document.getElementById("sbRight"),track=document.getElementById("sbTrack");
 STEPS.forEach((d,i)=>{

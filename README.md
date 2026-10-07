@@ -28,7 +28,7 @@ The photos are wide 1920×1080 frames. Each is shown at its real resolution, and
 
 ## Section 2: How SFG began
 Brought over from the "Scholarships for Ghazza · Intro" artifact, where it was built in another chat. The structure and motion follow the setup.sa "Giga Projects" pattern.
-- **Desktop:** the left column (year, title, text and the "01 / 06" pager with arrows, progress line and next-step caption) stays pinned while the photo panels scroll on the right, each on a daraj texture. The panel crossing the middle of the screen sets the active step.
+- **Desktop:** the left column (year, title, text and the "01 / 06" pager with arrows, progress line and next-step caption) stays pinned while the photos scroll on the right, each filling its panel edge to edge with no texture or frame. The panel crossing the middle of the screen sets the active step.
 - **Mobile (under 992px):** a swipe slider with the same pager.
 - **Steps:** 2020 A Chevening scholar · 2022 Back to Gaza · 04.2024 A promise · 08.2024 SFG begins · 03.2026 On Al Jazeera (with a link to The Stream) · 135 Scholarships, and counting.
 - The section is English only for now; the EN ⇄ ع toggle does not translate it yet.
