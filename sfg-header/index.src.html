@@ -830,7 +830,7 @@ const pad=i=>String(i+1).padStart(2,"0");
 const caption=i=>i<N-1?`Next · ${STEPS[i+1].t}`:"The story continues below";
 const credit=`<a class="sb_credit" href="${AJ}" target="_blank" rel="noopener">Watch on Al Jazeera’s The Stream<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>`;
 const info=(d,i)=>`<p class="sb_num h1${d.gold?" is-gold":""}">${d.n}</p><p class="sb_info-title title1">${d.t}</p><p class="sb_info-body body1">${d.b}</p>${d.credit?credit:""}`;
-const FOCUS={story:"50% 8%",aj:"40% 50%",promise:"45% 50%"};   // object-position for photos cropped to the panel
+const FOCUS={story:"50% 8%",promise:"45% 50%"};   // object-position for photos cropped to the panel
 const card=d=>{
   const imgs=d.img.map(([k,a],j)=>`<img src="${SB[k]}" alt="${a}"${FOCUS[k]?` style="object-position:${FOCUS[k]}"`:""} ${j>1?'loading="lazy"':''} decoding="async">`).join("");
   return `<figure class="sb_card is-${d.card}">${imgs}</figure>`;
