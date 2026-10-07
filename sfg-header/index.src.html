@@ -69,6 +69,13 @@
       --space-88:88px;--space-120:120px;--space-160:160px;
       --radius-sm:4px;--radius-media:6px;--radius-card:8px;--radius-panel:10px;--radius-full:999px;
       --container-max:1180px;
+      --space-2:2px;--space-96:96px;--space-128:128px;
+      --grid-columns:12;--grid-gutter:20px;--grid-margin:clamp(20px,11.12vw,160px);
+      --size-touch-min:48px;
+      --color-bg-selected:var(--green-50);
+      --color-accent-number:var(--red-600);
+      --h2-size:clamp(34px,3.4vw,48px);--h2-lh:1.167;--h2-ls:-0.8px;
+      --title-size:28px;--title-lh:36px;
       --ease-out:cubic-bezier(.22,1,.36,1);
 
       /* Intro story roll */
@@ -91,7 +98,9 @@
 
     /* Type scale */
     .h1{font:700 var(--h1-size)/var(--h1-lh) var(--font-display);letter-spacing:var(--h1-ls)}
+    .h2{font:700 var(--h2-size)/var(--h2-lh) var(--font-display);letter-spacing:var(--h2-ls)}
     .h3{font:700 var(--h3-size)/var(--h3-lh) var(--font-display);letter-spacing:var(--h3-ls)}
+    .title{font:500 var(--title-size)/var(--title-lh) var(--font-sans)}
     .h5{font:700 var(--h5-size)/var(--h5-lh) var(--font-display);letter-spacing:var(--h5-ls)}
     .title1{font:500 var(--title1-size)/var(--title1-lh) var(--font-sans)}
     .title3{font:500 var(--title3-size)/var(--title3-lh) var(--font-sans)}
@@ -113,7 +122,7 @@
     .skip-link:focus{top:var(--space-16)}
     .padding-global{padding-inline:var(--space-32)}
     .container-large{max-width:var(--container-max);margin-inline:auto}
-    @media (max-width:767px){.padding-global{padding-inline:var(--space-16)}}
+    @media (max-width:767px){.padding-global{padding-inline:var(--space-16)}:root{--grid-columns:4;--grid-gutter:24px;--grid-margin:20px}}
 
     /* ==========================================================
        Header (cloned structure, SFG content)
@@ -246,11 +255,71 @@
     html[dir="rtl"]{--origin-start:right}
     html[dir="rtl"] .intro_poem,html[dir="rtl"] .intro_row p,html[dir="rtl"] .intro_center p,html[dir="rtl"] .intro_start,html[dir="rtl"] .intro_fly{line-height:1.45;letter-spacing:0}
     html[dir="rtl"] .h1,html[dir="rtl"] .h3{letter-spacing:0}
-    /* Next section placeholder */
-    .section_next{background:var(--color-bg-page);color:var(--color-text-primary);padding-block:var(--space-120)}
-    .next_eyebrow{color:var(--color-text-achievement);margin:0 0 var(--space-16)}
-    .next_heading{color:var(--color-text-heading);margin:0 0 var(--space-24);max-width:760px}
-    .next_body{color:var(--color-text-secondary);margin:0;max-width:640px}
+    /* ===== SECTION 2 · HOW SFG BEGAN (structure + motion from setup.sa "Giga Projects") ===== */
+#about{--sb-col:calc((100vw - 2*var(--grid-margin) - 11*var(--grid-gutter))/12);position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary)}
+.sb_head{padding:var(--space-128) var(--grid-margin) var(--space-64)}
+.sb_title-row{display:flex;align-items:center;gap:var(--space-24)}
+.sb_title{margin:0;flex:none;color:var(--color-text-heading)}
+.sb_band{flex:1;min-width:var(--space-96);height:24px;color:var(--color-accent-achievement)}
+.sb_band svg{display:block;width:100%;height:100%}
+.sb_sub{margin:var(--space-16) 0 0;max-width:40ch;color:var(--color-text-secondary)}
+
+.sb_layout{display:flex;border-top:1px solid var(--color-border-subtle);border-bottom:1px solid var(--color-border-subtle)}
+.sb_left{width:calc(var(--grid-margin) + 6*var(--sb-col) + 6*var(--grid-gutter));flex:none}
+.sb_left-inner{position:sticky;top:0;height:100vh;height:100dvh;padding:var(--space-128) 0 var(--space-64) var(--grid-margin)}
+.sb_stage{position:relative;height:calc(100% - 136px);max-width:calc(5*var(--sb-col) + 4*var(--grid-gutter))}
+.sb_info{position:absolute;inset:0 0 auto 0;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility 0s linear .45s}
+.sb_info.is-active{opacity:1;visibility:visible;transition:opacity .55s ease .35s,visibility 0s linear .35s}
+.sb_num{margin:0;color:var(--color-text-heading)}
+.sb_num.is-gold{color:var(--color-text-achievement)}
+.sb_info-title{margin:var(--space-12) 0 0;color:var(--color-text-primary)}
+.sb_info-body{margin:var(--space-96) 0 0;color:var(--color-text-secondary);max-width:44ch}
+.sb_credit{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-top:var(--space-16);color:var(--color-action-secondary);text-decoration:underline;text-underline-offset:4px;font:500 var(--title3-size)/var(--title3-lh) var(--font-sans)}
+
+/* Pagination (inspiration: "01 / 04" + progress line + caption) */
+.sb_pager{position:absolute;left:var(--grid-margin);bottom:var(--space-64);width:calc(5*var(--sb-col) + 4*var(--grid-gutter))}
+.sb_pager-top{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-16)}
+.sb_pager-count{display:flex;align-items:baseline;gap:var(--space-8)}
+.sb_pager-current{color:var(--color-text-heading)}
+.sb_pager-total{color:var(--color-text-secondary)}
+.sb_pager-nav{display:flex;gap:var(--space-8)}
+.sb_pager-btn{width:var(--size-touch-min);height:var(--size-touch-min);border-radius:var(--radius-full);border:1.5px solid var(--color-action-secondary);background:transparent;color:var(--color-action-secondary);display:grid;place-items:center;cursor:pointer;transition:background-color .2s}
+.sb_pager-btn:hover{background:var(--color-bg-selected)}
+.sb_pager-btn:disabled{opacity:.35;cursor:default;background:transparent}
+.sb_pager-btn:focus-visible,.sb_credit:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
+.sb_pager-track{position:relative;height:2px;margin-top:var(--space-12);background:var(--color-border-subtle)}
+.sb_pager-fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--color-text-heading);transition:width .5s cubic-bezier(.22,.61,.36,1)}
+.sb_pager-caption{margin:var(--space-12) 0 0;color:var(--color-text-secondary)}
+
+/* Right column: native scroll, one 100vh panel per station, card on a daraj texture */
+.sb_right{flex:1;min-width:0}
+.sb_panel{position:relative;height:100vh;height:100dvh;display:grid;place-items:center;padding:var(--space-96) var(--space-64);background:var(--color-bg-surface-alt);overflow:hidden}
+.sb_panel+.sb_panel{border-top:1px solid var(--color-border-subtle)}
+.sb_texture{position:absolute;inset:0;width:100%;height:100%;color:var(--color-accent-achievement);opacity:.16;pointer-events:none}
+.sb_card{position:relative;margin:0;max-width:100%;max-height:100%;border-radius:var(--radius-card);overflow:hidden;background:var(--color-bg-surface);box-shadow:0 1px 0 var(--color-border-subtle)}
+.sb_card img{display:block;width:100%;height:100%;object-fit:cover}
+.sb_card.is-portrait{height:100%;aspect-ratio:4/5}
+.sb_card.is-story{height:100%;aspect-ratio:700/1136;border-radius:var(--radius-card)}
+.sb_card.is-wide{width:100%;aspect-ratio:1000/570}
+.sb_card.is-land{width:100%;aspect-ratio:1100/733}
+.sb_card.is-mosaic{height:min(100%,100vw);aspect-ratio:1;display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);background:var(--color-bg-surface-alt)}
+.sb_card.is-mosaic img{border-radius:var(--radius-media)}
+.sb_tag{position:absolute;left:var(--space-12);bottom:var(--space-12);padding:var(--space-4) var(--space-12);border-radius:var(--radius-full);background:var(--color-bg-surface);color:var(--color-text-primary);font:500 var(--body3-size)/var(--body3-lh) var(--font-sans)}
+
+/* Mobile: slider like the reference (counter + arrows, swipe) */
+.sb_mobile{display:none}
+@media (max-width:991px){
+  .sb_layout{display:none}
+  .sb_head{padding:var(--space-96) var(--grid-margin) var(--space-32)}
+  .sb_mobile{display:block;padding:0 var(--grid-margin) var(--space-96)}
+  .sb_mobile .sb_pager{position:static;width:auto;margin-bottom:var(--space-24)}
+  .sb_track{display:flex;gap:var(--space-24);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+  .sb_track::-webkit-scrollbar{display:none}
+  .sb_slide{flex:0 0 100%;scroll-snap-align:start}
+  .sb_slide .sb_info-body{margin-top:var(--space-16)}
+  .sb_slide .sb_panel{height:auto;aspect-ratio:4/5;margin-top:var(--space-24);padding:var(--space-24);border-radius:var(--radius-card)}
+}
+@media (prefers-reduced-motion:reduce){.sb_info,.sb_pager-fill{transition:none}}
 
     .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
@@ -354,13 +423,52 @@
       <p class="sr-only" data-intro-sr></p>
     </section>
 
-    <section class="section_next" id="about">
-      <div class="padding-global"><div class="container-large">
-        <p class="next_eyebrow title3" data-i18n="nextEyebrow">About SFG</p>
-        <h2 class="next_heading h3" data-i18n="nextHeading">Next section goes here.</h2>
-        <p class="next_body body1" data-i18n="nextBody">This placeholder marks where the intro hands off to the rest of the page.</p>
-      </div></div>
-    </section>
+    <section id="about" aria-labelledby="sb-title">
+  <svg width="0" height="0" style="position:absolute;color:var(--color-accent-achievement)" aria-hidden="true" focusable="false"><defs>
+<pattern id="darajTexture" width="96" height="96" patternUnits="userSpaceOnUse"><path d="M1.4 1.4L6.6 6.6M6.6 1.4L1.4 6.6M1.4 9.4L6.6 14.6M6.6 9.4L1.4 14.6M1.4 89.4L6.6 94.6M6.6 89.4L1.4 94.6M9.4 89.4L14.6 94.6M14.6 89.4L9.4 94.6M17.4 33.4L22.6 38.6M22.6 33.4L17.4 38.6M17.4 89.4L22.6 94.6M22.6 89.4L17.4 94.6M25.4 25.4L30.6 30.6M30.6 25.4L25.4 30.6M25.4 41.4L30.6 46.6M30.6 41.4L25.4 46.6M25.4 65.4L30.6 70.6M30.6 65.4L25.4 70.6M25.4 73.4L30.6 78.6M30.6 73.4L25.4 78.6M25.4 81.4L30.6 86.6M30.6 81.4L25.4 86.6M33.4 33.4L38.6 38.6M38.6 33.4L33.4 38.6M33.4 65.4L38.6 70.6M38.6 65.4L33.4 70.6M41.4 65.4L46.6 70.6M46.6 65.4L41.4 70.6M49.4 41.4L54.6 46.6M54.6 41.4L49.4 46.6M49.4 49.4L54.6 54.6M54.6 49.4L49.4 54.6M49.4 57.4L54.6 62.6M54.6 57.4L49.4 62.6M57.4 41.4L62.6 46.6M62.6 41.4L57.4 46.6M65.4 41.4L70.6 46.6M70.6 41.4L65.4 46.6M73.4 17.4L78.6 22.6M78.6 17.4L73.4 22.6M73.4 25.4L78.6 30.6M78.6 25.4L73.4 30.6M73.4 33.4L78.6 38.6M78.6 33.4L73.4 38.6M81.4 17.4L86.6 22.6M86.6 17.4L81.4 22.6M89.4 17.4L94.6 22.6M94.6 17.4L89.4 22.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></pattern>
+<pattern id="darajBand" width="96" height="24" patternUnits="userSpaceOnUse"><path d="M1 19L5 23M5 19L1 23M7 19L11 23M11 19L7 23M13 13L17 17M17 13L13 17M19 13L23 17M23 13L19 17M25 7L29 11M29 7L25 11M31 7L35 11M35 7L31 11M37 1L41 5M41 1L37 5M43 1L47 5M47 1L43 5M49 1L53 5M53 1L49 5M55 1L59 5M59 1L55 5M61 7L65 11M65 7L61 11M67 7L71 11M71 7L67 11M73 13L77 17M77 13L73 17M79 13L83 17M83 13L79 17M85 19L89 23M89 19L85 23M91 19L95 23M95 19L91 23" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></pattern>
+</defs></svg>
+  <div class="sb_head">
+    <div class="sb_title-row">
+      <h2 class="sb_title h2" id="sb-title">How SFG began</h2>
+      <div class="sb_band" aria-hidden="true"><svg preserveAspectRatio="none"><rect width="100%" height="100%" fill="url(#darajBand)"/></svg></div>
+    </div>
+    <p class="sb_sub body1">One scholarship, one promise, and a growing network of mentors.</p>
+  </div>
+  <div class="sb_layout">
+    <div class="sb_left">
+      <div class="sb_left-inner">
+        <div class="sb_stage" id="sbStage" aria-live="polite"></div>
+        <nav class="sb_pager" aria-label="Story steps">
+          <div class="sb_pager-top">
+            <p class="sb_pager-count" style="margin:0"><span class="sb_pager-current title" data-sb-current>01</span><span class="sb_pager-total title3">/ 06</span></p>
+            <div class="sb_pager-nav">
+              <button class="sb_pager-btn" type="button" data-sb-prev aria-label="Previous step"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 15V5M5.5 9.5 10 5l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button class="sb_pager-btn" type="button" data-sb-next aria-label="Next step"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 5v10M5.5 10.5 10 15l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+          <div class="sb_pager-track" aria-hidden="true"><span class="sb_pager-fill" data-sb-fill></span></div>
+          <p class="sb_pager-caption body3" data-sb-caption></p>
+        </nav>
+      </div>
+    </div>
+    <div class="sb_right" id="sbRight"></div>
+  </div>
+  <div class="sb_mobile">
+    <nav class="sb_pager" aria-label="Story steps">
+      <div class="sb_pager-top">
+        <p class="sb_pager-count" style="margin:0"><span class="sb_pager-current title" data-sbm-current>01</span><span class="sb_pager-total title3">/ 06</span></p>
+        <div class="sb_pager-nav">
+          <button class="sb_pager-btn" type="button" data-sbm-prev aria-label="Previous step"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4 6.5 10l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="sb_pager-btn" type="button" data-sbm-next aria-label="Next step"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+      <div class="sb_pager-track" aria-hidden="true"><span class="sb_pager-fill" data-sbm-fill></span></div>
+      <p class="sb_pager-caption body3" data-sbm-caption></p>
+    </nav>
+    <div class="sb_track" id="sbTrack" tabindex="0" aria-label="How SFG began, swipe for the next step"></div>
+  </div>
+</section>
   </main>
 
   <script>
@@ -416,7 +524,6 @@
         navAbout: "About", navHow: "How it works", navMentors: "Mentors", navStudents: "For students", navCta: "Become a mentor",
         menu: "Menu", skip: "Skip Intro", outro: "Here’s how the story begins.", cue: "Scroll",
         sentence: "A highly educated Palestine, rebuilt by its own students.",
-        nextEyebrow: "About SFG", nextHeading: "Next section goes here.", nextBody: "This placeholder marks where the intro hands off to the rest of the page.",
         toggleLabel: "Switch to Arabic", title: "Scholarships for Ghazza"
       },
       ar: {
@@ -424,7 +531,6 @@
         navAbout: "من نحن", navHow: "كيف نعمل", navMentors: "المرشدون", navStudents: "للطلاب", navCta: "كن مرشدًا",
         menu: "القائمة", skip: "تخطَّ المقدمة", outro: "هكذا تبدأ الحكاية.", cue: "مرّر للأسفل",
         sentence: "فلسطين متعلّمة، يعيد بناءها طلابها.",
-        nextEyebrow: "عن المبادرة", nextHeading: "القسم التالي هنا.", nextBody: "هذا عنصر مؤقت يحدد موضع انتقال المقدمة إلى بقية الصفحة.",
         toggleLabel: "Switch to English", title: "منح لغزة"
       }
     };
@@ -710,6 +816,60 @@
       setTimeout(function () { enter(false); }, OPENING_MS);
     });
   })();
+  </script>
+  <script>
+// ===== Section 2 · How SFG began · v2.0 (structure + motion after setup.sa "Giga Projects") =====
+(function(){
+const SB={"warwick":"assets/story/warwick.jpg","gaza":"assets/story/gaza.jpg","promise":"assets/story/promise.jpg","story":"assets/story/story.jpg","aj":"assets/story/aj.jpg","st0":"assets/story/st0.jpg","st1":"assets/story/st1.jpg","st2":"assets/story/st2.jpg","st3":"assets/story/st3.jpg"};
+const AJ="https://www.youtube.com/watch?v=mTQXXAByvro";
+const STEPS=[
+ {n:"2020",t:"A Chevening scholar",b:"Ahmed Issa leaves Gaza for Warwick Business School on a fully funded Chevening scholarship.",card:"portrait",img:[["warwick","Ahmed Issa in front of the University of Warwick sign"]]},
+ {n:"2022",t:"Back to Gaza",b:"He returns home, believing education is how Palestinians will lead and rebuild.",card:"portrait",img:[["gaza","Ahmed at his office desk in Gaza"]]},
+ {n:"04.2024",t:"A promise",b:"Ahmed evacuates Gaza with his wife and two sons, and makes a promise: to help Palestinian students win the fully funded scholarships that changed his life.",card:"land",img:[["promise","Ahmed in Gaza, framed by a damaged blue wall with the city behind him"]]},
+ {n:"08.2024",t:"SFG begins",b:"It starts with one Instagram story: “I need your help.” Ahmed asks for volunteers to guide students through their applications, and Scholarships for Ghazza is born.",card:"story",img:[["story","Ahmed’s Instagram story asking for volunteers to help students from Gaza apply for scholarships"]]},
+ {n:"03.2026",t:"On Al Jazeera",b:"SFG’s story reaches Al Jazeera’s The Stream, as more students from Gaza win their places.",card:"wide",credit:true,img:[["aj","Ahmed Issa speaking on Al Jazeera’s The Stream, with the SFG website on screen"]]},
+ {n:"135",t:"Scholarships, and counting",b:"SFG mentors have helped 135 students win fully funded scholarships in the UK, Ireland, France, Italy, Singapore and the USA.",card:"mosaic",gold:true,img:[["st0","A scholar at the University of Aberdeen"],["st1","A scholar at LSE"],["st2","A scholar at Imperial College London"],["st3","A scholar at University College Dublin"]]}
+];
+const N=STEPS.length,reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const pad=i=>String(i+1).padStart(2,"0");
+const caption=i=>i<N-1?`Next · ${STEPS[i+1].t}`:"The story continues below";
+const credit=`<a class="sb_credit" href="${AJ}" target="_blank" rel="noopener">Watch on Al Jazeera’s The Stream<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>`;
+const info=(d,i)=>`<p class="sb_num h1${d.gold?" is-gold":""}">${d.n}</p><p class="sb_info-title title1">${d.t}</p><p class="sb_info-body body1">${d.b}</p>${d.credit?credit:""}`;
+const card=d=>{
+  const imgs=d.img.map(([k,a],j)=>`<img src="${SB[k]}" alt="${a}" ${j>1?'loading="lazy"':''} decoding="async">`).join("");
+  return `<svg class="sb_texture" aria-hidden="true"><rect width="100%" height="100%" fill="url(#darajTexture)"/></svg><figure class="sb_card is-${d.card}">${imgs}</figure>`;
+};
+const stage=document.getElementById("sbStage"),right=document.getElementById("sbRight"),track=document.getElementById("sbTrack");
+STEPS.forEach((d,i)=>{
+  stage.insertAdjacentHTML("beforeend",`<div class="sb_info${i===0?" is-active":""}" data-sb-info="${i}" ${i?'aria-hidden="true"':''}>${info(d,i)}</div>`);
+  right.insertAdjacentHTML("beforeend",`<div class="sb_panel" data-sb-panel="${i}">${card(d)}</div>`);
+  track.insertAdjacentHTML("beforeend",`<article class="sb_slide" aria-label="Step ${i+1} of ${N}">${info(d,i)}<div class="sb_panel">${card(d)}</div></article>`);
+});
+// Desktop: images scroll natively; the panel crossing the viewport middle sets the active text (like the reference)
+const infos=[...stage.children],panels=[...right.children];
+const cur=document.querySelector("[data-sb-current]"),fill=document.querySelector("[data-sb-fill]"),cap=document.querySelector("[data-sb-caption]");
+const prev=document.querySelector("[data-sb-prev]"),next=document.querySelector("[data-sb-next]");
+let active=-1;
+function setActive(i){
+  if(i===active)return;
+  if(active>=0){infos[active].classList.remove("is-active");infos[active].setAttribute("aria-hidden","true");}
+  infos[i].classList.add("is-active");infos[i].removeAttribute("aria-hidden");active=i;
+  cur.textContent=pad(i);fill.style.width=((i+1)/N*100)+"%";cap.textContent=caption(i);
+  prev.disabled=i===0;next.disabled=i===N-1;
+}
+function update(){const mid=innerHeight/2;let idx=0;panels.forEach((p,i)=>{if(p.getBoundingClientRect().top<=mid)idx=i;});setActive(idx);}
+function goTo(i){i=Math.max(0,Math.min(N-1,i));const y=panels[i].getBoundingClientRect().top+scrollY;scrollTo({top:y,behavior:reduce?"auto":"smooth"});}
+prev.addEventListener("click",()=>goTo(active-1));next.addEventListener("click",()=>goTo(active+1));
+addEventListener("scroll",update,{passive:true});addEventListener("resize",update);update();
+// Mobile slider
+const slides=[...track.children],mc=document.querySelector("[data-sbm-current]"),mf=document.querySelector("[data-sbm-fill]"),mcap=document.querySelector("[data-sbm-caption]");
+const mp=document.querySelector("[data-sbm-prev]"),mn=document.querySelector("[data-sbm-next]");
+const mIdx=()=>Math.round(track.scrollLeft/(slides[0].offsetWidth+24));
+function mSet(){const i=Math.max(0,Math.min(N-1,mIdx()));mc.textContent=pad(i);mf.style.width=((i+1)/N*100)+"%";mcap.textContent=caption(i);mp.disabled=i===0;mn.disabled=i===N-1;}
+const mGo=i=>{i=Math.max(0,Math.min(N-1,i));track.scrollTo({left:slides[i].offsetLeft-slides[0].offsetLeft,behavior:reduce?"auto":"smooth"});};
+mp.addEventListener("click",()=>mGo(mIdx()-1));mn.addEventListener("click",()=>mGo(mIdx()+1));
+track.addEventListener("scroll",mSet,{passive:true});mSet();
+})();
   </script>
 </body>
 </html>

@@ -5,8 +5,8 @@ Built with the clone-to-webflow workflow, Stage A (local build). Nothing has bee
 | Folder | What it is |
 |---|---|
 | `clone/index.html` | Faithful local clone of the reference header and scroll intro, kept as the reference. Images and logo are hot-linked from the original site for study only. Do not publish. |
-| `sfg-header/index.html` | The SFG version: your four photos, the SFG paragraph and hidden sentence, the SFG navbar, and an EN ⇄ ع toggle. |
-| `sfg-header/assets/` | Your four photos, compressed to WebP (100–270 KB each). They are also embedded in `index.html`, so that file works on its own. |
+| `sfg-header/index.html` | The SFG page, as one self-contained file: navbar, the intro (section 1) and "How SFG began" (section 2). Built from `index.src.html` with `python3 build.py`. |
+| `sfg-header/assets/` | Intro photos (WebP) and the section 2 photos in `assets/story/`. `build.py` embeds them all into `index.html`, so that file works on its own. |
 | `reference/` | Reference screenshot, motion notes (`notes.md`) and build screenshots. |
 
 Open locally: `python3 -m http.server` in this folder, then visit `/sfg-header/` or `/clone/`.
@@ -25,6 +25,13 @@ The intro **plays on its own**, at a different pace for each part: the paragraph
 **Arabic:** the text sits on the right, so Arabic shows the same LSE photo mirrored, with the student on the left. This keeps «فلسطين متعلّمة» and «هكذا تبدأ الحكاية» clear of her face. Because it is mirrored, the LSE signs read backwards in the Arabic version.
 
 The photos are wide 1920×1080 frames. Each is shown at its real resolution, and the sides are filled from the photo's own edge colours with a light blur. There are no ghosted copies and nothing is pixelated. `index.html` has them embedded, so it works as a single file. `index.src.html` is the same page with links to `assets/` instead, for editing.
+
+## Section 2: How SFG began
+Brought over from the "Scholarships for Ghazza · Intro" artifact, where it was built in another chat. The structure and motion follow the setup.sa "Giga Projects" pattern.
+- **Desktop:** the left column (year, title, text and the "01 / 06" pager with arrows, progress line and next-step caption) stays pinned while the photo panels scroll on the right, each on a daraj texture. The panel crossing the middle of the screen sets the active step.
+- **Mobile (under 992px):** a swipe slider with the same pager.
+- **Steps:** 2020 A Chevening scholar · 2022 Back to Gaza · 04.2024 A promise · 08.2024 SFG begins · 03.2026 On Al Jazeera (with a link to The Stream) · 135 Scholarships, and counting.
+- The section is English only for now; the EN ⇄ ع toggle does not translate it yet.
 
 ## Fonts (Thmanyah licence)
 The page uses `Thmanyah Serif Display`, `Thmanyah Serif Text` and `Thmanyah Sans` whenever they are available. These come from installed fonts, or from the `--font-sfg-*` variables set by a bundler such as `next/font/local`. Otherwise it falls back to Newsreader, Readex Pro and Noto Naskh Arabic. The Thmanyah font files are deliberately **not** in this repository, as the licence requires.
