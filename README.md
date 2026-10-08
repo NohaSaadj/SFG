@@ -27,7 +27,7 @@ The intro **plays on its own**, at a different pace for each part: the paragraph
 The photos are wide 1920×1080 frames. Each is shown at its real resolution, and the sides are filled from the photo's own edge colours with a light blur. There are no ghosted copies and nothing is pixelated. `index.html` has them embedded, so it works as a single file. `index.src.html` is the same page with links to `assets/` instead, for editing.
 
 ## About SFG (new, before section 2)
-A two-part editorial block on the 12-column grid: the paragraph spans columns 1 to 7 on the left, and the eyebrow "About SFG" with the H2 "A Palestinian-led mentorship initiative" spans columns 9 to 12 on the right. On phones the title sits above the paragraph. As you scroll, the paragraph fills word by word from a faint tone (`--color-text-fill-off`, ink at 16%) to ink (`--color-text-primary`). It starts when the paragraph's top reaches 80% of the screen and finishes as its bottom reaches 55%. With reduced motion turned on, it is shown fully filled. The copy is a draft for review.
+A two-part editorial block on the 12-column grid, laid out like the Cambium reference: the eyebrow "About SFG" and the H2 "A Palestinian-led mentorship initiative" lead on the left (columns 1 to 5), and the description sits on the right (columns 7 to 12) at Title size, top-aligned with the headline. On phones the title sits above the description. The text animation will be swapped for the code you are sending. As you scroll, the paragraph fills word by word from a faint tone (`--color-text-fill-off`, ink at 16%) to ink (`--color-text-primary`). It starts when the paragraph's top reaches 80% of the screen and finishes as its bottom reaches 55%. With reduced motion turned on, it is shown fully filled. The copy is a draft for review.
 
 ## Section 2: How SFG began
 The structure and motion follow the setup.sa "Giga Projects" pattern. It was brought over from the "Scholarships for Ghazza · Intro" artifact.
@@ -36,7 +36,8 @@ The structure and motion follow the setup.sa "Giga Projects" pattern. It was bro
 - **One grade for every photo:** slightly muted, warm, with lifted shadows (ImageMagick: `-modulate 100,82 -sigmoidal-contrast 2x50%`, R ×1.025, B ×0.95, `+level 3%,100%`). Screenshots are left ungraded so their text stays crisp.
 - **Mobile (under 992px):** a swipe slider with the same pager and frame.
 - **Steps:** 2020 A Chevening scholar (Ahmed with his certificate at Warwick Business School) · 2022 Back to Gaza (yellow shirt at the desk) · 04.2024 A promise (notebook and teapot) · 08.2024 SFG begins (the "Want to help Ghazawi students…" Instagram story) · 03.2026 On Al Jazeera · 135 Scholarships, and counting.
-- **Tatreez band:** next to "How SFG began". It was traced stitch by stitch from the supplied band (7 rows, 376 squares) into vector squares, then repeated to fill the rest of the title row. The colours are `--color-tatreez-primary` (red 500) and `--color-tatreez-secondary` (ochre 400).
+- **Section head:** no divider lines. The spacing uses design-system steps: 96px above the title, and 96px from the title block to the first step.
+- **Tatreez band:** next to "How SFG began", running to the right edge of the page. It was traced stitch by stitch from the supplied band (7 rows, 376 squares) into vector squares, then repeated to fill the rest of the title row. The colours are `--color-tatreez-primary` (red 500) and `--color-tatreez-secondary` (ochre 400).
 - The section is English only for now; the EN ⇄ ع toggle does not translate it yet.
 
 ## Fonts (Thmanyah licence)

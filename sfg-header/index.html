@@ -261,24 +261,24 @@
     html[dir="rtl"] .intro_poem,html[dir="rtl"] .intro_row p,html[dir="rtl"] .intro_center p,html[dir="rtl"] .intro_start,html[dir="rtl"] .intro_fly{line-height:1.45;letter-spacing:0}
     html[dir="rtl"] .h1,html[dir="rtl"] .h3{letter-spacing:0}
     /* ===== ABOUT SFG · paragraph fills word by word as you scroll ===== */
-.section_about{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-128) var(--grid-margin)}
+.section_about{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-96) var(--grid-margin) 0}
 .about_grid{display:grid;grid-template-columns:repeat(var(--grid-columns),minmax(0,1fr));column-gap:var(--grid-gutter);align-items:start}
-.about_text{grid-column:1 / span 7;margin:0;color:var(--color-text-primary)}
+.about_text{grid-column:7 / span 6;margin:0;color:var(--color-text-primary)}
 .about_text .fw{color:var(--color-text-fill-off);transition:color .3s ease}
 .about_text .fw.is-on{color:var(--color-text-primary)}
-.about_aside{grid-column:9 / span 4}
+.about_aside{grid-column:1 / span 5}
 .about_eyebrow{margin:0 0 var(--space-16);color:var(--color-text-achievement)}
 .about_title{margin:0;color:var(--color-text-heading)}
 @media (max-width:991px){
-  .section_about{padding:var(--space-96) var(--grid-margin)}
-  .about_aside{grid-column:1 / -1;order:-1;margin-bottom:var(--space-32)}
+  .section_about{padding:var(--space-64) var(--grid-margin) 0}
+  .about_aside{grid-column:1 / -1;margin-bottom:var(--space-24)}
   .about_text{grid-column:1 / -1}
 }
 @media (prefers-reduced-motion:reduce){.about_text .fw{color:var(--color-text-primary);transition:none}}
 
 /* ===== SECTION 2 · HOW SFG BEGAN (structure + motion from setup.sa "Giga Projects") ===== */
 #how-it-began{--sb-col:calc((100vw - 2*var(--grid-margin) - 11*var(--grid-gutter))/12);position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary)}
-.sb_head{padding:var(--space-128) var(--grid-margin) var(--space-64)}
+.sb_head{padding:var(--space-96) 0 0 var(--grid-margin)}   /* no right padding: the band reaches the page edge */
 .sb_title-row{display:flex;align-items:center;gap:var(--space-24)}
 .sb_title{margin:0;flex:none;color:var(--color-text-heading)}
 /* Tatreez band (traced from the supplied motif), repeated to fill the rest of the title row */
@@ -287,9 +287,9 @@
 .sb_band .tz-b{fill:var(--color-tatreez-secondary)}
 .sb_sub{margin:var(--space-16) 0 0;max-width:40ch;color:var(--color-text-secondary)}
 
-.sb_layout{display:flex;border-top:1px solid var(--color-border-subtle);border-bottom:1px solid var(--color-border-subtle)}
+.sb_layout{display:flex}
 .sb_left{width:calc(var(--grid-margin) + 6*var(--sb-col) + 6*var(--grid-gutter));flex:none}
-.sb_left-inner{position:sticky;top:0;height:100vh;height:100dvh;padding:var(--space-128) 0 var(--space-64) var(--grid-margin)}
+.sb_left-inner{position:sticky;top:0;height:100vh;height:100dvh;padding:var(--space-96) 0 var(--space-64) var(--grid-margin)}
 .sb_stage{position:relative;height:calc(100% - 136px);max-width:calc(5*var(--sb-col) + 4*var(--grid-gutter))}
 .sb_info{position:absolute;inset:0 0 auto 0;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility 0s linear .45s}
 .sb_info.is-active{opacity:1;visibility:visible;transition:opacity .55s ease .35s,visibility 0s linear .35s}
@@ -331,7 +331,7 @@
 .sb_mobile{display:none}
 @media (max-width:991px){
   .sb_layout{display:none}
-  .sb_head{padding:var(--space-96) var(--grid-margin) var(--space-32)}
+  .sb_head{padding:var(--space-64) 0 var(--space-32) var(--grid-margin)}
   .sb_mobile{display:block;padding:0 var(--grid-margin) var(--space-96)}
   .sb_mobile .sb_pager{position:static;width:auto;margin-bottom:var(--space-24)}
   .sb_track{display:flex;gap:var(--space-24);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
@@ -439,11 +439,11 @@
 
     <section class="section_about" id="about" aria-labelledby="about-title">
       <div class="about_grid">
-        <p class="about_text h4" data-fill-text>Scholarships for Ghazza is a Palestinian-led mentorship initiative. We pair students from Gaza with volunteer mentors around the world, who guide them through every step of applying for a fully funded scholarship, from choosing a programme to the final interview. With Gaza’s universities destroyed, studying abroad is how these students keep learning, and how they will rebuild.</p>
         <div class="about_aside">
           <p class="about_eyebrow title3">About SFG</p>
           <h2 class="about_title h2" id="about-title">A Palestinian-led mentorship initiative</h2>
         </div>
+        <p class="about_text title" data-fill-text>Scholarships for Ghazza is a Palestinian-led mentorship initiative. We pair students from Gaza with volunteer mentors around the world, who guide them through every step of applying for a fully funded scholarship, from choosing a programme to the final interview. With Gaza’s universities destroyed, studying abroad is how these students keep learning, and how they will rebuild.</p>
       </div>
     </section>
 
