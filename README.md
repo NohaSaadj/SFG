@@ -26,12 +26,17 @@ The intro **plays on its own**, at a different pace for each part: the paragraph
 
 The photos are wide 1920×1080 frames. Each is shown at its real resolution, and the sides are filled from the photo's own edge colours with a light blur. There are no ghosted copies and nothing is pixelated. `index.html` has them embedded, so it works as a single file. `index.src.html` is the same page with links to `assets/` instead, for editing.
 
+## About SFG (new, before section 2)
+A two-part editorial block on the 12-column grid: the paragraph spans columns 1 to 7 on the left, and the eyebrow "About SFG" with the H2 "A Palestinian-led mentorship initiative" spans columns 9 to 12 on the right. On phones the title sits above the paragraph. As you scroll, the paragraph fills word by word from a faint tone (`--color-text-fill-off`, ink at 16%) to ink (`--color-text-primary`). It starts when the paragraph's top reaches 80% of the screen and finishes as its bottom reaches 55%. With reduced motion turned on, it is shown fully filled. The copy is a draft for review.
+
 ## Section 2: How SFG began
-Brought over from the "Scholarships for Ghazza · Intro" artifact, where it was built in another chat. The structure and motion follow the setup.sa "Giga Projects" pattern.
-- **Desktop:** the left column (year, title, text and the "01 / 06" pager with arrows, progress line and next-step caption) stays pinned while the photos scroll on the right, each filling its panel edge to edge with no texture or frame. The panel crossing the middle of the screen sets the active step.
-- **Mobile (under 992px):** a swipe slider with the same pager.
-- **Steps:** 2020 A Chevening scholar · 2022 Back to Gaza · 04.2024 A promise · 08.2024 SFG begins · 03.2026 On Al Jazeera (with a link to The Stream) · 135 Scholarships, and counting.
-- The Al Jazeera screenshot is shown whole: it sits in a taller 968×1210 frame (gold border trimmed), with its own edge colours stretched above and below, so the crop to the panel never cuts Ahmed or the SFG website.
+The structure and motion follow the setup.sa "Giga Projects" pattern. It was brought over from the "Scholarships for Ghazza · Intro" artifact.
+- **Desktop:** the left column (year, title, text and the "01 / 06" pager with arrows, progress line and next-step caption) stays pinned while the steps scroll on the right. The panel crossing the middle of the screen sets the active step.
+- **One frame for every step:** a 4:5 frame, `min(68vh, 640px)` tall, with white space around it. Photos fill it. The two screenshots (the Instagram story and Al Jazeera) sit whole on a lightly blurred copy of themselves, so nothing is stretched or cropped.
+- **One grade for every photo:** slightly muted, warm, with lifted shadows (ImageMagick: `-modulate 100,82 -sigmoidal-contrast 2x50%`, R ×1.025, B ×0.95, `+level 3%,100%`). Screenshots are left ungraded so their text stays crisp.
+- **Mobile (under 992px):** a swipe slider with the same pager and frame.
+- **Steps:** 2020 A Chevening scholar (Warwick sign, until the certificate photo arrives) · 2022 Back to Gaza (yellow shirt at the desk) · 04.2024 A promise (notebook and teapot) · 08.2024 SFG begins (Instagram story) · 03.2026 On Al Jazeera · 135 Scholarships, and counting.
+- The decorative band next to "How SFG began" is removed until it can be rebuilt from the source pattern.
 - The section is English only for now; the EN ⇄ ع toggle does not translate it yet.
 
 ## Fonts (Thmanyah licence)

@@ -73,9 +73,11 @@
       --grid-columns:12;--grid-gutter:20px;--grid-margin:clamp(20px,11.12vw,160px);
       --size-touch-min:48px;
       --color-bg-selected:var(--green-50);
+      --color-text-fill-off:rgb(30 26 22 / .16);   /* About paragraph: words not yet reached by the scroll */
       --color-accent-number:var(--red-600);
       --h2-size:clamp(34px,3.4vw,48px);--h2-lh:1.167;--h2-ls:-0.8px;
       --title-size:28px;--title-lh:36px;
+      --h4-size:32px;--h4-lh:40px;--h4-ls:-0.4px;
       --ease-out:cubic-bezier(.22,1,.36,1);
 
       /* Intro story roll */
@@ -86,20 +88,21 @@
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
       --color-accent-achievement:#DBBA80;--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;
-      --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);
+      --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);--color-text-fill-off:rgb(239 232 219 / .18);
     }}
     :root[data-theme="dark"]{
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
       --color-accent-achievement:#DBBA80;--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;
-      --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);
+      --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);--color-text-fill-off:rgb(239 232 219 / .18);
     }
 
     /* Type scale */
     .h1{font:700 var(--h1-size)/var(--h1-lh) var(--font-display);letter-spacing:var(--h1-ls)}
     .h2{font:700 var(--h2-size)/var(--h2-lh) var(--font-display);letter-spacing:var(--h2-ls)}
     .h3{font:700 var(--h3-size)/var(--h3-lh) var(--font-display);letter-spacing:var(--h3-ls)}
+    .h4{font:700 var(--h4-size)/var(--h4-lh) var(--font-display);letter-spacing:var(--h4-ls)}
     .title{font:500 var(--title-size)/var(--title-lh) var(--font-sans)}
     .h5{font:700 var(--h5-size)/var(--h5-lh) var(--font-display);letter-spacing:var(--h5-ls)}
     .title1{font:500 var(--title1-size)/var(--title1-lh) var(--font-sans)}
@@ -255,13 +258,27 @@
     html[dir="rtl"]{--origin-start:right}
     html[dir="rtl"] .intro_poem,html[dir="rtl"] .intro_row p,html[dir="rtl"] .intro_center p,html[dir="rtl"] .intro_start,html[dir="rtl"] .intro_fly{line-height:1.45;letter-spacing:0}
     html[dir="rtl"] .h1,html[dir="rtl"] .h3{letter-spacing:0}
-    /* ===== SECTION 2 · HOW SFG BEGAN (structure + motion from setup.sa "Giga Projects") ===== */
-#about{--sb-col:calc((100vw - 2*var(--grid-margin) - 11*var(--grid-gutter))/12);position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary)}
+    /* ===== ABOUT SFG · paragraph fills word by word as you scroll ===== */
+.section_about{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-128) var(--grid-margin)}
+.about_grid{display:grid;grid-template-columns:repeat(var(--grid-columns),minmax(0,1fr));column-gap:var(--grid-gutter);align-items:start}
+.about_text{grid-column:1 / span 7;margin:0;color:var(--color-text-primary)}
+.about_text .fw{color:var(--color-text-fill-off);transition:color .3s ease}
+.about_text .fw.is-on{color:var(--color-text-primary)}
+.about_aside{grid-column:9 / span 4}
+.about_eyebrow{margin:0 0 var(--space-16);color:var(--color-text-achievement)}
+.about_title{margin:0;color:var(--color-text-heading)}
+@media (max-width:991px){
+  .section_about{padding:var(--space-96) var(--grid-margin)}
+  .about_aside{grid-column:1 / -1;order:-1;margin-bottom:var(--space-32)}
+  .about_text{grid-column:1 / -1}
+}
+@media (prefers-reduced-motion:reduce){.about_text .fw{color:var(--color-text-primary);transition:none}}
+
+/* ===== SECTION 2 · HOW SFG BEGAN (structure + motion from setup.sa "Giga Projects") ===== */
+#how-it-began{--sb-col:calc((100vw - 2*var(--grid-margin) - 11*var(--grid-gutter))/12);position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary)}
 .sb_head{padding:var(--space-128) var(--grid-margin) var(--space-64)}
 .sb_title-row{display:flex;align-items:center;gap:var(--space-24)}
 .sb_title{margin:0;flex:none;color:var(--color-text-heading)}
-.sb_band{flex:1;min-width:var(--space-96);height:24px;color:var(--color-accent-achievement)}
-.sb_band svg{display:block;width:100%;height:100%}
 .sb_sub{margin:var(--space-16) 0 0;max-width:40ch;color:var(--color-text-secondary)}
 
 .sb_layout{display:flex;border-top:1px solid var(--color-border-subtle);border-bottom:1px solid var(--color-border-subtle)}
@@ -273,7 +290,7 @@
 .sb_num{margin:0;color:var(--color-text-heading)}
 .sb_num.is-gold{color:var(--color-text-achievement)}
 .sb_info-title{margin:var(--space-12) 0 0;color:var(--color-text-primary)}
-.sb_info-body{margin:var(--space-96) 0 0;color:var(--color-text-secondary);max-width:44ch}
+.sb_info-body{margin:var(--space-24) 0 0;color:var(--color-text-secondary);max-width:44ch}
 .sb_credit{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-top:var(--space-16);color:var(--color-action-secondary);text-decoration:underline;text-underline-offset:4px;font:500 var(--title3-size)/var(--title3-lh) var(--font-sans)}
 
 /* Pagination (inspiration: "01 / 04" + progress line + caption) */
@@ -293,12 +310,15 @@
 
 /* Right column: native scroll, one 100vh panel per station, card on a daraj texture */
 .sb_right{flex:1;min-width:0}
-.sb_panel{position:relative;height:100vh;height:100dvh;overflow:hidden;background:var(--color-bg-surface-alt)}
-.sb_panel+.sb_panel{border-top:1px solid var(--color-border-subtle)}
-/* The photo fills the panel, as in the inspiration */
-.sb_card{position:absolute;inset:0;margin:0}
+/* One 4:5 frame for every step, smaller than the screen, floating in white space */
+.sb_panel{position:relative;height:100vh;height:100dvh;display:flex;align-items:center;padding:0 var(--grid-margin) 0 var(--grid-gutter)}
+.sb_card{position:relative;margin:0;height:min(68vh,640px);aspect-ratio:4/5;max-width:100%;border-radius:var(--radius-media);overflow:hidden;background:var(--color-bg-surface-alt)}
 .sb_card img{display:block;width:100%;height:100%;object-fit:cover}
 .sb_card.is-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:var(--space-4);background:var(--color-bg-page)}
+.sb_card.is-mosaic img{border-radius:var(--radius-sm)}
+/* Screenshots sit whole in the frame, on a lightly blurred copy of themselves */
+.sb_card.is-fit .sb_fill{position:absolute;inset:0;transform:scale(1.15);filter:blur(14px) saturate(.9);opacity:.85}
+.sb_card.is-fit .sb_main{position:relative;object-fit:contain}
 .sb_tag{position:absolute;left:var(--space-12);bottom:var(--space-12);padding:var(--space-4) var(--space-12);border-radius:var(--radius-full);background:var(--color-bg-surface);color:var(--color-text-primary);font:500 var(--body3-size)/var(--body3-lh) var(--font-sans)}
 
 /* Mobile: slider like the reference (counter + arrows, swipe) */
@@ -312,7 +332,8 @@
   .sb_track::-webkit-scrollbar{display:none}
   .sb_slide{flex:0 0 100%;scroll-snap-align:start}
   .sb_slide .sb_info-body{margin-top:var(--space-16)}
-  .sb_slide .sb_panel{height:auto;aspect-ratio:4/5;margin-top:var(--space-24);border-radius:var(--radius-card)}
+  .sb_slide .sb_panel{height:auto;display:block;padding:0;margin-top:var(--space-24)}
+  .sb_slide .sb_card{height:auto;width:100%}
 }
 @media (prefers-reduced-motion:reduce){.sb_info,.sb_pager-fill{transition:none}}
 
@@ -418,7 +439,17 @@
       <p class="sr-only" data-intro-sr></p>
     </section>
 
-    <section id="about" aria-labelledby="sb-title">
+    <section class="section_about" id="about" aria-labelledby="about-title">
+      <div class="about_grid">
+        <p class="about_text h4" data-fill-text>Scholarships for Ghazza is a Palestinian-led mentorship initiative. We pair students from Gaza with volunteer mentors around the world, who guide them through every step of applying for a fully funded scholarship, from choosing a programme to the final interview. With Gaza’s universities destroyed, studying abroad is how these students keep learning, and how they will rebuild.</p>
+        <div class="about_aside">
+          <p class="about_eyebrow title3">About SFG</p>
+          <h2 class="about_title h2" id="about-title">A Palestinian-led mentorship initiative</h2>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-began" aria-labelledby="sb-title">
   <svg width="0" height="0" style="position:absolute;color:var(--color-accent-achievement)" aria-hidden="true" focusable="false"><defs>
 <pattern id="darajTexture" width="96" height="96" patternUnits="userSpaceOnUse"><path d="M1.4 1.4L6.6 6.6M6.6 1.4L1.4 6.6M1.4 9.4L6.6 14.6M6.6 9.4L1.4 14.6M1.4 89.4L6.6 94.6M6.6 89.4L1.4 94.6M9.4 89.4L14.6 94.6M14.6 89.4L9.4 94.6M17.4 33.4L22.6 38.6M22.6 33.4L17.4 38.6M17.4 89.4L22.6 94.6M22.6 89.4L17.4 94.6M25.4 25.4L30.6 30.6M30.6 25.4L25.4 30.6M25.4 41.4L30.6 46.6M30.6 41.4L25.4 46.6M25.4 65.4L30.6 70.6M30.6 65.4L25.4 70.6M25.4 73.4L30.6 78.6M30.6 73.4L25.4 78.6M25.4 81.4L30.6 86.6M30.6 81.4L25.4 86.6M33.4 33.4L38.6 38.6M38.6 33.4L33.4 38.6M33.4 65.4L38.6 70.6M38.6 65.4L33.4 70.6M41.4 65.4L46.6 70.6M46.6 65.4L41.4 70.6M49.4 41.4L54.6 46.6M54.6 41.4L49.4 46.6M49.4 49.4L54.6 54.6M54.6 49.4L49.4 54.6M49.4 57.4L54.6 62.6M54.6 57.4L49.4 62.6M57.4 41.4L62.6 46.6M62.6 41.4L57.4 46.6M65.4 41.4L70.6 46.6M70.6 41.4L65.4 46.6M73.4 17.4L78.6 22.6M78.6 17.4L73.4 22.6M73.4 25.4L78.6 30.6M78.6 25.4L73.4 30.6M73.4 33.4L78.6 38.6M78.6 33.4L73.4 38.6M81.4 17.4L86.6 22.6M86.6 17.4L81.4 22.6M89.4 17.4L94.6 22.6M94.6 17.4L89.4 22.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></pattern>
 <pattern id="darajBand" width="96" height="24" patternUnits="userSpaceOnUse"><path d="M1 19L5 23M5 19L1 23M7 19L11 23M11 19L7 23M13 13L17 17M17 13L13 17M19 13L23 17M23 13L19 17M25 7L29 11M29 7L25 11M31 7L35 11M35 7L31 11M37 1L41 5M41 1L37 5M43 1L47 5M47 1L43 5M49 1L53 5M53 1L49 5M55 1L59 5M59 1L55 5M61 7L65 11M65 7L61 11M67 7L71 11M71 7L67 11M73 13L77 17M77 13L73 17M79 13L83 17M83 13L79 17M85 19L89 23M89 19L85 23M91 19L95 23M95 19L91 23" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></pattern>
@@ -426,7 +457,6 @@
   <div class="sb_head">
     <div class="sb_title-row">
       <h2 class="sb_title h2" id="sb-title">How SFG began</h2>
-      <div class="sb_band" aria-hidden="true"><svg preserveAspectRatio="none"><rect width="100%" height="100%" fill="url(#darajBand)"/></svg></div>
     </div>
     <p class="sb_sub body1">One scholarship, one promise, and a growing network of mentors.</p>
   </div>
@@ -813,14 +843,29 @@
   })();
   </script>
   <script>
+// ===== About SFG · scroll-linked word fill =====
+(function(){
+  var el=document.querySelector("[data-fill-text]"); if(!el) return;
+  var words=el.textContent.trim().split(/\s+/);
+  el.innerHTML=words.map(function(w){return '<span class="fw">'+w+'</span>';}).join(" ");
+  var spans=[].slice.call(el.querySelectorAll(".fw")), lit=-1;
+  function update(){
+    var r=el.getBoundingClientRect(), vh=innerHeight;
+    // starts filling when the paragraph's top reaches 80% of the screen, done when its bottom reaches 55%
+    var p=(vh*0.8-r.top)/(r.height+vh*0.25); p=Math.max(0,Math.min(1,p));
+    var n=Math.round(p*spans.length); if(n===lit) return; lit=n;
+    spans.forEach(function(s,i){s.classList.toggle("is-on",i<n);});
+  }
+  addEventListener("scroll",update,{passive:true}); addEventListener("resize",update); update();
+})();
 // ===== Section 2 · How SFG began · v2.0 (structure + motion after setup.sa "Giga Projects") =====
 (function(){
 const SB={"warwick":"assets/story/warwick.jpg","gaza":"assets/story/gaza.jpg","promise":"assets/story/promise.jpg","story":"assets/story/story.jpg","aj":"assets/story/aj.jpg","st0":"assets/story/st0.jpg","st1":"assets/story/st1.jpg","st2":"assets/story/st2.jpg","st3":"assets/story/st3.jpg"};
 const AJ="https://www.youtube.com/watch?v=mTQXXAByvro";
 const STEPS=[
  {n:"2020",t:"A Chevening scholar",b:"Ahmed Issa leaves Gaza for Warwick Business School on a fully funded Chevening scholarship.",card:"portrait",img:[["warwick","Ahmed Issa in front of the University of Warwick sign"]]},
- {n:"2022",t:"Back to Gaza",b:"He returns home, believing education is how Palestinians will lead and rebuild.",card:"portrait",img:[["gaza","Ahmed at his office desk in Gaza"]]},
- {n:"04.2024",t:"A promise",b:"Ahmed evacuates Gaza with his wife and two sons, and makes a promise: to help Palestinian students win the fully funded scholarships that changed his life.",card:"land",img:[["promise","Ahmed in Gaza, framed by a damaged blue wall with the city behind him"]]},
+ {n:"2022",t:"Back to Gaza",b:"He returns home, believing education is how Palestinians will lead and rebuild.",card:"portrait",img:[["gaza","Ahmed in a yellow shirt at his office desk in Gaza"]]},
+ {n:"04.2024",t:"A promise",b:"Ahmed evacuates Gaza with his wife and two sons, and makes a promise: to help Palestinian students win the fully funded scholarships that changed his life.",card:"portrait",img:[["promise","A notebook of handwritten plans on a café table, beside a blue-and-white teapot"]]},
  {n:"08.2024",t:"SFG begins",b:"It starts with one Instagram story: “I need your help.” Ahmed asks for volunteers to guide students through their applications, and Scholarships for Ghazza is born.",card:"story",img:[["story","Ahmed’s Instagram story asking for volunteers to help students from Gaza apply for scholarships"]]},
  {n:"03.2026",t:"On Al Jazeera",b:"SFG’s story reaches Al Jazeera’s The Stream, as more students from Gaza win their places.",card:"wide",credit:true,img:[["aj","Ahmed Issa speaking on Al Jazeera’s The Stream, with the SFG website on screen"]]},
  {n:"135",t:"Scholarships, and counting",b:"SFG mentors have helped 135 students win fully funded scholarships in the UK, Ireland, France, Italy, Singapore and the USA.",card:"mosaic",gold:true,img:[["st0","A scholar at the University of Aberdeen"],["st1","A scholar at LSE"],["st2","A scholar at Imperial College London"],["st3","A scholar at University College Dublin"]]}
@@ -830,9 +875,10 @@ const pad=i=>String(i+1).padStart(2,"0");
 const caption=i=>i<N-1?`Next · ${STEPS[i+1].t}`:"The story continues below";
 const credit=`<a class="sb_credit" href="${AJ}" target="_blank" rel="noopener">Watch on Al Jazeera’s The Stream<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>`;
 const info=(d,i)=>`<p class="sb_num h1${d.gold?" is-gold":""}">${d.n}</p><p class="sb_info-title title1">${d.t}</p><p class="sb_info-body body1">${d.b}</p>${d.credit?credit:""}`;
-const FOCUS={story:"50% 8%",promise:"45% 50%"};   // object-position for photos cropped to the panel
+const FIT={story:1,wide:1};   // screenshots: shown whole on a lightly blurred copy of themselves
 const card=d=>{
-  const imgs=d.img.map(([k,a],j)=>`<img src="${SB[k]}" alt="${a}"${FOCUS[k]?` style="object-position:${FOCUS[k]}"`:""} ${j>1?'loading="lazy"':''} decoding="async">`).join("");
+  if(FIT[d.card]){const [k,a]=d.img[0];return `<figure class="sb_card is-fit"><img class="sb_fill" src="${SB[k]}" alt="" aria-hidden="true" decoding="async"><img class="sb_main" src="${SB[k]}" alt="${a}" decoding="async"></figure>`;}
+  const imgs=d.img.map(([k,a],j)=>`<img src="${SB[k]}" alt="${a}" ${j>1?'loading="lazy"':''} decoding="async">`).join("");
   return `<figure class="sb_card is-${d.card}">${imgs}</figure>`;
 };
 const stage=document.getElementById("sbStage"),right=document.getElementById("sbRight"),track=document.getElementById("sbTrack");
