@@ -27,7 +27,15 @@ The intro **plays on its own**, at a different pace for each part: the paragraph
 The photos are wide 1920×1080 frames. Each is shown at its real resolution, and the sides are filled from the photo's own edge colours with a light blur. There are no ghosted copies and nothing is pixelated. `index.html` has them embedded, so it works as a single file. `index.src.html` is the same page with links to `assets/` instead, for editing.
 
 ## About SFG (new, before section 2)
-A two-part editorial block on the 12-column grid, laid out like the Cambium reference: the eyebrow "About SFG" and the H2 "A Palestinian-led mentorship initiative" lead on the left (columns 1 to 5), and the description sits on the right (columns 7 to 12) at Title size, top-aligned with the headline. On phones the title sits above the description. The text animation will be swapped for the code you are sending. As you scroll, the paragraph fills word by word from a faint tone (`--color-text-fill-off`, ink at 16%) to ink (`--color-text-primary`). It starts when the paragraph's top reaches 80% of the screen and finishes as its bottom reaches 55%. With reduced motion turned on, it is shown fully filled. The copy is a draft for review.
+A two-part editorial block on the 12-column grid, laid out like the Cambium reference: the eyebrow "About SFG" and the H2 "A Palestinian-led mentorship initiative" lead on the left (columns 1 to 5), and the description sits on the right (columns 7 to 12) at Title size, top-aligned with the headline. On phones the title sits above the description. Its text appears like cambium.com (see "Reveals" below). The copy is a draft for review.
+
+## Reveals (after cambium.com)
+Cambium's own animation scripts can't be reached from this environment, so the motion was rebuilt from the `data-module="split-text"` / `data-reveal-*` markup on their home page:
+- **Text (`data-split`):** headings and paragraphs are split into lines. Each line rises out of a mask (1.1s, ease-out-expo), 0.08s after the line before it. Inside a `data-split-group` the stagger carries on from heading to text. It plays once, when the block enters the screen; afterwards the text goes back to plain text so it reflows normally.
+- **Section 2 steps:** the year, title and text rise line by line each time a step becomes active, on desktop and in the mobile slider.
+- **Photos (`data-reveal-media`):** each frame uncovers from the bottom while the photo settles from 118% to 100%.
+- **Details:** the tatreez band wipes in from the start side (`data-reveal-wipe`); the pager fades up (`data-reveal`).
+- With reduced motion turned on, everything is shown at once. Without JavaScript nothing is hidden.
 
 ## Section 2: How SFG began
 The structure and motion follow the setup.sa "Giga Projects" pattern. It was brought over from the "Scholarships for Ghazza · Intro" artifact.
