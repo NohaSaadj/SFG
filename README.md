@@ -35,8 +35,8 @@ The structure and motion follow the setup.sa "Giga Projects" pattern. It was bro
 - **One frame for every step:** a 4:5 frame, `min(68vh, 640px)` tall, with white space around it. Photos fill it. The two screenshots (the Instagram story and Al Jazeera) sit whole on a lightly blurred copy of themselves, so nothing is stretched or cropped.
 - **One grade for every photo:** slightly muted, warm, with lifted shadows (ImageMagick: `-modulate 100,82 -sigmoidal-contrast 2x50%`, R ×1.025, B ×0.95, `+level 3%,100%`). Screenshots are left ungraded so their text stays crisp.
 - **Mobile (under 992px):** a swipe slider with the same pager and frame.
-- **Steps:** 2020 A Chevening scholar (Warwick sign, until the certificate photo arrives) · 2022 Back to Gaza (yellow shirt at the desk) · 04.2024 A promise (notebook and teapot) · 08.2024 SFG begins (Instagram story) · 03.2026 On Al Jazeera · 135 Scholarships, and counting.
-- The decorative band next to "How SFG began" is removed until it can be rebuilt from the source pattern.
+- **Steps:** 2020 A Chevening scholar (Ahmed with his certificate at Warwick Business School) · 2022 Back to Gaza (yellow shirt at the desk) · 04.2024 A promise (notebook and teapot) · 08.2024 SFG begins (the "Want to help Ghazawi students…" Instagram story) · 03.2026 On Al Jazeera · 135 Scholarships, and counting.
+- **Tatreez band:** next to "How SFG began". It was traced stitch by stitch from the supplied band (7 rows, 376 squares) into vector squares, then repeated to fill the rest of the title row. The colours are `--color-tatreez-primary` (red 500) and `--color-tatreez-secondary` (ochre 400).
 - The section is English only for now; the EN ⇄ ع toggle does not translate it yet.
 
 ## Fonts (Thmanyah licence)
@@ -44,5 +44,5 @@ The page uses `Thmanyah Serif Display`, `Thmanyah Serif Text` and `Thmanyah Sans
 
 ## Open items
 - The Arabic paragraph is a draft translation and needs review by a native editor. Its hidden sentence reads «فلسطين متعلّمة يعيد بناءها طلابها».
-- The logo is a single-colour open-book mark with the wordmark, redrawn for use on photography. Swap in the official SVG when you have it.
+- The header now uses the official SFG logo (`assets/logo.png`), reversed to linen for the dark header (`assets/logo-linen.png`). An SVG version would be sharper on high-density screens.
 - Two photos (Sussex, LSE) have the SFG logo burned into the corner. Clean originals would look better behind the header.
