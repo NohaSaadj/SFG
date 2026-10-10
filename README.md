@@ -26,6 +26,12 @@ The intro **plays on its own**. The four photos get the same time on screen and 
 
 The photos are wide 1920×1080 frames. Each is shown at its real resolution, and the sides are filled from the photo's own edge colours with a light blur. There are no ghosted copies and nothing is pixelated. `index.html` has them embedded, so it works as a single file. `index.src.html` is the same page with links to `assets/` instead, for editing.
 
+## Partners (after the intro, before About)
+Laid out like Cambium's "Trusted by" band: a caption tile across the top, then logo tiles, with 4px gaps showing the background. The background is the traced tatreez band tiled in offset rows over the whole band (a vector `<pattern>`), in two quiet neutrals (`--color-pattern-stitch` = border, `--color-pattern-stitch-soft` = sand), so it reads as texture like Cambium's wood grain and the logos keep their contrast.
+- Logos: Phoenix Space and the Amjad & Suha Bseisu Foundation (`assets/partners/`). Both are single-colour masks filled with `--color-text-primary`, so they are ink in light mode and linen in dark mode.
+- The third tile, "Become a partner", is a green text link (`#partner-with-us`, placeholder until there is a partner page or address). Add more partners as new tiles.
+- Desktop: 3 tiles in a row. Phones: the two logos side by side, the link tile below. The caption and link are translated for Arabic.
+
 ## About SFG (new, before section 2)
 A two-part editorial block on the 12-column grid, laid out like Cambium's split sections: the eyebrow "About SFG" and the H2 "A Palestinian-led mentorship initiative" lead on the left (columns 1 to 5), and the description sits on the right (columns 7 to 11), top-aligned with the headline, in Body1 (Thmanyah Serif Text Regular, 18/28) in the neutral muted tone (`--color-text-secondary`), like Cambium's faded large text. On phones the title sits above the description. Its text appears like cambium.com (see "Reveals" below). The copy is a draft for review.
 
