@@ -343,7 +343,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .sb_sub{margin:var(--space-16) 0 0;max-width:40ch;color:var(--color-text-secondary)}
 
 .sb_layout{display:flex}
-.sb_left{width:calc(var(--grid-margin) + 5*var(--sb-col) + 5*var(--grid-gutter));flex:none}
+.sb_left{width:calc(var(--grid-margin) + 4*var(--sb-col) + 4*var(--grid-gutter));flex:none}
 .sb_left-inner{position:sticky;top:0;height:100vh;height:100dvh;padding:var(--space-96) 0 var(--space-64) var(--grid-margin)}
 .sb_stage{position:relative;height:calc(100% - 136px);max-width:calc(4*var(--sb-col) + 3*var(--grid-gutter))}
 .sb_info{position:absolute;inset:0 0 auto 0;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility 0s linear .45s}
@@ -371,12 +371,12 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 
 /* Right column: native scroll, one 100vh panel per station, card on a daraj texture */
 .sb_right{flex:1;min-width:0}
-/* Each photo at its own shape, as large as the column and screen allow; nothing is cropped */
+/* One wide 4:3 frame for every step (the Al Jazeera shape): each photo sits whole inside it on a paper mat, nothing cropped */
 .sb_panel{position:relative;height:100vh;height:100dvh;display:flex;align-items:center;padding:0 var(--grid-margin) 0 var(--grid-gutter)}
-.sb_card{position:relative;margin:0;width:fit-content;max-width:100%;border-radius:var(--radius-media);overflow:hidden}
-.sb_card img{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100dvh - var(--space-128) - var(--space-64))}
-.sb_card.is-mosaic{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);width:min(100%,calc(100dvh - var(--space-128) - var(--space-64)));border-radius:0;overflow:visible}
-.sb_card.is-mosaic img{width:100%;height:auto;max-height:none;aspect-ratio:1;border-radius:var(--radius-sm)}
+.sb_card{position:relative;margin:0;width:100%;aspect-ratio:4/3;max-height:calc(100dvh - var(--space-128) - var(--space-64));display:flex;align-items:center;justify-content:center;padding:var(--space-16);background:var(--color-bg-surface);border-radius:var(--radius-card);overflow:hidden}
+.sb_card img{display:block;width:100%;height:100%;object-fit:contain}
+.sb_mosaic{height:100%;aspect-ratio:1;max-width:100%;display:grid;grid-template:1fr 1fr / 1fr 1fr;gap:var(--space-4)}
+.sb_mosaic img{object-fit:cover;border-radius:var(--radius-sm)}
 .sb_tag{position:absolute;left:var(--space-12);bottom:var(--space-12);padding:var(--space-4) var(--space-12);border-radius:var(--radius-full);background:var(--color-bg-surface);color:var(--color-text-primary);font:500 var(--body3-size)/var(--body3-lh) var(--font-sans)}
 
 /* Mobile: slider like the reference (counter + arrows, swipe) */
@@ -391,8 +391,10 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
   .sb_slide{flex:0 0 100%;scroll-snap-align:start}
   .sb_slide .sb_info-body{margin-top:var(--space-16)}
   .sb_slide .sb_panel{height:auto;display:block;padding:0;margin-top:var(--space-24)}
-  .sb_slide .sb_card{width:100%}
-  .sb_slide .sb_card img{width:100%;max-height:none}
+  /* Phones: the column is narrow, so each photo keeps its own full shape instead of the wide frame */
+  .sb_slide .sb_card{width:100%;max-height:none;aspect-ratio:auto;padding:0;background:none;border-radius:var(--radius-media)}
+  .sb_slide .sb_card img{height:auto;object-fit:initial}
+  .sb_slide .sb_mosaic{width:100%;height:auto}
 }
 @media (prefers-reduced-motion:reduce){.sb_info,.sb_pager-fill{transition:none}}
 
@@ -984,7 +986,7 @@ const info=(d,i)=>`<p class="sb_num h1${d.gold?" is-gold":""}">${d.n}</p><p clas
 const SIZE={warwick:[800,1066],gaza:[800,1067],promise:[800,1066],story:[900,1125],aj:[968,538],st0:[460,460],st1:[460,460],st2:[460,460],st3:[460,460]};   // original sizes: photos are shown whole
 const card=d=>{
   const imgs=d.img.map(([k,a],j)=>`<img src="${SB[k]}" alt="${a}" width="${SIZE[k][0]}" height="${SIZE[k][1]}" ${j>1?'loading="lazy"':''} decoding="async">`).join("");
-  return `<figure class="sb_card is-${d.card}">${imgs}</figure>`;
+  return `<figure class="sb_card is-${d.card}">${d.card==="mosaic"?`<div class="sb_mosaic">${imgs}</div>`:imgs}</figure>`;
 };
 const stage=document.getElementById("sbStage"),right=document.getElementById("sbRight"),track=document.getElementById("sbTrack");
 STEPS.forEach((d,i)=>{
