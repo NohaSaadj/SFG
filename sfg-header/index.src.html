@@ -276,28 +276,27 @@
     html[dir="rtl"] .intro_poem,html[dir="rtl"] .intro_row p,html[dir="rtl"] .intro_center p,html[dir="rtl"] .intro_start,html[dir="rtl"] .intro_fly{line-height:1.45;letter-spacing:0}
     html[dir="rtl"] .h1,html[dir="rtl"] .h3{letter-spacing:0}
     /* ===== PARTNERS · logo tiles on a field of tatreez stitches (after cambium.com "Trusted by") ===== */
-.section_partners{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-48) var(--grid-margin);overflow:hidden}
+.section_partners{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-32) var(--grid-margin);overflow:hidden}
 .partners_field{position:absolute;inset:0;width:100%;height:100%;display:block}
 .partners_field .pt-a{fill:var(--color-pattern-stitch)}
 .partners_field .pt-b{fill:var(--color-pattern-stitch-soft)}
-/* Compact, centred row like the reference: a small caption tile, then one row of logo tiles */
-.partners_grid{position:relative;display:grid;grid-template-columns:repeat(3,176px);justify-content:center;gap:var(--space-4)}
-.partners_tile{background:var(--color-bg-surface);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;height:var(--space-96);padding:var(--space-12)}
-.partners_tile.is-caption{grid-column:1 / -1;justify-self:center;height:auto;padding:var(--space-8) var(--space-16);margin-bottom:var(--space-4);text-align:center}
+/* One compact row: the label is the first tile, then the logos and the invitation */
+.partners_grid{position:relative;display:grid;grid-template-columns:repeat(4,192px);justify-content:center;gap:var(--space-4)}
+.partners_tile{background:var(--color-bg-surface);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;height:var(--space-64);padding:var(--space-8) var(--space-12)}
+.partners_tile.is-caption{text-align:center}
 .partners_caption{margin:0;color:var(--color-text-primary)}
 .partners_logo{display:block;background:var(--color-text-primary);-webkit-mask:var(--logo) center / contain no-repeat;mask:var(--logo) center / contain no-repeat}
-.partners_logo.is-phoenix{--logo:url("assets/partners/phoenix-space.png");width:min(100%,120px);aspect-ratio:501/171}
-.partners_logo.is-bseisu{--logo:url("assets/partners/bseisu-foundation.png");width:60px;aspect-ratio:1}
+.partners_logo.is-phoenix{--logo:url("assets/partners/phoenix-space.png");width:min(100%,104px);aspect-ratio:501/171}
+.partners_logo.is-bseisu{--logo:url("assets/partners/bseisu-foundation.png");width:var(--space-48);aspect-ratio:1}
 .partners_join{white-space:nowrap;display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);color:var(--color-action-secondary);text-decoration:underline;text-underline-offset:4px}
 .partners_join:hover{text-decoration-thickness:2px}
 .partners_join svg{flex:none}
 html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 @media (max-width:767px){
-  .section_partners{padding:var(--space-32) var(--grid-margin)}
-  .partners_grid{grid-template-columns:repeat(2,minmax(0,160px))}
-  .partners_tile{height:80px;padding:var(--space-12)}
-  .partners_tile:last-child{grid-column:1 / -1;height:var(--space-48)}
-  .partners_logo.is-bseisu{width:48px}
+  .section_partners{padding:var(--space-24) var(--grid-margin)}
+  .partners_grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .partners_tile{padding:var(--space-8)}
+  .partners_logo.is-bseisu{width:44px}
 }
 
 /* ===== ABOUT SFG · paragraph fills word by word as you scroll ===== */
