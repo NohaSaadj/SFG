@@ -12,7 +12,7 @@ Built with the clone-to-webflow workflow, Stage A (local build). Nothing has bee
 Open locally: `python3 -m http.server` in this folder, then visit `/sfg-header/` or `/clone/`.
 
 ## How the SFG intro works (v8)
-The intro **plays on its own**, at a different pace for each part: the paragraph rolls at about one line every 1.3s so it can be read (about 30s on desktop, longer on phones where it has more lines), the sentence moves left in 1.4s, holds for 1.2s, then the fade to the closing line takes 2.4s. Scrolling down (mouse wheel, trackpad, touch or arrow keys) speeds it up; through the paragraph, scrolling is damped a little so it stays readable. Scrolling up plays it back, and after 1.4 seconds without input it carries on forward again. The pace values sit together in `AUTO` at the top of the script.
+The intro **plays on its own**. The four photos get the same time on screen and every photo change is a 1.2s crossfade (`AUTO.photoChangeSeconds`; before, the third change was quicker than the others because it overlapped the sentence moving left). Each part runs at its own pace: the paragraph rolls at about one line every 1.3s so it can be read (about 30s on desktop, longer on phones where it has more lines), the sentence moves left in 1.4s, holds for 1.2s, then the fade to the closing line takes 2.4s. Scrolling down (mouse wheel, trackpad, touch or arrow keys) speeds it up; through the paragraph, scrolling is damped a little so it stays readable. Scrolling up plays it back, and after 1.4 seconds without input it carries on forward again. The pace values sit together in `AUTO` at the top of the script.
 
 1. **Opening (2s):** a dark screen with only the first sentence, in the middle of the page. Then the rest of the paragraph, the photos, the navbar and "Skip Intro" fade in.
 2. **Roll:** the paragraph rises and hides from the middle of the screen up. Each hidden-sentence word lifts out where the paragraph starts to hide and builds the sentence above, at full paragraph size and on two lines.
@@ -27,7 +27,7 @@ The intro **plays on its own**, at a different pace for each part: the paragraph
 The photos are wide 1920×1080 frames. Each is shown at its real resolution, and the sides are filled from the photo's own edge colours with a light blur. There are no ghosted copies and nothing is pixelated. `index.html` has them embedded, so it works as a single file. `index.src.html` is the same page with links to `assets/` instead, for editing.
 
 ## About SFG (new, before section 2)
-A two-part editorial block on the 12-column grid, laid out like the Cambium reference: the eyebrow "About SFG" and the H2 "A Palestinian-led mentorship initiative" lead on the left (columns 1 to 5), and the description sits on the right (columns 7 to 12) at Title size, top-aligned with the headline. On phones the title sits above the description. Its text appears like cambium.com (see "Reveals" below). The copy is a draft for review.
+A two-part editorial block on the 12-column grid, laid out like Cambium's split sections: the eyebrow "About SFG" and the H2 "A Palestinian-led mentorship initiative" lead on the left (columns 1 to 5), and the description sits on the right (columns 7 to 11), top-aligned with the headline, in Body1 (Thmanyah Serif Text Regular, 18/28) in the neutral muted tone (`--color-text-secondary`), like Cambium's faded large text. On phones the title sits above the description. Its text appears like cambium.com (see "Reveals" below). The copy is a draft for review.
 
 ## Reveals (after cambium.com)
 Cambium's own animation scripts can't be reached from this environment, so the motion was rebuilt from the `data-module="split-text"` / `data-reveal-*` markup on their home page:
@@ -47,6 +47,14 @@ The structure and motion follow the setup.sa "Giga Projects" pattern. It was bro
 - **Section head:** no divider lines. The spacing uses design-system steps: 96px above the title, and 96px from the title block to the first step.
 - **Tatreez band:** next to "How SFG began", running to the right edge of the page. It was traced stitch by stitch from the supplied band (7 rows, 376 squares) into vector squares, then repeated to fill the rest of the title row. The colours are `--color-tatreez-primary` (red 500) and `--color-tatreez-secondary` (ochre 400).
 - The section is English only for now; the EN ⇄ ع toggle does not translate it yet.
+
+## Design system alignment
+- **Grid:** the header, intro sentence, closing line, "Skip Intro" and every section start on the design-system margin (`--grid-margin`: 160px at 1440, scaling down to 20px on phones). The old 1180px container is gone.
+- **Spacing:** only the scale values (2 to 128px). The off-scale 28, 40, 88, 120 and 160px steps were removed.
+- **Type:** every text uses a scale class or token. The full scale (H1 to H6, Title to Title3, Body1 to Body3) is defined. On phones the intro paragraph uses H4 and the sentence H5.
+- **Touch targets:** nav links, the button, the language toggle, the menu button and "Skip Intro" are all 48px tall.
+- **Navbar:** once the page scrolls, the header turns to glass above the sections (green 700 at 80% with a 20px blur, `--color-bg-glass`). Browsers without backdrop blur get the solid green.
+- **Section 2, step 2:** the photo is now Ahmed in the light blue shirt at his desk, cropped to 4:5 with the shared grade.
 
 ## Fonts (Thmanyah licence)
 The page uses `Thmanyah Serif Display`, `Thmanyah Serif Text` and `Thmanyah Sans` whenever they are available. These come from installed fonts, or from the `--font-sfg-*` variables set by a bundler such as `next/font/local`. Otherwise it falls back to Newsreader, Readex Pro and Noto Naskh Arabic. The Thmanyah font files are deliberately **not** in this repository, as the licence requires.
