@@ -43,16 +43,15 @@ Cambium's own animation scripts can't be reached from this environment, so the m
 - **Details:** the tatreez band wipes in from the start side (`data-reveal-wipe`); the pager fades up (`data-reveal`).
 - With reduced motion turned on, everything is shown at once. Without JavaScript nothing is hidden.
 
-## Section 2: How SFG began
-The structure and motion follow the setup.sa "Giga Projects" pattern. It was brought over from the "Scholarships for Ghazza · Intro" artifact.
-- **Desktop:** the left column (year, title, text and the "01 / 06" pager with arrows, progress line and next-step caption) stays pinned while the steps scroll on the right. The panel crossing the middle of the screen sets the active step.
-- **Photos at their own shape:** every photo is shown whole, at its original proportions (3:4 portraits, the 4:5 Instagram story, the wide Al Jazeera frame), as large as the right column and the screen allow. The left column is 5 grid columns, the photos get the other 7.
-- **One grade for every photo:** slightly muted, warm, with lifted shadows (ImageMagick: `-modulate 100,82 -sigmoidal-contrast 2x50%`, R ×1.025, B ×0.95, `+level 3%,100%`). Screenshots are left ungraded so their text stays crisp.
-- **Mobile (under 992px):** a swipe slider with the same pager and frame.
-- **Steps:** 2020 A Chevening scholar (Ahmed with his certificate at Warwick Business School) · 2022 Back to Gaza (light blue shirt at the desk) · 04.2024 A promise (notebook and teapot) · 08.2024 SFG begins (the "Want to help Ghazawi students…" Instagram story) · 03.2026 On Al Jazeera · 135 Scholarships, and counting.
-- **Section head:** no divider lines. The spacing uses design-system steps: 96px above the title, and 96px from the title block to the first step.
-- **Tatreez band:** next to "How SFG began", running to the right edge of the page. It was traced stitch by stitch from the supplied band (7 rows, 376 squares) into vector squares, then repeated to fill the rest of the title row. The colours are `--color-tatreez-primary` (red 500) and `--color-tatreez-secondary` (ochre 400).
-- The section is English only for now; the EN ⇄ ع toggle does not translate it yet.
+## Section 2: How SFG began (horizontal timeline, after De Coene)
+- **Head:** "Our story", H2 "How SFG began" with the tatreez band to the page edge, and the subtitle. It scrolls normally.
+- **Desktop:** the timeline pins to the screen and scrolling down moves the steps sideways. The section's height is set from the track's width, so a scroll down of X moves the track by X; scrolling up plays it back. The next step always peeks in from the right.
+- **Each step:** the year in H1 ochre (`--color-text-achievement`), faded until its step is current, then the title (Title1) and text (Body1), then the photo. Text and year rise in with the split-text reveal; photos uncover as they come in.
+- **Photos:** every photo has the same height (`min(52vh, 480px)`) and its own width, so portraits are narrow, Al Jazeera is wide and the 135 step shows the four scholars as a 2×2 square. Nothing is cropped, stretched or matted.
+- **Year bar:** 2020 · 2022 · 04.2024 · 08.2024 · 03.2026 · 135 at the bottom, with a tick under each, the current year in green and a progress line. Each year is a 48px button that jumps to its step; left and right arrow keys move between steps.
+- **Phones and tablets (under 992px):** the year bar sits on top and the steps are a swipe track; photos show full width at their own shape.
+- **Arabic:** the track runs right to left and the arrow keys swap.
+- The background is sand (`--color-bg-surface-alt`). The steps' text is English only for now.
 
 ## Design system alignment
 - **Grid:** the header, intro sentence, closing line, "Skip Intro" and every section start on the design-system margin (`--grid-margin`: 160px at 1440, scaling down to 20px on phones). The old 1180px container is gone.

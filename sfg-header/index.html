@@ -316,7 +316,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .st-line{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
 .st-in{display:block;transform:translate3d(0,110%,0);transition:transform 1.1s var(--ease-out-expo) var(--d,0s)}
 .is-in .st-in{transform:none}
-.js [data-split]:not(.is-split),.js .sb_stage:not(.is-seen) .sb_info{visibility:hidden}
+.js [data-split]:not(.is-split){visibility:hidden}
 .js [data-reveal]{opacity:0;transform:translate3d(0,24px,0);transition:opacity .9s var(--ease-out-expo) var(--d,0s),transform .9s var(--ease-out-expo) var(--d,0s)}
 .js [data-reveal].is-in{opacity:1;transform:none}
 .js [data-reveal-wipe]{clip-path:inset(0 100% 0 0);transition:clip-path 1.4s var(--ease-out-expo) var(--d,0s)}
@@ -328,11 +328,11 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .js [data-reveal-media].is-in img:not(.sb_fill){transform:none}
 @media (prefers-reduced-motion:reduce){
   .st-in,.js [data-reveal],.js [data-reveal-wipe],.js [data-reveal-media],.js [data-reveal-media] img{transform:none!important;opacity:1!important;clip-path:none!important;transition:none!important}
-  .js [data-split]:not(.is-split),.js .sb_stage:not(.is-seen) .sb_info.is-active{visibility:visible}
+  .js [data-split]:not(.is-split){visibility:visible}
 }
 
-/* ===== SECTION 2 · HOW SFG BEGAN (structure + motion from setup.sa "Giga Projects") ===== */
-#how-it-began{--sb-col:calc((100vw - 2*var(--grid-margin) - 11*var(--grid-gutter))/12);position:relative;z-index:2;background:var(--color-bg-surface-alt);color:var(--color-text-primary);padding-bottom:var(--space-64)}
+/* ===== SECTION 2 · HOW SFG BEGAN · horizontal timeline (after De Coene) ===== */
+#how-it-began{--tl-col:calc((100vw - 2*var(--grid-margin) - 11*var(--grid-gutter))/12);position:relative;z-index:2;background:var(--color-bg-surface-alt);color:var(--color-text-primary);padding-bottom:var(--space-64)}
 .sb_head{padding:var(--space-128) 0 0 var(--grid-margin)}   /* no right padding: the band reaches the page edge */
 .sb_title-row{display:flex;align-items:center;gap:var(--space-24)}
 .sb_title{margin:0;flex:none;color:var(--color-text-heading)}
@@ -342,59 +342,50 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .sb_band .tz-b{fill:var(--color-tatreez-secondary)}
 .sb_sub{margin:var(--space-16) 0 0;max-width:40ch;color:var(--color-text-secondary)}
 
-.sb_layout{display:flex}
-.sb_left{width:calc(var(--grid-margin) + 5*var(--sb-col) + 5*var(--grid-gutter));flex:none}
-.sb_left-inner{position:sticky;top:0;height:100vh;height:100dvh;padding:var(--space-96) 0 var(--space-64) var(--grid-margin)}
-.sb_stage{position:relative;height:calc(100% - 136px);max-width:calc(4*var(--sb-col) + 3*var(--grid-gutter))}
-.sb_info{position:absolute;inset:0 0 auto 0;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility 0s linear .45s}
-.sb_info.is-active{opacity:1;visibility:visible;transition:opacity .2s ease .25s,visibility 0s linear .25s}
-.sb_num{margin:0;color:var(--color-text-heading)}
-.sb_num.is-gold{color:var(--color-text-achievement)}
-.sb_info-title{margin:var(--space-12) 0 0;color:var(--color-text-primary)}
-.sb_info-body{margin:var(--space-24) 0 0;color:var(--color-text-secondary);max-width:44ch}
+/* Pinned while the page scrolls down; the steps move sideways. The script sets .tl's height to the track's overflow. */
+.tl{position:relative}
+.tl_sticky{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;overflow:clip;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;padding:var(--space-96) 0 var(--space-32)}
+.tl_track{--tl-h:min(52vh,480px);justify-self:start;display:flex;align-items:center;gap:var(--space-128);width:max-content;padding-inline:var(--grid-margin);will-change:transform}
+.tl_step{display:flex;align-items:center;gap:var(--space-64);flex:none}
+.tl_text{width:calc(4*var(--tl-col) + 3*var(--grid-gutter));flex:none}
+/* The year leads each step: ochre, faded until its step is the current one */
+.tl_year{margin:0 0 var(--space-16);color:var(--color-text-achievement);opacity:.3;transition:opacity .6s ease}
+.tl_step.is-active .tl_year{opacity:1}
+.tl_title{margin:0;color:var(--color-text-primary)}
+.tl_body{margin:var(--space-12) 0 0;color:var(--color-text-secondary);max-width:44ch}
+/* Every photo at the same height and its own width: portraits narrow, Al Jazeera wide, nothing cropped */
+.tl_media{margin:0;flex:none;height:var(--tl-h);border-radius:var(--radius-media);overflow:hidden}
+.tl_media img{display:block;height:100%;width:auto}
+.tl_media.is-mosaic{display:grid;grid-template:1fr 1fr / 1fr 1fr;gap:var(--space-4);aspect-ratio:1;border-radius:0}
+.tl_media.is-mosaic img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm)}
 .sb_credit{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-top:var(--space-16);color:var(--color-action-secondary);text-decoration:underline;text-underline-offset:4px;font:500 var(--title3-size)/var(--title3-lh) var(--font-sans)}
+/* Year bar: every step's year, the current one marked; each one jumps to its step */
+.tl_bar{display:flex;justify-content:center;padding-inline:var(--grid-margin)}
+.tl_bar-list{position:relative;display:flex;gap:var(--space-8);list-style:none;margin:0;padding:0}
+.tl_bar-btn{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:var(--space-8);min-width:var(--space-64);min-height:var(--size-touch-min);padding:0 var(--space-8) var(--space-8);color:var(--color-text-secondary);transition:color .3s ease}
+.tl_bar-btn::after{content:"";width:1px;height:var(--space-12);background:currentColor;transition:height .3s ease}
+.tl_bar-btn:hover{color:var(--color-text-primary)}
+.tl_bar-btn.is-active{color:var(--color-text-heading)}
+.tl_bar-btn.is-active::after{height:var(--space-20);width:2px}
+.tl_bar-btn:focus-visible,.sb_credit:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
+.tl_bar-line{position:absolute;inset-inline:0;bottom:0;height:1px;background:var(--color-border-subtle)}
+.tl_bar-fill{position:absolute;inset-inline-start:0;top:0;bottom:0;width:0;background:var(--color-text-heading)}
 
-/* Pagination (inspiration: "01 / 04" + progress line + caption) */
-.sb_pager{position:absolute;left:var(--grid-margin);bottom:var(--space-64);width:calc(4*var(--sb-col) + 3*var(--grid-gutter))}
-.sb_pager-top{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-16)}
-.sb_pager-count{display:flex;align-items:baseline;gap:var(--space-8)}
-.sb_pager-current{color:var(--color-text-heading)}
-.sb_pager-total{color:var(--color-text-secondary)}
-.sb_pager-nav{display:flex;gap:var(--space-8)}
-.sb_pager-btn{width:var(--size-touch-min);height:var(--size-touch-min);border-radius:var(--radius-full);border:1.5px solid var(--color-action-secondary);background:transparent;color:var(--color-action-secondary);display:grid;place-items:center;cursor:pointer;transition:background-color .2s}
-.sb_pager-btn:hover{background:var(--color-bg-selected)}
-.sb_pager-btn:disabled{opacity:.35;cursor:default;background:transparent}
-.sb_pager-btn:focus-visible,.sb_credit:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
-.sb_pager-track{position:relative;height:2px;margin-top:var(--space-12);background:var(--color-border-subtle)}
-.sb_pager-fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--color-text-heading);transition:width .5s cubic-bezier(.22,.61,.36,1)}
-.sb_pager-caption{margin:var(--space-12) 0 0;color:var(--color-text-secondary)}
-
-/* Right column: native scroll, one 100vh panel per station, card on a daraj texture */
-.sb_right{flex:1;min-width:0}
-/* Each photo at its own shape, as large as the column and screen allow; nothing is cropped */
-.sb_panel{position:relative;height:100vh;height:100dvh;display:flex;align-items:center;padding:0 var(--grid-margin) 0 var(--grid-gutter)}
-.sb_card{position:relative;margin:0;width:fit-content;max-width:100%;border-radius:var(--radius-media);overflow:hidden}
-.sb_card img{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100dvh - var(--space-128) - var(--space-64))}
-.sb_card.is-mosaic{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);width:min(100%,calc(100dvh - var(--space-128) - var(--space-64)));border-radius:0;overflow:visible}
-.sb_card.is-mosaic img{width:100%;height:auto;max-height:none;aspect-ratio:1;border-radius:var(--radius-sm)}
-.sb_tag{position:absolute;left:var(--space-12);bottom:var(--space-12);padding:var(--space-4) var(--space-12);border-radius:var(--radius-full);background:var(--color-bg-surface);color:var(--color-text-primary);font:500 var(--body3-size)/var(--body3-lh) var(--font-sans)}
-
-/* Mobile: slider like the reference (counter + arrows, swipe) */
-.sb_mobile{display:none}
+/* Phones and tablets: a swipe track with the year bar on top */
 @media (max-width:991px){
-  .sb_layout{display:none}
   .sb_head{padding:var(--space-64) 0 var(--space-32) var(--grid-margin)}
-  .sb_mobile{display:block;padding:0 var(--grid-margin) var(--space-96)}
-  .sb_mobile .sb_pager{position:static;width:auto;margin-bottom:var(--space-24)}
-  .sb_track{display:flex;gap:var(--space-24);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
-  .sb_track::-webkit-scrollbar{display:none}
-  .sb_slide{flex:0 0 100%;scroll-snap-align:start}
-  .sb_slide .sb_info-body{margin-top:var(--space-16)}
-  .sb_slide .sb_panel{height:auto;display:block;padding:0;margin-top:var(--space-24)}
-  .sb_slide .sb_card{width:100%}
-  .sb_slide .sb_card img{width:100%;max-height:none}
+  .tl{height:auto!important}
+  .tl_sticky{position:static;height:auto;overflow:visible;display:flex;flex-direction:column;padding:0 0 var(--space-64)}
+  .tl_bar{order:-1;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;margin-bottom:var(--space-24)}
+  .tl_bar::-webkit-scrollbar,.tl_track::-webkit-scrollbar{display:none}
+  .tl_bar-btn{min-width:var(--space-56)}
+  .tl_track{width:auto;transform:none!important;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--grid-margin);gap:var(--space-24);align-items:flex-start;scrollbar-width:none}
+  .tl_step{flex:0 0 100%;flex-direction:column;align-items:stretch;gap:var(--space-24);scroll-snap-align:start}
+  .tl_text{width:auto}
+  .tl_media{height:auto;width:100%}
+  .tl_media img{width:100%;height:auto}
+  .tl_media.is-mosaic{height:auto}
 }
-@media (prefers-reduced-motion:reduce){.sb_info,.sb_pager-fill{transition:none}}
 
     .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
@@ -522,38 +513,13 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
     </div>
     <p class="sb_sub body1" data-split>One scholarship, one promise, and a growing network of mentors.</p>
   </div>
-  <div class="sb_layout">
-    <div class="sb_left">
-      <div class="sb_left-inner">
-        <div class="sb_stage" id="sbStage" aria-live="polite"></div>
-        <nav class="sb_pager" aria-label="Story steps" data-reveal>
-          <div class="sb_pager-top">
-            <p class="sb_pager-count" style="margin:0"><span class="sb_pager-current title" data-sb-current>01</span><span class="sb_pager-total title3">/ 06</span></p>
-            <div class="sb_pager-nav">
-              <button class="sb_pager-btn" type="button" data-sb-prev aria-label="Previous step"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 15V5M5.5 9.5 10 5l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <button class="sb_pager-btn" type="button" data-sb-next aria-label="Next step"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 5v10M5.5 10.5 10 15l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            </div>
-          </div>
-          <div class="sb_pager-track" aria-hidden="true"><span class="sb_pager-fill" data-sb-fill></span></div>
-          <p class="sb_pager-caption body3" data-sb-caption></p>
-        </nav>
-      </div>
+  <div class="tl" data-tl>
+    <div class="tl_sticky">
+      <div class="tl_track" id="tlTrack"></div>
+      <nav class="tl_bar" aria-label="Story timeline">
+        <ol class="tl_bar-list" id="tlBar"><li class="tl_bar-line" aria-hidden="true"><span class="tl_bar-fill" data-tl-fill></span></li></ol>
+      </nav>
     </div>
-    <div class="sb_right" id="sbRight"></div>
-  </div>
-  <div class="sb_mobile">
-    <nav class="sb_pager" aria-label="Story steps" data-reveal>
-      <div class="sb_pager-top">
-        <p class="sb_pager-count" style="margin:0"><span class="sb_pager-current title" data-sbm-current>01</span><span class="sb_pager-total title3">/ 06</span></p>
-        <div class="sb_pager-nav">
-          <button class="sb_pager-btn" type="button" data-sbm-prev aria-label="Previous step"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4 6.5 10l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <button class="sb_pager-btn" type="button" data-sbm-next aria-label="Next step"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        </div>
-      </div>
-      <div class="sb_pager-track" aria-hidden="true"><span class="sb_pager-fill" data-sbm-fill></span></div>
-      <p class="sb_pager-caption body3" data-sbm-caption></p>
-    </nav>
-    <div class="sb_track" id="sbTrack" tabindex="0" aria-label="How SFG began, swipe for the next step"></div>
   </div>
 </section>
   </main>
@@ -977,49 +943,63 @@ const STEPS=[
  {n:"135",t:"Scholarships, and counting",b:"SFG mentors have helped 135 students win fully funded scholarships in the UK, Ireland, France, Italy, Singapore and the USA.",card:"mosaic",gold:true,img:[["st0","A scholar at the University of Aberdeen"],["st1","A scholar at LSE"],["st2","A scholar at Imperial College London"],["st3","A scholar at University College Dublin"]]}
 ];
 const N=STEPS.length,reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-const pad=i=>String(i+1).padStart(2,"0");
-const caption=i=>i<N-1?`Next · ${STEPS[i+1].t}`:"The story continues below";
 const credit=`<a class="sb_credit" href="${AJ}" target="_blank" rel="noopener">Watch on Al Jazeera’s The Stream<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>`;
-const info=(d,i)=>`<p class="sb_num h1${d.gold?" is-gold":""}">${d.n}</p><p class="sb_info-title title1">${d.t}</p><p class="sb_info-body body1">${d.b}</p>${d.credit?credit:""}`;
 const SIZE={warwick:[800,1066],gaza:[800,1067],promise:[800,1066],story:[900,1125],aj:[968,538],st0:[460,460],st1:[460,460],st2:[460,460],st3:[460,460]};   // original sizes: photos are shown whole
-const card=d=>{
-  const imgs=d.img.map(([k,a],j)=>`<img src="${SB[k]}" alt="${a}" width="${SIZE[k][0]}" height="${SIZE[k][1]}" ${j>1?'loading="lazy"':''} decoding="async">`).join("");
-  return `<figure class="sb_card is-${d.card}">${imgs}</figure>`;
+const media=d=>{
+  const imgs=d.img.map(([k,a])=>`<img src="${SB[k]}" alt="${a}" width="${SIZE[k][0]}" height="${SIZE[k][1]}" decoding="async">`).join("");
+  return `<figure class="tl_media is-${d.card}" data-reveal-media>${imgs}</figure>`;
 };
-const stage=document.getElementById("sbStage"),right=document.getElementById("sbRight"),track=document.getElementById("sbTrack");
+const tl=document.querySelector("[data-tl]"),track=document.getElementById("tlTrack"),bar=document.getElementById("tlBar"),fill=document.querySelector("[data-tl-fill]");
 STEPS.forEach((d,i)=>{
-  stage.insertAdjacentHTML("beforeend",`<div class="sb_info${i===0?" is-active":""}" data-sb-info="${i}" ${i?'aria-hidden="true"':''}>${info(d,i)}</div>`);
-  right.insertAdjacentHTML("beforeend",`<div class="sb_panel" data-sb-panel="${i}">${card(d).replace("<figure ","<figure data-reveal-media ")}</div>`);
-  track.insertAdjacentHTML("beforeend",`<article class="sb_slide" aria-label="Step ${i+1} of ${N}"><div data-split-group>${info(d,i).replace(/<p class="(sb_num|sb_info-title|sb_info-body)/g,"<p data-split class=\"$1")}</div><div class="sb_panel">${card(d).replace("<figure ","<figure data-reveal-media ")}</div></article>`);
+  track.insertAdjacentHTML("beforeend",`<article class="tl_step" aria-label="${d.n}: ${d.t}"><div class="tl_text" data-split-group><p class="tl_year h1" aria-hidden="true">${d.n}</p><h3 class="tl_title title1" data-split>${d.t}</h3><p class="tl_body body1" data-split>${d.b}</p>${d.credit?credit:""}</div>${media(d)}</article>`);
+  bar.insertAdjacentHTML("beforeend",`<li><button class="tl_bar-btn title3" type="button" data-go="${i}" aria-label="${d.n}: ${d.t}">${d.n}</button></li>`);
 });
-// Desktop: images scroll natively; the panel crossing the viewport middle sets the active text (like the reference)
-const infos=[...stage.children],panels=[...right.children];
-const cur=document.querySelector("[data-sb-current]"),fill=document.querySelector("[data-sb-fill]"),cap=document.querySelector("[data-sb-caption]");
-const prev=document.querySelector("[data-sb-prev]"),next=document.querySelector("[data-sb-next]");
-let active=-1,seen=false;
-// The step's year, title and text rise line by line each time it becomes active (cambium.com split-text)
-const playInfo=i=>{const els=[...infos[i].querySelectorAll(".sb_num,.sb_info-title,.sb_info-body")];window.SFGReveal.play(els,3);};
-new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){seen=true;stage.classList.add("is-seen");o.disconnect();if(active>=0)playInfo(active);}},{rootMargin:"0px 0px -12% 0px"}).observe(stage);
+const steps=[...track.children],btns=[...bar.querySelectorAll("button")];
+const narrow=matchMedia("(max-width:991px)");
+const rtl=()=>document.documentElement.dir==="rtl";
+let maxX=0,active=-1;
 function setActive(i){
-  if(i===active)return;
-  if(active>=0){infos[active].classList.remove("is-active");infos[active].setAttribute("aria-hidden","true");}
-  infos[i].classList.add("is-active");infos[i].removeAttribute("aria-hidden");active=i;
-  if(seen) playInfo(i);
-  cur.textContent=pad(i);fill.style.width=((i+1)/N*100)+"%";cap.textContent=caption(i);
-  prev.disabled=i===0;next.disabled=i===N-1;
+  if(i===active)return; active=i;
+  steps.forEach((s,j)=>s.classList.toggle("is-active",j===i));
+  btns.forEach((b,j)=>{b.classList.toggle("is-active",j===i);if(j===i)b.setAttribute("aria-current","step");else b.removeAttribute("aria-current");});
+  fill.style.width=((i+1)/N*100)+"%";
 }
-function update(){const mid=innerHeight/2;let idx=0;panels.forEach((p,i)=>{if(p.getBoundingClientRect().top<=mid)idx=i;});setActive(idx);}
-function goTo(i){i=Math.max(0,Math.min(N-1,i));const y=panels[i].getBoundingClientRect().top+scrollY;scrollTo({top:y,behavior:reduce?"auto":"smooth"});}
-prev.addEventListener("click",()=>goTo(active-1));next.addEventListener("click",()=>goTo(active+1));
-addEventListener("scroll",update,{passive:true});addEventListener("resize",update);update();
-// Mobile slider
-const slides=[...track.children],mc=document.querySelector("[data-sbm-current]"),mf=document.querySelector("[data-sbm-fill]"),mcap=document.querySelector("[data-sbm-caption]");
-const mp=document.querySelector("[data-sbm-prev]"),mn=document.querySelector("[data-sbm-next]");
-const mIdx=()=>Math.round(track.scrollLeft/(slides[0].offsetWidth+24));
-function mSet(){const i=Math.max(0,Math.min(N-1,mIdx()));mc.textContent=pad(i);mf.style.width=((i+1)/N*100)+"%";mcap.textContent=caption(i);mp.disabled=i===0;mn.disabled=i===N-1;}
-const mGo=i=>{i=Math.max(0,Math.min(N-1,i));track.scrollTo({left:slides[i].offsetLeft-slides[0].offsetLeft,behavior:reduce?"auto":"smooth"});};
-mp.addEventListener("click",()=>mGo(mIdx()-1));mn.addEventListener("click",()=>mGo(mIdx()+1));
-track.addEventListener("scroll",mSet,{passive:true});mSet();
+// Desktop: the section is as tall as the track is wide, so scrolling down by X moves the track sideways by X
+function layout(){
+  if(narrow.matches){tl.style.height="";track.style.transform="";update();return;}
+  track.style.transform="";
+  maxX=Math.max(0,track.scrollWidth-innerWidth);
+  tl.style.height=(innerHeight+maxX)+"px";
+  update();
+}
+function startOf(el){const t=track.getBoundingClientRect(),r=el.getBoundingClientRect();return rtl()?t.right-r.right:r.left-t.left;}
+function update(){
+  if(narrow.matches){
+    const w=steps[0].offsetWidth+24;setActive(Math.max(0,Math.min(N-1,Math.round(Math.abs(track.scrollLeft)/w))));return;
+  }
+  const r=tl.getBoundingClientRect(),x=maxX?Math.min(maxX,Math.max(0,-r.top)):0;
+  track.style.transform=`translate3d(${rtl()?x:-x}px,0,0)`;
+  let idx=0;steps.forEach((s,i)=>{const b=s.firstElementChild.getBoundingClientRect(),edge=rtl()?innerWidth-b.right:b.left;if(edge<=innerWidth*.6)idx=i;});   // the step whose text has reached the middle
+  setActive(idx);
+}
+function go(i){
+  i=Math.max(0,Math.min(N-1,i));
+  if(narrow.matches){track.scrollTo({left:(rtl()?-1:1)*(steps[i].offsetWidth+24)*i,behavior:reduce?"auto":"smooth"});return;}
+  const pad=parseFloat(getComputedStyle(track).paddingInlineStart)||0;
+  const x=Math.min(maxX,Math.max(0,startOf(steps[i])-pad));
+  scrollTo({top:tl.getBoundingClientRect().top+scrollY+x,behavior:reduce?"auto":"smooth"});
+}
+btns.forEach((b,i)=>b.addEventListener("click",()=>go(i)));
+bar.addEventListener("keydown",e=>{
+  const k=e.key,fwd=rtl()?"ArrowLeft":"ArrowRight",back=rtl()?"ArrowRight":"ArrowLeft";
+  if(k!==fwd&&k!==back)return; e.preventDefault();
+  const i=active+(k===fwd?1:-1); go(i); (btns[Math.max(0,Math.min(N-1,i))]).focus();
+});
+addEventListener("scroll",update,{passive:true});track.addEventListener("scroll",update,{passive:true});
+addEventListener("resize",layout);narrow.addEventListener("change",layout);
+new MutationObserver(layout).observe(document.documentElement,{attributes:true,attributeFilter:["dir"]});
+(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(layout);
+layout();
 })();
   </script>
 </body>
