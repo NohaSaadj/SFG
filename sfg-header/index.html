@@ -375,7 +375,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 }
 
 /* ===== SECTION 2 · HOW SFG BEGAN · horizontal timeline (after De Coene) ===== */
-#how-it-began{--tl-col:calc((100vw - 2*var(--grid-margin) - 11*var(--grid-gutter))/12);position:relative;z-index:2;background:var(--color-bg-surface-alt);color:var(--color-text-primary);padding-bottom:var(--space-64)}
+#how-it-began{--tl-col:calc((100vw - 2*var(--grid-margin) - 11*var(--grid-gutter))/12);position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding-bottom:var(--space-64)}   /* same linen as About; the tatreez hem marks the change */
 .sb_head{padding:0 0 0 var(--grid-margin)}   /* inside the pinned area, so the pager stays in view */   /* no right padding: the band reaches the page edge */
 .sb_title-row{display:flex;align-items:center;gap:var(--space-24)}   /* "How SFG began" + tatreez band to the page edge */
 .sb_title{margin:0;flex:none;color:var(--color-text-heading)}
@@ -391,9 +391,9 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 
 /* Pinned while the page scrolls down; the steps move sideways. The script sets .tl's height to the track's overflow. */
 .tl{position:relative}
-.tl_sticky{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;overflow:clip;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);row-gap:var(--space-64);padding:var(--space-96) 0 var(--space-48)}
+.tl_sticky{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;overflow:clip;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);row-gap:var(--space-96);padding:var(--space-96) 0 var(--space-48)}
 .tl{padding-top:var(--space-32)}   /* hem, then 128px to the heading (32 + the pinned area's 96) */
-.tl_track{--tl-h:min(52vh,480px);justify-self:start;display:flex;align-items:center;gap:var(--space-128);width:max-content;padding-inline:var(--grid-margin);will-change:transform}
+.tl_track{--tl-h:min(52vh,480px);justify-self:start;align-self:start;display:flex;align-items:center;gap:var(--space-128);width:max-content;padding-inline:var(--grid-margin);will-change:transform}
 .tl_step{display:flex;align-items:center;gap:var(--space-64);flex:none}
 .tl_text{width:calc(4*var(--tl-col) + 3*var(--grid-gutter));flex:none}
 /* The year leads each step: ochre, faded until its step is the current one */
@@ -425,15 +425,15 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 
 /* Phones and tablets: a swipe track with the year bar on top */
 @media (max-width:991px){
-  .sb_head{padding:var(--space-64) 0 var(--space-24) var(--grid-margin)}
+  .sb_head{padding:var(--space-64) 0 var(--space-48) var(--grid-margin)}
   .sb_sub-row{flex-direction:column;align-items:stretch;gap:var(--space-24)}
   .tl{height:auto!important}
-  .tl_sticky{position:static;height:auto;overflow:visible;display:flex;flex-direction:column;padding:0 0 var(--space-64)}
+  .tl_sticky{position:static;height:auto;overflow:visible;display:flex;flex-direction:column;row-gap:0;padding:0 0 var(--space-64)}
   .sb_pager{width:auto}
   .sb_pager-btn svg{transform:rotate(-90deg)}   /* the steps swipe sideways here, so the arrows point sideways */
   [dir="rtl"] .sb_pager-btn svg{transform:rotate(90deg)}
   .tl_track::-webkit-scrollbar{display:none}
-  .tl_track{width:auto;transform:none!important;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--grid-margin);gap:var(--space-24);align-items:flex-start;scrollbar-width:none}
+  .tl_track{width:auto;align-self:stretch;transform:none!important;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--grid-margin);gap:var(--space-24);align-items:flex-start;scrollbar-width:none}
   .tl_step{flex:0 0 100%;flex-direction:column;align-items:stretch;gap:var(--space-24);scroll-snap-align:start}
   .tl_text{width:auto}
   .tl_media{height:auto;width:100%}
@@ -1109,8 +1109,11 @@ function setActive(i){
 }
 // Desktop: the section is as tall as the track is wide, so scrolling down by X moves the track sideways by X
 function layout(){
-  if(narrow.matches){tl.style.height="";track.style.transform="";update();return;}
+  if(narrow.matches){tl.style.height="";track.style.transform="";track.style.removeProperty("--tl-h");update();return;}
   track.style.transform="";
+  const st=track.parentElement,cs=getComputedStyle(st),head=st.querySelector(".sb_head");
+  const room=st.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom)-head.offsetHeight-parseFloat(cs.rowGap);
+  track.style.setProperty("--tl-h",Math.max(240,Math.min(480,room))+"px");
   maxX=Math.max(0,track.scrollWidth-innerWidth);
   tl.style.height=(innerHeight+maxX)+"px";
   update();

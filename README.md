@@ -45,14 +45,14 @@ Cambium's own animation scripts can't be reached from this environment, so the m
 
 ## Section 2: How SFG began (horizontal timeline, after De Coene)
 - **Tatreez hem:** the band opens the section as a full-width stitched edge between About and the story, away from the heading and pager, so the head reads calmly.
-- **Head:** "Our story", H2 "How SFG began", and the subtitle with the pager on its right. 64px of space separate the head from the steps and photos.
+- **Head:** "Our story", H2 "How SFG began", and the subtitle with the pager on its right. 96px of space separate the head from the steps and photos (48px on phones); the photo height is fitted to the room left under the head, so the gap holds on shorter laptop screens too.
 - **Desktop:** the timeline pins to the screen and scrolling down moves the steps sideways. The section's height is set from the track's width, so a scroll down of X moves the track by X; scrolling up plays it back. The next step always peeks in from the right.
 - **Each step:** the year in H1 ochre (`--color-text-achievement`), faded until its step is current, then the title (Title1) and text (Body1), then the photo. Text and year rise in with the split-text reveal; photos uncover as they come in.
 - **Photos:** every photo has the same height (`min(52vh, 480px)`) and its own width, so portraits are narrow, Al Jazeera (cropped to the video frame only, without the phone screen beside it) is wide and the 135 step shows the four scholars as a 2×2 square. Nothing is cropped, stretched or matted.
 - **Pager (from the previous version):** "01 / 06" with previous/next buttons (48px), a progress line and the next step's name ("Next · Back to Gaza"). It sits on the right of the section description ("One scholarship, one promise…"), ending on the right grid margin (on the left in Arabic). The whole section head is part of the pinned area, so the pager stays in view while the steps move. The arrows point up/down on desktop (the page scrolls down) and sideways on phones, where the pager sits under the description.
 - **Phones and tablets (under 992px):** the pager sits on top and the steps are a swipe track; photos show full width at their own shape.
 - **Arabic:** the track runs right to left and the arrow keys swap.
-- The background is sand (`--color-bg-surface-alt`). The steps' text is English only for now.
+- The background is linen, the same as About; the tatreez hem marks where the story begins. The steps' text is English only for now.
 
 ## What we do / What we don't do (straight after the story)
 Two sheets in one pinned section (after cambium.com "What we do"):
@@ -66,7 +66,7 @@ Two sheets in one pinned section (after cambium.com "What we do"):
 - **Type:** every text uses a scale class or token. The full scale (H1 to H6, Title to Title3, Body1 to Body3) is defined. On phones the intro paragraph uses H4 and the sentence H5.
 - **Touch targets:** nav links, the button, the language toggle, the menu button and "Skip Intro" are all 48px tall.
 - **Navbar:** once the page scrolls, the header turns to light glass above the sections: linen at 55% with a 24px blur (`--color-bg-glass`), ink text and the full-colour logo. In dark mode the glass is night green with light text. With the menu open it goes back to the dark header. Browsers without backdrop blur get solid linen.
-- **Section separation:** About sits on linen and "How SFG began" on sand (`--color-bg-surface-alt`), with 128px above and below each heading block. Both sections open the same way: eyebrow ("About SFG", "Our story"), H2, then text.
+- **Section separation:** About and "How SFG began" share the linen background; the full-width tatreez hem marks the change, with 128px above and below each heading block. Both sections open the same way: eyebrow ("About SFG", "Our story"), H2, then text.
 
 ## Fonts (Thmanyah licence)
 The page uses `Thmanyah Serif Display`, `Thmanyah Serif Text` and `Thmanyah Sans` whenever they are available. These come from installed fonts, or from the `--font-sfg-*` variables set by a bundler such as `next/font/local`. Otherwise it falls back to Newsreader, Readex Pro and Noto Naskh Arabic. The Thmanyah font files are deliberately **not** in this repository, as the licence requires.
