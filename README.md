@@ -44,10 +44,10 @@ Cambium's own animation scripts can't be reached from this environment, so the m
 - With reduced motion turned on, everything is shown at once. Without JavaScript nothing is hidden.
 
 ## Section 2: How SFG began (horizontal timeline, after De Coene)
-- **Head:** "Our story", H2 "How SFG began" with the tatreez band to the page edge, and the subtitle. It scrolls normally.
+- **Head:** the "Our story" label with the tatreez band beside it running to the page edge, then H2 "How SFG began" and the subtitle. It scrolls normally.
 - **Desktop:** the timeline pins to the screen and scrolling down moves the steps sideways. The section's height is set from the track's width, so a scroll down of X moves the track by X; scrolling up plays it back. The next step always peeks in from the right.
 - **Each step:** the year in H1 ochre (`--color-text-achievement`), faded until its step is current, then the title (Title1) and text (Body1), then the photo. Text and year rise in with the split-text reveal; photos uncover as they come in.
-- **Photos:** every photo has the same height (`min(52vh, 480px)`) and its own width, so portraits are narrow, Al Jazeera is wide and the 135 step shows the four scholars as a 2×2 square. Nothing is cropped, stretched or matted.
+- **Photos:** every photo has the same height (`min(52vh, 480px)`) and its own width, so portraits are narrow, Al Jazeera (cropped to the video frame only, without the phone screen beside it) is wide and the 135 step shows the four scholars as a 2×2 square. Nothing is cropped, stretched or matted.
 - **Year bar:** 2020 · 2022 · 04.2024 · 08.2024 · 03.2026 · 135 at the bottom, with a tick under each, the current year in green and a progress line. Each year is a 48px button that jumps to its step; left and right arrow keys move between steps.
 - **Phones and tablets (under 992px):** the year bar sits on top and the steps are a swipe track; photos show full width at their own shape.
 - **Arabic:** the track runs right to left and the arrow keys swap.
