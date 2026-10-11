@@ -44,11 +44,11 @@ Cambium's own animation scripts can't be reached from this environment, so the m
 - With reduced motion turned on, everything is shown at once. Without JavaScript nothing is hidden.
 
 ## Section 2: How SFG began (horizontal timeline, after De Coene)
-- **Head:** "Our story", H2 "How SFG began" with the tatreez band beside it running to the page edge, and the subtitle. It scrolls normally.
+- **Head:** "Our story", H2 "How SFG began" with the tatreez band beside it running to the page edge, and the subtitle with the pager on its right.
 - **Desktop:** the timeline pins to the screen and scrolling down moves the steps sideways. The section's height is set from the track's width, so a scroll down of X moves the track by X; scrolling up plays it back. The next step always peeks in from the right.
 - **Each step:** the year in H1 ochre (`--color-text-achievement`), faded until its step is current, then the title (Title1) and text (Body1), then the photo. Text and year rise in with the split-text reveal; photos uncover as they come in.
 - **Photos:** every photo has the same height (`min(52vh, 480px)`) and its own width, so portraits are narrow, Al Jazeera (cropped to the video frame only, without the phone screen beside it) is wide and the 135 step shows the four scholars as a 2×2 square. Nothing is cropped, stretched or matted.
-- **Pager (from the previous version):** "01 / 06" with previous/next buttons (48px), a progress line and the next step's name ("Next · Back to Gaza"). It sits at the top of the pinned area, on the same left line as the section description ("One scholarship, one promise…"), so it reads straight on from the head and stays in view while the steps move. The arrows point up/down on desktop (the page scrolls down) and sideways on phones (the steps swipe).
+- **Pager (from the previous version):** "01 / 06" with previous/next buttons (48px), a progress line and the next step's name ("Next · Back to Gaza"). It sits on the right of the section description ("One scholarship, one promise…"), ending on the right grid margin (on the left in Arabic). The whole section head is part of the pinned area, so the pager stays in view while the steps move. The arrows point up/down on desktop (the page scrolls down) and sideways on phones, where the pager sits under the description.
 - **Phones and tablets (under 992px):** the pager sits on top and the steps are a swipe track; photos show full width at their own shape.
 - **Arabic:** the track runs right to left and the arrow keys swap.
 - The background is sand (`--color-bg-surface-alt`). The steps' text is English only for now.
