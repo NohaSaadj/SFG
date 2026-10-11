@@ -44,7 +44,8 @@ Cambium's own animation scripts can't be reached from this environment, so the m
 - With reduced motion turned on, everything is shown at once. Without JavaScript nothing is hidden.
 
 ## Section 2: How SFG began (horizontal timeline, after De Coene)
-- **Head:** "Our story", H2 "How SFG began" with the tatreez band beside it running to the page edge, and the subtitle with the pager on its right.
+- **Tatreez hem:** the band opens the section as a full-width stitched edge between About and the story, away from the heading and pager, so the head reads calmly.
+- **Head:** "Our story", H2 "How SFG began", and the subtitle with the pager on its right. 64px of space separate the head from the steps and photos.
 - **Desktop:** the timeline pins to the screen and scrolling down moves the steps sideways. The section's height is set from the track's width, so a scroll down of X moves the track by X; scrolling up plays it back. The next step always peeks in from the right.
 - **Each step:** the year in H1 ochre (`--color-text-achievement`), faded until its step is current, then the title (Title1) and text (Body1), then the photo. Text and year rise in with the split-text reveal; photos uncover as they come in.
 - **Photos:** every photo has the same height (`min(52vh, 480px)`) and its own width, so portraits are narrow, Al Jazeera (cropped to the video frame only, without the phone screen beside it) is wide and the 135 step shows the four scholars as a 2×2 square. Nothing is cropped, stretched or matted.
@@ -52,6 +53,12 @@ Cambium's own animation scripts can't be reached from this environment, so the m
 - **Phones and tablets (under 992px):** the pager sits on top and the steps are a swipe track; photos show full width at their own shape.
 - **Arabic:** the track runs right to left and the arrow keys swap.
 - The background is sand (`--color-bg-surface-alt`). The steps' text is English only for now.
+
+## What we do / What we don't do (straight after the story)
+Two sheets in one pinned section (after cambium.com "What we do"):
+- **Sheet 1, What we do:** dark green (`--color-bg-inverse`), the H1 "What we do", then three columns divided by thin lines: Mentor, Guide, Connect. Each has a stitch icon drawn from tatreez squares in light ochre (`--color-icon-stitch-on-inverse`), a Title and a Body1 description.
+- **Sheet 2, What we don't do:** linen, rounded top corners. As you keep scrolling it slides up over the first sheet, which shrinks to 96% and darkens like a stack of paper. When it arrives, the mentor's red pen (`--color-pen-default`) underlines "don't" and strikes through each icon, and the three columns rise in: Charge students, Write applications for students, Award or promise scholarships.
+- Scrolling up plays it back. On phones, with reduced motion, or when a sheet's content is taller than the screen, the two sheets simply follow each other (no overlap), and the red-pen marks draw as the second sheet comes into view.
 
 ## Design system alignment
 - **Grid:** the header, intro sentence, closing line, "Skip Intro" and every section start on the design-system margin (`--grid-margin`: 160px at 1440, scaling down to 20px on phones). The old 1180px container is gone.
