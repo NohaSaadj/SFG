@@ -310,15 +310,15 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .wwd_dim{position:absolute;inset:0;background:var(--color-bg-inverse);opacity:0;pointer-events:none}
 .wwd_title{margin:0 0 var(--space-96)}   /* Cambium: H1, then a wide gap to the cards */
 .is-dont .wwd_title{color:var(--color-text-heading)}
-/* Three equal columns from margin to margin (4 grid columns each): the last one ends on the right margin */
-.wwd_cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--grid-gutter);list-style:none;margin:0;padding:0}
+/* Three equal columns from margin to margin; the text hugs a short measure so there is room between columns */
+.wwd_cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--space-64);list-style:none;margin:0;padding:0}
 .wwd_col{padding:0 0 var(--space-8) var(--space-32);border-inline-start:1px solid var(--color-border-on-inverse)}
 .is-dont .wwd_col{border-color:var(--color-border-subtle)}
 .wwd_icon{position:relative;display:block;width:var(--space-48);height:var(--space-48);margin-bottom:var(--space-64)}   /* icon, then a long breath to the title */
 .wwd_line{display:block;width:100%;height:100%;fill:none;stroke:var(--color-icon-accent-on-inverse);stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
 .is-dont .wwd_line{stroke:var(--color-icon-accent)}
 .wwd_col-title{margin:0 0 var(--space-16);font-weight:400}   /* lighter than the Title default, as asked */
-.wwd_col-text{margin:0;color:var(--color-text-on-inverse-faded)}   /* Cambium "faded" body */
+.wwd_col-text{margin:0;max-width:32ch;color:var(--color-text-on-inverse-faded)}   /* Cambium "faded" body */
 .is-dont .wwd_col-text{color:var(--color-text-secondary);opacity:1}
 /* The mentor's red pen: strikes the "don't" icons and underlines "don't" once the sheet has arrived */
 .wwd_pen path{fill:none;stroke:var(--color-pen-default);stroke-width:3;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .7s var(--ease-out-expo)}
@@ -335,6 +335,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .is-static .wwd_dim{display:none}
 @media (max-width:767px){
   .wwd_cols{grid-template-columns:1fr;gap:var(--space-48)}
+  .wwd_col-text{max-width:none}
   .wwd_col{padding:0 0 0 var(--space-20)}
   [dir="rtl"] .wwd_col{padding:0 var(--space-20) 0 0}
   .wwd_title{margin-bottom:var(--space-48)}
