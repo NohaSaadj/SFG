@@ -58,6 +58,7 @@
       --color-bg-glass:rgb(247 242 233 / .55);--color-text-glass:var(--neutral-ink);--color-border-glass:rgb(30 26 22 / .08);
       --glass-logo-ink:block;--glass-logo-linen:none;
       --color-border-on-inverse:rgb(247 242 233 / .16);
+      --color-line-process:rgb(30 26 22 / .24);   /* How it works: the thin line through the steps (ink at 24%, as on cambium.com) */
 
       /* Typography */
       --font-display:"Thmanyah Serif Display",var(--font-sfg-display,"Newsreader"),"Newsreader","Noto Naskh Arabic",Georgia,serif;
@@ -103,14 +104,14 @@
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
-      --color-bg-field:#101B16;--color-accent-achievement:#DBBA80;--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
+      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
       --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);--color-text-fill-off:rgb(239 232 219 / .18);
     }}
     :root[data-theme="dark"]{
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
-      --color-bg-field:#101B16;--color-accent-achievement:#DBBA80;--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
+      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
       --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);--color-text-fill-off:rgb(239 232 219 / .18);
     }
 
@@ -441,138 +442,96 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
   .tl_media.is-mosaic{height:auto}
 }
 
-/* ===== HOW IT WORKS · five steps on the mentor's thread (after cambium.com "Sourcing → Transport" and "The journey") =====
-   One markup, two layouts to compare: data-layout="vertical" (default) and data-layout="horizontal".
-   The media slots take any picture: each frame keeps its own ratio (--r), so nothing is cropped. Until SFG has photos,
-   each slot shows an illustration of the step, drawn at a 440px design height and scaled like an image (--k, set by the script). */
-.section_hiw{--hiw-col:calc((100vw - 2*var(--grid-margin) - 11*var(--grid-gutter))/12);--hiw-max-h:min(64vh,520px);position:relative;z-index:2;background:var(--color-bg-surface-alt);color:var(--color-text-primary)}
-.hiw_head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-48);padding:var(--space-128) var(--grid-margin) 0}
-.hiw_head-text{flex:1 1 auto;min-width:0}
-.hiw_eyebrow{margin:0 0 var(--space-16)}
-.hiw_title{margin:0;color:var(--color-text-heading);text-wrap:balance}
-.hiw_sub{margin:var(--space-16) 0 0;max-width:44ch;color:var(--color-text-secondary)}
-.hiw_pager{flex:none;width:calc(4*var(--hiw-col) + 3*var(--grid-gutter))}
-.hiw_track{position:relative}
-.hiw_steps{position:relative;list-style:none;margin:0;padding:0}
-.hiw_step{position:relative}
-.hiw_text{position:relative;z-index:1}
-/* The thread: running stitches (pen soft) that the mentor's red pen inks over as you read */
-.hiw_thread{position:absolute;left:0;top:0;width:1px;height:1px;overflow:visible;pointer-events:none}
-.hiw_thread path{fill:none;stroke-linecap:round;stroke-linejoin:round}
-.hiw_thread .is-base{stroke:var(--color-pen-soft);stroke-width:1.5;stroke-dasharray:6 8}
-.hiw_thread .is-ink{stroke:var(--color-pen-default);stroke-width:2}
-.hiw_dot{display:block;width:var(--space-16);height:var(--space-16);margin-bottom:var(--space-24);border-radius:var(--radius-full);border:2px solid var(--color-pen-default);background:var(--color-bg-surface-alt);transition:background-color .4s ease,box-shadow .4s ease}
-.hiw_step.is-reached .hiw_dot{background:var(--color-pen-default);box-shadow:inset 0 0 0 3px var(--color-bg-surface-alt)}
-.hiw_num{margin:0 0 var(--space-12);color:var(--color-text-achievement)}   /* ochre number at Title (28px) = large text, so ochre 700 passes on sand */
-.hiw_step-title,.hiw_end-title{margin:0;color:var(--color-text-heading);text-wrap:balance}
-.hiw_step-text{margin:var(--space-16) 0 0;max-width:36ch;color:var(--color-text-secondary)}
-.hiw_btn{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-top:var(--space-24);padding-inline:var(--space-24);border-radius:var(--radius-full);border:1.5px solid var(--color-action-secondary);color:var(--color-action-secondary);text-decoration:none;transition:background-color .2s}
-.hiw_btn:hover{background:var(--color-bg-selected)}
-.hiw_btn:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
-[dir="rtl"] .hiw_btn svg{transform:scaleX(-1)}
-
-/* Media slot: any ratio, never cropped. A real photo replaces .hiw_art with <img> and sets --r to its own ratio. */
-.hiw_media{position:relative;z-index:1;margin:0;overflow:hidden;border-radius:var(--radius-media);background:var(--color-bg-page);aspect-ratio:var(--r)}
-.hiw_media > img{display:block;width:100%;height:100%}
-.hiw_art{position:absolute;left:0;top:0;width:calc(var(--r) * 440px);height:440px;display:grid;place-items:center;padding:var(--space-32);transform-origin:0 0;transform:scale(var(--k,1))}
+/* ===== HOW IT WORKS · cloned from cambium.com/technology, section 2 ("how_wrap", process line), mapped to SFG tokens =====
+   Same structure and class names as the reference: each how_layout row has centred text (how_content) on one side and the
+   picture (how_visual) on the other, alternating. One thin line runs through every step's dot; it is drawn as you scroll
+   (section top at mid-screen → bottom at mid-screen) and passes behind each text block, where a soft patch of the
+   background (how_text_bg) hides it. The pictures reach to 24px from the page edge and drift outwards near the top and
+   bottom of the screen. Picture slots keep any ratio (--r); illustrations stand in until SFG has photos. */
+.section_how{--how-bg:var(--color-bg-page);--how-max-h:min(72vh,560px);position:relative;z-index:2;background:var(--how-bg);color:var(--color-text-primary);padding-bottom:var(--space-128);overflow-x:clip}
+.how_head{padding:var(--space-128) var(--grid-margin) 0}
+.how_eyebrow{margin:0 0 var(--space-16)}
+.how_title{margin:0;color:var(--color-text-heading);text-wrap:balance}
+.how_sub{margin:var(--space-16) 0 0;max-width:44ch;color:var(--color-text-secondary)}
+.how_contain{position:relative;padding:var(--space-128) var(--grid-margin) 0}
+.how_list{position:relative;display:grid;row-gap:var(--space-128);list-style:none;margin:0;padding:0}
+.how_line{position:absolute;left:0;top:0;width:1px;height:1px;overflow:visible;pointer-events:none}
+.how_line path{fill:none;stroke:var(--color-line-process);stroke-width:1.5;stroke-linecap:round}
+.how_layout{display:grid;grid-template-columns:repeat(var(--grid-columns),minmax(0,1fr));column-gap:var(--grid-gutter);align-items:center}
+.how_content{grid-column:1 / span 5;grid-row:1;display:flex;flex-direction:column;align-items:center;text-align:center}
+.how_visual{position:relative;z-index:1;grid-column:7 / span 6;grid-row:1;display:flex;justify-content:flex-end;margin-inline-end:calc(var(--space-24) - var(--grid-margin));will-change:transform}
+.how_layout:nth-child(even) .how_content{grid-column:8 / span 5}
+.how_layout:nth-child(even) .how_visual{grid-column:1 / span 6;justify-content:flex-start;margin-inline:calc(var(--space-24) - var(--grid-margin)) 0}
+.how_content_anchor{display:block;flex:none;width:var(--space-12);height:var(--space-12);margin-bottom:var(--space-24);border-radius:var(--radius-full);background:var(--color-pen-default)}
+.how_text_wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;max-width:calc(5*var(--how-col) + 4*var(--grid-gutter))}
+.section_how{--how-col:calc((100vw - 2*var(--grid-margin) - 11*var(--grid-gutter))/12)}
+/* how_text_bg marks the area behind the text where the line fades out (under the dot) and back in (below the text).
+   The script turns it into a soft hole in the line's mask, so the background itself is never painted over. */
+.how_text_bg{position:absolute;inset:calc(-1*var(--space-8)) calc(-1*var(--space-32));visibility:hidden;pointer-events:none}
+.how_step-title{margin:0;color:var(--color-text-heading);text-wrap:balance}
+.how_step-text{margin:var(--space-16) 0 0;max-width:var(--how-measure,38ch);color:var(--color-text-secondary)}
+.how_btn{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-top:var(--space-32);padding-inline:var(--space-24);border-radius:var(--radius-full);border:1.5px solid var(--color-action-secondary);color:var(--color-action-secondary);text-decoration:none;transition:background-color .2s}
+.how_btn:hover{background:var(--color-bg-selected)}
+.how_btn:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
+[dir="rtl"] .how_btn svg{transform:scaleX(-1)}
+/* Picture slot: any ratio, never cropped, up to 520–560px tall. A real photo replaces .how_art with <img> and sets --r. */
+.how_media{position:relative;margin:0;overflow:hidden;border-radius:var(--radius-media);background:var(--color-bg-surface-alt);aspect-ratio:var(--r);width:min(100%,calc(var(--how-max-h) * var(--r)))}
+.how_media > img{display:block;width:100%;height:100%}
+.how_art{position:absolute;left:0;top:0;width:calc(var(--r) * 440px);height:440px;display:grid;place-items:center;padding:var(--space-32);transform-origin:0 0;transform:scale(var(--k,1))}
 /* Illustrations (placeholders until SFG photos arrive) */
-.hiw_card{display:flex;flex-direction:column;gap:var(--space-12);width:100%;max-width:520px;padding:var(--space-24);border-radius:var(--radius-card);background:var(--color-bg-surface);color:var(--color-text-primary);box-shadow:0 1px 2px rgb(30 26 22 / .06),0 12px 32px rgb(30 26 22 / .08)}
-.hiw_card-top{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-12);padding-bottom:var(--space-12);border-bottom:1px solid var(--color-border-subtle)}
-.hiw_muted{color:var(--color-text-secondary)}
-.hiw_ochre{color:var(--color-text-achievement)}
-.hiw_field{display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-8) var(--space-12);border-radius:var(--radius-sm);background:var(--color-bg-field);border:1px solid var(--color-border-subtle)}
-.hiw_bar{position:relative;display:block;width:var(--w);height:var(--space-8);border-radius:var(--radius-full);background:var(--color-border-subtle)}
-.hiw_field .hiw_bar{height:6px;margin-top:var(--space-4)}
-.hiw_chip{align-self:flex-end;display:inline-flex;align-items:center;padding:var(--space-8) var(--space-16);border-radius:var(--radius-full);border:1.5px solid var(--color-action-secondary);color:var(--color-action-secondary)}
-.hiw_card.is-match{align-items:center;gap:var(--space-8);text-align:center}
-.hiw_tag{align-self:flex-start;padding:var(--space-2) var(--space-12);border-radius:var(--radius-full);border:1px solid var(--color-border-selected);color:var(--color-text-heading)}
-.hiw_person{display:flex;flex-direction:column;align-items:center;gap:var(--space-2)}
-.hiw_avatar{display:grid;place-items:center;width:var(--space-64);height:var(--space-64);margin-bottom:var(--space-8);border-radius:var(--radius-full);background:var(--color-bg-surface-alt);color:var(--color-text-heading)}
-.hiw_avatar.is-mentor{background:var(--color-bg-inverse);color:var(--color-text-on-inverse)}
-.hiw_stitch{width:12px;height:48px;overflow:visible}
-.hiw_stitch path{fill:none;stroke:var(--color-pen-default);stroke-width:2;stroke-dasharray:5 5;stroke-linecap:round}
-.hiw_rows{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.hiw_rows li{display:grid;grid-template-columns:1fr auto;column-gap:var(--space-12);padding:var(--space-12) 0;border-bottom:1px solid var(--color-border-subtle)}
-.hiw_rows li:last-child{border-bottom:0}
-.hiw_rows li > :nth-child(2){grid-column:1}
-.hiw_rows li > :nth-child(3){grid-column:2;grid-row:1 / span 2;align-self:center}
-.hiw_card.is-doc{gap:var(--space-8)}
-.hiw_card.is-doc .hiw_card-top{margin-bottom:var(--space-8)}
-.hiw_pen{position:absolute;overflow:visible;pointer-events:none}
-.hiw_pen path{fill:none;stroke:var(--color-pen-default);stroke-width:2;stroke-linecap:round;vector-effect:non-scaling-stroke}
-.is-marked .hiw_pen{left:0;right:0;bottom:-8px;height:8px;width:100%}
-.is-circled .hiw_pen{left:-10%;top:-12px;width:120%;height:32px}
-.hiw_note{align-self:flex-end;margin:var(--space-4) 0;color:var(--color-pen-default);font-style:italic}
-.hiw_card.is-submit{display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:var(--space-32);max-width:none}
-.hiw_done{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-4);padding-inline-end:var(--space-32);border-inline-end:1px solid var(--color-border-subtle)}
-.hiw_check{display:grid;place-items:center;width:var(--space-48);height:var(--space-48);margin-bottom:var(--space-8);border-radius:var(--radius-full);background:var(--color-bg-inverse)}
-.hiw_check svg{width:24px;height:24px;fill:none;stroke:var(--color-text-on-inverse);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.hiw_list{display:flex;flex-direction:column;gap:var(--space-4)}
-.hiw_card.is-submit{padding:var(--space-32)}
-.hiw_rows.is-checks li{grid-template-columns:auto 1fr;align-items:center;padding:var(--space-16) 0}
-.hiw_rows.is-checks li > :nth-child(2){grid-column:2}
-.hiw_tick{width:var(--space-20);height:var(--space-20);border-radius:var(--radius-sm);background:var(--color-text-heading);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat}
+.how_card{display:flex;flex-direction:column;gap:var(--space-12);width:100%;max-width:520px;padding:var(--space-24);border-radius:var(--radius-card);background:var(--color-bg-surface);color:var(--color-text-primary);box-shadow:0 1px 2px rgb(30 26 22 / .06),0 12px 32px rgb(30 26 22 / .08)}
+.how_card-top{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-12);padding-bottom:var(--space-12);border-bottom:1px solid var(--color-border-subtle)}
+.how_muted{color:var(--color-text-secondary)}
+.how_ochre{color:var(--color-text-achievement)}
+.how_field{display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-8) var(--space-12);border-radius:var(--radius-sm);background:var(--color-bg-field);border:1px solid var(--color-border-subtle)}
+.how_bar{position:relative;display:block;width:var(--w);height:var(--space-8);border-radius:var(--radius-full);background:var(--color-border-subtle)}
+.how_field .how_bar{height:6px;margin-top:var(--space-4)}
+.how_chip{align-self:flex-end;display:inline-flex;align-items:center;padding:var(--space-8) var(--space-16);border-radius:var(--radius-full);border:1.5px solid var(--color-action-secondary);color:var(--color-action-secondary)}
+.how_card.is-match{align-items:center;gap:var(--space-8);text-align:center}
+.how_tag{align-self:flex-start;padding:var(--space-2) var(--space-12);border-radius:var(--radius-full);border:1px solid var(--color-border-selected);color:var(--color-text-heading)}
+.how_person{display:flex;flex-direction:column;align-items:center;gap:var(--space-2)}
+.how_avatar{display:grid;place-items:center;width:var(--space-64);height:var(--space-64);margin-bottom:var(--space-8);border-radius:var(--radius-full);background:var(--color-bg-surface-alt);color:var(--color-text-heading)}
+.how_avatar.is-mentor{background:var(--color-bg-inverse);color:var(--color-text-on-inverse)}
+.how_stitch{width:12px;height:48px;overflow:visible}
+.how_stitch path{fill:none;stroke:var(--color-pen-default);stroke-width:2;stroke-dasharray:5 5;stroke-linecap:round}
+.how_rows{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.how_rows li{display:grid;grid-template-columns:1fr auto;column-gap:var(--space-12);padding:var(--space-12) 0;border-bottom:1px solid var(--color-border-subtle)}
+.how_rows li:last-child{border-bottom:0}
+.how_rows li > :nth-child(2){grid-column:1}
+.how_rows li > :nth-child(3){grid-column:2;grid-row:1 / span 2;align-self:center}
+.how_card.is-doc{gap:var(--space-8)}
+.how_card.is-doc .how_card-top{margin-bottom:var(--space-8)}
+.how_pen{position:absolute;overflow:visible;pointer-events:none}
+.how_pen path{fill:none;stroke:var(--color-pen-default);stroke-width:2;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.is-marked .how_pen{left:0;right:0;bottom:-8px;height:8px;width:100%}
+.is-circled .how_pen{left:-10%;top:-12px;width:120%;height:32px}
+.how_note{align-self:flex-end;margin:var(--space-4) 0;color:var(--color-pen-default);font-style:italic}
+.how_card.is-submit{display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:var(--space-32);max-width:none}
+.how_done{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-4);padding-inline-end:var(--space-32);border-inline-end:1px solid var(--color-border-subtle)}
+.how_check{display:grid;place-items:center;width:var(--space-48);height:var(--space-48);margin-bottom:var(--space-8);border-radius:var(--radius-full);background:var(--color-bg-inverse)}
+.how_check svg{width:24px;height:24px;fill:none;stroke:var(--color-text-on-inverse);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.how_list{display:flex;flex-direction:column;gap:var(--space-4)}
+.how_card.is-submit{padding:var(--space-32)}
+.how_rows.is-checks li{grid-template-columns:auto 1fr;align-items:center;padding:var(--space-16) 0}
+.how_rows.is-checks li > :nth-child(2){grid-column:2}
+.how_tick{width:var(--space-20);height:var(--space-20);border-radius:var(--radius-sm);background:var(--color-text-heading);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat}
 
-/* --- Vertical (default): steps alternate sides down the 12-column grid; the thread swings from one step to the next --- */
-[data-layout="vertical"] .hiw_track{padding:var(--space-128) var(--grid-margin)}
-[data-layout="vertical"] .hiw_steps{display:grid;row-gap:var(--space-128)}
-[data-layout="vertical"] .hiw_step{display:grid;grid-template-columns:repeat(var(--grid-columns),minmax(0,1fr));column-gap:var(--grid-gutter);align-items:center}
-[data-layout="vertical"] .hiw_text{grid-column:1 / span 4;grid-row:1}
-[data-layout="vertical"] .hiw_media{grid-column:6 / span 7;grid-row:1;justify-self:end;width:min(100%,calc(var(--hiw-max-h) * var(--r)))}
-[data-layout="vertical"] .hiw_step:nth-child(even) .hiw_text{grid-column:9 / span 4}
-[data-layout="vertical"] .hiw_step:nth-child(even) .hiw_media{grid-column:1 / span 7;justify-self:start}
-
-/* --- Horizontal: pinned like "How SFG began"; the steps travel sideways and the thread arcs over each picture --- */
-[data-layout="horizontal"] .hiw_pin{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;overflow:clip;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);row-gap:var(--space-64);padding:var(--space-96) 0 var(--space-48)}
-[data-layout="horizontal"] .hiw_head{padding:0 var(--grid-margin)}
-[data-layout="horizontal"] .hiw_track{--hiw-h:min(52vh,440px);justify-self:start;align-self:center;width:max-content;padding-inline:var(--grid-margin);will-change:transform}
-[data-layout="horizontal"] .hiw_steps{display:flex;align-items:center;gap:var(--space-128)}
-[data-layout="horizontal"] .hiw_step{display:flex;align-items:center;gap:var(--space-64);flex:none}
-[data-layout="horizontal"] .hiw_text{flex:none;width:calc(4*var(--hiw-col) + 3*var(--grid-gutter))}
-[data-layout="horizontal"] .hiw_media{flex:none;height:var(--hiw-h);width:auto}
-
-/* Review switch (prototype only: remove once a layout is chosen) */
-.hiw_review{position:fixed;z-index:60;inset-inline-end:var(--space-24);bottom:var(--space-24);display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-4) var(--space-4) var(--space-16);border-radius:var(--radius-full);background:var(--color-bg-inverse);color:var(--color-text-on-inverse);box-shadow:0 8px 24px rgb(13 38 29 / .24)}
-[dir="rtl"] .hiw_review{padding:var(--space-4) var(--space-16) var(--space-4) var(--space-4)}
-.hiw_review[hidden]{display:none}
-.hiw_review span{margin-inline-end:var(--space-8);opacity:.8}
-.hiw_review button{min-height:var(--size-touch-min);padding-inline:var(--space-16);border:0;border-radius:var(--radius-full);background:transparent;color:inherit;cursor:pointer}
-.hiw_review button[aria-pressed="true"]{background:var(--color-text-on-inverse);color:var(--color-bg-inverse)}
-.hiw_review button:focus-visible{outline:3px solid var(--color-border-focus-on-inverse);outline-offset:2px}
-
-/* Swipe track instead of the pin: phones, tablets and reduced motion (no sideways scroll-jacking). Set by the script. */
-.section_hiw.is-swipe{height:auto!important}
-.is-swipe .hiw_pin{position:static;height:auto;overflow:visible;display:block;padding:0 0 var(--space-128)}
-.is-swipe .hiw_head{padding:var(--space-128) var(--grid-margin) var(--space-64)}
-.is-swipe .hiw_track{width:auto;transform:none!important;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--grid-margin)}
-.is-swipe .hiw_steps{width:max-content}
-.is-swipe .hiw_step{scroll-snap-align:start}
-
-/* Phones and tablets: vertical becomes one column on a straight rail; horizontal becomes one card per swipe */
+/* Phones and tablets: one column, centred text with the picture under it; the line runs straight down the middle */
 @media (max-width:991px){
-  .hiw_head{display:block;padding:var(--space-96) var(--grid-margin) 0}
-  .hiw_pager{width:auto;margin-top:var(--space-32)}
-  .hiw_step-text{max-width:none}
-  [data-layout="vertical"] .hiw_track{padding:var(--space-64) var(--grid-margin) var(--space-96)}
-  [data-layout="vertical"] .hiw_steps{row-gap:var(--space-64)}
-  [data-layout="vertical"] .hiw_step{display:flex;flex-direction:column;align-items:stretch;gap:var(--space-24)}
-  [data-layout="vertical"] .hiw_text{padding-inline-start:var(--space-48)}
-  [data-layout="vertical"] .hiw_dot{position:absolute;inset-inline-start:0;top:var(--space-8);margin:0}
-  [data-layout="vertical"] .hiw_media,[data-layout="vertical"] .hiw_step:nth-child(even) .hiw_media{width:100%;justify-self:auto}
-  .is-swipe .hiw_head{padding:var(--space-96) var(--grid-margin) var(--space-48)}
-  .is-swipe .hiw_pin{padding-bottom:var(--space-96)}
-  .is-swipe .hiw_track::-webkit-scrollbar{display:none}
-  .is-swipe .hiw_track{scrollbar-width:none}
-  .is-swipe .hiw_steps{align-items:flex-start;gap:var(--space-24)}
-  .is-swipe .hiw_step{flex:0 0 calc(100vw - 2*var(--grid-margin) - var(--space-48));flex-direction:column;align-items:stretch;gap:var(--space-24)}
-  .is-swipe .hiw_text{width:auto}
-  .is-swipe .hiw_media{height:auto;width:100%}
+  .section_how{padding-bottom:var(--space-96)}
+  .how_head{padding:var(--space-96) var(--grid-margin) 0}
+  .how_contain{padding-top:var(--space-64)}
+  .how_list{row-gap:var(--space-96)}
+  .how_layout{display:flex;flex-direction:column;align-items:stretch;gap:var(--space-32)}
+  .how_visual,.how_layout:nth-child(even) .how_visual{margin:0;justify-content:center;transform:none!important}
+  .how_media{width:100%}
+  .how_step-text{max-width:none}
+  .how_text_wrap{max-width:none;align-self:stretch}
   /* Illustrations are not photos: on small screens they are shown at full size instead of shrinking with the frame */
-  .hiw_media:has(.hiw_art){aspect-ratio:auto;height:auto!important;padding:var(--space-24)}
-  .hiw_media:has(.hiw_art) .hiw_art{position:static;width:auto;height:auto;padding:0;transform:none}
-  .hiw_card.is-submit{grid-template-columns:1fr;row-gap:var(--space-16)}
-  .hiw_done{padding:0 0 var(--space-16);border-inline-end:0;border-bottom:1px solid var(--color-border-subtle)}
-  .hiw_review{inset-inline:var(--space-16);bottom:var(--space-16);justify-content:center}
+  .how_media:has(.how_art){aspect-ratio:auto;padding:var(--space-24)}
+  .how_media:has(.how_art) .how_art{position:static;width:auto;height:auto;padding:0;transform:none}
+  .how_card.is-submit{grid-template-columns:1fr;row-gap:var(--space-16)}
+  .how_done{padding:0 0 var(--space-16);border-inline-end:0;border-bottom:1px solid var(--color-border-subtle)}
 }
 
     .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -766,148 +725,142 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
         </div>
       </div>
     </section>
-    <section class="section_hiw" id="how-it-works" aria-labelledby="hiw-title" data-hiw data-layout="vertical">
-      <div class="hiw_pin">
-        <div class="hiw_head">
-          <div class="hiw_head-text" data-split-group>
-            <p class="hiw_eyebrow title3" data-split>How it works</p>
-            <h2 class="hiw_title h2" id="hiw-title" data-split>Five steps, one mentor the whole way</h2>
-            <p class="hiw_sub body1" data-split>Free from the first form to the final decision. You bring the ambition; your mentor brings the experience of having done it.</p>
-          </div>
-          <nav class="sb_pager hiw_pager" aria-label="How it works steps" hidden>
-            <div class="sb_pager-top">
-              <p class="sb_pager-count"><span class="sb_pager-current title" data-hiw-current>01</span><span class="sb_pager-total title3">/ 05</span></p>
-              <div class="sb_pager-nav">
-                <button class="sb_pager-btn" type="button" data-hiw-prev aria-label="Previous step"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M15 10H5M9.5 5.5 5 10l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                <button class="sb_pager-btn" type="button" data-hiw-next aria-label="Next step"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <section class="section_how" id="how-it-works" aria-labelledby="how-title" data-how>
+      <div class="how_head" data-split-group>
+        <p class="how_eyebrow title3" data-split>How it works</p>
+        <h2 class="how_title h2" id="how-title" data-split>Five steps, one mentor the whole way</h2>
+        <p class="how_sub body1" data-split>Free from the first form to the final decision. You bring the ambition; your mentor brings the experience of having done it.</p>
+      </div>
+      <div class="how_contain">
+        <svg class="how_line" aria-hidden="true" focusable="false"></svg>
+        <ol class="how_list" role="list">
+          <li class="how_layout">
+            <div class="how_content">
+              <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
+              <div class="how_text_wrap" data-split-group>
+                <h3 class="how_step-title h2" data-split>Apply to SFG</h3>
+                <p class="how_step-text body1" data-split>Tell us what you study, where you hope to go and the degree you are aiming for. The form is short, and SFG is free, always.</p>
+                <span class="how_text_bg" aria-hidden="true"></span>
               </div>
             </div>
-            <div class="sb_pager-track" aria-hidden="true"><span class="sb_pager-fill" data-hiw-fill></span></div>
-            <p class="sb_pager-caption body3" data-hiw-caption aria-live="polite"></p>
-          </nav>
-        </div>
-        <div class="hiw_track">
-          <svg class="hiw_thread" aria-hidden="true" focusable="false"></svg>
-          <ol class="hiw_steps" role="list">
-            <li class="hiw_step">
-              <div class="hiw_text" data-split-group>
-                <span class="hiw_dot" aria-hidden="true"></span>
-                <p class="hiw_num title" data-reveal><span class="sr-only">Step </span>01</p>
-                <h3 class="hiw_step-title h3" data-split>Apply to SFG</h3>
-                <p class="hiw_step-text body1" data-split>Tell us what you study, where you hope to go and the degree you are aiming for. The form is short, and SFG is free, always.</p>
-              </div>
-              <figure class="hiw_media" style="--r:1.3333" role="img" aria-label="Illustration: a short student application form" data-reveal-media>
-                <div class="hiw_art" aria-hidden="true">
-                  <div class="hiw_card is-form">
-                    <div class="hiw_card-top"><span class="title3">Student application</span><span class="body3 hiw_muted">Step 1 of 3</span></div>
-                    <div class="hiw_field"><span class="body3 hiw_muted">Field of study</span><span class="title3">Civil engineering</span></div>
-                    <div class="hiw_field"><span class="body3 hiw_muted">Degree you are aiming for</span><span class="title3">Master’s, United Kingdom</span></div>
-                    <div class="hiw_field"><span class="body3 hiw_muted">Why this degree?</span><span class="hiw_bar" style="--w:92%"></span><span class="hiw_bar" style="--w:64%"></span></div>
-                    <span class="hiw_chip title3">Continue</span>
+            <div class="how_visual">
+              <figure class="how_media" style="--r:1.5" role="img" aria-label="Illustration: a short student application form">
+                <div class="how_art" aria-hidden="true">
+                  <div class="how_card is-form">
+                    <div class="how_card-top"><span class="title3">Student application</span><span class="body3 how_muted">Step 1 of 3</span></div>
+                    <div class="how_field"><span class="body3 how_muted">Field of study</span><span class="title3">Civil engineering</span></div>
+                    <div class="how_field"><span class="body3 how_muted">Degree you are aiming for</span><span class="title3">Master’s, United Kingdom</span></div>
+                    <div class="how_field"><span class="body3 how_muted">Why this degree?</span><span class="how_bar" style="--w:92%"></span><span class="how_bar" style="--w:64%"></span></div>
+                    <span class="how_chip title3">Continue</span>
                   </div>
                 </div>
               </figure>
-            </li>
-            <li class="hiw_step">
-              <div class="hiw_text" data-split-group>
-                <span class="hiw_dot" aria-hidden="true"></span>
-                <p class="hiw_num title" data-reveal><span class="sr-only">Step </span>02</p>
-                <h3 class="hiw_step-title h3" data-split>Meet your mentor</h3>
-                <p class="hiw_step-text body1" data-split>We pair you with a volunteer who has won a fully funded scholarship, in your field or in the country you are aiming for.</p>
+            </div>
+          </li>
+          <li class="how_layout">
+            <div class="how_content">
+              <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
+              <div class="how_text_wrap" data-split-group>
+                <h3 class="how_step-title h2" data-split>Meet your mentor</h3>
+                <p class="how_step-text body1" data-split>We pair you with a volunteer who has won a fully funded scholarship, in your field or in the country you are aiming for.</p>
+                <a class="how_btn title3" href="#mentors" data-reveal>Meet the mentors<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="how_text_bg" aria-hidden="true"></span>
               </div>
-              <figure class="hiw_media" style="--r:.8" role="img" aria-label="Illustration: a student matched with a mentor who is a Chevening scholar" data-reveal-media>
-                <div class="hiw_art" aria-hidden="true">
-                  <div class="hiw_card is-match">
-                    <span class="hiw_tag body3">Matched</span>
-                    <div class="hiw_person"><span class="hiw_avatar title1">LA</span><span class="title3">Lina</span><span class="body3 hiw_muted">Student, Gaza</span></div>
-                    <svg class="hiw_stitch" viewBox="0 0 12 64" preserveAspectRatio="none"><path d="M6 2v60"/></svg>
-                    <div class="hiw_person"><span class="hiw_avatar is-mentor title1">MH</span><span class="title3">Mohammed</span><span class="body3 hiw_ochre">Chevening Scholar</span></div>
+            </div>
+            <div class="how_visual">
+              <figure class="how_media" style="--r:1.3333" role="img" aria-label="Illustration: a student matched with a mentor who is a Chevening scholar">
+                <div class="how_art" aria-hidden="true">
+                  <div class="how_card is-match">
+                    <span class="how_tag body3">Matched</span>
+                    <div class="how_person"><span class="how_avatar title1">LA</span><span class="title3">Lina</span><span class="body3 how_muted">Student, Gaza</span></div>
+                    <svg class="how_stitch" viewBox="0 0 12 64" preserveAspectRatio="none"><path d="M6 2v60"/></svg>
+                    <div class="how_person"><span class="how_avatar is-mentor title1">MH</span><span class="title3">Mohammed</span><span class="body3 how_ochre">Chevening Scholar</span></div>
                   </div>
                 </div>
               </figure>
-            </li>
-            <li class="hiw_step">
-              <div class="hiw_text" data-split-group>
-                <span class="hiw_dot" aria-hidden="true"></span>
-                <p class="hiw_num title" data-reveal><span class="sr-only">Step </span>03</p>
-                <h3 class="hiw_step-title h3" data-split>Choose your scholarships</h3>
-                <p class="hiw_step-text body1" data-split>Together you shortlist the scholarships and universities worth your time, and put every deadline on one calendar.</p>
+            </div>
+          </li>
+          <li class="how_layout">
+            <div class="how_content">
+              <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
+              <div class="how_text_wrap" data-split-group>
+                <h3 class="how_step-title h2" data-split>Choose your scholarships</h3>
+                <p class="how_step-text body1" data-split>Together you shortlist the scholarships and universities worth your time, and put every deadline on one calendar.</p>
+                <span class="how_text_bg" aria-hidden="true"></span>
               </div>
-              <figure class="hiw_media" style="--r:1" role="img" aria-label="Illustration: a shortlist of four scholarships with their deadlines" data-reveal-media>
-                <div class="hiw_art" aria-hidden="true">
-                  <div class="hiw_card is-list">
-                    <div class="hiw_card-top"><span class="title3">Your shortlist</span><span class="body3 hiw_muted">4 scholarships</span></div>
-                    <ul class="hiw_rows">
-                      <li><span class="title3 hiw_ochre">Chevening</span><span class="body3 hiw_muted">United Kingdom</span><span class="body3">in 12 days</span></li>
-                      <li><span class="title3 hiw_ochre">DAAD</span><span class="body3 hiw_muted">Germany</span><span class="body3">in 3 weeks</span></li>
-                      <li><span class="title3 hiw_ochre">Erasmus Mundus</span><span class="body3 hiw_muted">Europe</span><span class="body3">in 2 months</span></li>
-                      <li><span class="title3 hiw_ochre">Fulbright</span><span class="body3 hiw_muted">United States</span><span class="body3">in 4 months</span></li>
+            </div>
+            <div class="how_visual">
+              <figure class="how_media" style="--r:1" role="img" aria-label="Illustration: a shortlist of four scholarships with their deadlines">
+                <div class="how_art" aria-hidden="true">
+                  <div class="how_card is-list">
+                    <div class="how_card-top"><span class="title3">Your shortlist</span><span class="body3 how_muted">4 scholarships</span></div>
+                    <ul class="how_rows">
+                      <li><span class="title3 how_ochre">Chevening</span><span class="body3 how_muted">United Kingdom</span><span class="body3">in 12 days</span></li>
+                      <li><span class="title3 how_ochre">DAAD</span><span class="body3 how_muted">Germany</span><span class="body3">in 3 weeks</span></li>
+                      <li><span class="title3 how_ochre">Erasmus Mundus</span><span class="body3 how_muted">Europe</span><span class="body3">in 2 months</span></li>
+                      <li><span class="title3 how_ochre">Fulbright</span><span class="body3 how_muted">United States</span><span class="body3">in 4 months</span></li>
                     </ul>
                   </div>
                 </div>
               </figure>
-            </li>
-            <li class="hiw_step">
-              <div class="hiw_text" data-split-group>
-                <span class="hiw_dot" aria-hidden="true"></span>
-                <p class="hiw_num title" data-reveal><span class="sr-only">Step </span>04</p>
-                <h3 class="hiw_step-title h3" data-split>Write, draft by draft</h3>
-                <p class="hiw_step-text body1" data-split>Your personal statement, CV and references, read in your mentor’s red pen until every page sounds like you at your best.</p>
+            </div>
+          </li>
+          <li class="how_layout">
+            <div class="how_content">
+              <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
+              <div class="how_text_wrap" data-split-group>
+                <h3 class="how_step-title h2" data-split>Write, draft by draft</h3>
+                <p class="how_step-text body1" data-split>Your personal statement, CV and references, read in your mentor’s red pen until every page sounds like you at your best.</p>
+                <span class="how_text_bg" aria-hidden="true"></span>
               </div>
-              <figure class="hiw_media" style="--r:.75" role="img" aria-label="Illustration: a personal statement with the mentor’s red-pen notes" data-reveal-media>
-                <div class="hiw_art" aria-hidden="true">
-                  <div class="hiw_card is-doc">
-                    <div class="hiw_card-top"><span class="title3">Personal statement</span><span class="body3 hiw_muted">Draft 4</span></div>
-                    <span class="hiw_bar" style="--w:96%"></span><span class="hiw_bar" style="--w:88%"></span>
-                    <span class="hiw_bar is-marked" style="--w:72%"><svg class="hiw_pen" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M1 6 C 20 2, 40 9, 60 5 S 90 3, 99 6"/></svg></span>
-                    <span class="hiw_bar" style="--w:92%"></span>
-                    <span class="hiw_note body3">Say more about the bridge you designed</span>
-                    <span class="hiw_bar" style="--w:84%"></span><span class="hiw_bar" style="--w:95%"></span>
-                    <span class="hiw_bar is-circled" style="--w:40%"><svg class="hiw_pen" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M70 6 C 40 -2, 4 8, 3 20 C 2 34, 50 40, 82 33 C 100 28, 99 10, 64 5"/></svg></span>
-                    <span class="hiw_bar" style="--w:78%"></span><span class="hiw_bar" style="--w:60%"></span>
+            </div>
+            <div class="how_visual">
+              <figure class="how_media" style="--r:.8" role="img" aria-label="Illustration: a personal statement with the mentor’s red-pen notes">
+                <div class="how_art" aria-hidden="true">
+                  <div class="how_card is-doc">
+                    <div class="how_card-top"><span class="title3">Personal statement</span><span class="body3 how_muted">Draft 4</span></div>
+                    <span class="how_bar" style="--w:96%"></span><span class="how_bar" style="--w:88%"></span>
+                    <span class="how_bar is-marked" style="--w:72%"><svg class="how_pen" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M1 6 C 20 2, 40 9, 60 5 S 90 3, 99 6"/></svg></span>
+                    <span class="how_bar" style="--w:92%"></span>
+                    <span class="how_note body3">Say more about the bridge you designed</span>
+                    <span class="how_bar" style="--w:84%"></span><span class="how_bar" style="--w:95%"></span>
+                    <span class="how_bar is-circled" style="--w:40%"><svg class="how_pen" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M70 6 C 40 -2, 4 8, 3 20 C 2 34, 50 40, 82 33 C 100 28, 99 10, 64 5"/></svg></span>
+                    <span class="how_bar" style="--w:78%"></span><span class="how_bar" style="--w:60%"></span>
                   </div>
                 </div>
               </figure>
-            </li>
-            <li class="hiw_step">
-              <div class="hiw_text" data-split-group>
-                <span class="hiw_dot" aria-hidden="true"></span>
-                <p class="hiw_num title" data-reveal><span class="sr-only">Step </span>05</p>
-                <h3 class="hiw_step-title h3" data-split>Interview and submit</h3>
-                <p class="hiw_step-text body1" data-split>Mock interviews, a final read-through, then you press submit. Your mentor stays with you until the decision arrives.</p>
+            </div>
+          </li>
+          <li class="how_layout">
+            <div class="how_content">
+              <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
+              <div class="how_text_wrap" data-split-group>
+                <h3 class="how_step-title h2" data-split>Interview and submit</h3>
+                <p class="how_step-text body1" data-split>Mock interviews, a final read-through, then you press submit. Your mentor stays with you until the decision arrives.</p>
+                <a class="how_btn title3" href="#for-students" data-reveal>Start your application<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="how_text_bg" aria-hidden="true"></span>
               </div>
-              <figure class="hiw_media" style="--r:1.7778" role="img" aria-label="Illustration: a checklist of mock interviews and a submitted application" data-reveal-media>
-                <div class="hiw_art" aria-hidden="true">
-                  <div class="hiw_card is-submit">
-                    <div class="hiw_done"><span class="hiw_check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="h5">Submitted</span><span class="body3 hiw_muted">Two days before the deadline</span></div>
-                    <div class="hiw_list"><span class="body3 hiw_muted">Before you press submit</span><ul class="hiw_rows is-checks">
-                      <li><span class="hiw_tick"></span><span class="title3">Mock interview, round one</span></li>
-                      <li><span class="hiw_tick"></span><span class="title3">Mock interview, round two</span></li>
-                      <li><span class="hiw_tick"></span><span class="title3">References received</span></li>
-                      <li><span class="hiw_tick"></span><span class="title3">Final read-through</span></li>
+            </div>
+            <div class="how_visual">
+              <figure class="how_media" style="--r:1.7778" role="img" aria-label="Illustration: a checklist of mock interviews and a submitted application">
+                <div class="how_art" aria-hidden="true">
+                  <div class="how_card is-submit">
+                    <div class="how_done"><span class="how_check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="h5">Submitted</span><span class="body3 how_muted">Two days before the deadline</span></div>
+                    <div class="how_list"><span class="body3 how_muted">Before you press submit</span><ul class="how_rows is-checks">
+                      <li><span class="how_tick"></span><span class="title3">Mock interview, round one</span></li>
+                      <li><span class="how_tick"></span><span class="title3">Mock interview, round two</span></li>
+                      <li><span class="how_tick"></span><span class="title3">References received</span></li>
+                      <li><span class="how_tick"></span><span class="title3">Final read-through</span></li>
                     </ul></div>
                   </div>
                 </div>
               </figure>
-            </li>
-            <li class="hiw_step is-end">
-              <div class="hiw_text" data-split-group>
-                <span class="hiw_dot" aria-hidden="true"></span>
-                <h3 class="hiw_end-title h4" data-split>Ready when you are</h3>
-                <p class="hiw_step-text body1" data-split>Start with step one. Your mentor will meet you at step two.</p>
-                <a class="hiw_btn title3" href="#for-students" data-reveal>Start your application<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-              </div>
-            </li>
-          </ol>
-        </div>
+            </div>
+          </li>
+        </ol>
       </div>
     </section>
   </main>
-  <div class="hiw_review" role="group" aria-label="Layout to review" data-hiw-review hidden>
-      <span class="body3">Review layout</span>
-      <button type="button" class="title3" data-hiw-mode="vertical" aria-pressed="true">Vertical</button>
-      <button type="button" class="title3" data-hiw-mode="horizontal" aria-pressed="false">Horizontal</button>
-    </div>
 
   <script>
   /*! SFG Intro Story Roll v4.0.0 (scroll-controlled)
@@ -1417,131 +1370,53 @@ new MutationObserver(layout).observe(document.documentElement,{attributes:true,a
 (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(layout);
 layout();
 })();
-// ===== How it works · the mentor's thread, in two layouts to compare (vertical by default, horizontal pinned) =====
+// ===== How it works · process line v2.0 (after cambium.com/technology "process-line") =====
+// One path through every step's dot: vertical at each dot, an S-curve between the two sides (straight on phones).
+// It is drawn with the scroll: nothing when the steps' top reaches mid-screen, all of it when their bottom does.
+// Pictures drift outwards near the top and bottom of the screen and settle when centred. Reduced motion: drawn, still.
 (function(){
-  const sec=document.querySelector("[data-hiw]"); if(!sec) return;
-  const track=sec.querySelector(".hiw_track"),svg=sec.querySelector(".hiw_thread"),head=sec.querySelector(".hiw_head");
-  const steps=[...sec.querySelectorAll(".hiw_step")],real=steps.filter(s=>!s.classList.contains("is-end")),N=real.length;
-  const pager=sec.querySelector(".hiw_pager"),cur=sec.querySelector("[data-hiw-current]"),fill=sec.querySelector("[data-hiw-fill]"),cap=sec.querySelector("[data-hiw-caption]");
-  const prev=sec.querySelector("[data-hiw-prev]"),next=sec.querySelector("[data-hiw-next]"),review=document.querySelector("[data-hiw-review]");
+  const sec=document.querySelector("[data-how]"); if(!sec) return;
+  const box=sec.querySelector(".how_contain"),svg=sec.querySelector(".how_line");
+  const rows=[...sec.querySelectorAll(".how_layout")],dots=rows.map(r=>r.querySelector("[data-process-dot]")),visuals=rows.map(r=>r.querySelector(".how_visual"));
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,narrow=matchMedia("(max-width:991px)");
-  const NS="http://www.w3.org/2000/svg",ART_H=440,rtl=()=>document.documentElement.dir==="rtl";
-  const titles=real.map(s=>s.querySelector(".hiw_step-title").textContent.trim());
-  let mode="vertical",maxX=0,segs=[],active=-1;
-
+  const NS="http://www.w3.org/2000/svg",ART_H=440,DRIFT=64,rtl=()=>document.documentElement.dir==="rtl";
+  let path=null,len=0;
   // Illustrations are drawn at 440px tall and scaled to their frame, like a picture
-  function scaleArt(){sec.querySelectorAll(".hiw_media").forEach(f=>{const a=f.querySelector(".hiw_art");if(a)a.style.setProperty("--k",(f.clientHeight/ART_H).toFixed(4));});}
-  function rel(el){const t=track.getBoundingClientRect(),r=el.getBoundingClientRect();return{l:r.left-t.left,t:r.top-t.top,r:r.right-t.left,b:r.bottom-t.top,w:r.width,h:r.height,x:r.left-t.left+r.width/2,y:r.top-t.top+r.height/2};}
-  const swipe=()=>mode==="horizontal"&&(narrow.matches||reduce);
-
-  // One path per step-to-step stretch, so each can be inked on its own
-  function thread(){
-    svg.textContent="";segs=[];
-    const dots=steps.map(s=>rel(s.querySelector(".hiw_dot"))),texts=steps.map(s=>rel(s.querySelector(".hiw_text")));
-    const media=steps.map(s=>{const m=s.querySelector(".hiw_media");return m?rel(m):null;});
-    const ds=[],dir=rtl()?-1:1;
-    if(mode==="vertical"&&!narrow.matches){
-      ds.push(`M${dots[0].x},${dots[0].y-96}L${dots[0].x},${dots[0].y}`);             // lead-in from the heading
-      for(let i=0;i<dots.length-1;i++){                                                  // leaves under the text, swings across behind the picture, drops into the next dot
-        const a=dots[i],b=dots[i+1],y1=texts[i].b+24,k=(b.y-y1)/2;
-        ds.push(`M${a.x},${y1}C${a.x},${y1+k} ${b.x},${b.y-k} ${b.x},${b.y}`);
-      }
-    }else if(mode==="vertical"){                                                         // phones: a straight rail beside the text, behind the pictures
-      for(let i=0;i<dots.length-1;i++) ds.push(`M${dots[i].x},${dots[i].y}L${dots[i+1].x},${dots[i+1].y}`);
-    }else if(swipe()){
-      for(let i=0;i<dots.length-1;i++) ds.push(`M${dots[i].x},${dots[i].y}L${dots[i+1].x},${dots[i+1].y}`);
-    }else{                                                                               // arcs up from the dot, dives behind the picture, rises into the next dot
-      for(let i=0;i<dots.length-1;i++){
-        const a=dots[i],b=dots[i+1],m=media[i]; if(!m) continue;
-        const top=m.t-48,c=m.x;
-        ds.push(`M${a.x},${a.y}C${a.x+dir*96},${top} ${c-dir*m.w*.3},${top} ${c},${m.y}C${c+dir*m.w*.35},${m.b+48} ${b.x-dir*160},${b.y+120} ${b.x},${b.y}`);
-      }
+  function scaleArt(){sec.querySelectorAll(".how_media").forEach(f=>{const a=f.querySelector(".how_art");if(a)a.style.setProperty("--k",(f.clientHeight/ART_H).toFixed(4));});}
+  function rel(el){const t=box.getBoundingClientRect(),r=el.getBoundingClientRect();return{x:r.left-t.left+r.width/2,y:r.top-t.top+r.height/2};}
+  function build(){
+    svg.textContent="";
+    const d=dots.map(rel),b=box.getBoundingClientRect(),W=Math.ceil(b.width)+200,H=Math.ceil(b.height)+200;
+    const holes=[...sec.querySelectorAll(".how_text_bg")].map(el=>{const t=el.getBoundingClientRect();
+      return `<rect x="${(t.left-b.left).toFixed(1)}" y="${(t.top-b.top).toFixed(1)}" width="${t.width.toFixed(1)}" height="${t.height.toFixed(1)}" rx="16" fill="#000" filter="url(#howSoft)"/>`;}).join("");
+    svg.innerHTML=`<defs><filter id="howSoft" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="8"/></filter>`+
+      `<mask id="howMask" maskUnits="userSpaceOnUse" x="-100" y="-100" width="${W}" height="${H}"><rect x="-100" y="-100" width="${W}" height="${H}" fill="#fff"/>${holes}</mask></defs>`;   // mask luminance, not colours
+    let s=`M${d[0].x},${d[0].y}`;                                   // starts at the first dot
+    for(let i=0;i<d.length-1;i++){
+      const a=d[i],b=d[i+1],k=(b.y-a.y)/2;
+      s+=narrow.matches?`L${b.x},${b.y}`:`C${a.x},${a.y+k} ${b.x},${b.y-k} ${b.x},${b.y}`;
     }
-    ds.forEach(d=>{
-      const base=document.createElementNS(NS,"path"),ink=document.createElementNS(NS,"path");
-      base.setAttribute("d",d);base.setAttribute("class","is-base");ink.setAttribute("d",d);ink.setAttribute("class","is-ink");
-      svg.append(base,ink);
-      const len=ink.getTotalLength(),pts=[];
-      for(let j=0;j<=64;j++){const p=ink.getPointAtLength(len*j/64);pts.push([p.x,p.y,len*j/64]);}
-      ink.style.strokeDasharray=len+" "+len;ink.style.strokeDashoffset=len;
-      segs.push({ink,len,pts});
-    });
-    sec._dots=dots;
-  }
-  // The reading line: 62% down the screen (vertical) or 62% across it (horizontal)
-  function reached(){
-    const t=track.getBoundingClientRect();
-    if(reduce||swipe()) return ()=>true;
-    if(mode==="vertical"){const y=innerHeight*.62-t.top;return p=>p[1]<=y;}
-    const x=rtl()?innerWidth*.38-t.left:innerWidth*.62-t.left;
-    return rtl()?p=>p[0]>=x:p=>p[0]<=x;
-  }
-  function ink(){
-    const ok=reached();
-    segs.forEach(s=>{
-      let l=0;for(const p of s.pts){if(!ok(p))break;l=p[2];}
-      s.ink.style.strokeDashoffset=(s.len-l).toFixed(1);
-    });
-    let last=-1;(sec._dots||[]).forEach((d,i)=>{const r=ok([d.x,d.y]);steps[i].classList.toggle("is-reached",r);if(r)last=i;});
-    if(mode==="horizontal"&&!swipe()) setActive(Math.max(0,Math.min(N-1,last)));
-  }
-  function setActive(i){
-    if(i===active) return; active=i;
-    cur.textContent=String(i+1).padStart(2,"0");fill.style.width=((i+1)/N*100)+"%";
-    cap.textContent=i<N-1?"Next · "+titles[i+1]:"Then: start your application";
-    prev.disabled=i===0;next.disabled=i===N-1;
-  }
-  function layout(){
-    sec.classList.toggle("is-swipe",swipe());
-    pager.hidden=mode!=="horizontal";
-    track.style.transform="";sec.style.height="";track.style.removeProperty("--hiw-h");
-    if(mode==="horizontal"&&!swipe()){
-      const pin=track.parentElement,cs=getComputedStyle(pin);
-      const room=pin.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom)-head.offsetHeight-parseFloat(cs.rowGap)-96;   // 96: room for the thread's arcs
-      track.style.setProperty("--hiw-h",Math.max(240,Math.min(440,room))+"px");
-      maxX=Math.max(0,track.scrollWidth-innerWidth);
-      sec.style.height=(innerHeight+maxX)+"px";
-    }
-    scaleArt();thread();active=-1;update();
+    path=document.createElementNS(NS,"path");path.setAttribute("d",s);path.setAttribute("mask","url(#howMask)");svg.append(path);
+    len=path.getTotalLength();
+    path.style.strokeDasharray=len+" "+len;
   }
   function update(){
-    if(mode==="horizontal"&&!swipe()){
-      const r=sec.getBoundingClientRect(),x=maxX?Math.min(maxX,Math.max(0,-r.top)):0;
-      track.style.transform=`translate3d(${rtl()?x:-x}px,0,0)`;
-    }else if(mode==="horizontal"){
-      const w=real[0].offsetWidth+24;setActive(Math.max(0,Math.min(N-1,Math.round(Math.abs(track.scrollLeft)/w))));
-    }
-    ink();
+    if(!path) return;
+    const t=box.getBoundingClientRect(),p=reduce?1:Math.max(0,Math.min(1,(innerHeight/2-t.top)/t.height));   // "top center" → "bottom center"
+    path.style.strokeDashoffset=(len*(1-p)).toFixed(1);
+    if(reduce||narrow.matches) return;
+    visuals.forEach((v,i)=>{                                         // outwards: towards the page edge the picture sits on
+      const r=v.getBoundingClientRect(),c=Math.min(1,Math.abs((r.top+r.height/2-innerHeight/2)/innerHeight));
+      const out=(i%2===0?1:-1)*(rtl()?-1:1);
+      v.style.transform=`translate3d(${(out*DRIFT*c).toFixed(1)}px,0,0)`;
+    });
   }
-  function go(i){
-    i=Math.max(0,Math.min(N-1,i));
-    if(swipe()){track.scrollTo({left:(rtl()?-1:1)*(real[0].offsetWidth+24)*i,behavior:reduce?"auto":"smooth"});return;}
-    const t=track.getBoundingClientRect(),r=real[i].getBoundingClientRect(),pad=parseFloat(getComputedStyle(track).paddingInlineStart)||0;
-    const x=Math.min(maxX,Math.max(0,(rtl()?t.right-r.right:r.left-t.left)-pad));
-    scrollTo({top:sec.getBoundingClientRect().top+scrollY+x,behavior:reduce?"auto":"smooth"});
-  }
-  prev.addEventListener("click",()=>go(active-1));next.addEventListener("click",()=>go(active+1));
-
-  // Review switch (prototype only): ?hiw=horizontal opens the other layout; the choice is remembered on this device
-  function setMode(m){
-    mode=m==="horizontal"?"horizontal":"vertical";sec.dataset.layout=mode;
-    review.querySelectorAll("[data-hiw-mode]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.hiwMode===mode)));
-    try{localStorage.setItem("sfg-hiw",mode);}catch(e){}
-    layout();
-  }
-  review.querySelectorAll("[data-hiw-mode]").forEach(b=>b.addEventListener("click",()=>{
-    const top=sec.getBoundingClientRect().top+scrollY;setMode(b.dataset.hiwMode);scrollTo({top,behavior:"auto"});
-  }));
-  new IntersectionObserver(e=>{review.hidden=!e[0].isIntersecting;},{threshold:0}).observe(sec);
-  let start=new URLSearchParams(location.search).get("hiw");
-  if(!start){try{start=localStorage.getItem("sfg-hiw");}catch(e){}}
-
-  addEventListener("scroll",update,{passive:true});track.addEventListener("scroll",update,{passive:true});
-  addEventListener("resize",layout);narrow.addEventListener("change",layout);
+  function layout(){scaleArt();build();update();}
+  addEventListener("scroll",update,{passive:true});addEventListener("resize",layout);narrow.addEventListener("change",layout);
   new MutationObserver(layout).observe(document.documentElement,{attributes:true,attributeFilter:["dir"]});
-  if(window.ResizeObserver){let raf=0;new ResizeObserver(()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{scaleArt();thread();ink();});}).observe(sec.querySelector(".hiw_steps"));}
+  if(window.ResizeObserver){let raf=0;new ResizeObserver(()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(layout);}).observe(box);}
   (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(layout);
-  setMode(start||"vertical");
+  layout();
 })();
   </script>
 </body>

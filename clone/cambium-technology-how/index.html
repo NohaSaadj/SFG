@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cambium process line clone</title>
+<style>
+/* Stage A reference clone of cambium.com/technology, section 2 ("how_wrap"), with Cambium's copy and approximate
+   Cambium colours. Same classes, CSS and script as the SFG section; only the tokens below differ. Local review only. */
+:root{
+  --color-bg-page:#FAF2E7;--color-bg-surface-alt:#EADFCF;--color-text-primary:#2E1F17;--color-text-heading:#2E1F17;
+  --color-text-secondary:#2E1F17;--color-pen-default:#D4570B;--color-line-process:rgb(46 31 23 / .24);
+  --color-action-secondary:#2E1F17;--color-bg-selected:rgb(46 31 23 / .06);--color-border-focus:#D4570B;
+  --font-display:"Helvetica Neue",Arial,system-ui,sans-serif;--font-text:var(--font-display);--font-sans:var(--font-display);
+  --h2-size:clamp(34px,3.3vw,64px);--h2-lh:1.05;--h2-ls:-0.03em;--body1-size:clamp(17px,1.05vw,20px);--body1-lh:1.42;
+  --title3-size:16px;--title3-lh:24px;--body3-size:14px;--body3-lh:22px;
+  --space-4:4px;--space-8:8px;--space-12:12px;--space-16:16px;--space-24:24px;--space-32:32px;--space-48:48px;--space-64:64px;--space-96:96px;--space-128:128px;
+  --radius-media:4px;--radius-panel:10px;--radius-full:999px;--size-touch-min:48px;
+  --grid-columns:12;--grid-gutter:20px;--grid-margin:24px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--color-bg-page);color:var(--color-text-primary);font-family:var(--font-text)}
+.h2{font:500 var(--h2-size)/var(--h2-lh) var(--font-display);letter-spacing:var(--h2-ls)}
+.body1{font:400 var(--body1-size)/var(--body1-lh) var(--font-text)}
+.title3{font:500 var(--title3-size)/var(--title3-lh) var(--font-sans)}
+.body3{font:400 var(--body3-size)/var(--body3-lh) var(--font-text)}
+.section_how{--how-max-h:640px!important;--how-measure:24em}
+.how_list{row-gap:198px!important}
+.how_media.is-placeholder{display:grid;place-items:center;text-align:center;color:rgb(46 31 23 / .55);padding:var(--space-24)}
+/* ===== HOW IT WORKS · cloned from cambium.com/technology, section 2 ("how_wrap", process line), mapped to SFG tokens =====
+   Same structure and class names as the reference: each how_layout row has centred text (how_content) on one side and the
+   picture (how_visual) on the other, alternating. One thin line runs through every step's dot; it is drawn as you scroll
+   (section top at mid-screen → bottom at mid-screen) and passes behind each text block, where a soft patch of the
+   background (how_text_bg) hides it. The pictures reach to 24px from the page edge and drift outwards near the top and
+   bottom of the screen. Picture slots keep any ratio (--r); illustrations stand in until SFG has photos. */
+.section_how{--how-bg:var(--color-bg-page);--how-max-h:min(72vh,560px);position:relative;z-index:2;background:var(--how-bg);color:var(--color-text-primary);padding-bottom:var(--space-128);overflow-x:clip}
+.how_head{padding:var(--space-128) var(--grid-margin) 0}
+.how_eyebrow{margin:0 0 var(--space-16)}
+.how_title{margin:0;color:var(--color-text-heading);text-wrap:balance}
+.how_sub{margin:var(--space-16) 0 0;max-width:44ch;color:var(--color-text-secondary)}
+.how_contain{position:relative;padding:var(--space-128) var(--grid-margin) 0}
+.how_list{position:relative;display:grid;row-gap:var(--space-128);list-style:none;margin:0;padding:0}
+.how_line{position:absolute;left:0;top:0;width:1px;height:1px;overflow:visible;pointer-events:none}
+.how_line path{fill:none;stroke:var(--color-line-process);stroke-width:1.5;stroke-linecap:round}
+.how_layout{display:grid;grid-template-columns:repeat(var(--grid-columns),minmax(0,1fr));column-gap:var(--grid-gutter);align-items:center}
+.how_content{grid-column:1 / span 5;grid-row:1;display:flex;flex-direction:column;align-items:center;text-align:center}
+.how_visual{position:relative;z-index:1;grid-column:7 / span 6;grid-row:1;display:flex;justify-content:flex-end;margin-inline-end:calc(var(--space-24) - var(--grid-margin));will-change:transform}
+.how_layout:nth-child(even) .how_content{grid-column:8 / span 5}
+.how_layout:nth-child(even) .how_visual{grid-column:1 / span 6;justify-content:flex-start;margin-inline:calc(var(--space-24) - var(--grid-margin)) 0}
+.how_content_anchor{display:block;flex:none;width:var(--space-12);height:var(--space-12);margin-bottom:var(--space-24);border-radius:var(--radius-full);background:var(--color-pen-default)}
+.how_text_wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;max-width:calc(5*var(--how-col) + 4*var(--grid-gutter))}
+.section_how{--how-col:calc((100vw - 2*var(--grid-margin) - 11*var(--grid-gutter))/12)}
+/* how_text_bg marks the area behind the text where the line fades out (under the dot) and back in (below the text).
+   The script turns it into a soft hole in the line's mask, so the background itself is never painted over. */
+.how_text_bg{position:absolute;inset:calc(-1*var(--space-8)) calc(-1*var(--space-32));visibility:hidden;pointer-events:none}
+.how_step-title{margin:0;color:var(--color-text-heading);text-wrap:balance}
+.how_step-text{margin:var(--space-16) 0 0;max-width:var(--how-measure,38ch);color:var(--color-text-secondary)}
+.how_btn{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-top:var(--space-32);padding-inline:var(--space-24);border-radius:var(--radius-full);border:1.5px solid var(--color-action-secondary);color:var(--color-action-secondary);text-decoration:none;transition:background-color .2s}
+.how_btn:hover{background:var(--color-bg-selected)}
+.how_btn:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
+[dir="rtl"] .how_btn svg{transform:scaleX(-1)}
+/* Picture slot: any ratio, never cropped, up to 520–560px tall. A real photo replaces .how_art with <img> and sets --r. */
+.how_media{position:relative;margin:0;overflow:hidden;border-radius:var(--radius-media);background:var(--color-bg-surface-alt);aspect-ratio:var(--r);width:min(100%,calc(var(--how-max-h) * var(--r)))}
+.how_media > img{display:block;width:100%;height:100%}
+.how_art{position:absolute;left:0;top:0;width:calc(var(--r) * 440px);height:440px;display:grid;place-items:center;padding:var(--space-32);transform-origin:0 0;transform:scale(var(--k,1))}
+/* Phones and tablets: one column, centred text with the picture under it; the line runs straight down the middle */
+@media (max-width:991px){
+  .section_how{padding-bottom:var(--space-96)}
+  .how_head{padding:var(--space-96) var(--grid-margin) 0}
+  .how_contain{padding-top:var(--space-64)}
+  .how_list{row-gap:var(--space-96)}
+  .how_layout{display:flex;flex-direction:column;align-items:stretch;gap:var(--space-32)}
+  .how_visual,.how_layout:nth-child(even) .how_visual{margin:0;justify-content:center;transform:none!important}
+  .how_media{width:100%}
+  .how_step-text{max-width:none}
+  .how_text_wrap{max-width:none;align-self:stretch}
+}
+</style>
+</head>
+<body>
+<main>
+  <section class="section_how" data-how aria-label="How it works (Cambium reference clone)">
+    <div class="how_contain">
+      <svg class="how_line" aria-hidden="true" focusable="false"></svg>
+      <ol class="how_list" role="list">
+      <li class="how_layout">
+        <div class="how_content">
+          <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
+          <div class="how_text_wrap">
+            <h2 class="how_step-title h2">Sourcing</h2>
+            <p class="how_step-text body1">We’ve built a network of landowners and forest data so that we can source locally across the country. Every material on Cambium is sourced from suppliers we've vetted for sustainable forest management and manufacturingpractices.</p>
+            <span class="how_text_bg" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="how_visual"><figure class="how_media is-placeholder" style="--r:1.65"><figcaption class="body3">Product shot – Portland construction site (map)<br>(image not downloadable from the sandbox)</figcaption></figure></div>
+      </li>
+      <li class="how_layout">
+        <div class="how_content">
+          <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
+          <div class="how_text_wrap">
+            <h2 class="how_step-title h2">Transport</h2>
+            <p class="how_step-text body1">Our network gets stronger with every board. Mill Market is our platform that coordinates arborists, haulers, and mills, matching on-demand jobs with intelligent routing across the wood supply chain.</p>
+            <span class="how_text_bg" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="how_visual"><figure class="how_media is-placeholder" style="--r:1.5"><figcaption class="body3">Product shot – Load board<br>(image not downloadable from the sandbox)</figcaption></figure></div>
+      </li>
+      <li class="how_layout">
+        <div class="how_content">
+          <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
+          <div class="how_text_wrap">
+            <h2 class="how_step-title h2">Processing</h2>
+            <p class="how_step-text body1">A national network of sawmills and partners turns the wood into next-gen material. We bring steady demand to these local businesses, creating custom supply chains to drive business their way.</p>
+            <a class="how_btn title3" href="#">Become a Partner<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5.5l6.5 6.5-6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <span class="how_text_bg" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="how_visual"><figure class="how_media is-placeholder" style="--r:1.5"><figcaption class="body3">Product shot – Buyer portal<br>(image not downloadable from the sandbox)</figcaption></figure></div>
+      </li>
+      <li class="how_layout">
+        <div class="how_content">
+          <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
+          <div class="how_text_wrap">
+            <h2 class="how_step-title h2">Buy and build</h2>
+            <p class="how_step-text body1">We distribute wood for virtually any use, at any scale. Our end-to-end network allows our team and our partners to develop and move innovative materials that traditional supply chains can’t carry, like our own flagship product, Carbon Smart Wood.</p>
+            <a class="how_btn title3" href="#">Our Materials<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5.5l6.5 6.5-6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <span class="how_text_bg" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="how_visual"><figure class="how_media is-placeholder" style="--r:1.5"><figcaption class="body3">Product shot – Inspiration board<br>(image not downloadable from the sandbox)</figcaption></figure></div>
+      </li>
+      <li class="how_layout">
+        <div class="how_content">
+          <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
+          <div class="how_text_wrap">
+            <h2 class="how_step-title h2">An industry that grows back</h2>
+            <p class="how_step-text body1">Wood should be our most sustainable resource. Every sale on Cambium funds replanting and drives down the carbon impact of the wood industry by delivering local sourcing at national scale. With every material we move, we prove that wood can do what steel and concrete can't: renew itself to build a better world for all of us.</p>
+            <a class="how_btn title3" href="#">Impact<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5.5l6.5 6.5-6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <span class="how_text_bg" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="how_visual"><figure class="how_media is-placeholder" style="--r:1.5"><figcaption class="body3">Photo – materials<br>(image not downloadable from the sandbox)</figcaption></figure></div>
+      </li>
+      </ol>
+    </div>
+  </section>
+</main>
+<script>
+// ===== How it works · process line v2.0 (after cambium.com/technology "process-line") =====
+// One path through every step's dot: vertical at each dot, an S-curve between the two sides (straight on phones).
+// It is drawn with the scroll: nothing when the steps' top reaches mid-screen, all of it when their bottom does.
+// Pictures drift outwards near the top and bottom of the screen and settle when centred. Reduced motion: drawn, still.
+(function(){
+  const sec=document.querySelector("[data-how]"); if(!sec) return;
+  const box=sec.querySelector(".how_contain"),svg=sec.querySelector(".how_line");
+  const rows=[...sec.querySelectorAll(".how_layout")],dots=rows.map(r=>r.querySelector("[data-process-dot]")),visuals=rows.map(r=>r.querySelector(".how_visual"));
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,narrow=matchMedia("(max-width:991px)");
+  const NS="http://www.w3.org/2000/svg",ART_H=440,DRIFT=64,rtl=()=>document.documentElement.dir==="rtl";
+  let path=null,len=0;
+  // Illustrations are drawn at 440px tall and scaled to their frame, like a picture
+  function scaleArt(){sec.querySelectorAll(".how_media").forEach(f=>{const a=f.querySelector(".how_art");if(a)a.style.setProperty("--k",(f.clientHeight/ART_H).toFixed(4));});}
+  function rel(el){const t=box.getBoundingClientRect(),r=el.getBoundingClientRect();return{x:r.left-t.left+r.width/2,y:r.top-t.top+r.height/2};}
+  function build(){
+    svg.textContent="";
+    const d=dots.map(rel),b=box.getBoundingClientRect(),W=Math.ceil(b.width)+200,H=Math.ceil(b.height)+200;
+    const holes=[...sec.querySelectorAll(".how_text_bg")].map(el=>{const t=el.getBoundingClientRect();
+      return `<rect x="${(t.left-b.left).toFixed(1)}" y="${(t.top-b.top).toFixed(1)}" width="${t.width.toFixed(1)}" height="${t.height.toFixed(1)}" rx="16" fill="#000" filter="url(#howSoft)"/>`;}).join("");
+    svg.innerHTML=`<defs><filter id="howSoft" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="8"/></filter>`+
+      `<mask id="howMask" maskUnits="userSpaceOnUse" x="-100" y="-100" width="${W}" height="${H}"><rect x="-100" y="-100" width="${W}" height="${H}" fill="#fff"/>${holes}</mask></defs>`;   // mask luminance, not colours
+    let s=`M${d[0].x},${d[0].y}`;                                   // starts at the first dot
+    for(let i=0;i<d.length-1;i++){
+      const a=d[i],b=d[i+1],k=(b.y-a.y)/2;
+      s+=narrow.matches?`L${b.x},${b.y}`:`C${a.x},${a.y+k} ${b.x},${b.y-k} ${b.x},${b.y}`;
+    }
+    path=document.createElementNS(NS,"path");path.setAttribute("d",s);path.setAttribute("mask","url(#howMask)");svg.append(path);
+    len=path.getTotalLength();
+    path.style.strokeDasharray=len+" "+len;
+  }
+  function update(){
+    if(!path) return;
+    const t=box.getBoundingClientRect(),p=reduce?1:Math.max(0,Math.min(1,(innerHeight/2-t.top)/t.height));   // "top center" → "bottom center"
+    path.style.strokeDashoffset=(len*(1-p)).toFixed(1);
+    if(reduce||narrow.matches) return;
+    visuals.forEach((v,i)=>{                                         // outwards: towards the page edge the picture sits on
+      const r=v.getBoundingClientRect(),c=Math.min(1,Math.abs((r.top+r.height/2-innerHeight/2)/innerHeight));
+      const out=(i%2===0?1:-1)*(rtl()?-1:1);
+      v.style.transform=`translate3d(${(out*DRIFT*c).toFixed(1)}px,0,0)`;
+    });
+  }
+  function layout(){scaleArt();build();update();}
+  addEventListener("scroll",update,{passive:true});addEventListener("resize",layout);narrow.addEventListener("change",layout);
+  new MutationObserver(layout).observe(document.documentElement,{attributes:true,attributeFilter:["dir"]});
+  if(window.ResizeObserver){let raf=0;new ResizeObserver(()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(layout);}).observe(box);}
+  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(layout);
+  layout();
+})();
+</script>
+</body>
+</html>
