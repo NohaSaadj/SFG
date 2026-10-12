@@ -301,22 +301,22 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 }
 
 /* ===== WHAT WE DO / WHAT WE DON'T DO · two sheets: the second slides up over the first as you scroll ===== */
-.section_wwd{position:relative;z-index:2;height:260vh;background:var(--color-bg-surface-alt)}
+.section_wwd{position:relative;z-index:2;height:260vh;--color-text-on-inverse-faded:rgb(247 242 233 / .72);background:var(--color-bg-surface-alt)}
 .wwd_stage{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden}
 .wwd_sheet{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:var(--space-96) var(--grid-margin) var(--space-64);will-change:transform}
 .wwd_sheet.is-do{background:var(--color-bg-inverse);color:var(--color-text-on-inverse);transform-origin:50% 0}
 .wwd_sheet.is-dont{background:var(--color-bg-page);color:var(--color-text-primary);border-radius:var(--radius-panel) var(--radius-panel) 0 0;transform:translateY(100%);box-shadow:0 -24px 48px rgb(13 38 29 / .18)}
 .wwd_dim{position:absolute;inset:0;background:var(--color-bg-inverse);opacity:0;pointer-events:none}
-.wwd_title{margin:0 0 var(--space-64)}
+.wwd_title{margin:0 0 var(--space-96)}   /* Cambium: H1, then a wide gap to the cards */
 .is-dont .wwd_title{color:var(--color-text-heading)}
 .wwd_cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;list-style:none;margin:0;padding:0}
-.wwd_col{padding:0 var(--space-32);border-inline-start:1px solid var(--color-border-on-inverse)}
+.wwd_col{padding:0 var(--space-48) var(--space-8) var(--space-32);border-inline-start:1px solid var(--color-border-on-inverse)}
 .is-dont .wwd_col{border-color:var(--color-border-subtle)}
-.wwd_icon{position:relative;display:block;width:var(--space-56);height:var(--space-48);margin-bottom:var(--space-48)}
+.wwd_icon{position:relative;display:block;width:var(--space-64);height:var(--space-48);margin-bottom:var(--space-64)}   /* icon, then a long breath to the title */
 .wwd_px{display:block;width:100%;height:100%;fill:var(--color-icon-stitch-on-inverse)}
 .is-dont .wwd_px{fill:var(--color-text-heading)}
-.wwd_col-title{margin:0 0 var(--space-12)}
-.wwd_col-text{margin:0;max-width:40ch;opacity:.86}
+.wwd_col-title{margin:0 0 var(--space-16)}
+.wwd_col-text{margin:0;max-width:38ch;color:var(--color-text-on-inverse-faded)}   /* Cambium "faded" body */
 .is-dont .wwd_col-text{color:var(--color-text-secondary);opacity:1}
 /* The mentor's red pen: strikes the "don't" icons and underlines "don't" once the sheet has arrived */
 .wwd_strike{position:absolute;inset:-4px;width:calc(100% + 8px);height:calc(100% + 8px);overflow:visible}
@@ -417,6 +417,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .sb_pager-nav{display:flex;gap:var(--space-8)}
 .sb_pager-btn{width:var(--size-touch-min);height:var(--size-touch-min);border-radius:var(--radius-full);border:1.5px solid var(--color-action-secondary);background:transparent;color:var(--color-action-secondary);display:grid;place-items:center;cursor:pointer;transition:background-color .2s}
 .sb_pager-btn:hover{background:var(--color-bg-selected)}
+[dir="rtl"] .sb_pager-btn svg{transform:scaleX(-1)}   /* arrows follow the reading direction */
 .sb_pager-btn:disabled{opacity:.35;cursor:default;background:transparent}
 .sb_pager-btn:focus-visible,.sb_credit:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
 .sb_pager-track{position:relative;height:2px;margin-top:var(--space-12);background:var(--color-border-subtle)}
@@ -430,8 +431,6 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
   .tl{height:auto!important}
   .tl_sticky{position:static;height:auto;overflow:visible;display:flex;flex-direction:column;row-gap:0;padding:0 0 var(--space-64)}
   .sb_pager{width:auto}
-  .sb_pager-btn svg{transform:rotate(-90deg)}   /* the steps swipe sideways here, so the arrows point sideways */
-  [dir="rtl"] .sb_pager-btn svg{transform:rotate(90deg)}
   .tl_track::-webkit-scrollbar{display:none}
   .tl_track{width:auto;align-self:stretch;transform:none!important;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--grid-margin);gap:var(--space-24);align-items:flex-start;scrollbar-width:none}
   .tl_step{flex:0 0 100%;flex-direction:column;align-items:stretch;gap:var(--space-24);scroll-snap-align:start}
@@ -573,8 +572,8 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
               <div class="sb_pager-top">
                 <p class="sb_pager-count"><span class="sb_pager-current title" data-sb-current>01</span><span class="sb_pager-total title3">/ 06</span></p>
                 <div class="sb_pager-nav">
-                  <button class="sb_pager-btn" type="button" data-sb-prev aria-label="Previous step"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 15V5M5.5 9.5 10 5l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                  <button class="sb_pager-btn" type="button" data-sb-next aria-label="Next step"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 5v10M5.5 10.5 10 15l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  <button class="sb_pager-btn" type="button" data-sb-prev aria-label="Previous step"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M15 10H5M9.5 5.5 5 10l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  <button class="sb_pager-btn" type="button" data-sb-next aria-label="Next step"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 </div>
               </div>
               <div class="sb_pager-track" aria-hidden="true"><span class="sb_pager-fill" data-sb-fill></span></div>
