@@ -310,23 +310,21 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .wwd_dim{position:absolute;inset:0;background:var(--color-bg-inverse);opacity:0;pointer-events:none}
 .wwd_title{margin:0 0 var(--space-96)}   /* Cambium: H1, then a wide gap to the cards */
 .is-dont .wwd_title{color:var(--color-text-heading)}
-.wwd_cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;list-style:none;margin:0;padding:0}
-.wwd_col{padding:0 var(--space-48) var(--space-8) var(--space-32);border-inline-start:1px solid var(--color-border-on-inverse)}
+/* Three equal columns from margin to margin (4 grid columns each): the last one ends on the right margin */
+.wwd_cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--grid-gutter);list-style:none;margin:0;padding:0}
+.wwd_col{padding:0 0 var(--space-8) var(--space-32);border-inline-start:1px solid var(--color-border-on-inverse)}
 .is-dont .wwd_col{border-color:var(--color-border-subtle)}
 .wwd_icon{position:relative;display:block;width:var(--space-48);height:var(--space-48);margin-bottom:var(--space-64)}   /* icon, then a long breath to the title */
 .wwd_line{display:block;width:100%;height:100%;fill:none;stroke:var(--color-icon-accent-on-inverse);stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
 .is-dont .wwd_line{stroke:var(--color-icon-accent)}
 .wwd_col-title{margin:0 0 var(--space-16);font-weight:400}   /* lighter than the Title default, as asked */
-.wwd_col-text{margin:0;max-width:38ch;color:var(--color-text-on-inverse-faded)}   /* Cambium "faded" body */
+.wwd_col-text{margin:0;color:var(--color-text-on-inverse-faded)}   /* Cambium "faded" body */
 .is-dont .wwd_col-text{color:var(--color-text-secondary);opacity:1}
 /* The mentor's red pen: strikes the "don't" icons and underlines "don't" once the sheet has arrived */
-.wwd_strike{position:absolute;inset:-4px;width:calc(100% + 8px);height:calc(100% + 8px);overflow:visible}
 .wwd_pen path{fill:none;stroke:var(--color-pen-default);stroke-width:3;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .7s var(--ease-out-expo)}
-.wwd_strike path{fill:none;stroke:var(--color-text-primary);stroke-width:2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .7s var(--ease-out-expo)}
 .wwd_mark{position:relative;white-space:nowrap}
 .wwd_pen{position:absolute;inset-inline:-4%;bottom:-.18em;width:108%;height:.32em;overflow:visible}
 .is-dont.is-in .wwd_pen path{stroke-dashoffset:0;transition-delay:.15s}
-.is-dont.is-in .wwd_strike path{stroke-dashoffset:0;transition-delay:calc(.5s + var(--i) * .12s)}
 .is-dont .wwd_col{opacity:0;transform:translate3d(0,24px,0);transition:opacity .8s var(--ease-out-expo),transform .8s var(--ease-out-expo)}
 .is-dont.is-in .wwd_col{opacity:1;transform:none;transition-delay:calc(.25s + var(--i) * .1s)}
 /* Static fallback (reduced motion, small screens, or content taller than the screen): two sheets in a row */
@@ -615,17 +613,17 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
           <h2 class="wwd_title h1">What we <span class="wwd_mark">don’t<svg class="wwd_pen" viewBox="0 0 120 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M3 11 C 30 4, 62 13, 117 6" pathLength="1"/></svg></span> do</h2>
           <ul class="wwd_cols" role="list">
           <li class="wwd_col" style="--i:0">
-            <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="6" width="19" height="12" rx="1.5"/><circle cx="12" cy="12" r="2.5"/><path d="M6 9.5v5M18 9.5v5"/></svg><svg class="wwd_strike" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M4 44 C 16 32, 30 18, 44 4" pathLength="1"/></svg></span>
+            <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="6" width="19" height="12" rx="1.5"/><circle cx="12" cy="12" r="2.5"/><path d="M6 9.5v5M18 9.5v5"/></svg></span>
             <h3 class="wwd_col-title title">Charge students</h3>
             <p class="wwd_col-text body2">SFG is free, always.</p>
           </li>
           <li class="wwd_col" style="--i:1">
-            <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.5 3.5l4 4L8 20H4v-4z"/><path d="M14 6l4 4"/></svg><svg class="wwd_strike" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M4 44 C 16 32, 30 18, 44 4" pathLength="1"/></svg></span>
+            <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.5 3.5l4 4L8 20H4v-4z"/><path d="M14 6l4 4"/></svg></span>
             <h3 class="wwd_col-title title">Write applications for students</h3>
             <p class="wwd_col-text body2">Every word is the student’s own, and mentors guide.</p>
           </li>
           <li class="wwd_col" style="--i:2">
-            <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.3 7 21l5-2.5 5 2.5-1.5-7.7"/></svg><svg class="wwd_strike" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M4 44 C 16 32, 30 18, 44 4" pathLength="1"/></svg></span>
+            <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.3 7 21l5-2.5 5 2.5-1.5-7.7"/></svg></span>
             <h3 class="wwd_col-title title">Award or promise scholarships</h3>
             <p class="wwd_col-text body2">Universities and funders decide, and we help students put their best case forward.</p>
           </li>
