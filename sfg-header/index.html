@@ -81,6 +81,7 @@
       --space-32:32px;--space-48:48px;--space-56:56px;--space-64:64px;
       --radius-sm:4px;--radius-media:6px;--radius-card:8px;--radius-panel:10px;--radius-full:999px;
       --space-2:2px;--space-96:96px;--space-128:128px;
+      --space-160:160px;--space-192:192px;--space-256:256px;   /* section scale: space between large blocks (steps, sections); step down on phones */
       --grid-columns:12;--grid-gutter:20px;--grid-margin:clamp(20px,11.12vw,160px);
       --size-touch-min:48px;
       --color-bg-selected:var(--green-50);
@@ -445,30 +446,34 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 /* ===== HOW IT WORKS · cloned from cambium.com/technology, section 2 ("how_wrap", process line), mapped to SFG tokens =====
    Same structure and class names as the reference: each how_layout row has centred text (how_content) on one side and the
    picture (how_visual) on the other, alternating. One thin line runs through every step's dot; it is drawn as you scroll
-   (section top at mid-screen → bottom at mid-screen) and passes behind each text block, where a soft patch of the
-   background (how_text_bg) hides it. The pictures reach to 24px from the page edge and drift outwards near the top and
-   bottom of the screen. Picture slots keep any ratio (--r); illustrations stand in until SFG has photos. */
+   (section top at mid-screen → bottom at mid-screen) and fades out behind each text block (how_text_bg). Pictures stay
+   fixed on the page margin. Picture slots keep any ratio (--r); illustrations stand in until SFG has photos. */
 .section_how{--how-bg:var(--color-bg-page);--how-max-h:min(72vh,560px);position:relative;z-index:2;background:var(--how-bg);color:var(--color-text-primary);padding-bottom:var(--space-128);overflow-x:clip}
+.how_divider{padding:0 var(--grid-margin);line-height:0}
+/* The tatreez band from "How SFG began", margin to margin; the script fits whole motifs to the width */
+.how_band{display:block;width:100%;height:auto}
+.how_band .tz-a{fill:var(--color-tatreez-primary)}
+.how_band .tz-b{fill:var(--color-tatreez-secondary)}
 .how_head{padding:var(--space-128) var(--grid-margin) 0}
 .how_eyebrow{margin:0 0 var(--space-16)}
-.how_title{margin:0;color:var(--color-text-heading);text-wrap:balance}
+.how_title{margin:0;color:var(--color-text-primary);text-wrap:balance}   /* neutral ink, not green */
 .how_sub{margin:var(--space-16) 0 0;max-width:44ch;color:var(--color-text-secondary)}
 .how_contain{position:relative;padding:var(--space-128) var(--grid-margin) 0}
-.how_list{position:relative;display:grid;row-gap:var(--space-128);list-style:none;margin:0;padding:0}
+.how_list{position:relative;display:grid;row-gap:var(--space-192);list-style:none;margin:0;padding:0}
 .how_line{position:absolute;left:0;top:0;width:1px;height:1px;overflow:visible;pointer-events:none}
 .how_line path{fill:none;stroke:var(--color-line-process);stroke-width:1.5;stroke-linecap:round}
 .how_layout{display:grid;grid-template-columns:repeat(var(--grid-columns),minmax(0,1fr));column-gap:var(--grid-gutter);align-items:center}
 .how_content{grid-column:1 / span 5;grid-row:1;display:flex;flex-direction:column;align-items:center;text-align:center}
-.how_visual{position:relative;z-index:1;grid-column:7 / span 6;grid-row:1;display:flex;justify-content:flex-end;margin-inline-end:calc(var(--space-24) - var(--grid-margin));will-change:transform}
+.how_visual{position:relative;z-index:1;grid-column:6 / span 7;grid-row:1;display:flex;justify-content:flex-end}   /* stays on the page margin */
 .how_layout:nth-child(even) .how_content{grid-column:8 / span 5}
-.how_layout:nth-child(even) .how_visual{grid-column:1 / span 6;justify-content:flex-start;margin-inline:calc(var(--space-24) - var(--grid-margin)) 0}
+.how_layout:nth-child(even) .how_visual{grid-column:1 / span 7;justify-content:flex-start}
 .how_content_anchor{display:block;flex:none;width:var(--space-12);height:var(--space-12);margin-bottom:var(--space-24);border-radius:var(--radius-full);background:var(--color-pen-default)}
 .how_text_wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;max-width:calc(5*var(--how-col) + 4*var(--grid-gutter))}
 .section_how{--how-col:calc((100vw - 2*var(--grid-margin) - 11*var(--grid-gutter))/12)}
 /* how_text_bg marks the area behind the text where the line fades out (under the dot) and back in (below the text).
    The script turns it into a soft hole in the line's mask, so the background itself is never painted over. */
 .how_text_bg{position:absolute;inset:calc(-1*var(--space-8)) calc(-1*var(--space-32));visibility:hidden;pointer-events:none}
-.how_step-title{margin:0;color:var(--color-text-heading);text-wrap:balance}
+.how_step-title{margin:0;color:var(--color-text-primary);text-wrap:balance}
 .how_step-text{margin:var(--space-16) 0 0;max-width:var(--how-measure,38ch);color:var(--color-text-secondary)}
 .how_btn{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-top:var(--space-32);padding-inline:var(--space-24);border-radius:var(--radius-full);border:1.5px solid var(--color-action-secondary);color:var(--color-action-secondary);text-decoration:none;transition:background-color .2s}
 .how_btn:hover{background:var(--color-bg-selected)}
@@ -510,7 +515,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .how_done{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-4);padding-inline-end:var(--space-32);border-inline-end:1px solid var(--color-border-subtle)}
 .how_check{display:grid;place-items:center;width:var(--space-48);height:var(--space-48);margin-bottom:var(--space-8);border-radius:var(--radius-full);background:var(--color-bg-inverse)}
 .how_check svg{width:24px;height:24px;fill:none;stroke:var(--color-text-on-inverse);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.how_list{display:flex;flex-direction:column;gap:var(--space-4)}
+.how_checklist{display:flex;flex-direction:column;gap:var(--space-4)}
 .how_card.is-submit{padding:var(--space-32)}
 .how_rows.is-checks li{grid-template-columns:auto 1fr;align-items:center;padding:var(--space-16) 0}
 .how_rows.is-checks li > :nth-child(2){grid-column:2}
@@ -521,9 +526,9 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
   .section_how{padding-bottom:var(--space-96)}
   .how_head{padding:var(--space-96) var(--grid-margin) 0}
   .how_contain{padding-top:var(--space-64)}
-  .how_list{row-gap:var(--space-96)}
+  .how_list{row-gap:var(--space-128)}
   .how_layout{display:flex;flex-direction:column;align-items:stretch;gap:var(--space-32)}
-  .how_visual,.how_layout:nth-child(even) .how_visual{margin:0;justify-content:center;transform:none!important}
+  .how_visual,.how_layout:nth-child(even) .how_visual{justify-content:center}
   .how_media{width:100%}
   .how_step-text{max-width:none}
   .how_text_wrap{max-width:none;align-self:stretch}
@@ -726,6 +731,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
       </div>
     </section>
     <section class="section_how" id="how-it-works" aria-labelledby="how-title" data-how>
+      <div class="how_divider" aria-hidden="true"><svg class="how_band" viewBox="0 0 1101.6 25.2" data-reveal-wipe aria-hidden="true" focusable="false"><rect width="1101.6" height="25.2" fill="url(#tatreezBand)"/></svg></div>
       <div class="how_head" data-split-group>
         <p class="how_eyebrow title3" data-split>How it works</p>
         <h2 class="how_title h2" id="how-title" data-split>Five steps, one mentor the whole way</h2>
@@ -763,7 +769,6 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
               <div class="how_text_wrap" data-split-group>
                 <h3 class="how_step-title h2" data-split>Meet your mentor</h3>
                 <p class="how_step-text body1" data-split>We pair you with a volunteer who has won a fully funded scholarship, in your field or in the country you are aiming for.</p>
-                <a class="how_btn title3" href="#mentors" data-reveal>Meet the mentors<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 <span class="how_text_bg" aria-hidden="true"></span>
               </div>
             </div>
@@ -846,7 +851,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
                 <div class="how_art" aria-hidden="true">
                   <div class="how_card is-submit">
                     <div class="how_done"><span class="how_check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="h5">Submitted</span><span class="body3 how_muted">Two days before the deadline</span></div>
-                    <div class="how_list"><span class="body3 how_muted">Before you press submit</span><ul class="how_rows is-checks">
+                    <div class="how_checklist"><span class="body3 how_muted">Before you press submit</span><ul class="how_rows is-checks">
                       <li><span class="how_tick"></span><span class="title3">Mock interview, round one</span></li>
                       <li><span class="how_tick"></span><span class="title3">Mock interview, round two</span></li>
                       <li><span class="how_tick"></span><span class="title3">References received</span></li>
@@ -1373,13 +1378,13 @@ layout();
 // ===== How it works · process line v2.0 (after cambium.com/technology "process-line") =====
 // One path through every step's dot: vertical at each dot, an S-curve between the two sides (straight on phones).
 // It is drawn with the scroll: nothing when the steps' top reaches mid-screen, all of it when their bottom does.
-// Pictures drift outwards near the top and bottom of the screen and settle when centred. Reduced motion: drawn, still.
+// Pictures stay fixed on the page margin. The tatreez divider is fitted to whole motifs. Reduced motion: drawn in full.
 (function(){
   const sec=document.querySelector("[data-how]"); if(!sec) return;
   const box=sec.querySelector(".how_contain"),svg=sec.querySelector(".how_line");
-  const rows=[...sec.querySelectorAll(".how_layout")],dots=rows.map(r=>r.querySelector("[data-process-dot]")),visuals=rows.map(r=>r.querySelector(".how_visual"));
+  const rows=[...sec.querySelectorAll(".how_layout")],dots=rows.map(r=>r.querySelector("[data-process-dot]"));
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,narrow=matchMedia("(max-width:991px)");
-  const NS="http://www.w3.org/2000/svg",ART_H=440,DRIFT=64,rtl=()=>document.documentElement.dir==="rtl";
+  const NS="http://www.w3.org/2000/svg",ART_H=440;
   let path=null,len=0;
   // Illustrations are drawn at 440px tall and scaled to their frame, like a picture
   function scaleArt(){sec.querySelectorAll(".how_media").forEach(f=>{const a=f.querySelector(".how_art");if(a)a.style.setProperty("--k",(f.clientHeight/ART_H).toFixed(4));});}
@@ -1404,14 +1409,15 @@ layout();
     if(!path) return;
     const t=box.getBoundingClientRect(),p=reduce?1:Math.max(0,Math.min(1,(innerHeight/2-t.top)/t.height));   // "top center" → "bottom center"
     path.style.strokeDashoffset=(len*(1-p)).toFixed(1);
-    if(reduce||narrow.matches) return;
-    visuals.forEach((v,i)=>{                                         // outwards: towards the page edge the picture sits on
-      const r=v.getBoundingClientRect(),c=Math.min(1,Math.abs((r.top+r.height/2-innerHeight/2)/innerHeight));
-      const out=(i%2===0?1:-1)*(rtl()?-1:1);
-      v.style.transform=`translate3d(${(out*DRIFT*c).toFixed(1)}px,0,0)`;
-    });
   }
-  function layout(){scaleArt();build();update();}
+  // Tatreez divider: as many whole motifs as fit between the margins, scaled evenly to fill the width
+  const band=sec.querySelector(".how_band"),TILE=367.2;
+  function fitBand(){
+    if(!band) return;
+    const n=Math.max(1,Math.round(band.parentElement.clientWidth/TILE)),w=(n*TILE).toFixed(1);
+    band.setAttribute("viewBox",`0 0 ${w} 25.2`);band.firstElementChild.setAttribute("width",w);
+  }
+  function layout(){fitBand();scaleArt();build();update();}
   addEventListener("scroll",update,{passive:true});addEventListener("resize",layout);narrow.addEventListener("change",layout);
   new MutationObserver(layout).observe(document.documentElement,{attributes:true,attributeFilter:["dir"]});
   if(window.ResizeObserver){let raf=0;new ResizeObserver(()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(layout);}).observe(box);}
