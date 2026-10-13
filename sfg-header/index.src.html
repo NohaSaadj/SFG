@@ -9,7 +9,7 @@
   <!-- Fallback web fonts. Thmanyah is used first when it is bundled by the build pipeline (see README). -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,700&family=Readex+Pro:wght@400;500;700&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,700&family=Readex+Pro:wght@400;500;700&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     /* ==========================================================
        SFG design tokens (sfg-design-system / tokens.md)
@@ -455,7 +455,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .how_band .tz-a{fill:var(--color-tatreez-primary)}
 .how_band .tz-b{fill:var(--color-tatreez-secondary)}
 .how_head{padding:var(--space-128) var(--grid-margin) 0}
-.how_eyebrow{margin:0 0 var(--space-16)}
+.how_eyebrow{margin:0 0 var(--space-16);color:var(--color-text-heading)}   /* green label */
 .how_title{margin:0;color:var(--color-text-primary);text-wrap:balance}   /* neutral ink, not green */
 .how_sub{margin:var(--space-16) 0 0;max-width:44ch;color:var(--color-text-secondary)}
 .how_contain{position:relative;padding:var(--space-128) var(--grid-margin) 0}
@@ -473,8 +473,8 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 /* how_text_bg marks the area behind the text where the line fades out (under the dot) and back in (below the text).
    The script turns it into a soft hole in the line's mask, so the background itself is never painted over. */
 .how_text_bg{position:absolute;inset:calc(-1*var(--space-8)) calc(-1*var(--space-32));visibility:hidden;pointer-events:none}
-.how_step-title{margin:0;color:var(--color-text-primary);text-wrap:balance}
-.how_step-text{margin:var(--space-16) 0 0;max-width:var(--how-measure,38ch);color:var(--color-text-secondary)}
+.how_step-title{margin:0;color:var(--color-text-primary);font-weight:500;text-wrap:balance}   /* medium: below the bold section title */
+.how_step-text{margin:var(--space-16) 0 0;max-width:var(--how-measure,40ch);color:var(--color-text-secondary)}
 .how_btn{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-top:var(--space-32);padding-inline:var(--space-24);border-radius:var(--radius-full);border:1.5px solid var(--color-action-secondary);color:var(--color-action-secondary);text-decoration:none;transition:background-color .2s}
 .how_btn:hover{background:var(--color-bg-selected)}
 .how_btn:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
@@ -745,7 +745,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
               <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
               <div class="how_text_wrap" data-split-group>
                 <h3 class="how_step-title h2" data-split>Apply to SFG</h3>
-                <p class="how_step-text body1" data-split>Tell us what you study, where you hope to go and the degree you are aiming for. The form is short, and SFG is free, always.</p>
+                <p class="how_step-text body2" data-split>Tell us what you study, where you hope to go and the degree you are aiming for. The form is short, and SFG is free, always.</p>
                 <span class="how_text_bg" aria-hidden="true"></span>
               </div>
             </div>
@@ -768,7 +768,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
               <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
               <div class="how_text_wrap" data-split-group>
                 <h3 class="how_step-title h2" data-split>Meet your mentor</h3>
-                <p class="how_step-text body1" data-split>We pair you with a volunteer who has won a fully funded scholarship, in your field or in the country you are aiming for.</p>
+                <p class="how_step-text body2" data-split>We pair you with a volunteer who has won a fully funded scholarship, in your field or in the country you are aiming for.</p>
                 <span class="how_text_bg" aria-hidden="true"></span>
               </div>
             </div>
@@ -790,7 +790,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
               <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
               <div class="how_text_wrap" data-split-group>
                 <h3 class="how_step-title h2" data-split>Choose your scholarships</h3>
-                <p class="how_step-text body1" data-split>Together you shortlist the scholarships and universities worth your time, and put every deadline on one calendar.</p>
+                <p class="how_step-text body2" data-split>Together you shortlist the scholarships and universities worth your time, and put every deadline on one calendar.</p>
                 <span class="how_text_bg" aria-hidden="true"></span>
               </div>
             </div>
@@ -815,7 +815,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
               <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
               <div class="how_text_wrap" data-split-group>
                 <h3 class="how_step-title h2" data-split>Write, draft by draft</h3>
-                <p class="how_step-text body1" data-split>Your personal statement, CV and references, read in your mentor’s red pen until every page sounds like you at your best.</p>
+                <p class="how_step-text body2" data-split>Your personal statement, CV and references, read in your mentor’s red pen until every page sounds like you at your best.</p>
                 <span class="how_text_bg" aria-hidden="true"></span>
               </div>
             </div>
@@ -841,7 +841,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
               <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
               <div class="how_text_wrap" data-split-group>
                 <h3 class="how_step-title h2" data-split>Interview and submit</h3>
-                <p class="how_step-text body1" data-split>Mock interviews, a final read-through, then you press submit. Your mentor stays with you until the decision arrives.</p>
+                <p class="how_step-text body2" data-split>Mock interviews, a final read-through, then you press submit. Your mentor stays with you until the decision arrives.</p>
                 <a class="how_btn title3" href="#for-students" data-reveal>Start your application<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 <span class="how_text_bg" aria-hidden="true"></span>
               </div>
@@ -1377,7 +1377,8 @@ layout();
 })();
 // ===== How it works · process line v2.0 (after cambium.com/technology "process-line") =====
 // One path through every step's dot: vertical at each dot, an S-curve between the two sides (straight on phones).
-// It is drawn with the scroll: nothing when the steps' top reaches mid-screen, all of it when their bottom does.
+// It is drawn with the scroll: it starts when the first dot reaches mid-screen and is complete when the last dot does
+// (or, if the page ends before that, when the page can scroll no further).
 // Pictures stay fixed on the page margin. The tatreez divider is fitted to whole motifs. Reduced motion: drawn in full.
 (function(){
   const sec=document.querySelector("[data-how]"); if(!sec) return;
@@ -1385,13 +1386,13 @@ layout();
   const rows=[...sec.querySelectorAll(".how_layout")],dots=rows.map(r=>r.querySelector("[data-process-dot]"));
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,narrow=matchMedia("(max-width:991px)");
   const NS="http://www.w3.org/2000/svg",ART_H=440;
-  let path=null,len=0;
+  let path=null,len=0,y0=0,y1=0;
   // Illustrations are drawn at 440px tall and scaled to their frame, like a picture
   function scaleArt(){sec.querySelectorAll(".how_media").forEach(f=>{const a=f.querySelector(".how_art");if(a)a.style.setProperty("--k",(f.clientHeight/ART_H).toFixed(4));});}
   function rel(el){const t=box.getBoundingClientRect(),r=el.getBoundingClientRect();return{x:r.left-t.left+r.width/2,y:r.top-t.top+r.height/2};}
   function build(){
     svg.textContent="";
-    const d=dots.map(rel),b=box.getBoundingClientRect(),W=Math.ceil(b.width)+200,H=Math.ceil(b.height)+200;
+    const d=dots.map(rel),b=box.getBoundingClientRect();y0=d[0].y;y1=d[d.length-1].y;const W=Math.ceil(b.width)+200,H=Math.ceil(b.height)+200;
     const holes=[...sec.querySelectorAll(".how_text_bg")].map(el=>{const t=el.getBoundingClientRect();
       return `<rect x="${(t.left-b.left).toFixed(1)}" y="${(t.top-b.top).toFixed(1)}" width="${t.width.toFixed(1)}" height="${t.height.toFixed(1)}" rx="16" fill="#000" filter="url(#howSoft)"/>`;}).join("");
     svg.innerHTML=`<defs><filter id="howSoft" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="8"/></filter>`+
@@ -1407,7 +1408,9 @@ layout();
   }
   function update(){
     if(!path) return;
-    const t=box.getBoundingClientRect(),p=reduce?1:Math.max(0,Math.min(1,(innerHeight/2-t.top)/t.height));   // "top center" → "bottom center"
+    const top=box.getBoundingClientRect().top+scrollY,mid=innerHeight/2,maxY=document.documentElement.scrollHeight-innerHeight;
+    const s0=top+y0-mid,s1=Math.min(top+y1-mid,maxY-1);             // scroll positions: first dot at mid-screen → last dot there
+    const p=reduce?1:Math.max(0,Math.min(1,(scrollY-s0)/Math.max(1,s1-s0)));
     path.style.strokeDashoffset=(len*(1-p)).toFixed(1);
   }
   // Tatreez divider: as many whole motifs as fit between the margins, scaled evenly to fill the width
