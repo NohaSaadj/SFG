@@ -360,6 +360,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 /* ===== Reveals, after cambium.com: split-text lines rise out of a mask, media uncovers, details fade up ===== */
 :root{--ease-out-expo:cubic-bezier(.16,1,.3,1)}
 .st-line{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
+.st-w{white-space:nowrap}   /* measure whole words, so a hyphenated word never splits across reveal lines */
 .st-in{display:block;transform:translate3d(0,110%,0);transition:transform 1.1s var(--ease-out-expo) var(--d,0s)}
 .is-in .st-in{transform:none}
 .js [data-split]:not(.is-split){visibility:hidden}
@@ -407,7 +408,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 /* Every photo at the same height and its own width: portraits narrow, Al Jazeera wide, nothing cropped */
 .tl_media{margin:0;flex:none;height:var(--tl-h);border-radius:var(--radius-media);overflow:hidden}
 .tl_media img{display:block;height:100%;width:auto}
-.tl_media.is-mosaic{display:grid;grid-template:1fr 1fr / 1fr 1fr;gap:var(--space-4);aspect-ratio:1;border-radius:0}
+.tl_media.is-mosaic{display:grid;grid-template:1fr 1fr / repeat(3,1fr);gap:var(--space-4);aspect-ratio:3/2;border-radius:0}   /* six scholars, 3 × 2 */
 .tl_media.is-mosaic img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm)}
 .sb_credit{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-top:var(--space-16);color:var(--color-action-secondary);text-decoration:underline;text-underline-offset:4px;font:500 var(--title3-size)/var(--title3-lh) var(--font-sans)}
 /* Pager (from the previous version): "01 / 06", previous/next, progress line and the next step's name.
@@ -648,9 +649,9 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
       <div class="about_grid" data-split-group>
         <div class="about_aside">
           <p class="about_eyebrow title3" data-split>About SFG</p>
-          <h2 class="about_title h2" id="about-title" data-split>A Palestinian-led mentorship initiative</h2>
+          <h2 class="about_title h2" id="about-title" data-split>A Palestinian‑led mentorship initiative</h2>
         </div>
-        <p class="about_text body1" data-split>Scholarships for Ghazza is a Palestinian-led mentorship initiative. We pair students from Gaza with volunteer mentors around the world, who guide them through every step of applying for a fully funded scholarship, from choosing a programme to the final interview. With Gaza’s universities destroyed, studying abroad is how these students keep learning, and how they will rebuild.</p>
+        <p class="about_text body1" data-split>Scholarships for Ghazza (SFG) is a Palestinian‑led mentorship programme that helps students from Gaza apply for higher education scholarships. With Israel destroying all of Gaza’s universities, students are left with no place to continue their education. Yet for generations, Palestinians have valued education as a path to hope and opportunity. That’s why SFG exists: to guide students through the application process and help them secure scholarships to study abroad.</p>
       </div>
     </section>
 
@@ -693,17 +694,17 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
           <li class="wwd_col" style="--i:0;--d:0.0s" data-reveal>
             <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14.2c2.9.3 5 2.4 5 5.3"/></svg></span>
             <h3 class="wwd_col-title title">Mentor</h3>
-            <p class="wwd_col-text body2">Every student is paired with a volunteer who has won a fully funded scholarship, and who stays beside them from the first shortlist to the final decision.</p>
+            <p class="wwd_col-text body2">Every student is paired with an academic mentor and an SFG organiser, bringing hope and purpose back to studies the genocide brought to a halt.</p>
           </li>
           <li class="wwd_col" style="--i:1;--d:0.1s" data-reveal>
             <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21H11"/><path d="M13 3l5 5v2"/><path d="M13 3v5h5"/><path d="M8.5 12.5h5M8.5 16h3"/><path d="M19.5 13.5l1.5 1.5-5.5 5.5H14v-1.5z"/></svg></span>
             <h3 class="wwd_col-title title">Guide</h3>
-            <p class="wwd_col-text body2">Personal statements, CVs, references and interviews, worked through draft by draft, until the application sounds like the student at their best.</p>
+            <p class="wwd_col-text body2">Mentors help students curate applications and write strong personal statements, CVs and recommendation letters, then prepare them with mock interviews and English practice for TOEFL, IELTS and Duolingo.</p>
           </li>
           <li class="wwd_col" style="--i:2;--d:0.2s" data-reveal>
             <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1.2 1.2"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1.2-1.2"/></svg></span>
             <h3 class="wwd_col-title title">Connect</h3>
-            <p class="wwd_col-text body2">We map the fully funded scholarships worth applying for and the universities behind them, so no deadline is missed and no door is left unopened.</p>
+            <p class="wwd_col-text body2">We guide students to existing scholarships and universities abroad, help them choose courses and request fee waivers, and support them as they write to universities and scholarship boards.</p>
           </li>
           </ul>
           <span class="wwd_dim" aria-hidden="true"></span>
@@ -714,17 +715,17 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
           <li class="wwd_col" style="--i:0">
             <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="6" width="19" height="12" rx="1.5"/><circle cx="12" cy="12" r="2.5"/><path d="M6 9.5v5M18 9.5v5"/></svg></span>
             <h3 class="wwd_col-title title">Charge students</h3>
-            <p class="wwd_col-text body2">SFG is free, always.</p>
+            <p class="wwd_col-text body2">SFG is free, always. We even offer small support towards application fees, visa costs, English tests, and internet and electricity access.</p>
           </li>
           <li class="wwd_col" style="--i:1">
             <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.5 3.5l4 4L8 20H4v-4z"/><path d="M14 6l4 4"/></svg></span>
             <h3 class="wwd_col-title title">Write applications for students</h3>
-            <p class="wwd_col-text body2">Every word is the student’s own, and mentors guide.</p>
+            <p class="wwd_col-text body2">Mentors don’t complete applications. They give students the skills and confidence to do it themselves.</p>
           </li>
           <li class="wwd_col" style="--i:2">
             <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.3 7 21l5-2.5 5 2.5-1.5-7.7"/></svg></span>
             <h3 class="wwd_col-title title">Award or promise scholarships</h3>
-            <p class="wwd_col-text body2">Universities and funders decide, and we help students put their best case forward.</p>
+            <p class="wwd_col-text body2">We don’t provide scholarships. We guide students to existing ones and help them tell their story in a way that fits each scholarship’s goals.</p>
           </li>
           </ul>
         </div>
@@ -735,7 +736,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
       <div class="how_head" data-split-group>
         <p class="how_eyebrow title3" data-split>How it works</p>
         <h2 class="how_title h2" id="how-title" data-split>Five steps, one mentor the whole way</h2>
-        <p class="how_sub body1" data-split>Free from the first form to the final decision. You bring the ambition; your mentor brings the experience of having done it.</p>
+        <p class="how_sub body1" data-split>Free from the first form to the final decision, with a mentor who gives you the skills and confidence to do it yourself.</p>
       </div>
       <div class="how_contain">
         <svg class="how_line" aria-hidden="true" focusable="false"></svg>
@@ -745,7 +746,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
               <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
               <div class="how_text_wrap" data-split-group>
                 <h3 class="how_step-title h2" data-split>Apply to SFG</h3>
-                <p class="how_step-text body2" data-split>Tell us what you study, where you hope to go and the degree you are aiming for. The form is short, and SFG is free, always.</p>
+                <p class="how_step-text body2" data-split>Tell us what you study, where you hope to go and the degree you are aiming for. SFG is free, always.</p>
                 <span class="how_text_bg" aria-hidden="true"></span>
               </div>
             </div>
@@ -768,18 +769,18 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
               <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
               <div class="how_text_wrap" data-split-group>
                 <h3 class="how_step-title h2" data-split>Meet your mentor</h3>
-                <p class="how_step-text body2" data-split>We pair you with a volunteer who has won a fully funded scholarship, in your field or in the country you are aiming for.</p>
+                <p class="how_step-text body2" data-split>You join a WhatsApp group with your academic mentor and an SFG organiser, where you share documents, get feedback and stay on track.</p>
                 <span class="how_text_bg" aria-hidden="true"></span>
               </div>
             </div>
             <div class="how_visual">
-              <figure class="how_media" style="--r:1.3333" role="img" aria-label="Illustration: a student matched with a mentor who is a Chevening scholar">
+              <figure class="how_media" style="--r:1.3333" role="img" aria-label="Illustration: a student matched with an academic mentor">
                 <div class="how_art" aria-hidden="true">
                   <div class="how_card is-match">
                     <span class="how_tag body3">Matched</span>
                     <div class="how_person"><span class="how_avatar title1">LA</span><span class="title3">Lina</span><span class="body3 how_muted">Student, Gaza</span></div>
                     <svg class="how_stitch" viewBox="0 0 12 64" preserveAspectRatio="none"><path d="M6 2v60"/></svg>
-                    <div class="how_person"><span class="how_avatar is-mentor title1">MH</span><span class="title3">Mohammed</span><span class="body3 how_ochre">Chevening Scholar</span></div>
+                    <div class="how_person"><span class="how_avatar is-mentor title1">MH</span><span class="title3">Mohammed</span><span class="body3 how_muted">Academic mentor</span></div>
                   </div>
                 </div>
               </figure>
@@ -790,7 +791,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
               <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
               <div class="how_text_wrap" data-split-group>
                 <h3 class="how_step-title h2" data-split>Choose your scholarships</h3>
-                <p class="how_step-text body2" data-split>Together you shortlist the scholarships and universities worth your time, and put every deadline on one calendar.</p>
+                <p class="how_step-text body2" data-split>Together you find the existing scholarships worth applying for, check every eligibility requirement and choose your courses.</p>
                 <span class="how_text_bg" aria-hidden="true"></span>
               </div>
             </div>
@@ -803,7 +804,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
                       <li><span class="title3 how_ochre">Chevening</span><span class="body3 how_muted">United Kingdom</span><span class="body3">in 12 days</span></li>
                       <li><span class="title3 how_ochre">DAAD</span><span class="body3 how_muted">Germany</span><span class="body3">in 3 weeks</span></li>
                       <li><span class="title3 how_ochre">Erasmus Mundus</span><span class="body3 how_muted">Europe</span><span class="body3">in 2 months</span></li>
-                      <li><span class="title3 how_ochre">Fulbright</span><span class="body3 how_muted">United States</span><span class="body3">in 4 months</span></li>
+                      <li><span class="title3 how_ochre">France Excellence</span><span class="body3 how_muted">France</span><span class="body3">in 4 months</span></li>
                     </ul>
                   </div>
                 </div>
@@ -815,7 +816,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
               <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
               <div class="how_text_wrap" data-split-group>
                 <h3 class="how_step-title h2" data-split>Write, draft by draft</h3>
-                <p class="how_step-text body2" data-split>Your personal statement, CV and references, read in your mentor’s red pen until every page sounds like you at your best.</p>
+                <p class="how_step-text body2" data-split>Your CV, personal statement and scholarship essays, refined with your mentor until they tell your story the way each scholarship is looking for.</p>
                 <span class="how_text_bg" aria-hidden="true"></span>
               </div>
             </div>
@@ -841,7 +842,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
               <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
               <div class="how_text_wrap" data-split-group>
                 <h3 class="how_step-title h2" data-split>Interview and submit</h3>
-                <p class="how_step-text body2" data-split>Mock interviews, a final read-through, then you press submit. Your mentor stays with you until the decision arrives.</p>
+                <p class="how_step-text body2" data-split>Mock interviews and English practice prepare you for the real thing, and your mentor helps you communicate with universities and scholarship boards until the decision arrives.</p>
                 <a class="how_btn title3" href="#for-students" data-reveal>Start your application<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 <span class="how_text_bg" aria-hidden="true"></span>
               </div>
@@ -1307,7 +1308,7 @@ window.SFGReveal=(function(){
 })();
 // ===== Section 2 · How SFG began · v2.0 (structure + motion after setup.sa "Giga Projects") =====
 (function(){
-const SB={"warwick":"assets/story/warwick.jpg","gaza":"assets/story/gaza.jpg","promise":"assets/story/promise.jpg","story":"assets/story/story.jpg","aj":"assets/story/aj.jpg","st0":"assets/story/st0.jpg","st1":"assets/story/st1.jpg","st2":"assets/story/st2.jpg","st3":"assets/story/st3.jpg"};
+const SB={"warwick":"assets/story/warwick.jpg","gaza":"assets/story/gaza.jpg","promise":"assets/story/promise.jpg","story":"assets/story/story.jpg","aj":"assets/story/aj.jpg","st0":"assets/story/st0.jpg","st1":"assets/story/st1.jpg","st2":"assets/story/st2.jpg","st3":"assets/story/st3.jpg","st4":"assets/story/st4.jpg","st5":"assets/story/st5.jpg"};
 const AJ="https://www.youtube.com/watch?v=mTQXXAByvro";
 const STEPS=[
  {n:"2020",t:"A Chevening scholar",b:"Ahmed Issa leaves Gaza for Warwick Business School on a fully funded Chevening scholarship.",card:"portrait",img:[["warwick","Ahmed Issa holding his certificate in the foyer of Warwick Business School"]]},
@@ -1315,11 +1316,11 @@ const STEPS=[
  {n:"04.2024",t:"A promise",b:"Ahmed evacuates Gaza with his wife and two sons, and makes a promise: to help Palestinian students win the fully funded scholarships that changed his life.",card:"portrait",img:[["promise","A notebook of handwritten plans on a café table, beside a blue-and-white teapot"]]},
  {n:"08.2024",t:"SFG begins",b:"It starts with one Instagram story: “Want to help Ghazawi students to get a scholarship?” Ahmed asks for volunteers to guide students through their applications, and Scholarships for Ghazza is born.",card:"story",img:[["story","Ahmed’s Instagram story asking for volunteer mentors, over a photo of a boy writing in a notebook outdoors"]]},
  {n:"03.2026",t:"On Al Jazeera",b:"SFG’s story reaches Al Jazeera’s The Stream, as more students from Gaza win their places.",card:"wide",credit:true,img:[["aj","Ahmed Issa speaking on Al Jazeera’s The Stream"]]},
- {n:"135",t:"Scholarships, and counting",b:"SFG mentors have helped 135 students win fully funded scholarships in the UK, Ireland, France, Italy, Singapore and the USA.",card:"mosaic",gold:true,img:[["st0","A scholar at the University of Aberdeen"],["st1","A scholar at LSE"],["st2","A scholar at Imperial College London"],["st3","A scholar at University College Dublin"]]}
+ {n:"135",t:"Scholarships, and counting",b:"SFG mentors have helped 135 students win fully funded scholarships in the UK, Ireland, France, Italy, Singapore and the USA.",card:"mosaic",gold:true,img:[["st0","A scholar at the University of Aberdeen"],["st4","A scholar outside the main building of the University of Glasgow"],["st1","A scholar at LSE"],["st3","A scholar at University College Dublin"],["st2","A scholar at Imperial College London’s School of Public Health"],["st5","A scholar beside the University of Glasgow sign"]]}
 ];
 const N=STEPS.length,reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const credit=`<a class="sb_credit" href="${AJ}" target="_blank" rel="noopener">Watch on Al Jazeera’s The Stream<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>`;
-const SIZE={warwick:[800,1066],gaza:[800,1067],promise:[800,1066],story:[900,1125],aj:[680,538],st0:[460,460],st1:[460,460],st2:[460,460],st3:[460,460]};   // original sizes: photos are shown whole
+const SIZE={warwick:[800,1066],gaza:[800,1067],promise:[800,1066],story:[900,1125],aj:[1280,720],st0:[460,460],st1:[460,460],st2:[600,600],st3:[600,600],st4:[600,600],st5:[600,600]};   // original sizes: photos are shown whole
 const media=d=>{
   const imgs=d.img.map(([k,a])=>`<img src="${SB[k]}" alt="${a}" width="${SIZE[k][0]}" height="${SIZE[k][1]}" decoding="async">`).join("");
   return `<figure class="tl_media is-${d.card}" data-reveal-media>${imgs}</figure>`;
