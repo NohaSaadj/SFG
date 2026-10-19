@@ -98,4 +98,4 @@ The page uses `Thmanyah Serif Display`, `Thmanyah Serif Text` and `Thmanyah Sans
 
 
 ## Intro timing (latest)
-The story rolls at one line per second, and every intro transition lasts the same 1 second: each photo crossfade, the sentence moving into place, the hold, the closing fade, word fades, the photo layer's entry and the scroll cue.
+The story rolls at one line every 2 seconds, and every intro transition lasts the same 1 second: each photo crossfade, the sentence moving into place, the hold, the closing fade, word fades, the photo layer's entry and the scroll cue.
