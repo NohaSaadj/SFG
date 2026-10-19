@@ -16,7 +16,7 @@ The intro **plays on its own**. The four photos get the same time on screen and 
 
 1. **Opening (2s):** a dark screen with only the first sentence, in the middle of the page. Then the rest of the paragraph, the photos, the navbar and "Skip Intro" fade in.
 2. **Roll:** the paragraph rises and hides from the middle of the screen up. Each hidden-sentence word lifts out where the paragraph starts to hide and builds the sentence above, at full paragraph size and on two lines.
-3. **Photos:** each one gets an equal share of the time until the sentence is complete. Each one slowly zooms in, then crossfades into the next. The order is Imperial, Glasgow (centred), Aberdeen, LSE. The Glasgow frame (`assets/student-2.webp`) is centred, with its sides made of streaks stretched from the photo's own edges, like the Aberdeen and LSE frames; the SFG watermark in its sky was filled with the surrounding clouds, since the header already carries the logo.
+3. **Photos:** each one gets an equal share of the time until the sentence is complete. Each one slowly zooms in, then crossfades into the next. The order is Imperial, UCD (centred), Aberdeen, LSE. The UCD frame (`assets/student-2.webp`) is centred, with soft side streaks stretched from the photo's own edges, like the Aberdeen and LSE frames; the strip carrying the SFG watermark was cropped off the top, since the header already carries the logo.
 4. **Sentence and zoom-out together:** once the roll is done, the sentence moves in one go to its left-aligned place, still on two lines. At the same time the LSE photo zooms out. On phones the sentence is set at 24px so it stays on two lines.
 5. **Hold:** the sentence holds briefly on the settled photo.
 6. **Ending:** the photo fades to 15% and the sentence to 0%. Halfway through, "Here’s how the story begins." rises from the bottom into the place the sentence left.
@@ -98,4 +98,4 @@ The page uses `Thmanyah Serif Display`, `Thmanyah Serif Text` and `Thmanyah Sans
 
 
 ## Intro timing (latest)
-The story rolls at one line every 2 seconds, and every intro transition lasts the same 1 second: each photo crossfade, the sentence moving into place, the hold, the closing fade, word fades, the photo layer's entry and the scroll cue.
+The story rolls at two lines a second (twice as fast as before), and every intro transition lasts the same 1 second: each photo crossfade, the sentence moving into place, the hold, the closing fade, word fades, the photo layer's entry and the scroll cue.
