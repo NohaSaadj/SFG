@@ -481,10 +481,10 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .how_btn:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
 [dir="rtl"] .how_btn svg{transform:scaleX(-1)}
 /* Picture slot: any ratio, never cropped, up to 520–560px tall. A real photo replaces .how_art with <img> and sets --r. */
-.how_media{position:relative;margin:0;overflow:hidden;border-radius:var(--radius-media);background:var(--color-bg-inverse);aspect-ratio:var(--r);width:min(100%,calc(var(--how-max-h) * var(--r)))}
+.how_media{position:relative;margin:0;overflow:hidden;border-radius:var(--radius-media);background:var(--color-bg-page);box-shadow:inset 0 0 0 1px var(--color-border-subtle);aspect-ratio:var(--r);width:min(100%,calc(var(--how-max-h) * var(--r)))}
 .how_media > img{display:block;width:100%;height:100%}
-/* Behind each picture: an embroidered field of tatreez rows on deep green, so the card stands out like on a textile */
-.how_pattern{position:absolute;inset:0;width:100%;height:100%;opacity:.7;pointer-events:none}
+/* Behind each picture: the partners band's field of tatreez stitches (neutrals), with the card on top like the partner tiles */
+.how_pattern{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .how_art{position:absolute;left:0;top:0;width:calc(var(--r) * 520px);height:520px;display:grid;place-items:center;padding:var(--space-48);transform-origin:0 0;transform:scale(var(--k,1))}
 /* Illustrations (placeholders until SFG photos arrive) */
 .how_card{display:flex;flex-direction:column;gap:var(--space-12);width:100%;max-width:520px;padding:var(--space-24);border-radius:var(--radius-card);background:var(--color-bg-surface);color:var(--color-text-primary);box-shadow:0 1px 2px rgb(30 26 22 / .06),0 12px 32px rgb(30 26 22 / .08)}
@@ -761,7 +761,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
             </div>
             <div class="how_visual">
               <figure class="how_media" style="--r:1.5" role="img" aria-label="Illustration: a short student application form">
-                <svg class="how_pattern" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#tatreezField)"/></svg>
+                <svg class="how_pattern" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg>
                 <div class="how_art" aria-hidden="true">
                   <div class="how_card is-form">
                     <div class="how_card-top"><span class="title3">Student application</span><span class="body3 how_muted">Step 1 of 3</span></div>
@@ -785,7 +785,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
             </div>
             <div class="how_visual">
               <figure class="how_media" style="--r:1.3333" role="img" aria-label="Illustration: a student matched with an academic mentor">
-                <svg class="how_pattern" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#tatreezField)"/></svg>
+                <svg class="how_pattern" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg>
                 <div class="how_art" aria-hidden="true">
                   <div class="how_card is-match">
                     <span class="how_tag body3">Matched</span>
@@ -808,7 +808,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
             </div>
             <div class="how_visual">
               <figure class="how_media" style="--r:1" role="img" aria-label="Illustration: a shortlist of four scholarships with their deadlines">
-                <svg class="how_pattern" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#tatreezField)"/></svg>
+                <svg class="how_pattern" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg>
                 <div class="how_art" aria-hidden="true">
                   <div class="how_card is-list">
                     <div class="how_card-top"><span class="title3">Your shortlist</span><span class="body3 how_muted">4 scholarships</span></div>
@@ -834,7 +834,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
             </div>
             <div class="how_visual">
               <figure class="how_media" style="--r:.8" role="img" aria-label="Illustration: a personal statement with the mentor’s red-pen notes">
-                <svg class="how_pattern" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#tatreezField)"/></svg>
+                <svg class="how_pattern" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg>
                 <div class="how_art" aria-hidden="true">
                   <div class="how_card is-doc">
                     <div class="how_card-top"><span class="title3">Personal statement</span><span class="body3 how_muted">Draft 4</span></div>
@@ -862,7 +862,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
             </div>
             <div class="how_visual">
               <figure class="how_media" style="--r:1.7778" role="img" aria-label="Illustration: a checklist of mock interviews and a submitted application">
-                <svg class="how_pattern" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#tatreezField)"/></svg>
+                <svg class="how_pattern" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg>
                 <div class="how_art" aria-hidden="true">
                   <div class="how_card is-submit">
                     <div class="how_done"><span class="how_check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="h5">Submitted</span><span class="body3 how_muted">Two days before the deadline</span></div>
