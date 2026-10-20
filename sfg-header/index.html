@@ -547,13 +547,15 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
    above a dotted globe with one marker per country. The university at mid-screen is shown at full strength, and its
    country's marker turns ochre while the globe turns to face it. Phones, tablets and reduced motion: no pin, the list
    simply stacks under the globe. Universities and countries live in RESULTS_DATA in the script. */
-/* Background: the tertiary brand colour, ochre 500, with ink text (ink on ochre 500 is 6.5:1; faded names 3.1:1). The globe dots are linen
-   and the active marker is green, so ochre stays the surface and is not repeated as the accent. */
-.section_results{--results-bg:var(--ochre-500);--results-ink:var(--neutral-ink);--results-faded:rgb(30 26 22 / .6);--results-dot:rgb(247 242 233 / .92);
-  --results-halo:rgb(247 242 233 / .32);--results-active:var(--green-700);--results-eyebrow:var(--green-800);--results-focus:var(--green-800);
+/* Background: the page linen, like About and How it works, so the section belongs to the page. The globe is drawn in the
+   heading green; the active country marker is ochre (the system's colour for map pins). */
+.section_results{--results-bg:var(--color-bg-page);--results-ink:var(--color-text-primary);--results-faded:rgb(30 26 22 / .5);
+  --results-dot:var(--color-text-heading);--results-halo:rgb(31 93 70 / .12);--results-active:var(--color-accent-achievement);
+  --results-eyebrow:var(--color-text-heading);--results-focus:var(--color-border-focus);
   position:relative;z-index:2;background:var(--results-bg);color:var(--results-ink);height:var(--results-h,auto);overflow-x:clip}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .section_results{--results-bg:var(--ochre-800);--results-ink:#EFE8DB;--results-faded:rgb(239 232 219 / .6);--results-dot:rgb(239 232 219 / .85);--results-halo:rgb(239 232 219 / .16);--results-active:var(--ochre-300);--results-eyebrow:var(--ochre-200);--results-focus:var(--ochre-300)}}
-:root[data-theme="dark"] .section_results{--results-bg:var(--ochre-800);--results-ink:#EFE8DB;--results-faded:rgb(239 232 219 / .6);--results-dot:rgb(239 232 219 / .85);--results-halo:rgb(239 232 219 / .16);--results-active:var(--ochre-300);--results-eyebrow:var(--ochre-200);--results-focus:var(--ochre-300)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .section_results{--results-faded:rgb(239 232 219 / .5);--results-halo:rgb(169 203 185 / .14)}}
+:root[data-theme="dark"] .section_results{--results-faded:rgb(239 232 219 / .5);--results-halo:rgb(169 203 185 / .14)}
+.results_divider{position:absolute;top:0;inset-inline:0;padding-inline:var(--grid-margin);z-index:2;line-height:0;pointer-events:none}
 .results_sticky{position:sticky;top:0;height:100vh;overflow:hidden}
 .results_contain{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--grid-gutter);padding-inline:var(--grid-margin);height:100%}
 .results_list-wrap{grid-column:1 / 8;position:relative;overflow:hidden;height:100%;
@@ -562,7 +564,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .results_item{color:var(--results-faded);transition:color .5s}
 .results_item.is-active{color:var(--results-ink)}
 .results_name{display:block;font:500 clamp(44px,5.4vw,96px)/1.02 var(--font-display);letter-spacing:-.02em;text-wrap:balance}
-.results_meta{display:block;margin-top:var(--space-8);color:var(--results-ink)}   /* small text stays at full contrast; only the large names fade (≥ 3:1) */
+.results_meta{display:block;margin-top:var(--space-8);color:var(--results-ink)}   /* small text stays at full contrast; only the large names fade */
 .results_content{grid-column:8 / 13;align-self:start;padding-top:var(--space-96);position:relative;z-index:1}
 .results_eyebrow{margin:0 0 var(--space-16);color:var(--results-eyebrow)}
 .results_title{margin:0;color:var(--results-ink);text-wrap:balance}
@@ -939,6 +941,7 @@ button.results_marker{cursor:pointer}
       </div>
     </section>
     <section class="section_results" id="results" aria-labelledby="results-title" data-results>
+      <div class="results_divider" aria-hidden="true"><svg class="how_band" viewBox="0 0 1101.6 25.2" data-tatreez-fit data-reveal-wipe aria-hidden="true" focusable="false"><rect width="1101.6" height="25.2" fill="url(#tatreezBand)"/></svg></div>
       <div class="results_sticky">
         <div class="results_contain">
           <div class="results_list-wrap">
