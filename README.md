@@ -71,6 +71,15 @@ A clone of Cambium's "process line" section (`how_wrap`: Sourcing → Transport 
 - **Fonts:** the medium step headings need Thmanyah Serif Display Medium (500) bundled next to Bold; the Newsreader fallback now loads 500 too.
 - **Phones:** one column, centred text with the picture underneath, and the line running straight down the middle behind the text and pictures. Illustrations are shown at full size. Reduced motion: line drawn in full, no drift.
 
+## Results (after iventions.com, home page "produced" section)
+After How it works. The reference clone is `clone/iventions-produced/index.html`, with notes in `reference/iventions-produced/`.
+
+- **Desktop:** the section pins while a column of large university names moves up on the left. The university at mid-screen is shown at full strength.
+- **Globe:** on the right, the heading and copy sit above a dotted globe with markers for the countries in the SFG copy (UK, Ireland, France, Italy, Singapore, USA). The active university's country turns ochre and the globe turns to face it. Clicking a country with a listed university scrolls to it.
+- **Universities:** only the seven already shown in the page's photos and copy: Warwick (Warwick Business School), Imperial, LSE, Sussex, Glasgow, Aberdeen and UCD. To add one, add an `<li class="results_item" data-country="…">` to the list. To add a country, add it to `COUNTRIES` in the Results script.
+- **Phones, tablets and reduced motion:** no pin; the globe sits above a plain list.
+- **Globe data:** `assets/globe-dots.js` holds the land dots (Natural Earth 110m, public domain, via world-atlas@2.0.2). `build.py` now inlines local scripts as well as images.
+
 ## Copy from the previous SFG website
 The text in About, What we do / What we don't do and How it works now follows the previous SFG site, within the existing layout:
 - **About:** the "Our story" paragraph (a Palestinian-led mentorship programme; Gaza's universities destroyed; education as a path to hope; why SFG exists).

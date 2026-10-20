@@ -542,6 +542,59 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
   .how_done{padding:0 0 var(--space-16);border-inline-end:0;border-bottom:1px solid var(--color-border-subtle)}
 }
 
+/* ===== RESULTS · after iventions.com ("We've produced events in Europe's most iconic cities") =====
+   The section pins while one column of large university names moves up on the left. On the right, the heading sits
+   above a dotted globe with one marker per country. The university at mid-screen is shown at full strength, and its
+   country's marker turns ochre while the globe turns to face it. Phones, tablets and reduced motion: no pin, the list
+   simply stacks under the globe. Universities and countries live in RESULTS_DATA in the script. */
+.section_results{position:relative;z-index:2;background:var(--color-bg-inverse);color:var(--color-text-on-inverse);height:var(--results-h,auto);overflow-x:clip;
+  --results-faded:rgb(247 242 233 / .32);--results-dot:rgb(247 242 233 / .9)}
+.results_sticky{position:sticky;top:0;height:100vh;overflow:hidden}
+.results_contain{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--grid-gutter);padding-inline:var(--grid-margin);height:100%}
+.results_list-wrap{grid-column:1 / 8;position:relative;overflow:hidden;height:100%;
+  -webkit-mask:linear-gradient(transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(transparent,#000 12%,#000 88%,transparent)}
+.results_list{list-style:none;margin:0;padding:50vh 0;display:flex;flex-direction:column;gap:var(--space-32);will-change:transform}
+.results_item{color:var(--results-faded);transition:color .5s}
+.results_item.is-active{color:var(--color-text-on-inverse)}
+.results_name{display:block;font:500 clamp(44px,5.4vw,96px)/1.02 var(--font-display);letter-spacing:-.02em;text-wrap:balance}
+.results_meta{display:block;margin-top:var(--space-8)}
+.results_content{grid-column:8 / 13;align-self:start;padding-top:var(--space-96);position:relative;z-index:1}
+.results_eyebrow{margin:0 0 var(--space-16);color:var(--color-accent-achievement)}
+.results_title{margin:0;color:var(--color-text-on-inverse);text-wrap:balance}
+.results_eyebrow,.results_title,.results_sub,.results_name,.results_meta{unicode-bidi:plaintext}   /* English copy keeps its punctuation in Arabic mode */
+.results_sub{margin:var(--space-16) 0 0;max-width:40ch;color:var(--color-text-on-inverse);opacity:.82}
+.results_globe{position:relative;width:clamp(560px,58vw,900px);aspect-ratio:1;margin-top:var(--space-48);margin-inline-start:calc(-1 * var(--grid-gutter))}   /* larger than its column: it runs off the edge and the bottom, so the European countries have room */
+.results_canvas{position:absolute;inset:0;width:100%;height:100%}
+.results_marker{position:absolute;left:0;top:0;direction:ltr;display:flex;align-items:center;gap:var(--space-12);padding:0;border:0;background:none;color:inherit;font:inherit;
+  transform:translate(var(--x,0),var(--y,0));transition:opacity .4s}
+.results_marker.is-start{flex-direction:row-reverse}
+.results_marker[hidden]{display:flex;opacity:0;pointer-events:none}
+button.results_marker{cursor:pointer}
+.results_dot{position:relative;flex:none;width:24px;height:24px;margin:-12px;border-radius:50%;background:rgb(247 242 233 / .14)}
+.results_dot::after{content:"";position:absolute;inset:0;margin:auto;width:6px;height:6px;border-radius:50%;background:var(--color-text-on-inverse);transition:transform .4s,background-color .4s}
+.results_marker.is-active .results_dot,button.results_marker:hover .results_dot{background:none}
+.results_marker.is-active .results_dot::after,button.results_marker:hover .results_dot::after{background:var(--color-accent-achievement);transform:scale(2)}
+.results_label{unicode-bidi:plaintext;margin-inline:var(--space-16);white-space:nowrap;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
+.results_marker:not(button) .results_label{text-decoration:none;opacity:.72}
+.results_marker:focus-visible{outline:2px solid var(--color-border-focus-on-inverse);outline-offset:6px;border-radius:var(--radius-sm)}
+
+/* Phones, tablets and reduced motion: stacked, not pinned */
+@media (max-width:991px){
+  .results_sticky{position:static;height:auto;overflow:visible;padding-block:var(--space-96)}
+  .results_contain{display:flex;flex-direction:column;gap:var(--space-64)}
+  .results_content{padding-top:0;order:-1}
+  .results_globe{width:min(100%,480px);margin-inline:auto}
+  .results_list-wrap{height:auto;overflow:visible;-webkit-mask:none;mask:none}
+  .results_list{padding:0;gap:var(--space-24)}
+  .results_name{font-size:var(--h3-size,32px)}
+}
+@media (prefers-reduced-motion:reduce){
+  .results_sticky{position:static;height:auto;overflow:visible;padding-block:var(--space-128)}
+  .results_list-wrap{height:auto;-webkit-mask:none;mask:none}
+  .results_list{padding:0;transform:none!important}
+  .results_item{color:var(--color-text-on-inverse)}
+}
+
     .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
     /* Reduced motion: final state, no roll */
@@ -878,6 +931,31 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
             </div>
           </li>
         </ol>
+      </div>
+    </section>
+    <section class="section_results" id="results" aria-labelledby="results-title" data-results>
+      <div class="results_sticky">
+        <div class="results_contain">
+          <div class="results_list-wrap">
+            <ol class="results_list" role="list" data-results-list>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Warwick</span><span class="results_meta body3">Warwick Business School · Coventry, United Kingdom</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">Imperial College London</span><span class="results_meta body3">School of Public Health · London, United Kingdom</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">London School of Economics</span><span class="results_meta body3">London, United Kingdom</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Sussex</span><span class="results_meta body3">Brighton, United Kingdom</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Glasgow</span><span class="results_meta body3">Glasgow, United Kingdom</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Aberdeen</span><span class="results_meta body3">Aberdeen, United Kingdom</span></li>
+              <li class="results_item" data-country="ie"><span class="results_name">University College Dublin</span><span class="results_meta body3">Dublin, Ireland</span></li>
+            </ol>
+          </div>
+          <div class="results_content">
+            <div data-split-group>
+              <p class="results_eyebrow title3" data-split>Results</p>
+              <h2 class="results_title h2" id="results-title" data-split>Where our scholars study now</h2>
+              <p class="results_sub body1" data-split>SFG mentors have helped 135 students win fully funded scholarships in the UK, Ireland, France, Italy, Singapore and the USA. These are some of the universities they study at.</p>
+            </div>
+            <div class="results_globe" data-results-globe aria-hidden="true"><canvas class="results_canvas"></canvas></div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -1444,6 +1522,108 @@ layout();
   if(window.ResizeObserver){let raf=0;new ResizeObserver(()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(layout);}).observe(box);}
   (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(layout);
   layout();
+})();
+  </script>
+  <script src="assets/globe-dots.js"></script>
+  <script>
+// ===== Results · after iventions.com: pinned university list + dotted globe · v1.0 =====
+// Countries come from the SFG copy (UK, Ireland, France, Italy, Singapore, USA). A country with universities in the list
+// gets a button that scrolls to its first one; the others are plain markers. view = [lat, lon] the globe faces.
+(function(){
+  "use strict";
+  var root=document.querySelector("[data-results]"); if(!root||root.dataset.resultsReady||!window.SFG_GLOBE_DOTS)return; root.dataset.resultsReady="1";
+  var COUNTRIES={
+    uk:{name:"United Kingdom",lat:54.0,lon:-2.5,view:[24,6]},
+    ie:{name:"Ireland",lat:53.3,lon:-7.8,view:[24,2],start:true},
+    fr:{name:"France",lat:46.6,lon:2.4,start:true},
+    it:{name:"Italy",lat:42.8,lon:12.5},
+    sg:{name:"Singapore",lat:1.35,lon:103.8},
+    us:{name:"USA",lat:39.8,lon:-98.6}
+  };
+  var D2R=Math.PI/180, reduce=matchMedia("(prefers-reduced-motion: reduce)"), wide=matchMedia("(min-width:992px)");
+  var list=root.querySelector("[data-results-list]"), win=list.parentNode, items=[].slice.call(list.children);
+  var globe=root.querySelector("[data-results-globe]"), canvas=globe.querySelector("canvas"), ctx=canvas.getContext("2d");
+
+  // land dots → unit vectors
+  var raw=atob(window.SFG_GLOBE_DOTS), n=raw.length/4, P=new Float32Array(n*3);
+  for(var i=0;i<n;i++){
+    var la=((raw.charCodeAt(i*4)|raw.charCodeAt(i*4+1)<<8)<<16>>16)/100*D2R, lo=((raw.charCodeAt(i*4+2)|raw.charCodeAt(i*4+3)<<8)<<16>>16)/100*D2R;
+    P[i*3]=Math.cos(la)*Math.sin(lo); P[i*3+1]=Math.sin(la); P[i*3+2]=Math.cos(la)*Math.cos(lo);
+  }
+  var has={}; items.forEach(function(li){has[li.dataset.country]=true;});
+  var keys=Object.keys(COUNTRIES), markers={};
+  keys.forEach(function(k){
+    var c=COUNTRIES[k], m=document.createElement(has[k]?"button":"span");
+    m.className="results_marker"; m.hidden=true; m.innerHTML='<span class="results_dot"></span><span class="results_label body2"></span>'; m.lastChild.textContent=c.name;
+    if(has[k]){m.type="button"; m.tabIndex=-1; m.addEventListener("click",function(){goTo(k);});}   // the list itself is the accessible content
+    globe.appendChild(m); markers[k]=m;
+  });
+
+  var view={lat:COUNTRIES.uk.view[0],lon:COUNTRIES.uk.view[1]}, target={lat:view.lat,lon:view.lon}, active=-1, size=0, dpr=1, last="", dotColor="";
+  function resize(){dpr=Math.min(2,devicePixelRatio||1); size=globe.clientWidth; canvas.width=canvas.height=Math.round(size*dpr); dotColor=getComputedStyle(root).getPropertyValue("--results-dot"); last="";}
+  function draw(){
+    var key=view.lat.toFixed(3)+","+view.lon.toFixed(3)+","+size+","+document.documentElement.dir; if(key===last||!size)return; last=key;
+    var R=size*dpr/2, s0=Math.sin(view.lat*D2R), c0=Math.cos(view.lat*D2R), s1=Math.sin(view.lon*D2R), c1=Math.cos(view.lon*D2R), d=1.5*dpr, h=d/2;
+    ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle=dotColor;
+    for(var i=0;i<n;i++){
+      var x=P[i*3],y=P[i*3+1],z=P[i*3+2], x1=x*c1-z*s1, z1=x*s1+z*c1, y2=y*c0-z1*s0, z2=y*s0+z1*c0;
+      if(z2>=0)ctx.fillRect(R+x1*R-h,R-y2*R-h,d,d);
+    }
+    var vw=document.documentElement.clientWidth, gx=globe.getBoundingClientRect().left;
+    keys.forEach(function(k){
+      var c=COUNTRIES[k], m=markers[k], la=c.lat*D2R, lo=c.lon*D2R, x=Math.cos(la)*Math.sin(lo), y=Math.sin(la), z=Math.cos(la)*Math.cos(lo);
+      var x1=x*c1-z*s1, z1=x*s1+z*c1, y2=y*c0-z1*s0, z2=y*s0+z1*c0;
+      m.hidden=z2<0.2; if(m.hidden)return;
+      var px=size/2+x1*size/2, py=size/2-y2*size/2, w=m.offsetWidth;
+      // label on the outer side; it flips if it would run off the screen
+      var before=!!c.start;
+      if(!before&&gx+px+w>vw-8)before=true; if(before&&gx+px-w<8)before=false;
+      m.classList.toggle("is-start",before);
+      m.style.setProperty("--x",(before?px-w:px)+"px"); m.style.setProperty("--y",(py-m.offsetHeight/2)+"px");
+    });
+  }
+
+  var range=0, pinned=false;
+  function measure(){
+    pinned=wide.matches&&!reduce.matches;
+    list.style.transform="";
+    range=pinned?Math.max(0,list.scrollHeight-win.clientHeight):0;
+    root.style.setProperty("--results-h",pinned?(innerHeight+range)+"px":"auto");
+    resize(); update();
+  }
+  function update(){
+    var y=0;
+    if(pinned){var len=root.offsetHeight-innerHeight, p=len>0?Math.min(1,Math.max(0,-root.getBoundingClientRect().top/len)):0; y=-p*range; list.style.transform="translate3d(0,"+y+"px,0)";}
+    var mid=innerHeight/2, best=0, bd=1e9;
+    items.forEach(function(li,i){var r=li.getBoundingClientRect(), dd=Math.abs(r.top+r.height/2-mid); if(dd<bd){bd=dd;best=i;}});
+    setActive(best);
+  }
+  function setActive(i){
+    if(i===active)return; active=i;
+    items.forEach(function(li,j){li.classList.toggle("is-active",j===i);});
+    var k=items[i].dataset.country; keys.forEach(function(c){markers[c].classList.toggle("is-active",c===k);});
+    if(COUNTRIES[k].view){target.lat=COUNTRIES[k].view[0]; target.lon=COUNTRIES[k].view[1];}
+  }
+  function goTo(k){
+    var li=items.find(function(x){return x.dataset.country===k;}); if(!li)return;
+    var top;
+    if(pinned){var len=root.offsetHeight-innerHeight, p=range?Math.min(1,Math.max(0,(li.offsetTop+li.offsetHeight/2-win.clientHeight/2)/range)):0; top=root.getBoundingClientRect().top+scrollY+p*len;}
+    else top=li.getBoundingClientRect().top+scrollY-innerHeight/2+li.offsetHeight/2;
+    scrollTo({top:top,behavior:reduce.matches?"auto":"smooth"});
+  }
+  var t0=performance.now(), running=false;
+  function tick(t){
+    var drift=reduce.matches?0:Math.sin((t-t0)/7000)*3;
+    view.lat+=(target.lat-view.lat)*.06; view.lon+=(target.lon+drift-view.lon)*.06;
+    draw(); if(running)requestAnimationFrame(tick);
+  }
+  // only animate while the section is on screen
+  new IntersectionObserver(function(e){var on=e[0].isIntersecting; if(on&&!running){running=true;requestAnimationFrame(tick);} running=on;}).observe(root);
+  addEventListener("scroll",update,{passive:true}); addEventListener("resize",measure);
+  wide.addEventListener("change",measure); reduce.addEventListener("change",measure);
+  new MutationObserver(function(){resize();}).observe(document.documentElement,{attributes:true,attributeFilter:["dir","data-theme"]});
+  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(measure);
+  measure();
 })();
   </script>
 </body>
