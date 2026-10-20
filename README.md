@@ -78,6 +78,7 @@ After How it works. The reference clone is `clone/iventions-produced/index.html`
 - **Globe:** on the right, the heading and copy sit above a dotted globe with markers for the countries in the SFG copy (UK, Ireland, France, Italy, Singapore, USA). The active university's country turns ochre and the globe turns to face it. Clicking a country with a listed university scrolls to it.
 - **Universities:** only the seven already shown in the page's photos and copy: Warwick (Warwick Business School), Imperial, LSE, Sussex, Glasgow, Aberdeen and UCD. To add one, add an `<li class="results_item" data-country="…">` to the list. To add a country, add it to `COUNTRIES` in the Results script.
 - **Phones, tablets and reduced motion:** no pin; the globe sits above a plain list.
+- **Background:** the tertiary brand colour, ochre 500, with ink text (6.5:1); faded names are ink at 60% (3.1:1, large text) and the small city lines stay full ink. The globe dots are linen and the active country marker is green 700. Dark mode uses ochre 800 with linen text. Lighter ochres (100, 200) were tried and rejected: the linen globe disappears on them.
 - **Globe data:** `assets/globe-dots.js` holds the land dots (Natural Earth 110m, public domain, via world-atlas@2.0.2). `build.py` now inlines local scripts as well as images.
 
 ## Copy from the previous SFG website

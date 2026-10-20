@@ -547,22 +547,27 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
    above a dotted globe with one marker per country. The university at mid-screen is shown at full strength, and its
    country's marker turns ochre while the globe turns to face it. Phones, tablets and reduced motion: no pin, the list
    simply stacks under the globe. Universities and countries live in RESULTS_DATA in the script. */
-.section_results{position:relative;z-index:2;background:var(--color-bg-inverse);color:var(--color-text-on-inverse);height:var(--results-h,auto);overflow-x:clip;
-  --results-faded:rgb(247 242 233 / .32);--results-dot:rgb(247 242 233 / .9)}
+/* Background: the tertiary brand colour, ochre 500, with ink text (ink on ochre 500 is 6.5:1; faded names 3.1:1). The globe dots are linen
+   and the active marker is green, so ochre stays the surface and is not repeated as the accent. */
+.section_results{--results-bg:var(--ochre-500);--results-ink:var(--neutral-ink);--results-faded:rgb(30 26 22 / .6);--results-dot:rgb(247 242 233 / .92);
+  --results-halo:rgb(247 242 233 / .32);--results-active:var(--green-700);--results-eyebrow:var(--green-800);--results-focus:var(--green-800);
+  position:relative;z-index:2;background:var(--results-bg);color:var(--results-ink);height:var(--results-h,auto);overflow-x:clip}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .section_results{--results-bg:var(--ochre-800);--results-ink:#EFE8DB;--results-faded:rgb(239 232 219 / .6);--results-dot:rgb(239 232 219 / .85);--results-halo:rgb(239 232 219 / .16);--results-active:var(--ochre-300);--results-eyebrow:var(--ochre-200);--results-focus:var(--ochre-300)}}
+:root[data-theme="dark"] .section_results{--results-bg:var(--ochre-800);--results-ink:#EFE8DB;--results-faded:rgb(239 232 219 / .6);--results-dot:rgb(239 232 219 / .85);--results-halo:rgb(239 232 219 / .16);--results-active:var(--ochre-300);--results-eyebrow:var(--ochre-200);--results-focus:var(--ochre-300)}
 .results_sticky{position:sticky;top:0;height:100vh;overflow:hidden}
 .results_contain{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--grid-gutter);padding-inline:var(--grid-margin);height:100%}
 .results_list-wrap{grid-column:1 / 8;position:relative;overflow:hidden;height:100%;
   -webkit-mask:linear-gradient(transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(transparent,#000 12%,#000 88%,transparent)}
 .results_list{list-style:none;margin:0;padding:50vh 0;display:flex;flex-direction:column;gap:var(--space-32);will-change:transform}
 .results_item{color:var(--results-faded);transition:color .5s}
-.results_item.is-active{color:var(--color-text-on-inverse)}
+.results_item.is-active{color:var(--results-ink)}
 .results_name{display:block;font:500 clamp(44px,5.4vw,96px)/1.02 var(--font-display);letter-spacing:-.02em;text-wrap:balance}
-.results_meta{display:block;margin-top:var(--space-8)}
+.results_meta{display:block;margin-top:var(--space-8);color:var(--results-ink)}   /* small text stays at full contrast; only the large names fade (≥ 3:1) */
 .results_content{grid-column:8 / 13;align-self:start;padding-top:var(--space-96);position:relative;z-index:1}
-.results_eyebrow{margin:0 0 var(--space-16);color:var(--color-accent-achievement)}
-.results_title{margin:0;color:var(--color-text-on-inverse);text-wrap:balance}
+.results_eyebrow{margin:0 0 var(--space-16);color:var(--results-eyebrow)}
+.results_title{margin:0;color:var(--results-ink);text-wrap:balance}
 .results_eyebrow,.results_title,.results_sub,.results_name,.results_meta{unicode-bidi:plaintext}   /* English copy keeps its punctuation in Arabic mode */
-.results_sub{margin:var(--space-16) 0 0;max-width:40ch;color:var(--color-text-on-inverse);opacity:.82}
+.results_sub{margin:var(--space-16) 0 0;max-width:40ch;color:var(--results-ink)}
 .results_globe{position:relative;width:clamp(560px,58vw,900px);aspect-ratio:1;margin-top:var(--space-48);margin-inline-start:calc(-1 * var(--grid-gutter))}   /* larger than its column: it runs off the edge and the bottom, so the European countries have room */
 .results_canvas{position:absolute;inset:0;width:100%;height:100%}
 .results_marker{position:absolute;left:0;top:0;direction:ltr;display:flex;align-items:center;gap:var(--space-12);padding:0;border:0;background:none;color:inherit;font:inherit;
@@ -570,13 +575,13 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .results_marker.is-start{flex-direction:row-reverse}
 .results_marker[hidden]{display:flex;opacity:0;pointer-events:none}
 button.results_marker{cursor:pointer}
-.results_dot{position:relative;flex:none;width:24px;height:24px;margin:-12px;border-radius:50%;background:rgb(247 242 233 / .14)}
-.results_dot::after{content:"";position:absolute;inset:0;margin:auto;width:6px;height:6px;border-radius:50%;background:var(--color-text-on-inverse);transition:transform .4s,background-color .4s}
+.results_dot{position:relative;flex:none;width:24px;height:24px;margin:-12px;border-radius:50%;background:var(--results-halo)}
+.results_dot::after{content:"";position:absolute;inset:0;margin:auto;width:6px;height:6px;border-radius:50%;background:var(--results-ink);transition:transform .4s,background-color .4s}
 .results_marker.is-active .results_dot,button.results_marker:hover .results_dot{background:none}
-.results_marker.is-active .results_dot::after,button.results_marker:hover .results_dot::after{background:var(--color-accent-achievement);transform:scale(2)}
+.results_marker.is-active .results_dot::after,button.results_marker:hover .results_dot::after{background:var(--results-active);transform:scale(2)}
 .results_label{unicode-bidi:plaintext;margin-inline:var(--space-16);white-space:nowrap;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
 .results_marker:not(button) .results_label{text-decoration:none;opacity:.72}
-.results_marker:focus-visible{outline:2px solid var(--color-border-focus-on-inverse);outline-offset:6px;border-radius:var(--radius-sm)}
+.results_marker:focus-visible{outline:2px solid var(--results-focus);outline-offset:6px;border-radius:var(--radius-sm)}
 
 /* Phones, tablets and reduced motion: stacked, not pinned */
 @media (max-width:991px){
@@ -592,7 +597,7 @@ button.results_marker{cursor:pointer}
   .results_sticky{position:static;height:auto;overflow:visible;padding-block:var(--space-128)}
   .results_list-wrap{height:auto;-webkit-mask:none;mask:none}
   .results_list{padding:0;transform:none!important}
-  .results_item{color:var(--color-text-on-inverse)}
+  .results_item{color:var(--results-ink)}
 }
 
     .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
