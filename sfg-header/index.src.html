@@ -549,57 +549,69 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
    simply stacks under the globe. Universities and countries live in RESULTS_DATA in the script. */
 /* Background: the page linen, like About and How it works, so the section belongs to the page. The globe is drawn in the
    heading green; the active country marker is ochre (the system's colour for map pins). */
-.section_results{--results-bg:var(--color-bg-page);--results-ink:var(--color-text-primary);--results-faded:rgb(30 26 22 / .5);
-  --results-dot:var(--color-text-heading);--results-halo:rgb(31 93 70 / .12);--results-active:var(--color-accent-achievement);
-  --results-eyebrow:var(--color-text-heading);--results-focus:var(--color-border-focus);
-  position:relative;z-index:2;background:var(--results-bg);color:var(--results-ink);height:var(--results-h,auto);overflow-x:clip}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .section_results{--results-faded:rgb(239 232 219 / .5);--results-halo:rgb(169 203 185 / .14)}}
-:root[data-theme="dark"] .section_results{--results-faded:rgb(239 232 219 / .5);--results-halo:rgb(169 203 185 / .14)}
-.results_divider{position:absolute;top:0;inset-inline:0;padding-inline:var(--grid-margin);z-index:2;line-height:0;pointer-events:none}
-.results_sticky{position:sticky;top:0;height:100vh;overflow:hidden}
-.results_contain{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--grid-gutter);padding-inline:var(--grid-margin);height:100%}
-.results_list-wrap{grid-column:1 / 8;position:relative;overflow:hidden;height:100%;
-  -webkit-mask:linear-gradient(transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(transparent,#000 12%,#000 88%,transparent)}
-.results_list{list-style:none;margin:0;padding:50vh 0;display:flex;flex-direction:column;gap:var(--space-32);will-change:transform}
-.results_item{color:var(--results-faded);transition:color .5s}
-.results_item.is-active{color:var(--results-ink)}
+.section_results{--results-bg:var(--color-bg-page);--results-ink:var(--color-text-primary);--results-active-text:var(--ochre-700);
+  --results-dot:var(--color-text-heading);--results-pin:var(--color-accent-achievement);--results-halo:rgb(31 93 70 / .14);
+  --results-eyebrow:var(--color-text-heading);--results-focus:var(--color-border-focus);--results-ease:cubic-bezier(.165,.84,.44,1);
+  position:relative;z-index:2;background:var(--results-bg);color:var(--results-ink);overflow:hidden}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .section_results{--results-active-text:var(--ochre-300);--results-halo:rgb(169 203 185 / .16)}}
+:root[data-theme="dark"] .section_results{--results-active-text:var(--ochre-300);--results-halo:rgb(169 203 185 / .16)}
+.results_divider{position:absolute;top:0;inset-inline:0;padding-inline:var(--grid-margin);z-index:5;line-height:0;pointer-events:none}
+/* Desktop: one screen tall, not pinned (as on iventions.com). The list drifts up on its own; the globe spins on its own. */
+.results_contain{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--grid-gutter);padding-inline:var(--grid-margin);height:100vh}
+.results_list-wrap{grid-column:1 / 8;position:relative;height:100vh;overflow:hidden;
+  -webkit-mask:linear-gradient(transparent,#000 10%,#000 90%,transparent);mask:linear-gradient(transparent,#000 10%,#000 90%,transparent)}
+.results_track{display:flex;flex-direction:column;will-change:transform}
+.results_list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.results_item{padding-block:var(--space-16);color:var(--results-ink);transition:color .8s var(--results-ease)}
+.results_item.is-active{color:var(--results-active-text)}
 .results_name{display:block;font:500 clamp(44px,5.4vw,96px)/1.02 var(--font-display);letter-spacing:-.02em;text-wrap:balance}
-.results_meta{display:block;margin-top:var(--space-8);color:var(--results-ink)}   /* small text stays at full contrast; only the large names fade */
-.results_content{grid-column:8 / 13;align-self:start;padding-top:var(--space-96);position:relative;z-index:1}
+.results_meta{display:block;margin-top:var(--space-8);color:var(--results-ink)}
+.results_content{grid-column:8 / 13;height:100vh;padding-top:var(--space-96);position:relative;z-index:1;
+  display:flex;flex-direction:column;justify-content:space-between}
 .results_eyebrow{margin:0 0 var(--space-16);color:var(--results-eyebrow)}
 .results_title{margin:0;color:var(--results-ink);text-wrap:balance}
 .results_eyebrow,.results_title,.results_sub,.results_name,.results_meta{unicode-bidi:plaintext}   /* English copy keeps its punctuation in Arabic mode */
 .results_sub{margin:var(--space-16) 0 0;max-width:40ch;color:var(--results-ink)}
-.results_globe{position:relative;width:clamp(560px,58vw,900px);aspect-ratio:1;margin-top:var(--space-48);margin-inline-start:calc(-1 * var(--grid-gutter))}   /* larger than its column: it runs off the edge and the bottom, so the European countries have room */
-.results_canvas{position:absolute;inset:0;width:100%;height:100%}
-.results_marker{position:absolute;left:0;top:0;direction:ltr;display:flex;align-items:center;gap:var(--space-12);padding:0;border:0;background:none;color:inherit;font:inherit;
-  transform:translate(var(--x,0),var(--y,0));transition:opacity .4s}
-.results_marker.is-start{flex-direction:row-reverse}
-.results_marker[hidden]{display:flex;opacity:0;pointer-events:none}
+.results_globe{position:relative;flex:none;align-self:center;width:calc(min(100vw,100vh) * .8);aspect-ratio:1;margin-bottom:calc(-22 / 1080 * 100vh)}   /* runs off the bottom of the section, like the reference */
+.results_canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}
+.results_canvas:active{cursor:grabbing}
+.results_markers{position:absolute;inset:0;pointer-events:none;direction:ltr}
+.results_anchor{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform}
+.results_fade{transition:opacity .2s,transform .2s}
+.results_marker{--size:28px;position:relative;display:flex;align-items:center;gap:var(--space-12);padding:0;border:0;background:none;color:var(--results-ink);
+  font:inherit;transform:translateY(-50%);pointer-events:auto;transition:opacity 1.2s var(--results-ease)}
+.results_globe:has(.results_marker:hover) .results_marker:not(:hover){opacity:.2}
 button.results_marker{cursor:pointer}
-.results_dot{position:relative;flex:none;width:24px;height:24px;margin:-12px;border-radius:50%;background:var(--results-halo)}
-.results_dot::after{content:"";position:absolute;inset:0;margin:auto;width:6px;height:6px;border-radius:50%;background:var(--results-ink);transition:transform .4s,background-color .4s}
-.results_marker.is-active .results_dot,button.results_marker:hover .results_dot{background:none}
-.results_marker.is-active .results_dot::after,button.results_marker:hover .results_dot::after{background:var(--results-active);transform:scale(2)}
-.results_label{unicode-bidi:plaintext;margin-inline:var(--space-16);white-space:nowrap;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
+.results_core{position:relative;flex:none;width:var(--size);height:var(--size);margin-left:calc(var(--size) * -.5);border-radius:50%;background:var(--results-halo);
+  -webkit-backdrop-filter:blur(2.5px);backdrop-filter:blur(2.5px);transition:transform .8s var(--results-ease),width .8s var(--results-ease),height .8s var(--results-ease)}
+.results_core::before{content:"";position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:var(--results-ink);transform:translate(-50%,-50%);
+  transition:transform .8s var(--results-ease),background-color .8s var(--results-ease)}
+button.results_marker:hover .results_core:not(.is-active){width:34px;height:34px}
+.results_marker.is-active .results_core{transform:scale(.5)}
+.results_marker.is-active .results_core::before{transform:translate(-50%,-50%) scale(4);background:var(--results-pin)}
+.results_label{unicode-bidi:plaintext;white-space:nowrap;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
+.results_marker.is-active .results_label{text-decoration:none}
+.results_marker.is-start .results_label{position:absolute;right:calc(var(--size) + var(--space-12))}
 .results_marker:not(button) .results_label{text-decoration:none;opacity:.72}
 .results_marker:focus-visible{outline:2px solid var(--results-focus);outline-offset:6px;border-radius:var(--radius-sm)}
+.results_clone{display:contents}
 
-/* Phones, tablets and reduced motion: stacked, not pinned */
+/* Phones, tablets and reduced motion: stacked; the list is static and shows every university once */
 @media (max-width:991px){
-  .results_sticky{position:static;height:auto;overflow:visible;padding-block:var(--space-96)}
-  .results_contain{display:flex;flex-direction:column;gap:var(--space-64)}
-  .results_content{padding-top:0;order:-1}
-  .results_globe{width:min(100%,480px);margin-inline:auto}
-  .results_list-wrap{height:auto;overflow:visible;-webkit-mask:none;mask:none}
-  .results_list{padding:0;gap:var(--space-24)}
+  .results_contain{display:flex;flex-direction:column;gap:var(--space-64);height:auto;padding-block:var(--space-96) 0}
+  .results_content{height:auto;padding-top:0;order:-1;display:block}
+  .results_globe{width:min(100%,480px);margin:var(--space-48) auto 0}
+  .results_list-wrap{height:auto;overflow:visible;-webkit-mask:none;mask:none;padding-bottom:var(--space-96)}
   .results_name{font-size:var(--h3-size,32px)}
+  .results_item.is-active{color:var(--results-ink)}   /* the list is static here, so no item is "at the centre" */
+  .results_marker:not(.is-active) .results_label{opacity:0}   /* the globe is small: only the active country keeps its label */
 }
 @media (prefers-reduced-motion:reduce){
-  .results_sticky{position:static;height:auto;overflow:visible;padding-block:var(--space-128)}
+  .results_contain{height:auto;padding-block:var(--space-128)}
+  .results_content{height:auto}
   .results_list-wrap{height:auto;-webkit-mask:none;mask:none}
-  .results_list{padding:0;transform:none!important}
-  .results_item{color:var(--results-ink)}
+  .results_globe{margin-bottom:0}
+  .results_item.is-active{color:var(--results-ink)}
 }
 
     .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -945,6 +957,7 @@ button.results_marker{cursor:pointer}
       <div class="results_sticky">
         <div class="results_contain">
           <div class="results_list-wrap">
+            <div class="results_track" data-results-track>
             <ol class="results_list" role="list" data-results-list>
               <li class="results_item" data-country="uk"><span class="results_name">University of Warwick</span><span class="results_meta body3">Warwick Business School · Coventry, United Kingdom</span></li>
               <li class="results_item" data-country="uk"><span class="results_name">Imperial College London</span><span class="results_meta body3">School of Public Health · London, United Kingdom</span></li>
@@ -954,6 +967,7 @@ button.results_marker{cursor:pointer}
               <li class="results_item" data-country="uk"><span class="results_name">University of Aberdeen</span><span class="results_meta body3">Aberdeen, United Kingdom</span></li>
               <li class="results_item" data-country="ie"><span class="results_name">University College Dublin</span><span class="results_meta body3">Dublin, Ireland</span></li>
             </ol>
+            </div>
           </div>
           <div class="results_content">
             <div data-split-group>
@@ -961,7 +975,7 @@ button.results_marker{cursor:pointer}
               <h2 class="results_title h2" id="results-title" data-split>Where our scholars study now</h2>
               <p class="results_sub body1" data-split>SFG mentors have helped 135 students win fully funded scholarships in the UK, Ireland, France, Italy, Singapore and the USA. These are some of the universities they study at.</p>
             </div>
-            <div class="results_globe" data-results-globe aria-hidden="true"><canvas class="results_canvas"></canvas></div>
+            <div class="results_globe" data-results-globe aria-hidden="true"><canvas class="results_canvas"></canvas><div class="results_markers" data-results-markers></div></div>
           </div>
         </div>
       </div>
@@ -1532,104 +1546,103 @@ layout();
   layout();
 })();
   </script>
-  <script src="assets/globe-dots.js"></script>
+  <script src="assets/dot-globe.js"></script>
   <script>
-// ===== Results · after iventions.com: pinned university list + dotted globe · v1.0 =====
-// Countries come from the SFG copy (UK, Ireland, France, Italy, Singapore, USA). A country with universities in the list
-// gets a button that scrolls to its first one; the others are plain markers. view = [lat, lon] the globe faces.
+// ===== Results · after iventions.com "produced": looped university list + WebGL dotted globe · v2.0 =====
+// Same mechanics as the reference (read from its source): the list is an endless vertical loop that drifts up 0.3px a frame,
+// the item at the centre takes the accent colour, the globe auto-rotates (camera tilt locked at π/2.8), tilts towards the
+// pointer and can be dragged; hovering a marker pauses the spin, clicking one brings its university to the centre.
 (function(){
   "use strict";
-  var root=document.querySelector("[data-results]"); if(!root||root.dataset.resultsReady||!window.SFG_GLOBE_DOTS)return; root.dataset.resultsReady="1";
+  var root=document.querySelector("[data-results]"); if(!root||root.dataset.resultsReady||!window.DotGlobe)return; root.dataset.resultsReady="1";
   var COUNTRIES={
-    uk:{name:"United Kingdom",lat:54.0,lon:-2.5,view:[24,6]},
-    ie:{name:"Ireland",lat:53.3,lon:-7.8,view:[24,2],start:true},
-    fr:{name:"France",lat:46.6,lon:2.4,start:true},
-    it:{name:"Italy",lat:42.8,lon:12.5},
-    sg:{name:"Singapore",lat:1.35,lon:103.8},
-    us:{name:"USA",lat:39.8,lon:-98.6}
+    uk:{name:"United Kingdom",lat:54.0,lng:-2.5},
+    ie:{name:"Ireland",lat:53.3,lng:-7.8,start:true},
+    fr:{name:"France",lat:46.6,lng:2.4,start:true},
+    it:{name:"Italy",lat:42.8,lng:12.5},
+    sg:{name:"Singapore",lat:1.35,lng:103.8},
+    us:{name:"USA",lat:39.8,lng:-98.6}
   };
-  var D2R=Math.PI/180, reduce=matchMedia("(prefers-reduced-motion: reduce)"), wide=matchMedia("(min-width:992px)");
-  var list=root.querySelector("[data-results-list]"), win=list.parentNode, items=[].slice.call(list.children);
-  var globe=root.querySelector("[data-results-globe]"), canvas=globe.querySelector("canvas"), ctx=canvas.getContext("2d");
+  var keys=Object.keys(COUNTRIES), reduce=matchMedia("(prefers-reduced-motion: reduce)"), wide=matchMedia("(min-width:992px)");
+  var wrapEl=root.querySelector(".results_list-wrap"), track=root.querySelector("[data-results-track]"), list=root.querySelector("[data-results-list]");
+  var items=[].slice.call(list.children), N=items.length, layer=root.querySelector("[data-results-markers]");
 
-  // land dots → unit vectors
-  var raw=atob(window.SFG_GLOBE_DOTS), n=raw.length/4, P=new Float32Array(n*3);
-  for(var i=0;i<n;i++){
-    var la=((raw.charCodeAt(i*4)|raw.charCodeAt(i*4+1)<<8)<<16>>16)/100*D2R, lo=((raw.charCodeAt(i*4+2)|raw.charCodeAt(i*4+3)<<8)<<16>>16)/100*D2R;
-    P[i*3]=Math.cos(la)*Math.sin(lo); P[i*3+1]=Math.sin(la); P[i*3+2]=Math.cos(la)*Math.cos(lo);
+  // two hidden copies around the real list make the loop seamless
+  var clones=[0,1].map(function(){var c=list.cloneNode(true); c.removeAttribute("data-results-list"); c.setAttribute("aria-hidden","true"); c.classList.add("results_clone"); return c;});
+  var all=[], loop=false;
+  function setLoop(on){
+    loop=on;
+    if(on&&!clones[0].parentNode){track.insertBefore(clones[0],list); track.appendChild(clones[1]);}
+    if(!on&&clones[0].parentNode){clones.forEach(function(c){c.remove();}); track.style.transform="";}
+    all=on?[].slice.call(clones[0].children).concat(items,[].slice.call(clones[1].children)):items.slice();
   }
+
   var has={}; items.forEach(function(li){has[li.dataset.country]=true;});
-  var keys=Object.keys(COUNTRIES), markers={};
-  keys.forEach(function(k){
-    var c=COUNTRIES[k], m=document.createElement(has[k]?"button":"span");
-    m.className="results_marker"; m.hidden=true; m.innerHTML='<span class="results_dot"></span><span class="results_label body2"></span>'; m.lastChild.textContent=c.name;
+  var markers=keys.map(function(k){
+    var c=COUNTRIES[k], anchor=document.createElement("div"), fade=document.createElement("div"), m=document.createElement(has[k]?"button":"span");
+    anchor.className="results_anchor"; fade.className="results_fade";
+    m.className="results_marker"+(c.start?" is-start":""); m.innerHTML='<span class="results_core"></span><span class="results_label body2"></span>'; m.lastChild.textContent=c.name;
     if(has[k]){m.type="button"; m.tabIndex=-1; m.addEventListener("click",function(){goTo(k);});}   // the list itself is the accessible content
-    globe.appendChild(m); markers[k]=m;
+    m.addEventListener("mouseenter",function(){if(globe)globe.state.autoRotate=false;});
+    m.addEventListener("mouseleave",function(){if(globe)globe.state.autoRotate=!reduce.matches;});
+    fade.appendChild(m); anchor.appendChild(fade); layer.appendChild(anchor);
+    return {k:k,anchor:anchor,fade:fade,el:m,core:m.firstChild};
   });
 
-  var view={lat:COUNTRIES.uk.view[0],lon:COUNTRIES.uk.view[1]}, target={lat:view.lat,lon:view.lon}, active=-1, size=0, dpr=1, last="", dotColor="";
-  function resize(){dpr=Math.min(2,devicePixelRatio||1); size=globe.clientWidth; canvas.width=canvas.height=Math.round(size*dpr); dotColor=getComputedStyle(root).getPropertyValue("--results-dot"); last="";}
-  function draw(){
-    var key=view.lat.toFixed(3)+","+view.lon.toFixed(3)+","+size+","+document.documentElement.dir; if(key===last||!size)return; last=key;
-    var R=size*dpr/2, s0=Math.sin(view.lat*D2R), c0=Math.cos(view.lat*D2R), s1=Math.sin(view.lon*D2R), c1=Math.cos(view.lon*D2R), d=1.5*dpr, h=d/2;
-    ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle=dotColor;
-    for(var i=0;i<n;i++){
-      var x=P[i*3],y=P[i*3+1],z=P[i*3+2], x1=x*c1-z*s1, z1=x*s1+z*c1, y2=y*c0-z1*s0, z2=y*s0+z1*c0;
-      if(z2>=0)ctx.fillRect(R+x1*R-h,R-y2*R-h,d,d);
-    }
-    var vw=document.documentElement.clientWidth, gx=globe.getBoundingClientRect().left;
-    keys.forEach(function(k){
-      var c=COUNTRIES[k], m=markers[k], la=c.lat*D2R, lo=c.lon*D2R, x=Math.cos(la)*Math.sin(lo), y=Math.sin(la), z=Math.cos(la)*Math.cos(lo);
-      var x1=x*c1-z*s1, z1=x*s1+z*c1, y2=y*c0-z1*s0, z2=y*s0+z1*c0;
-      m.hidden=z2<0.2; if(m.hidden)return;
-      var px=size/2+x1*size/2, py=size/2-y2*size/2, w=m.offsetWidth;
-      // label on the outer side; it flips if it would run off the screen
-      var before=!!c.start;
-      if(!before&&gx+px+w>vw-8)before=true; if(before&&gx+px-w<8)before=false;
-      m.classList.toggle("is-start",before);
-      m.style.setProperty("--x",(before?px-w:px)+"px"); m.style.setProperty("--y",(py-m.offsetHeight/2)+"px");
-    });
-  }
+  var css=getComputedStyle(root), globe=window.DotGlobe(root.querySelector(".results_canvas"),{
+    maskSrc:"assets/land-mask.png", color:css.getPropertyValue("--results-dot").trim()||"#1F5D46", alpha:.9,
+    start:{lat:30,lng:-4}, drag:wide.matches, parallax:wide.matches&&!reduce.matches,
+    markers:keys.map(function(k){return {lat:COUNTRIES[k].lat,lng:COUNTRIES[k].lng};}),
+    onFrame:function(ms){ms.forEach(function(p,i){var mk=markers[i];
+      mk.anchor.style.transform="translate3d("+p.x.toFixed(1)+"px,"+p.y.toFixed(1)+"px,0) scale("+(p.scale/1.33).toFixed(3)+")";
+      mk.fade.style.opacity=p.front?1:0; mk.fade.style.transform="scale("+(p.front?1:.25)+")"; mk.el.style.pointerEvents=p.front?"":"none";});}
+  });
+  if(globe)globe.state.autoRotate=!reduce.matches;
+  function recolor(){if(globe)globe.setColor(getComputedStyle(root).getPropertyValue("--results-dot"));}
 
-  var range=0, pinned=false;
+  var setH=0, offset=0, active=-1, tween=null, resumeAt=0, lastT=0, on=false;
   function measure(){
-    pinned=wide.matches&&!reduce.matches;
-    list.style.transform="";
-    range=pinned?Math.max(0,list.scrollHeight-win.clientHeight):0;
-    root.style.setProperty("--results-h",pinned?(innerHeight+range)+"px":"auto");
-    resize(); update();
+    setLoop(wide.matches&&!reduce.matches);
+    if(!loop){setActive(0);return;}
+    setH=0; for(var i=0;i<N;i++)setH+=items[i].offsetHeight;
+    offset=setH+items[0].offsetHeight/2-wrapEl.clientHeight/2;   // start on the real list's first university, centred
   }
-  function update(){
-    var y=0;
-    if(pinned){var len=root.offsetHeight-innerHeight, p=len>0?Math.min(1,Math.max(0,-root.getBoundingClientRect().top/len)):0; y=-p*range; list.style.transform="translate3d(0,"+y+"px,0)";}
-    var mid=innerHeight/2, best=0, bd=1e9;
-    items.forEach(function(li,i){var r=li.getBoundingClientRect(), dd=Math.abs(r.top+r.height/2-mid); if(dd<bd){bd=dd;best=i;}});
-    setActive(best);
+  function wrap(y){return((y-setH*.5)%setH+setH)%setH+setH*.5;}
+  function nearest(){
+    var mid=offset+wrapEl.clientHeight/2, best=0, bd=1e9, y=0;
+    for(var k=0;k<all.length;k++){var h=all[k].offsetHeight, d=Math.abs(y+h/2-mid); if(d<bd){bd=d;best=k;} y+=h;}
+    return best;
   }
   function setActive(i){
     if(i===active)return; active=i;
-    items.forEach(function(li,j){li.classList.toggle("is-active",j===i);});
-    var k=items[i].dataset.country; keys.forEach(function(c){markers[c].classList.toggle("is-active",c===k);});
-    if(COUNTRIES[k].view){target.lat=COUNTRIES[k].view[0]; target.lon=COUNTRIES[k].view[1];}
+    all.forEach(function(li,j){li.classList.toggle("is-active",j%N===i);});
+    var k=items[i].dataset.country; markers.forEach(function(m){var a=m.k===k; m.el.classList.toggle("is-active",a); m.core.classList.toggle("is-active",a);});
   }
   function goTo(k){
-    var li=items.find(function(x){return x.dataset.country===k;}); if(!li)return;
-    var top;
-    if(pinned){var len=root.offsetHeight-innerHeight, p=range?Math.min(1,Math.max(0,(li.offsetTop+li.offsetHeight/2-win.clientHeight/2)/range)):0; top=root.getBoundingClientRect().top+scrollY+p*len;}
-    else top=li.getBoundingClientRect().top+scrollY-innerHeight/2+li.offsetHeight/2;
-    scrollTo({top:top,behavior:reduce.matches?"auto":"smooth"});
+    var idx=items.findIndex(function(li){return li.dataset.country===k;}); if(idx<0)return;
+    setActive(idx);
+    if(!loop){var li=items[idx]; scrollTo({top:li.getBoundingClientRect().top+scrollY-innerHeight/2+li.offsetHeight/2,behavior:reduce.matches?"auto":"smooth"}); return;}
+    var cur=nearest(), to=idx; [idx,idx+N,idx+2*N].forEach(function(c){if(Math.abs(c-cur)<Math.abs(to-cur))to=c;});
+    var y=0; for(var j=0;j<to;j++)y+=all[j].offsetHeight;
+    tween={from:offset,to:y+all[to].offsetHeight/2-wrapEl.clientHeight/2,t0:performance.now(),dur:900}; resumeAt=Infinity;
   }
-  var t0=performance.now(), running=false;
   function tick(t){
-    var drift=reduce.matches?0:Math.sin((t-t0)/7000)*3;
-    view.lat+=(target.lat-view.lat)*.06; view.lon+=(target.lon+drift-view.lon)*.06;
-    draw(); if(running)requestAnimationFrame(tick);
+    var dt=lastT?Math.min(t-lastT,100):16.7; lastT=t;
+    if(loop){
+      if(tween){var p=Math.min(1,(t-tween.t0)/tween.dur); offset=tween.from+(tween.to-tween.from)*(1-Math.pow(1-p,4)); if(p===1){tween=null; resumeAt=t+1000;}}
+      else if(t>=resumeAt)offset+=.3*dt/(1000/60);
+      if(!tween){offset=wrap(offset); setActive(nearest()%N);}
+      track.style.transform="translate3d(0,"+(-offset).toFixed(2)+"px,0)";
+    }
+    if(on)requestAnimationFrame(tick); else lastT=0;
   }
   // only animate while the section is on screen
-  new IntersectionObserver(function(e){var on=e[0].isIntersecting; if(on&&!running){running=true;requestAnimationFrame(tick);} running=on;}).observe(root);
-  addEventListener("scroll",update,{passive:true}); addEventListener("resize",measure);
-  wide.addEventListener("change",measure); reduce.addEventListener("change",measure);
-  new MutationObserver(function(){resize();}).observe(document.documentElement,{attributes:true,attributeFilter:["dir","data-theme"]});
+  new IntersectionObserver(function(e){var vis=e[0].isIntersecting; if(globe)globe.running=vis; if(vis&&!on){on=true;requestAnimationFrame(tick);} on=vis;}).observe(root);
+  addEventListener("resize",function(){var f=loop?(offset-setH*.5)/setH:0; measure(); if(loop)offset=wrap(setH*.5+f*setH);});
+  wide.addEventListener("change",measure);
+  reduce.addEventListener("change",function(){measure(); if(globe)globe.state.autoRotate=!reduce.matches;});
+  new MutationObserver(recolor).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change",recolor);
   (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(measure);
   measure();
 })();

@@ -74,12 +74,13 @@ A clone of Cambium's "process line" section (`how_wrap`: Sourcing → Transport 
 ## Results (after iventions.com, home page "produced" section)
 After How it works. The reference clone is `clone/iventions-produced/index.html`, with notes in `reference/iventions-produced/`.
 
-- **Desktop:** the section pins while a column of large university names moves up on the left. The university at mid-screen is shown at full strength.
-- **Globe:** on the right, the heading and copy sit above a dotted globe with markers for the countries in the SFG copy (UK, Ireland, France, Italy, Singapore, USA). The active university's country turns ochre and the globe turns to face it. Clicking a country with a listed university scrolls to it.
+- **Motion, as on iventions.com (read from its source):** the section is one screen tall and not pinned. The university list is an endless loop that drifts up on its own at 0.3px a frame; the university at the centre turns ochre (ochre 700 in light mode, ochre 300 in dark, for text contrast). On the right, the heading and copy sit above a WebGL dotted globe that spins on its own (camera tilt locked), tilts slightly towards the pointer and can be dragged sideways.
+- **Markers:** the countries in the SFG copy (UK, Ireland, France, Italy, Singapore, USA). The active university's country gets the ochre pin. Hovering a marker pauses the spin and fades the others; clicking a country with a listed university brings that university to the centre, pauses the list for a second, then lets it drift on.
+- **One change from the reference:** Iventions highlights a whole region of cities at a time. SFG has only two countries with named universities, so each university is highlighted on its own.
 - **Universities:** only the seven already shown in the page's photos and copy: Warwick (Warwick Business School), Imperial, LSE, Sussex, Glasgow, Aberdeen and UCD. To add one, add an `<li class="results_item" data-country="…">` to the list. To add a country, add it to `COUNTRIES` in the Results script.
-- **Phones, tablets and reduced motion:** no pin; the globe sits above a plain list.
+- **Phones, tablets and reduced motion:** the list is static and shows each university once; the globe sits above it (no dragging on phones; no spin with reduced motion). On phones only the active country keeps its label.
 - **Background:** the page linen, like About and How it works, with a tatreez divider at the top as on How it works. The globe is drawn in the heading green and the active country marker is ochre (the design system's colour for map pins). The ochre 500 background was tried and dropped: it did not sit with the rest of the page.
-- **Globe data:** `assets/globe-dots.js` holds the land dots (Natural Earth 110m, public domain, via world-atlas@2.0.2). `build.py` now inlines local scripts as well as images.
+- **Globe code and data:** `assets/dot-globe.js` is a small WebGL1 renderer with the reference's geometry, shader and controls; it uses no library. `assets/land-mask.png` is the land mask (land is dark). `build.py` inlines both.
 
 ## Copy from the previous SFG website
 The text in About, What we do / What we don't do and How it works now follows the previous SFG site, within the existing layout:
