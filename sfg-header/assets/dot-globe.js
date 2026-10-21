@@ -78,7 +78,7 @@
     o = Object.assign({
       maskSrc: '', color: '#f2f2f2', alpha: 1, detail: 64, size: 0.125, scale: 2.8, offsetY: 0,
       distance: 9, fov: 40, polar: Math.PI / 2.8, start: { lat: 29.278913, lng: 31.267533 },
-      autoRotateSpeed: 0.65, interactive: true, drag: true, parallax: true, markers: [], onFrame: null
+      autoRotateSpeed: 0.65, maxDpr: 2, interactive: true, drag: true, parallax: true, markers: [], onFrame: null
     }, o || {});
     var gl = canvas.getContext('webgl', { antialias: true, alpha: true, premultipliedAlpha: false });
     if (!gl) return null;
@@ -115,13 +115,14 @@
     var s0 = latLng(o.start.lat, o.start.lng, 1);
     var state = {
       theta: Math.atan2(s0[0], s0[2]), dTheta: 0, rx: 0, ry: 0,
-      autoRotate: true, mouse: [0, 0], dpr: 1, w: 1, h: 1, cam: [0, 0, o.distance]
+      autoRotate: true, mouse: [0, 0], dpr: 1, w: 1, h: 1, cam: [0, 0, o.distance],
+      offTheta: 0, pointScale: 1   // set from outside: extra spin and dot-size multiplier (a scroll transition uses both)
     };
 
     function resize() {
-      var r = canvas.getBoundingClientRect();
-      state.dpr = Math.min(window.devicePixelRatio || 1, 2);
-      state.w = Math.max(1, r.width); state.h = Math.max(1, r.height);
+      // layout size, not getBoundingClientRect: the canvas may sit inside a CSS-scaled element
+      state.dpr = Math.min(window.devicePixelRatio || 1, o.maxDpr);
+      state.w = Math.max(1, canvas.clientWidth); state.h = Math.max(1, canvas.clientHeight);
       canvas.width = Math.round(state.w * state.dpr); canvas.height = Math.round(state.h * state.dpr);
     }
 
@@ -148,7 +149,7 @@
         state.ry += (-2.5e-4 * state.mouse[0] - state.ry) * 0.05;
       }
       var cam = o.interactive
-        ? [o.distance * Math.sin(o.polar) * Math.sin(state.theta), o.distance * Math.cos(o.polar), o.distance * Math.sin(o.polar) * Math.cos(state.theta)]
+        ? [o.distance * Math.sin(o.polar) * Math.sin(state.theta + state.offTheta), o.distance * Math.cos(o.polar), o.distance * Math.sin(o.polar) * Math.cos(state.theta + state.offTheta)]
         : [0, 0, o.distance];
       state.cam = cam;
       var view = lookAt(cam), M = model(state.rx, state.ry, o.scale, o.offsetY), mv = mul(view, M);
@@ -157,7 +158,7 @@
       gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
       if (count) {
         gl.uniformMatrix4fv(U.mv, false, mv); gl.uniformMatrix4fv(U.proj, false, proj);
-        gl.uniform1f(U.u_size, o.size); gl.uniform1f(U.u_dpr, state.dpr);
+        gl.uniform1f(U.u_size, o.size * state.pointScale); gl.uniform1f(U.u_dpr, state.dpr);
         gl.uniform3fv(U.u_color, hex(o.color)); gl.uniform1f(U.u_alpha, o.alpha);
         gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.enableVertexAttribArray(aPos);
         gl.vertexAttribPointer(aPos, 3, gl.FLOAT, false, 0, 0); gl.drawArrays(gl.POINTS, 0, count);

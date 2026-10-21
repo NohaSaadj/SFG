@@ -549,30 +549,53 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
    simply stacks under the globe. Universities and countries live in RESULTS_DATA in the script. */
 /* Background: the page linen, like About and How it works, so the section belongs to the page. The globe is drawn in the
    heading green; the active country marker is ochre (the system's colour for map pins). */
-.section_results{--results-bg:var(--green-600);--results-ink:var(--neutral-linen);--results-active-text:var(--red-200);   /* red 200 on green 600 = 4.7:1 */
-  --results-dot:#FFFFFF;--results-pin:var(--red-200);--results-halo:rgb(255 255 255 / .16);
-  --results-eyebrow:var(--green-100);--results-focus:var(--red-200);--results-ease:cubic-bezier(.165,.84,.44,1);
-  position:relative;z-index:2;background:var(--results-bg);color:var(--results-ink);overflow:hidden}
+/* Palettes: data-palette on the section. "night" is the default; the others are kept for comparison. */
+.section_results{--results-ease:cubic-bezier(.165,.84,.44,1);
+  --results-bg:var(--green-900);--results-bg-image:radial-gradient(120% 75% at 50% 100%,rgb(31 93 70 / .95),rgb(24 73 55 / .5) 45%,transparent 75%);
+  --results-ink:var(--neutral-linen);--results-name:var(--green-200);--results-active-text:var(--ochre-300);
+  --results-eyebrow:var(--ochre-300);--results-number:var(--ochre-300);
+  --results-card-bg:rgb(24 73 55 / .55);--results-card-border:rgb(247 242 233 / .12);
+  --results-dot:#F7F2E9;--results-pin:var(--ochre-300);--results-halo:rgb(247 242 233 / .16);
+  --results-pill-bg:var(--neutral-linen);--results-pill-ink:var(--neutral-ink);--results-focus:var(--ochre-300);
+  position:relative;z-index:2;background:var(--results-bg);color:var(--results-ink);overflow:clip}
+.results_stage{background:var(--results-bg-image) no-repeat}   /* the glow sits on the screen-high stage, not the three-screen section */
+.section_results[data-palette="inverse"]{--results-bg:var(--green-700);--results-bg-image:none;--results-name:var(--neutral-linen);--results-card-bg:var(--green-800);--results-dot:#FFFFFF;--results-eyebrow:var(--green-100)}
+.section_results[data-palette="primary"]{--results-bg:var(--green-600);--results-bg-image:none;--results-name:var(--neutral-linen);--results-active-text:var(--red-200);
+  --results-number:var(--neutral-linen);--results-eyebrow:var(--green-100);--results-card-bg:var(--green-700);--results-dot:#FFFFFF;--results-pin:var(--red-200);--results-focus:var(--red-200)}
+.section_results[data-palette="linen"]{--results-bg:var(--color-bg-page);--results-bg-image:none;--results-ink:var(--color-text-primary);--results-name:var(--color-text-heading);
+  --results-active-text:var(--color-text-achievement);--results-eyebrow:var(--color-text-heading);--results-number:var(--color-text-achievement);
+  --results-card-bg:var(--color-bg-surface);--results-card-border:var(--color-border-subtle);--results-dot:#1F5D46;--results-pin:var(--color-accent-achievement);
+  --results-halo:rgb(31 93 70 / .14);--results-pill-bg:var(--color-bg-surface);--results-pill-ink:var(--color-text-primary);--results-focus:var(--color-border-focus)}
 .results_divider{position:absolute;top:0;inset-inline:0;padding-inline:var(--grid-margin);z-index:5;line-height:0;pointer-events:none}
-/* Desktop: one screen tall, not pinned (as on iventions.com). The list drifts up on its own; the globe spins on its own. */
+
+/* Intro: three result cards */
+.results_intro{position:relative;z-index:3;padding:var(--space-128) var(--grid-margin) var(--space-64);text-align:center}
+.results_eyebrow{margin:0 0 var(--space-16);color:var(--results-eyebrow)}
+.results_intro-title{margin:0;color:var(--results-ink)}
+.results_stats{list-style:none;margin:var(--space-48) auto 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--grid-gutter);max-width:1120px;text-align:start}
+.results_stat{display:flex;flex-direction:column;gap:var(--space-8);padding:var(--space-32);border-radius:10px;background:var(--results-card-bg);border:1px solid var(--results-card-border);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.results_number{color:var(--results-number);font-variant-numeric:tabular-nums}
+.results_stat-label{color:var(--results-ink)}
+.results_eyebrow,.results_intro-title,.results_stat-label,.results_title,.results_sub,.results_name{unicode-bidi:plaintext}   /* English copy keeps its punctuation in Arabic mode */
+
+/* Layout: list on the left, heading and globe on the right (one screen tall) */
 .results_contain{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--grid-gutter);padding-inline:var(--grid-margin);height:100vh}
-.results_list-wrap{grid-column:1 / 8;position:relative;height:100vh;overflow:hidden;
+.results_list-wrap{grid-column:1 / 8;position:relative;z-index:2;height:100vh;overflow:hidden;
   -webkit-mask:linear-gradient(transparent,#000 10%,#000 90%,transparent);mask:linear-gradient(transparent,#000 10%,#000 90%,transparent)}
 .results_track{display:flex;flex-direction:column;will-change:transform}
 .results_list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.results_item{padding-block:var(--space-16);color:var(--results-ink);transition:color .8s var(--results-ease)}
+.results_item{padding-block:var(--space-16);color:var(--results-name);transition:color .8s var(--results-ease)}
 .results_item.is-active{color:var(--results-active-text)}
 .results_name{display:block;font:500 clamp(44px,5.4vw,96px)/1.02 var(--font-display);letter-spacing:-.02em;text-wrap:balance}
-.results_content{grid-column:8 / 13;height:100vh;padding-top:var(--space-96);position:relative;z-index:1;
-  display:flex;flex-direction:column;justify-content:space-between}
-.results_eyebrow{margin:0 0 var(--space-16);color:var(--results-eyebrow)}
+.results_content{grid-column:8 / 13;height:100vh;padding-top:var(--space-96);position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between}
 .results_title{margin:0;color:var(--results-ink);text-wrap:balance}
-.results_eyebrow,.results_title,.results_sub,.results_name{unicode-bidi:plaintext}   /* English copy keeps its punctuation in Arabic mode */
 .results_sub{margin:var(--space-16) 0 0;max-width:40ch;color:var(--results-ink)}
-.results_globe{position:relative;flex:none;align-self:center;width:calc(min(100vw,100vh) * .8);aspect-ratio:1;margin-bottom:calc(-22 / 1080 * 100vh)}   /* runs off the bottom of the section, like the reference */
+.results_globe-slot{position:relative;flex:none;align-self:center;width:calc(min(100vw,100vh) * .8);aspect-ratio:1;margin-bottom:calc(-22 / 1080 * 100vh)}
+.results_globe{position:absolute;left:50%;top:50%;width:var(--g-size,100%);height:var(--g-size,100%);transform:translate(-50%,-50%);will-change:transform}
 .results_canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}
 .results_canvas:active{cursor:grabbing}
-.results_markers{position:absolute;inset:0;pointer-events:none;direction:ltr}
+.results_markers{position:absolute;inset:0;pointer-events:none;direction:ltr;transition:opacity .5s var(--results-ease)}
 .results_anchor{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform}
 .results_fade{transition:opacity .2s,transform .2s}
 .results_marker{--size:28px;position:relative;display:flex;align-items:center;gap:var(--space-12);padding:0;border:0;background:none;color:var(--results-ink);
@@ -581,32 +604,44 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 button.results_marker{cursor:pointer}
 .results_core{position:relative;flex:none;width:var(--size);height:var(--size);margin-left:calc(var(--size) * -.5);border-radius:50%;background:var(--results-halo);
   -webkit-backdrop-filter:blur(2.5px);backdrop-filter:blur(2.5px);transition:transform .8s var(--results-ease),width .8s var(--results-ease),height .8s var(--results-ease)}
-.results_core::before{content:"";position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:var(--results-ink);transform:translate(-50%,-50%);
+.results_core::before{content:"";position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:var(--results-dot);transform:translate(-50%,-50%);
   transition:transform .8s var(--results-ease),background-color .8s var(--results-ease)}
 button.results_marker:hover .results_core:not(.is-active){width:34px;height:34px}
 .results_marker.is-active .results_core{transform:scale(.5)}
 .results_marker.is-active .results_core::before{transform:translate(-50%,-50%) scale(4);background:var(--results-pin)}
-.results_label{unicode-bidi:plaintext;white-space:nowrap;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
-.results_marker.is-active .results_label{text-decoration:none}
+/* country names: black (ink) on a linen pill, since ink on green fails contrast (≤ 2.3:1); ink on linen is 15.5:1 */
+.results_label{unicode-bidi:plaintext;white-space:nowrap;padding:2px 10px;border-radius:999px;background:var(--results-pill-bg);color:var(--results-pill-ink);
+  transition:background-color .8s var(--results-ease)}
+button.results_marker .results_label{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
+.results_marker.is-active .results_label{background:var(--results-pin);text-decoration:none}
 .results_marker.is-start .results_label{position:absolute;right:calc(var(--size) + var(--space-12))}
-.results_marker:not(button) .results_label{text-decoration:none;opacity:.72}
 .results_marker:focus-visible{outline:2px solid var(--results-focus);outline-offset:6px;border-radius:var(--radius-sm)}
 .results_clone{display:contents}
 
-/* Phones, tablets and reduced motion: stacked; the list is static and shows every university once */
+/* Desktop with motion: the section pins for three screens. The globe starts large at the bottom centre behind the
+   cards and shrinks, turns and slides into its place while the cards fade out and the list and heading fade in. */
+.section_results.is-pinned{height:300vh}
+.is-pinned .results_stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.is-pinned .results_intro{position:absolute;inset-inline:0;top:0;padding-bottom:0}
+.is-pinned .results_contain{position:absolute;inset:0}
+
+/* Phones, tablets and reduced motion: cards, then the stacked layout; the list is static */
 @media (max-width:991px){
+  .results_intro{padding-block:var(--space-96) 0}
+  .results_stats{grid-template-columns:1fr}
   .results_contain{display:flex;flex-direction:column;gap:var(--space-64);height:auto;padding-block:var(--space-96) 0}
   .results_content{height:auto;padding-top:0;order:-1;display:block}
-  .results_globe{width:min(100%,480px);margin:var(--space-48) auto 0}
+  .results_globe-slot{width:min(100%,480px);margin:var(--space-48) auto 0}
   .results_list-wrap{height:auto;overflow:visible;-webkit-mask:none;mask:none;padding-bottom:var(--space-96)}
   .results_name{font-size:var(--h3-size,32px)}
   .results_label{font-size:var(--body3-size,14px)}
 }
+@media (min-width:600px) and (max-width:991px){.results_stats{grid-template-columns:repeat(3,1fr)}}
 @media (prefers-reduced-motion:reduce){
   .results_contain{height:auto;padding-block:var(--space-128)}
   .results_content{height:auto}
   .results_list-wrap{height:auto;-webkit-mask:none;mask:none}
-  .results_globe{margin-bottom:0}
+  .results_globe-slot{margin-bottom:0}
 }
 
     .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -947,11 +982,20 @@ button.results_marker:hover .results_core:not(.is-active){width:34px;height:34px
         </ol>
       </div>
     </section>
-    <section class="section_results" id="results" aria-labelledby="results-title" data-results>
+    <section class="section_results" id="results" aria-labelledby="results-title" data-results data-palette="night">
       <div class="results_divider" aria-hidden="true"><svg class="how_band" viewBox="0 0 1101.6 25.2" data-tatreez-fit data-reveal-wipe aria-hidden="true" focusable="false"><rect width="1101.6" height="25.2" fill="url(#tatreezBand)"/></svg></div>
-      <div class="results_sticky">
+      <div class="results_stage" data-results-stage>
+        <div class="results_intro" data-results-intro>
+          <p class="results_eyebrow title3">Results</p>
+          <h2 class="results_intro-title h2" id="results-title">Results so far</h2>
+          <ul class="results_stats" role="list">
+            <li class="results_stat"><span class="results_number h1" data-count="135">135</span><span class="results_stat-label body1">students have won fully funded scholarships</span></li>
+            <li class="results_stat"><span class="results_number h1" data-count="7" data-suffix="+">7+</span><span class="results_stat-label body1">universities where our scholars study</span></li>
+            <li class="results_stat"><span class="results_number h1" data-count="6">6</span><span class="results_stat-label body1">countries: the UK, Ireland, France, Italy, Singapore and the USA</span></li>
+          </ul>
+        </div>
         <div class="results_contain">
-          <div class="results_list-wrap">
+          <div class="results_list-wrap" data-results-fade>
             <div class="results_track" data-results-track>
             <ol class="results_list" role="list" data-results-list>
               <li class="results_item" data-country="uk"><span class="results_name">University of Warwick</span></li>
@@ -965,12 +1009,13 @@ button.results_marker:hover .results_core:not(.is-active){width:34px;height:34px
             </div>
           </div>
           <div class="results_content">
-            <div data-split-group>
-              <p class="results_eyebrow title3" data-split>Results</p>
-              <h2 class="results_title h2" id="results-title" data-split>Where our scholars study now</h2>
+            <div class="results_text" data-results-fade data-split-group>
+              <h3 class="results_title h2" data-split>Where our scholars study now</h3>
               <p class="results_sub body1" data-split>SFG mentors have helped 135 students win fully funded scholarships in the UK, Ireland, France, Italy, Singapore and the USA. These are some of the universities they study at.</p>
             </div>
-            <div class="results_globe" data-results-globe aria-hidden="true"><canvas class="results_canvas"></canvas><div class="results_markers" data-results-markers></div></div>
+            <div class="results_globe-slot" data-results-slot>
+              <div class="results_globe" data-results-globe aria-hidden="true"><canvas class="results_canvas"></canvas><div class="results_markers" data-results-markers></div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -1548,6 +1593,8 @@ layout();
 // the globe auto-rotates (camera tilt locked at π/2.8), tilts towards the pointer and can be dragged; hovering a marker
 // pauses the spin. Nothing is highlighted while the list drifts: clicking a country highlights its universities and
 // brings the first one to the centre; clicking it again clears the highlight.
+// v3: an intro with three result cards. On desktop the section pins for three screens; the globe starts large at the
+// bottom centre behind the cards, then shrinks, turns and slides into its slot as you scroll (scrubbed, so it reverses).
 (function(){
   "use strict";
   var root=document.querySelector("[data-results]"); if(!root||root.dataset.resultsReady||!window.DotGlobe)return; root.dataset.resultsReady="1";
@@ -1560,6 +1607,8 @@ layout();
     us:{name:"USA",lat:39.8,lng:-98.6}
   };
   var keys=Object.keys(COUNTRIES), reduce=matchMedia("(prefers-reduced-motion: reduce)"), wide=matchMedia("(min-width:992px)");
+  var stage=root.querySelector("[data-results-stage]"), intro=root.querySelector("[data-results-intro]"), slot=root.querySelector("[data-results-slot]");
+  var gEl=root.querySelector("[data-results-globe]"), fades=[].slice.call(root.querySelectorAll("[data-results-fade]"));
   var wrapEl=root.querySelector(".results_list-wrap"), track=root.querySelector("[data-results-track]"), list=root.querySelector("[data-results-list]");
   var items=[].slice.call(list.children), N=items.length, layer=root.querySelector("[data-results-markers]");
 
@@ -1586,18 +1635,65 @@ layout();
   });
 
   var css=getComputedStyle(root), globe=window.DotGlobe(root.querySelector(".results_canvas"),{
-    maskSrc:"assets/land-mask.png", color:css.getPropertyValue("--results-dot").trim()||"#1F5D46", alpha:.9,
+    maskSrc:"assets/land-mask.png", color:css.getPropertyValue("--results-dot").trim()||"#F7F2E9", alpha:.9, maxDpr:1.5,
     start:{lat:30,lng:-4}, drag:wide.matches, parallax:wide.matches&&!reduce.matches,
     markers:keys.map(function(k){return {lat:COUNTRIES[k].lat,lng:COUNTRIES[k].lng};}),
     onFrame:function(ms){ms.forEach(function(p,i){var mk=markers[i];
-      mk.anchor.style.transform="translate3d("+p.x.toFixed(1)+"px,"+p.y.toFixed(1)+"px,0) scale("+(p.scale/1.33).toFixed(3)+")";
+      mk.anchor.style.transform="translate3d("+p.x.toFixed(1)+"px,"+p.y.toFixed(1)+"px,0) scale("+(p.scale/1.33/gs).toFixed(3)+")";
       mk.fade.style.opacity=p.front?1:0; mk.fade.style.transform="scale("+(p.front?1:.25)+")"; mk.el.style.pointerEvents=p.front?"":"none";});}
   });
   if(globe)globe.state.autoRotate=!reduce.matches;
   function recolor(){if(globe)globe.setColor(getComputedStyle(root).getPropertyValue("--results-dot"));}
 
   var setH=0, offset=0, picked=null, tween=null, resumeAt=0, lastT=0, on=false;
+  // ---- scroll transition (desktop with motion only) ----
+  var pin=false, gs=1, S0=0, sEnd=1, dStart=[0,0];
+  function clamp(x){return x<0?0:x>1?1:x;}
+  function ease(x){return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;}   // easeInOutCubic
+  function lerp(a,b,t){return a+(b-a)*t;}
+  function measureStage(){
+    pin=wide.matches&&!reduce.matches;
+    root.classList.toggle("is-pinned",pin);
+    gEl.style.transform=""; fades.concat(intro).forEach(function(el){el.style.opacity=el.style.transform=el.style.pointerEvents="";});
+    if(!pin){gs=1; gEl.style.removeProperty("--g-size"); layer.style.opacity=layer.style.visibility=""; if(globe){globe.state.pointScale=1; globe.state.offTheta=0; globe.resize();} return;}
+    var vw=stage.clientWidth, vh=stage.clientHeight, sr=slot.getBoundingClientRect(), st=stage.getBoundingClientRect();
+    S0=Math.round(Math.min(vw*1.23,2200));                      // the sphere fills ~85% of its box: ~1.05 × the viewport wide
+    gEl.style.setProperty("--g-size",S0+"px");
+    var cx=sr.left-st.left+sr.width/2, cy=sr.top-st.top+sr.height/2;
+    dStart=[vw/2-cx, vh*.6+S0*.855/2-cy];                       // start: centred, sphere top at 60% of the screen
+    sEnd=sr.width/S0;
+    if(globe)globe.resize();
+    stageUpdate();
+  }
+  function stageUpdate(){
+    if(!pin)return;
+    var len=root.offsetHeight-innerHeight, p=len>0?clamp(-root.getBoundingClientRect().top/len):0;
+    var t=ease(clamp((p-.05)/.5));                               // globe: 5% → 55% of the pinned scroll
+    gs=lerp(1,sEnd,t);
+    gEl.style.transform="translate(-50%,-50%) translate("+lerp(dStart[0],0,t).toFixed(1)+"px,"+lerp(dStart[1],0,t).toFixed(1)+"px) rotate("+lerp(-18,0,t).toFixed(2)+"deg) scale("+gs.toFixed(4)+")";
+    if(globe){globe.state.pointScale=1/gs; globe.state.offTheta=lerp(-1.1,0,t);}   // dots keep their on-screen size; it spins into place
+    layer.style.opacity=t>.97?1:0; layer.style.visibility=t>.97?"":"hidden";   // markers only once the globe has landed
+    var a=clamp((p-.08)/.2);                                    // cards: fade and lift away
+    intro.style.opacity=1-a; intro.style.transform="translateY("+(-64*a).toFixed(1)+"px)"; intro.style.pointerEvents=a>.5?"none":"";
+    var b=clamp((p-.3)/.2);                                    // list and heading: fade in
+    fades.forEach(function(el){el.style.opacity=b; el.style.transform="translateY("+(24*(1-b)).toFixed(1)+"px)"; el.style.pointerEvents=b<.5?"none":"";});
+  }
+  addEventListener("scroll",stageUpdate,{passive:true});
+
+  // ---- count-up on the result numbers ----
+  var nums=[].slice.call(root.querySelectorAll("[data-count]"));
+  if(!reduce.matches){
+    nums.forEach(function(n){n.textContent="0"+(n.dataset.suffix||"");});
+    new IntersectionObserver(function(e,o){
+      if(!e[0].isIntersecting)return; o.disconnect(); var t0=performance.now();
+      (function step(t){var k=clamp((t-t0)/1400), v=1-Math.pow(1-k,4);
+        nums.forEach(function(n){n.textContent=Math.round(+n.dataset.count*v)+(k===1?(n.dataset.suffix||""):"");});
+        if(k<1)requestAnimationFrame(step);})(t0);
+    },{threshold:.4}).observe(root.querySelector(".results_stats"));
+  }
+
   function measure(){
+    measureStage();
     setLoop(wide.matches&&!reduce.matches);
     paint(); if(!loop)return;
     setH=0; for(var i=0;i<N;i++)setH+=items[i].offsetHeight;
@@ -1629,6 +1725,7 @@ layout();
       if(!tween)offset=wrap(offset);
       track.style.transform="translate3d(0,"+(-offset).toFixed(2)+"px,0)";
     }
+    stageUpdate();
     if(on)requestAnimationFrame(tick); else lastT=0;
   }
   // only animate while the section is on screen
@@ -1637,6 +1734,7 @@ layout();
   wide.addEventListener("change",measure);
   reduce.addEventListener("change",function(){measure(); if(globe)globe.state.autoRotate=!reduce.matches;});
   new MutationObserver(recolor).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+  new MutationObserver(recolor).observe(root,{attributes:true,attributeFilter:["data-palette"]});
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change",recolor);
   (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(measure);
   measure();
