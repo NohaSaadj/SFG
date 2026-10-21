@@ -549,12 +549,10 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
    simply stacks under the globe. Universities and countries live in RESULTS_DATA in the script. */
 /* Background: the page linen, like About and How it works, so the section belongs to the page. The globe is drawn in the
    heading green; the active country marker is ochre (the system's colour for map pins). */
-.section_results{--results-bg:var(--color-bg-page);--results-ink:var(--color-text-primary);--results-active-text:var(--ochre-700);
-  --results-dot:var(--color-text-heading);--results-pin:var(--color-accent-achievement);--results-halo:rgb(31 93 70 / .14);
-  --results-eyebrow:var(--color-text-heading);--results-focus:var(--color-border-focus);--results-ease:cubic-bezier(.165,.84,.44,1);
+.section_results{--results-bg:var(--green-600);--results-ink:var(--neutral-linen);--results-active-text:var(--red-200);   /* red 200 on green 600 = 4.7:1 */
+  --results-dot:#FFFFFF;--results-pin:var(--red-200);--results-halo:rgb(255 255 255 / .16);
+  --results-eyebrow:var(--green-100);--results-focus:var(--red-200);--results-ease:cubic-bezier(.165,.84,.44,1);
   position:relative;z-index:2;background:var(--results-bg);color:var(--results-ink);overflow:hidden}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .section_results{--results-active-text:var(--ochre-300);--results-halo:rgb(169 203 185 / .16)}}
-:root[data-theme="dark"] .section_results{--results-active-text:var(--ochre-300);--results-halo:rgb(169 203 185 / .16)}
 .results_divider{position:absolute;top:0;inset-inline:0;padding-inline:var(--grid-margin);z-index:5;line-height:0;pointer-events:none}
 /* Desktop: one screen tall, not pinned (as on iventions.com). The list drifts up on its own; the globe spins on its own. */
 .results_contain{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--grid-gutter);padding-inline:var(--grid-margin);height:100vh}
@@ -565,12 +563,11 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .results_item{padding-block:var(--space-16);color:var(--results-ink);transition:color .8s var(--results-ease)}
 .results_item.is-active{color:var(--results-active-text)}
 .results_name{display:block;font:500 clamp(44px,5.4vw,96px)/1.02 var(--font-display);letter-spacing:-.02em;text-wrap:balance}
-.results_meta{display:block;margin-top:var(--space-8);color:var(--results-ink)}
 .results_content{grid-column:8 / 13;height:100vh;padding-top:var(--space-96);position:relative;z-index:1;
   display:flex;flex-direction:column;justify-content:space-between}
 .results_eyebrow{margin:0 0 var(--space-16);color:var(--results-eyebrow)}
 .results_title{margin:0;color:var(--results-ink);text-wrap:balance}
-.results_eyebrow,.results_title,.results_sub,.results_name,.results_meta{unicode-bidi:plaintext}   /* English copy keeps its punctuation in Arabic mode */
+.results_eyebrow,.results_title,.results_sub,.results_name{unicode-bidi:plaintext}   /* English copy keeps its punctuation in Arabic mode */
 .results_sub{margin:var(--space-16) 0 0;max-width:40ch;color:var(--results-ink)}
 .results_globe{position:relative;flex:none;align-self:center;width:calc(min(100vw,100vh) * .8);aspect-ratio:1;margin-bottom:calc(-22 / 1080 * 100vh)}   /* runs off the bottom of the section, like the reference */
 .results_canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}
@@ -603,15 +600,13 @@ button.results_marker:hover .results_core:not(.is-active){width:34px;height:34px
   .results_globe{width:min(100%,480px);margin:var(--space-48) auto 0}
   .results_list-wrap{height:auto;overflow:visible;-webkit-mask:none;mask:none;padding-bottom:var(--space-96)}
   .results_name{font-size:var(--h3-size,32px)}
-  .results_item.is-active{color:var(--results-ink)}   /* the list is static here, so no item is "at the centre" */
-  .results_marker:not(.is-active) .results_label{opacity:0}   /* the globe is small: only the active country keeps its label */
+  .results_label{font-size:var(--body3-size,14px)}
 }
 @media (prefers-reduced-motion:reduce){
   .results_contain{height:auto;padding-block:var(--space-128)}
   .results_content{height:auto}
   .results_list-wrap{height:auto;-webkit-mask:none;mask:none}
   .results_globe{margin-bottom:0}
-  .results_item.is-active{color:var(--results-ink)}
 }
 
     .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -959,13 +954,13 @@ button.results_marker:hover .results_core:not(.is-active){width:34px;height:34px
           <div class="results_list-wrap">
             <div class="results_track" data-results-track>
             <ol class="results_list" role="list" data-results-list>
-              <li class="results_item" data-country="uk"><span class="results_name">University of Warwick</span><span class="results_meta body3">Warwick Business School · Coventry, United Kingdom</span></li>
-              <li class="results_item" data-country="uk"><span class="results_name">Imperial College London</span><span class="results_meta body3">School of Public Health · London, United Kingdom</span></li>
-              <li class="results_item" data-country="uk"><span class="results_name">London School of Economics</span><span class="results_meta body3">London, United Kingdom</span></li>
-              <li class="results_item" data-country="uk"><span class="results_name">University of Sussex</span><span class="results_meta body3">Brighton, United Kingdom</span></li>
-              <li class="results_item" data-country="uk"><span class="results_name">University of Glasgow</span><span class="results_meta body3">Glasgow, United Kingdom</span></li>
-              <li class="results_item" data-country="uk"><span class="results_name">University of Aberdeen</span><span class="results_meta body3">Aberdeen, United Kingdom</span></li>
-              <li class="results_item" data-country="ie"><span class="results_name">University College Dublin</span><span class="results_meta body3">Dublin, Ireland</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Warwick</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">Imperial College London</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">London School of Economics</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Sussex</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Glasgow</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Aberdeen</span></li>
+              <li class="results_item" data-country="ie"><span class="results_name">University College Dublin</span></li>
             </ol>
             </div>
           </div>
@@ -1733,8 +1728,9 @@ layout();
   <script>
 // ===== Results · after iventions.com "produced": looped university list + WebGL dotted globe · v2.0 =====
 // Same mechanics as the reference (read from its source): the list is an endless vertical loop that drifts up 0.3px a frame,
-// the item at the centre takes the accent colour, the globe auto-rotates (camera tilt locked at π/2.8), tilts towards the
-// pointer and can be dragged; hovering a marker pauses the spin, clicking one brings its university to the centre.
+// the globe auto-rotates (camera tilt locked at π/2.8), tilts towards the pointer and can be dragged; hovering a marker
+// pauses the spin. Nothing is highlighted while the list drifts: clicking a country highlights its universities and
+// brings the first one to the centre; clicking it again clears the highlight.
 (function(){
   "use strict";
   var root=document.querySelector("[data-results]"); if(!root||root.dataset.resultsReady||!window.DotGlobe)return; root.dataset.resultsReady="1";
@@ -1783,10 +1779,10 @@ layout();
   if(globe)globe.state.autoRotate=!reduce.matches;
   function recolor(){if(globe)globe.setColor(getComputedStyle(root).getPropertyValue("--results-dot"));}
 
-  var setH=0, offset=0, active=-1, tween=null, resumeAt=0, lastT=0, on=false;
+  var setH=0, offset=0, picked=null, tween=null, resumeAt=0, lastT=0, on=false;
   function measure(){
     setLoop(wide.matches&&!reduce.matches);
-    if(!loop){setActive(0);return;}
+    paint(); if(!loop)return;
     setH=0; for(var i=0;i<N;i++)setH+=items[i].offsetHeight;
     offset=setH+items[0].offsetHeight/2-wrapEl.clientHeight/2;   // start on the real list's first university, centred
   }
@@ -1796,14 +1792,13 @@ layout();
     for(var k=0;k<all.length;k++){var h=all[k].offsetHeight, d=Math.abs(y+h/2-mid); if(d<bd){bd=d;best=k;} y+=h;}
     return best;
   }
-  function setActive(i){
-    if(i===active)return; active=i;
-    all.forEach(function(li,j){li.classList.toggle("is-active",j%N===i);});
-    var k=items[i].dataset.country; markers.forEach(function(m){var a=m.k===k; m.el.classList.toggle("is-active",a); m.core.classList.toggle("is-active",a);});
+  function paint(){
+    all.forEach(function(li){li.classList.toggle("is-active",li.dataset.country===picked);});
+    markers.forEach(function(m){var a=m.k===picked; m.el.classList.toggle("is-active",a); m.core.classList.toggle("is-active",a); if(m.el.tagName==="BUTTON")m.el.setAttribute("aria-pressed",a);});
   }
   function goTo(k){
     var idx=items.findIndex(function(li){return li.dataset.country===k;}); if(idx<0)return;
-    setActive(idx);
+    picked=picked===k?null:k; paint(); if(!picked)return;
     if(!loop){var li=items[idx]; scrollTo({top:li.getBoundingClientRect().top+scrollY-innerHeight/2+li.offsetHeight/2,behavior:reduce.matches?"auto":"smooth"}); return;}
     var cur=nearest(), to=idx; [idx,idx+N,idx+2*N].forEach(function(c){if(Math.abs(c-cur)<Math.abs(to-cur))to=c;});
     var y=0; for(var j=0;j<to;j++)y+=all[j].offsetHeight;
@@ -1814,7 +1809,7 @@ layout();
     if(loop){
       if(tween){var p=Math.min(1,(t-tween.t0)/tween.dur); offset=tween.from+(tween.to-tween.from)*(1-Math.pow(1-p,4)); if(p===1){tween=null; resumeAt=t+1000;}}
       else if(t>=resumeAt)offset+=.3*dt/(1000/60);
-      if(!tween){offset=wrap(offset); setActive(nearest()%N);}
+      if(!tween)offset=wrap(offset);
       track.style.transform="translate3d(0,"+(-offset).toFixed(2)+"px,0)";
     }
     if(on)requestAnimationFrame(tick); else lastT=0;
