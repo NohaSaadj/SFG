@@ -78,7 +78,7 @@ After How it works. The reference clone is `clone/iventions-produced/index.html`
 - **Highlight on click only:** nothing is highlighted while the list drifts. Clicking a country marker (UK or Ireland) highlights that country's universities and its pin in red 200, then brings its first university to the centre. The list pauses for a second, then drifts on. Clicking the same country again clears the highlight. Hovering a marker pauses the spin and fades the others.
 - **Colours:** primary green (green 600) background in light and dark mode; linen text; white globe dots; red 200 for the highlight. Red 200 on green 600 is 4.7:1, which passes AA for any text size; red 300 would be only 3.5:1.
 - **Universities:** only the seven already shown in the page's photos and copy: Warwick (Warwick Business School), Imperial, LSE, Sussex, Glasgow, Aberdeen and UCD. To add one, add an `<li class="results_item" data-country="…">` to the list. To add a country, add it to `COUNTRIES` in the Results script.
-- **Phones, tablets and reduced motion:** the list is static and shows each university once; the globe sits above it (no dragging on phones; no spin with reduced motion). On phones only the active country keeps its label.
+- **Phones, tablets and reduced motion:** the list is static and shows each university once; the globe sits above it (no dragging on phones; no spin with reduced motion). On phones the marker labels use the smaller body 3 size.
 - **Globe code and data:** `assets/dot-globe.js` is a small WebGL1 renderer with the reference's geometry, shader and controls; it uses no library. `assets/land-mask.png` is the land mask (land is dark). `build.py` inlines both.
 
 ## Copy from the previous SFG website
