@@ -554,7 +554,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
   --results-bg:var(--green-900);--results-glow:radial-gradient(closest-side,rgb(31 93 70 / .9),rgb(24 73 55 / .45) 60%,transparent);
   --results-ink:var(--neutral-linen);--results-name:var(--green-200);--results-active-text:var(--ochre-300);
   --results-eyebrow:var(--ochre-300);--results-number:var(--ochre-300);
-  --results-card-bg:var(--results-bg);--results-card-border:rgb(247 242 233 / .16);--results-muted:rgb(247 242 233 / .78);
+  --results-card-bg:var(--neutral-paper);--results-card-number:var(--ochre-700);--results-card-ink:var(--neutral-ink);--results-card-muted:var(--neutral-muted);
   --results-dot:#F7F2E9;--results-pin:var(--ochre-300);--results-halo:rgb(247 242 233 / .16);
   --results-pill-bg:var(--neutral-linen);--results-pill-ink:var(--neutral-ink);--results-focus:var(--ochre-300);
   position:relative;z-index:2;background:var(--results-bg);color:var(--results-ink);overflow:clip}
@@ -563,9 +563,8 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
   --results-number:var(--neutral-linen);--results-eyebrow:var(--green-100);--results-dot:#FFFFFF;--results-pin:var(--red-200);--results-focus:var(--red-200)}
 .section_results[data-palette="linen"]{--results-bg:var(--color-bg-page);--results-glow:none;--results-ink:var(--color-text-primary);--results-name:var(--color-text-heading);
   --results-active-text:var(--color-text-achievement);--results-eyebrow:var(--color-text-heading);--results-number:var(--color-text-achievement);
-  --results-card-border:var(--color-border-subtle);--results-muted:var(--color-text-secondary);--results-dot:#1F5D46;--results-pin:var(--color-accent-achievement);
+  --results-dot:#1F5D46;--results-pin:var(--color-accent-achievement);
   --results-halo:rgb(31 93 70 / .14);--results-pill-bg:var(--color-bg-surface);--results-pill-ink:var(--color-text-primary);--results-focus:var(--color-border-focus)}
-.results_divider{position:absolute;top:0;inset-inline:0;padding-inline:var(--grid-margin);z-index:5;line-height:0;pointer-events:none}
 
 /* Intro: three result cards */
 .results_intro{position:relative;z-index:3;padding:var(--space-128) var(--grid-margin) var(--space-64);text-align:center}
@@ -573,10 +572,10 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .results_intro-title{margin:0;color:var(--results-ink)}
 .results_stats{list-style:none;margin:var(--space-48) auto 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--grid-gutter);max-width:1120px;text-align:start}
 .results_stat{display:grid;grid-template-rows:auto auto 1fr;align-content:start;min-height:280px;padding:var(--space-32);border-radius:10px;
-  background:var(--results-card-bg);border:1px solid var(--results-card-border)}
-.results_number{color:var(--results-number);font-variant-numeric:tabular-nums;padding-bottom:var(--space-24);margin-bottom:var(--space-24);border-bottom:1px solid var(--results-card-border)}
-.results_stat-title{color:var(--results-ink)}
-.results_stat-text{margin-top:var(--space-8);color:var(--results-muted);text-wrap:pretty}
+  background:var(--results-card-bg)}
+.results_number{color:var(--results-card-number);font-variant-numeric:tabular-nums;margin-bottom:var(--space-24)}
+.results_stat-title{color:var(--results-card-ink)}
+.results_stat-text{margin-top:var(--space-8);color:var(--results-card-muted);text-wrap:pretty}
 .results_eyebrow,.results_intro-title,.results_stat-title,.results_stat-text,.results_title,.results_sub,.results_name{unicode-bidi:plaintext}   /* English copy keeps its punctuation in Arabic mode */
 
 /* Layout: list on the left, heading and globe on the right (one screen tall) */
@@ -631,6 +630,7 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 @media (max-width:991px){
   .results_intro{padding-block:var(--space-96) 0}
   .results_stats{grid-template-columns:1fr}
+  .results_stat{min-height:0}
   .results_contain{display:flex;flex-direction:column;gap:var(--space-64);height:auto;padding-block:var(--space-96) 0}
   .results_content{height:auto;padding-top:0;order:-1;display:block}
   .results_globe-slot{width:min(100%,480px);margin:var(--space-48) auto 0}
@@ -985,7 +985,6 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
       </div>
     </section>
     <section class="section_results" id="results" aria-labelledby="results-title" data-results data-palette="night">
-      <div class="results_divider" aria-hidden="true"><svg class="how_band" viewBox="0 0 1101.6 25.2" data-tatreez-fit data-reveal-wipe aria-hidden="true" focusable="false"><rect width="1101.6" height="25.2" fill="url(#tatreezBand)"/></svg></div>
       <div class="results_stage" data-results-stage>
         <div class="results_intro" data-results-intro>
           <p class="results_eyebrow title3">Results</p>
