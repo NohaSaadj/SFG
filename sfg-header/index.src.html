@@ -571,12 +571,12 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .results_eyebrow{margin:0 0 var(--space-16);color:var(--results-eyebrow)}
 .results_intro-title{margin:0;color:var(--results-ink)}
 .results_stats{list-style:none;margin:var(--space-48) auto 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--grid-gutter);max-width:1120px;text-align:start}
-/* cards: 2 columns × 2 rows. Row 1: number | title. Row 2: the description across both columns, at the bottom. */
+/* cards: 2 columns × 2 rows. Row 1: number | title. Row 2: the description under the title (same start edge), at the bottom. */
 .results_stat{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto 1fr;gap:var(--space-48);align-items:center;
   padding:var(--space-24);border-radius:10px;background:var(--results-card-bg)}
 .results_number{grid-column:1;grid-row:1;color:var(--results-card-number);font-variant-numeric:tabular-nums}   /* H1 */
 .results_stat-title{grid-column:2;grid-row:1;color:var(--results-card-ink)}                                    /* Title1 */
-.results_stat-text{grid-column:1 / -1;grid-row:2;align-self:end;color:var(--results-card-muted);text-wrap:pretty} /* Body2 */
+.results_stat-text{grid-column:2;grid-row:2;align-self:end;color:var(--results-card-muted);text-wrap:pretty} /* Body2 */
 .results_eyebrow,.results_intro-title,.results_stat-title,.results_stat-text,.results_title,.results_sub,.results_name{unicode-bidi:plaintext}   /* English copy keeps its punctuation in Arabic mode */
 
 /* Layout: list on the left, heading and globe on the right (one screen tall) */
@@ -1203,6 +1203,7 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
       m.fade0 = m.side1;                m.end = m.fade0 + vh * SEG.fade;
       M = m;
       s = Math.min(s, M.end); target = Math.min(target, M.end);
+      if (skipPending) { skipPending = false; setTimeout(jumpToEnd); }
     }
 
     function place(i, p, op) {
@@ -1324,7 +1325,8 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
       setTimeout(function () { bgList.classList.add("is-live"); entered = true; }, instant ? 0 : ENTRY_MS);
     }
 
-    function jumpToEnd() { target = s = M.end; render(); setLocked(false); }
+    var skipPending = false;   // Skip can be pressed before the intro is first measured: jump as soon as it is
+    function jumpToEnd() { if (!M) { skipPending = true; return; } target = s = M.end; render(); setLocked(false); }
 
     skipBtn.addEventListener("click", function (e) {
       e.preventDefault();
