@@ -121,8 +121,8 @@
     .h2{font:700 var(--h2-size)/var(--h2-lh) var(--font-display);letter-spacing:var(--h2-ls)}
     .h3{font:700 var(--h3-size)/var(--h3-lh) var(--font-display);letter-spacing:var(--h3-ls)}
     .h4{font:700 var(--h4-size)/var(--h4-lh) var(--font-display);letter-spacing:var(--h4-ls)}
-    .title{font:500 var(--title-size)/var(--title-lh) var(--font-sans)}
     .h5{font:700 var(--h5-size)/var(--h5-lh) var(--font-display);letter-spacing:var(--h5-ls)}
+    .title{font:500 var(--title-size)/var(--title-lh) var(--font-sans)}
     .title1{font:500 var(--title1-size)/var(--title1-lh) var(--font-sans)}
     .title3{font:500 var(--title3-size)/var(--title3-lh) var(--font-sans)}
     .h6{font:700 var(--h6-size)/var(--h6-lh) var(--font-display)}
@@ -570,13 +570,18 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .results_intro{position:relative;z-index:3;padding:var(--space-128) var(--grid-margin) var(--space-64);text-align:center}
 .results_intro-title{margin:0;color:var(--results-ink);white-space:nowrap}   /* one line; sized to fit 360px and up */
 @media (max-width:359px){.results_intro-title{font-size:var(--h5-size);line-height:var(--h5-lh)}}
-.results_stats{list-style:none;margin:var(--space-48) auto 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--grid-gutter);max-width:1120px;text-align:start}
+.results_stats{list-style:none;margin:var(--space-48) auto 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--grid-gutter);max-width:1120px;text-align:start}
 /* cards: 2 columns × 2 rows. Row 1: number | title. Row 2: the description under the title (same start edge), at the bottom. */
-.results_stat{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto 1fr;gap:var(--space-48);align-items:center;
+.results_stat{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto 1fr;gap:var(--space-48) var(--space-32);align-items:center;
   padding:var(--space-24);border-radius:10px;background:var(--results-card-bg)}
 .results_number{grid-column:1;grid-row:1;color:var(--results-card-number);font-variant-numeric:tabular-nums}   /* H1 */
-.results_stat-title{grid-column:2;grid-row:1;color:var(--results-card-ink)}                                    /* Title1 */
+.results_stat-title{grid-column:2;grid-row:1;color:var(--results-card-ink)}                                    /* Title: Thmanyah Sans Medium 28/36 */
 .results_stat-text{grid-column:2;grid-row:2;align-self:end;color:var(--results-card-muted);text-wrap:pretty} /* Body2 */
+@media (min-width:992px) and (max-width:1439px),(max-width:359px){   /* cards narrower than 360px: number on top, then title and description */
+  .results_stat{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto 1fr;row-gap:var(--space-24)}
+  .results_stat-title{grid-column:1;grid-row:2}
+  .results_stat-text{grid-column:1;grid-row:3;margin-top:var(--space-24)}
+}
 .results_intro-title,.results_stat-title,.results_stat-text,.results_title,.results_sub,.results_name{unicode-bidi:plaintext}   /* English copy keeps its punctuation in Arabic mode */
 
 /* Layout: list on the left, heading and globe on the right (one screen tall) */
@@ -638,7 +643,6 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
   .results_name{font-size:calc(var(--h3-size,32px) - 4px)}
   .results_label{font-size:var(--body3-size,14px)}
 }
-@media (min-width:600px) and (max-width:991px){.results_stats{grid-template-columns:repeat(3,1fr)}}
 @media (prefers-reduced-motion:reduce){
   .results_contain{height:auto;padding-block:var(--space-128)}
   .results_content{height:auto}
@@ -989,9 +993,9 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
         <div class="results_intro" data-results-intro>
           <h2 class="results_intro-title h2" id="results-title">Our impact in numbers</h2>
           <ul class="results_stats" role="list">
-            <li class="results_stat"><span class="results_number h1" data-count="143">143</span><span class="results_stat-title title1">Scholarship winners</span><span class="results_stat-text body2">Students who have won fully funded scholarships with SFG mentors so far.</span></li>
-            <li class="results_stat"><span class="results_number h1" data-count="7" data-suffix="+">7+</span><span class="results_stat-title title1">Universities</span><span class="results_stat-text body2">Including Warwick, Imperial, LSE, Glasgow and University College Dublin.</span></li>
-            <li class="results_stat"><span class="results_number h1" data-count="9">9</span><span class="results_stat-title title1">Countries</span><span class="results_stat-text body2">The UK, Ireland, the Netherlands, Belgium, France, Italy, Egypt, Singapore and the USA.</span></li>
+            <li class="results_stat"><span class="results_number h1" data-count="143">143</span><span class="results_stat-title title">Scholarship winners</span><span class="results_stat-text body2">Students who have won fully funded scholarships with SFG mentors so far.</span></li>
+            <li class="results_stat"><span class="results_number h1" data-count="7" data-suffix="+">7+</span><span class="results_stat-title title">Universities</span><span class="results_stat-text body2">Including Warwick, Imperial, LSE, Glasgow and University College Dublin.</span></li>
+            <li class="results_stat"><span class="results_number h1" data-count="9">9</span><span class="results_stat-title title">Countries</span><span class="results_stat-text body2">The UK, Ireland, the Netherlands, Belgium, France, Italy, Egypt, Singapore and the USA.</span></li>
           </ul>
         </div>
         <div class="results_contain">
@@ -1687,7 +1691,11 @@ layout();
   // ---- count-up on the result numbers ----
   var nums=[].slice.call(root.querySelectorAll("[data-count]"));
   if(!reduce.matches){
-    nums.forEach(function(n){n.textContent="0"+(n.dataset.suffix||"");});
+    // hold each number at its final width while it counts, so the title and text never move
+    function holdWidths(){nums.forEach(function(n){var t=n.textContent; n.style.minWidth=""; n.textContent=n.dataset.count+(n.dataset.suffix||""); n.style.minWidth=n.getBoundingClientRect().width+"px"; n.textContent=t;});}
+    holdWidths(); nums.forEach(function(n){n.textContent="0";});
+    if(document.fonts&&document.fonts.ready)document.fonts.ready.then(holdWidths);   // re-measure in the loaded font
+    addEventListener("resize",holdWidths);
     new IntersectionObserver(function(e,o){
       if(!e[0].isIntersecting)return; o.disconnect(); var t0=performance.now();
       (function step(t){var k=clamp((t-t0)/1400), v=1-Math.pow(1-k,4);
