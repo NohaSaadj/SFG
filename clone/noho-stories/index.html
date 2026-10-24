@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noho stories clone</title>
+<style>
+/* Switzer is a licensed Fontshare face: loaded from noho.ink for this reference build, never committed. */
+@font-face{font-family:Switzer;src:url(https://noho.ink/assets/fonts/667ab07840bd3945abc5dc76_Switzer-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:Switzer;src:url(https://noho.ink/assets/fonts/667ab0784136240d5e8010d7_Switzer-Semibold.woff2) format("woff2");font-weight:600;font-display:swap}
+
+/* Tokens, values from noho.ink CSS */
+:root{
+  --bg-page:#F1EEE9;
+  --txt-main:#3C3C3C;
+  --txt-main-opacity-max:#3c3c3c66;
+  --bg-element:#E7E2DA;
+  --bg-element-second:#D7D1C7;
+  --bg-element-third:#CDC0B0;
+  --bg-btn-pm:#3C3C3C;
+  --txt-btn-pm:#FFFFFF;
+  --font-main:Switzer,"Helvetica Neue",Arial,sans-serif;
+  --ease-our:cubic-bezier(.17,.17,0,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+/* .page{font-size:1vw}: every em below scales with the viewport */
+body{background:var(--bg-page);color:var(--txt-main);font-family:var(--font-main);font-size:1vw;line-height:1;overflow-x:hidden}
+p{margin:0}
+
+/* Type utilities */
+.h1{font-size:4.17em;font-weight:600;line-height:100%;letter-spacing:-.04em;margin:0}
+.h2_sb{font-size:2.08em;font-weight:600;line-height:100%;letter-spacing:-.03em;margin:0}
+.primary_txt{font-size:.94em;line-height:120%}
+.descriptor_sb{font-size:.94em;font-weight:600;line-height:100%;letter-spacing:-.02em}
+.desktop{display:block}
+.tablet{display:none}
+
+/* Filler so the pin can be scrolled into and out of */
+.page-spacer{height:100vh;display:flex;align-items:center;justify-content:center;font-size:.94em;color:var(--txt-main-opacity-max)}
+
+/* Section */
+.blog-section-parent{position:relative;z-index:50;display:flex;flex-direction:column;gap:6.2963vh;padding-left:2.0833vw;background:var(--bg-page)}
+.title-parent{position:relative;height:4.6em;overflow:hidden}
+.section-title{position:relative}
+.blog_collection-parent{width:100%;height:24.7396vw;overflow:hidden}
+.blog_collection-list{position:relative;display:flex;height:24.7396vw;overflow:hidden;margin:0;padding:0;list-style:none}
+.blog_collection-list::-webkit-scrollbar{display:none}
+.blog_collection-item{position:absolute;top:0;width:44.167vw;will-change:transform}
+.blog_collection-item:nth-child(3n+1) .blog_card-parent{background:var(--bg-element-third)}
+.blog_collection-item:nth-child(3n+2) .blog_card-parent{background:var(--bg-element-second)}
+.blog_collection-item:nth-child(3n+3) .blog_card-parent{background:var(--bg-element)}
+
+/* Card */
+.blog_card-parent{position:relative;display:flex;flex-direction:column;justify-content:space-between;width:44.167vw;height:24.7396vw;padding:2.0833vw;color:var(--txt-main);cursor:pointer}
+.blog_card-article-parent{display:flex;justify-content:space-between;align-items:flex-start}
+.blog_card-article_content-parent{display:flex;flex-direction:column;align-items:flex-start;gap:1.25vw;width:31vw}
+.blog_card-article_content-text p{margin-bottom:10px}
+.blog_card-article_content-text p:last-child{margin-bottom:0}
+.blog_card-article-theme{color:var(--txt-main-opacity-max)}
+.blog-card-icon{position:absolute;top:2.0833vw;right:2.0833vw;width:.9375vw;height:.9375vw;border-radius:100%;background:var(--txt-main)}
+.blog_card-footer{display:flex;justify-content:space-between;align-items:center}
+.blog_card-footer-data{display:flex;gap:4.2708vw}
+.no_bg_button-parent{position:relative;display:flex;align-items:center;justify-content:center;gap:.417vw;color:var(--txt-main);text-decoration:none;font-size:.938em}
+.no_bg_button-text{padding:0 3px 0 2px}
+.no_bg_button_icon{display:flex;width:.313vw}
+.no_bg_button_icon svg{width:100%;height:auto}
+
+/* Magnet cursor */
+.cursor-magnet{position:fixed;left:0;top:0;z-index:99999;display:flex;align-items:center;justify-content:center;width:1.042vw;height:1.042vw;border-radius:100%;background:var(--bg-btn-pm);color:var(--txt-btn-pm);opacity:0;pointer-events:none;transition:width .4s,height .4s,background-color .4s,color .4s}
+.magnet-text{position:absolute;font-size:1.3em;letter-spacing:-.01em;white-space:nowrap;opacity:0;transition:opacity .2s}
+.cursor-magnet.is-layout .magnet-text{opacity:1}
+
+/* Tablet 480–991: native horizontal scroll, no pin */
+@media (max-width:991px){
+  .h1{font-size:6.25vw;line-height:95%}
+  .h2_sb{font-size:6.25em;line-height:95%;letter-spacing:-.04em}
+  .primary_txt{font-size:1.953em}
+  .descriptor_sb{font-size:1.953em;letter-spacing:0}
+  .desktop{display:none}
+  .tablet{display:block}
+  .blog-section-parent{gap:2.273vh;padding-left:2.604vw}
+  .title-parent{height:6.7em}
+  .blog_collection-parent{width:100vw;height:52.083vw;margin-left:-2.604vw;overflow:auto;scrollbar-width:none}
+  .blog_collection-list{gap:1.302vw;width:fit-content;height:52.083vw;padding:0 2.604vw;overflow:visible}
+  .blog_collection-item{position:relative;width:39.063vw;flex:none}
+  .blog_card-parent{width:39.063vw;height:52.083vw;padding:1.302vw}
+  .blog_card-article_content-parent{gap:.651vw;width:32vw}
+  .blog_card-article_content-title.h2_sb{font-size:3.255em;letter-spacing:-.03em}
+  .blog_card-article_content-text{margin-top:1.302vw}
+  .blog-card-icon{width:1.563vw;height:1.563vw;top:1.302vw;right:1.302vw}
+  .no_bg_button-parent{gap:.521vw;font-size:1.953em}
+  .no_bg_button_icon{width:.651vw}
+  .cursor-magnet{display:none}
+}
+/* Mobile ≤479 */
+@media (max-width:479px){
+  .h1,.h2_sb{font-size:13.333em}
+  .primary_txt,.descriptor_sb{font-size:4.167em}
+  .tablet{display:none}
+  .blog-section-parent{gap:3.75vh;padding-left:2.778vw}
+  .title-parent{height:14.233em}
+  .blog_collection-parent{height:111.111vw;margin-left:-2.778vw}
+  .blog_collection-list{gap:2.778vw;height:111.111vw;padding:0 2.778vw}
+  .blog_collection-item{width:83.333vw}
+  .blog_card-parent{width:83.333vw;height:111.111vw;padding:2.778vw}
+  .blog_card-article_content-parent{gap:1.389vw;width:100%}
+  .blog_card-article_content-title.h2_sb{width:70.556vw;font-size:6.944em}
+  .blog_card-article-theme.tablet{display:block;width:70.556vw}
+  .blog_card-article_content-text{margin-top:2.778vw}
+  .blog-card-icon{width:3.333vw;height:3.333vw;top:2.778vw;right:2.778vw}
+  .no_bg_button-parent{gap:1.111vw;font-size:4.167em}
+  .no_bg_button-text{padding:0}
+  .no_bg_button_icon{width:2.222vw}
+}
+@media (prefers-reduced-motion:reduce){
+  .section-title{transform:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="cursor-magnet" aria-hidden="true"><p class="magnet-text"></p></div>
+
+<div class="page-spacer">Scroll</div>
+
+<div class="blog_pin-spacer" data-block-scroll-spacer>
+<section id="blog-section" class="blog-section-parent" data-block-scroll>
+  <div class="title-parent">
+    <h2 class="blog-section-title h1 section-title" data-title-reveal>Noho stories</h2>
+  </div>
+  <div class="blog_collection-parent" data-block-scroll-parent>
+    <ul class="blog_collection-list" role="list">
+      <li class="blog_collection-item" data-block-scroll-item>
+        <article class="blog_card-parent" data-layout data-size="8.854vw" data-text="Open" data-bg-color="var(--bg-btn-pm)" data-text-color="var(--txt-btn-pm)">
+          <div class="blog_card-article-parent">
+            <div class="blog_card-article_content-parent">
+              <p class="blog_card-article-theme descriptor_sb tablet">Design</p>
+              <h3 class="blog_card-article_content-title h2_sb">A Good-Goodbye</h3>
+              <div class="blog_card-article_content-text primary_txt">
+                <p>Since launching Noho in March 2020, our focus has been on bringing beautiful, quality furniture to homes. Furniture designed for a purpose, that is carefully considered for health and comfort, from sustainable materials, and to be here for a good time and a long time.</p>
+                <p>After much consideration, we’ve made the tough decision to close our U.S. online store.</p>
+              </div>
+            </div>
+          </div>
+          <div class="blog-card-icon"></div>
+          <div class="blog_card-footer">
+            <div class="blog_card-footer-data">
+              <p class="blog_card-article-date descriptor_sb">March 20, 2025</p>
+              <p class="blog_card-article-theme descriptor_sb desktop">Design</p>
+            </div>
+            <a class="no_bg_button-parent" href="#none"><span class="no_bg_button-text">Read article</span><span class="no_bg_button_icon"><svg viewBox="0 0 7 14" fill="none" aria-hidden="true"><path d="M.53 12.53 5.823 7.237a1 1 0 0 0 0-1.414L.53.53" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
+          </div>
+        </article>
+      </li>
+      <li class="blog_collection-item" data-block-scroll-item>
+        <article class="blog_card-parent" data-layout data-size="8.854vw" data-text="Open" data-bg-color="var(--bg-btn-pm)" data-text-color="var(--txt-btn-pm)">
+          <div class="blog_card-article-parent">
+            <div class="blog_card-article_content-parent">
+              <p class="blog_card-article-theme descriptor_sb tablet">Places</p>
+              <h3 class="blog_card-article_content-title h2_sb">From Heritage to Innovation: Behind mixed-use build 'Strip-Mall' with owners Jemma &amp; Adam</h3>
+              <div class="blog_card-article_content-text primary_txt">
+                <p>Situated on the historic site of an iconic landmark in Te Papaioea Palmerston North—‘Strip Mall’ is a striking mixed-use development designed by Space Craft Architects. We spoke to owners Jemma and Adam about the build, its history, and the role sustainability and craftsmanship played in their choices, including the incorporation of our Lightly chairs.</p>
+              </div>
+            </div>
+          </div>
+          <div class="blog-card-icon"></div>
+          <div class="blog_card-footer">
+            <div class="blog_card-footer-data">
+              <p class="blog_card-article-date descriptor_sb">January 14, 2025</p>
+              <p class="blog_card-article-theme descriptor_sb desktop">Places</p>
+            </div>
+            <a class="no_bg_button-parent" href="#none"><span class="no_bg_button-text">Read article</span><span class="no_bg_button_icon"><svg viewBox="0 0 7 14" fill="none" aria-hidden="true"><path d="M.53 12.53 5.823 7.237a1 1 0 0 0 0-1.414L.53.53" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
+          </div>
+        </article>
+      </li>
+      <li class="blog_collection-item" data-block-scroll-item>
+        <article class="blog_card-parent" data-layout data-size="8.854vw" data-text="Open" data-bg-color="var(--bg-btn-pm)" data-text-color="var(--txt-btn-pm)">
+          <div class="blog_card-article-parent">
+            <div class="blog_card-article_content-parent">
+              <p class="blog_card-article-theme descriptor_sb tablet">Profile</p>
+              <h3 class="blog_card-article_content-title h2_sb">People: At home with Mai Nguyen—her design aesthetic and life in Houston</h3>
+              <div class="blog_card-article_content-text primary_txt">
+                <p>Mai Nguyen has an eye for balancing contemporary and classic pieces in her stunning home in Houston, Texas. We chat to her about her timeless aesthetic, form vs function, and her life as a content creator and busy mom of two.</p>
+              </div>
+            </div>
+          </div>
+          <div class="blog-card-icon"></div>
+          <div class="blog_card-footer">
+            <div class="blog_card-footer-data">
+              <p class="blog_card-article-date descriptor_sb">April 1, 2024</p>
+              <p class="blog_card-article-theme descriptor_sb desktop">Profile</p>
+            </div>
+            <a class="no_bg_button-parent" href="#none"><span class="no_bg_button-text">Read article</span><span class="no_bg_button_icon"><svg viewBox="0 0 7 14" fill="none" aria-hidden="true"><path d="M.53 12.53 5.823 7.237a1 1 0 0 0 0-1.414L.53.53" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
+          </div>
+        </article>
+      </li>
+      <li class="blog_collection-item" data-block-scroll-item>
+        <article class="blog_card-parent" data-layout data-size="8.854vw" data-text="Open" data-bg-color="var(--bg-btn-pm)" data-text-color="var(--txt-btn-pm)">
+          <div class="blog_card-article-parent">
+            <div class="blog_card-article_content-parent">
+              <p class="blog_card-article-theme descriptor_sb tablet">Profile</p>
+              <h3 class="blog_card-article_content-title h2_sb">People: We chat to Aden Wang about his dreamy home, his interior style, and his pooch, Muffin</h3>
+              <div class="blog_card-article_content-text primary_txt">
+                <p>Based in San Francisco, Aden &amp; Vivid have a home of dreams—bright, colorful and design-inspired. We ask Aden about his interior design style, the furniture of his dreams, and of course, we get all the details on his gorgeous pooch, Muffin.</p>
+              </div>
+            </div>
+          </div>
+          <div class="blog-card-icon"></div>
+          <div class="blog_card-footer">
+            <div class="blog_card-footer-data">
+              <p class="blog_card-article-date descriptor_sb">January 22, 2024</p>
+              <p class="blog_card-article-theme descriptor_sb desktop">Profile</p>
+            </div>
+            <a class="no_bg_button-parent" href="#none"><span class="no_bg_button-text">Read article</span><span class="no_bg_button_icon"><svg viewBox="0 0 7 14" fill="none" aria-hidden="true"><path d="M.53 12.53 5.823 7.237a1 1 0 0 0 0-1.414L.53.53" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
+          </div>
+        </article>
+      </li>
+      <li class="blog_collection-item" data-block-scroll-item>
+        <article class="blog_card-parent" data-layout data-size="8.854vw" data-text="Open" data-bg-color="var(--bg-btn-pm)" data-text-color="var(--txt-btn-pm)">
+          <div class="blog_card-article-parent">
+            <div class="blog_card-article_content-parent">
+              <p class="blog_card-article-theme descriptor_sb tablet">Design</p>
+              <h3 class="blog_card-article_content-title h2_sb">Lightly wins Dezeen Awards 'Furniture Design of the Year 2023'</h3>
+              <div class="blog_card-article_content-text primary_txt">
+                <p>Our Lightly chair, designed by Formway, has been awarded 'Furniture Design of the Year 2023' by Dezeen—the world's most influential architecture, interiors and design magazine.</p>
+              </div>
+            </div>
+          </div>
+          <div class="blog-card-icon"></div>
+          <div class="blog_card-footer">
+            <div class="blog_card-footer-data">
+              <p class="blog_card-article-date descriptor_sb">December 12, 2023</p>
+              <p class="blog_card-article-theme descriptor_sb desktop">Design</p>
+            </div>
+            <a class="no_bg_button-parent" href="#none"><span class="no_bg_button-text">Read article</span><span class="no_bg_button_icon"><svg viewBox="0 0 7 14" fill="none" aria-hidden="true"><path d="M.53 12.53 5.823 7.237a1 1 0 0 0 0-1.414L.53.53" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
+          </div>
+        </article>
+      </li>
+    </ul>
+  </div>
+</section>
+</div>
+
+<div class="page-spacer"></div>
+
+<script>
+/* Block scroll deck v1.0 — pinned stacking cards (port of noho.ink blogSection, no dependencies) */
+(function () {
+  var section = document.querySelector('[data-block-scroll]');
+  if (!section) return;
+  var spacer = section.closest('[data-block-scroll-spacer]');
+  var parent = section.querySelector('[data-block-scroll-parent]');
+  var items = [].slice.call(section.querySelectorAll('[data-block-scroll-item]'));
+  var n = items.length;
+  var desktop = window.matchMedia('(min-width: 992px)');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var PIN = 4;                       // end: "+=400%" of the viewport height
+  var w = 0, cw = 0, padL = 0, lastTarget = 0, start = 0, dist = 0, stickyTop = 0;
+  var target = 0, shown = 0, on = false;
+  var hover = items.map(function () { return { p: 0, to: 0 }; });
+
+  function ease(t) { return 1 - (1 - t) * (1 - t); }  // GSAP default power1.out
+
+  function measure() {
+    on = desktop.matches;
+    if (!on) {
+      spacer.style.height = section.style.position = section.style.top = '';
+      items.forEach(function (it) { it.style.left = it.style.transform = ''; it.firstElementChild.style.width = it.firstElementChild.style.transform = ''; });
+      return;
+    }
+    w = items[0].offsetWidth;
+    cw = parent.clientWidth;
+    padL = parseFloat(getComputedStyle(section).paddingLeft);
+    items.forEach(function (it, i) { it.style.left = i * w + 'px'; });
+    // Last card lands flush with the collection's right edge (same formula as the original).
+    var t = n - 1;
+    var leftAtStart = padL + t * w - 0.8 * w * (t - 1);
+    lastTarget = -0.8 * w * t + cw - leftAtStart - 0.2 * w;
+    // Pin when the collection's centre meets the viewport centre.
+    var vh = window.innerHeight;
+    stickyTop = vh / 2 - (parent.offsetTop + parent.offsetHeight / 2);
+    dist = PIN * vh;
+    spacer.style.height = section.offsetHeight + dist + 'px';
+    section.style.position = 'sticky';
+    section.style.top = stickyTop + 'px';
+    start = spacer.getBoundingClientRect().top + window.scrollY - stickyTop;
+    onScroll();
+    shown = target;
+  }
+
+  function xFor(i, T) {
+    // Card i is moved by every segment s = 1..i (each tween's end value is absolute).
+    var x = 0;
+    for (var s = 1; s <= Math.min(i, n - 1); s++) {
+      if (T <= s - 1) break;
+      var from = -0.8 * w * (s - 1);
+      var to = (s === n - 1 && i === n - 1) ? lastTarget : -0.8 * w * s;
+      x = from + (to - from) * ease(Math.min(1, T - (s - 1)));
+    }
+    return x;
+  }
+
+  function render() {
+    var T = shown * (n - 1);
+    items.forEach(function (it, i) {
+      var h = hover[i];
+      h.p += (h.to - h.p) * 0.18;
+      var grow = 0.1 * w * h.p;
+      it.style.transform = 'translate3d(' + xFor(i, T) + 'px,0,0)';
+      it.firstElementChild.style.width = grow ? (w + grow) + 'px' : '';
+      it.firstElementChild.style.transform = grow ? 'translate3d(' + -grow + 'px,0,0)' : '';
+    });
+  }
+
+  function onScroll() {
+    if (!on) return;
+    target = Math.min(1, Math.max(0, (window.scrollY - start) / dist));
+  }
+
+  function tick() {
+    if (on) {
+      // Lenis-style smoothing (lerp .1) of the deck progress.
+      shown += (target - shown) * (reduced.matches ? 1 : 0.1);
+      if (Math.abs(target - shown) < 1e-4) shown = target;
+      render();
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Hover peek: a covered card widens 10% to the left (cards 1..n-2).
+  items.forEach(function (it, i) {
+    if (i === 0 || i === n - 1) return;
+    var card = it.firstElementChild;
+    card.addEventListener('mouseenter', function () {
+      if (!on || !matchMedia('(hover: hover)').matches) return;
+      var next = items[i + 1].getBoundingClientRect().left;
+      if (card.getBoundingClientRect().left + w - 0.1 * w > next) hover[i].to = 1;
+    });
+    card.addEventListener('mouseleave', function () { hover[i].to = 0; });
+  });
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', measure);
+  desktop.addEventListener('change', measure);
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(function () { measure(); requestAnimationFrame(tick); });
+  measure();
+})();
+
+/* Title reveal v1.0 — mask slide-up, once (port of noho.ink setTitleAppearance) */
+(function () {
+  var titles = document.querySelectorAll('[data-title-reveal]');
+  if (!titles.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  titles.forEach(function (el) {
+    el.style.transform = 'translateY(108%)';
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        el.style.transition = 'transform 1s cubic-bezier(.17,.17,0,1)';
+        el.style.transform = 'translateY(0)';
+        io.disconnect();
+      });
+    }, { rootMargin: '0px 0px -80px 0px' });
+    io.observe(el.parentElement);
+  });
+})();
+
+/* Magnet cursor v1.0 — dot that grows into a labelled bubble over [data-layout] */
+(function () {
+  var cur = document.querySelector('.cursor-magnet');
+  if (!cur || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  var label = cur.querySelector('.magnet-text');
+  var x = 0, y = 0, tx = 0, ty = 0, active = null, seen = false;
+  var DEF = '1.042vw';
+  function look(el) {
+    if (el === active) return;
+    active = el;
+    if (el) {
+      cur.style.width = cur.style.height = el.dataset.size;
+      cur.style.backgroundColor = el.dataset.bgColor;
+      cur.style.color = el.dataset.textColor;
+      label.textContent = el.dataset.text;
+      cur.classList.add('is-layout');
+    } else {
+      cur.style.width = cur.style.height = DEF;
+      cur.style.backgroundColor = cur.style.color = '';
+      cur.classList.remove('is-layout');
+    }
+  }
+  document.addEventListener('mousemove', function (e) {
+    tx = e.clientX; ty = e.clientY;
+    if (!seen) { x = tx; y = ty; seen = true; cur.style.opacity = 1; }
+    look(e.target.closest && e.target.closest('[data-layout]'));
+  });
+  window.addEventListener('scroll', function () {
+    var el = document.elementFromPoint(tx, ty);
+    look(el && el.closest('[data-layout]'));
+  }, { passive: true });
+  document.addEventListener('mouseleave', function () { cur.style.opacity = 0; seen = false; });
+  var pulse = 0;
+  document.addEventListener('mousedown', function () { pulse = performance.now(); });
+  (function loop(now) {
+    // quickTo 0.4s power2.out ≈ exponential follow
+    x += (tx - x) * 0.18; y += (ty - y) * 0.18;
+    var k = (now - pulse) / 200, s = 1;
+    if (pulse && k < 2) s = k < 1 ? 1 - 0.1 * k : 0.9 + 0.1 * (k - 1);
+    cur.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0) translate(-50%,-50%) scale(' + s + ')';
+    requestAnimationFrame(loop);
+  })(0);
+})();
+</script>
+</body>
+</html>
