@@ -84,6 +84,15 @@ After How it works. The reference clone is `clone/iventions-produced/index.html`
 - **Phones, tablets and reduced motion:** no pinning: the cards come first, then the heading and globe; the list is static and shows each university once; the globe sits above it (no dragging on phones; no spin with reduced motion). On phones the marker labels use the smaller body 3 size.
 - **Globe code and data:** `assets/dot-globe.js` is a small WebGL1 renderer with the reference's geometry, shader and controls; it uses no library. `assets/land-mask.png` is the land mask (land is dark). `build.py` inlines both.
 
+## Student voices (after noho.ink, "Noho stories")
+After Results. The reference clone is `clone/noho-stories/index.html`, with notes in `reference/noho-stories/`.
+
+- **Students:** Ola Aburamadan (Education and International Development, UCL, Chevening), Shahd Alwahidi (Biomedical Engineering, University of Glasgow), Doaa Nabil Ahmed (MA TESOL, Ulster University, Salam Scholarship) and Ibrahim Elhout (France Excellence Scholarship). All four agreed to their full names and these quotes. Each card quotes 20–30 of their own words; the full testimonial is in the card's `<template data-voices-story>`. To add a student, copy one `<li class="voices_item">`.
+- **Card:** scholarship (ochre 800, 6.2:1 or more on every card) and "Read full story" at the top; the quote in the centre (H5, centred); name (Title3) and what they study (Body3, muted, 4.7:1 or more) at the bottom left; university at the bottom right. Card tones cycle sand, green 100 and paper; darker greens in dark mode.
+- **Desktop with motion (992px and up), as on noho.ink:** the section pins for one viewport of scroll per card. Each card slides over the one before it and leaves 20% of it showing; the last card lands on the right grid margin. A covered card's quote fades to 20% so the cut-off text reads as the edge of the stack. Hovering a covered card uncovers 10% more of it. A green "Read" bubble follows the pointer over the cards (green, because red stays with "Become a mentor"). The count ("02 / 04") and the arrows show and move the position; tabbing to a card glides the deck to it.
+- **Full story:** the whole card is one button that opens a side panel (a modal `<dialog>`: Esc and the scrim close it, focus returns to the card) with the full testimonial and previous / next.
+- **Phones, tablets, reduced motion and no JS:** no pin; the cards are a sideways swipe with snap, and the footer stacks.
+
 ## Copy from the previous SFG website
 The text in About, What we do / What we don't do and How it works now follows the previous SFG site, within the existing layout:
 - **About:** the "Our story" paragraph (a Palestinian-led mentorship programme; Gaza's universities destroyed; education as a path to hope; why SFG exists).
@@ -104,6 +113,7 @@ The text in About, What we do / What we don't do and How it works now follows th
 The page uses `Thmanyah Serif Display`, `Thmanyah Serif Text` and `Thmanyah Sans` whenever they are available. These come from installed fonts, or from the `--font-sfg-*` variables set by a bundler such as `next/font/local`. Otherwise it falls back to Newsreader, Readex Pro and Noto Naskh Arabic. The Thmanyah font files are deliberately **not** in this repository, as the licence requires.
 
 ## Open items
+- **Student voices:** Ibrahim Elhout's university isn't named in his testimonial; his card says "Studying in France" until it is confirmed. Shahd's full story has two small fixes to her original post: "@uofglasgow" is written out as "the University of Glasgow", and a doubled "The The" is removed.
 - **How it works:** real photos can replace the illustrations one at a time. The section text is English only so far. The "Start your application" link points to a section that doesn't exist yet.
 - The Arabic paragraph is a draft translation and needs review by a native editor. Its hidden sentence reads «فلسطين متعلّمة يعيد بناءها طلابها».
 - The header now uses the official SFG logo (`assets/logo.png`), reversed to linen for the dark header (`assets/logo-linen.png`). An SVG version would be sharper on high-density screens.
