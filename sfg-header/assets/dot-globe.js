@@ -139,17 +139,11 @@
     if (o.parallax) window.addEventListener('pointermove', function (e) { state.mouse = [e.clientX, e.clientY]; }, { passive: true });
 
     var api = { state: state, resize: resize, running: true, markers: [],
-      setColor: function (c) { o.color = c.trim() || o.color; },
-      // turn (by the shortest way) until this point faces the camera; used when a country button takes keyboard focus
-      face: function (lat, lng) { var p = latLng(lat, lng, 1); state.goal = Math.atan2(p[0], p[2]) - state.offTheta; state.dTheta = 0; } };
+      setColor: function (c) { o.color = c.trim() || o.color; } };
 
     function frame() {
       if (state.autoRotate && o.interactive) state.dTheta -= 2 * Math.PI / 60 / 60 * o.autoRotateSpeed;
       state.theta += state.dTheta * 0.05; state.dTheta *= 0.95;
-      if (state.goal != null) {
-        var d = state.goal - state.theta; d = Math.atan2(Math.sin(d), Math.cos(d));
-        if (Math.abs(d) < 1e-3) state.goal = null; else state.theta += d * 0.08;
-      }
       if (o.parallax) {
         state.rx += (2.5e-4 * state.mouse[1] - state.rx) * 0.05;
         state.ry += (-2.5e-4 * state.mouse[0] - state.ry) * 0.05;

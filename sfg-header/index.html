@@ -180,7 +180,7 @@
     @media (hover:hover){.header_nav-link:hover::after{transform:scaleX(1)}}
     .header_actions{display:flex;align-items:center;gap:var(--space-16)}
     .button-primary{display:inline-flex;align-items:center;justify-content:center;min-height:var(--size-touch-min);padding-inline:var(--space-24);border-radius:var(--radius-full);background:var(--color-action-primary);color:var(--color-text-on-action);transition:background-color .2s ease,scale .15s ease-out}
-    @media (prefers-reduced-motion:no-preference){.button-primary:active,.how_btn:active,.results_pause:active,.sb_pager-btn:not(:disabled):active{scale:.96}}   /* press feedback */
+    @media (prefers-reduced-motion:no-preference){.button-primary:active,.how_btn:active,.sb_pager-btn:not(:disabled):active{scale:.96}}   /* press feedback */
     @media (hover:hover){.button-primary:hover{background:var(--color-action-primary-hover)}}
 
     /* Language toggle (cloned pill with sliding knob) */
@@ -581,7 +581,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .results_stats{list-style:none;margin:var(--space-48) auto 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--grid-gutter);max-width:1120px;text-align:start}
 /* cards: 2 columns × 2 rows. Row 1: number | title. Row 2: the description under the title (same start edge), at the bottom. */
 .results_stat{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto 1fr;gap:var(--space-48) var(--space-32);align-items:center;
-  padding:var(--space-24);border-radius:var(--radius-panel);background:var(--results-card-bg)}
+  padding:var(--space-24);border-radius:10px;background:var(--results-card-bg)}
 .results_number{grid-column:1;grid-row:1;color:var(--results-card-number);font-variant-numeric:tabular-nums}   /* H1 */
 .results_stat-title{grid-column:2;grid-row:1;color:var(--results-card-ink)}                                    /* Title: Thmanyah Sans Medium 28/36 */
 .results_stat-text{grid-column:2;grid-row:2;align-self:end;color:var(--results-card-muted);text-wrap:pretty} /* Body2 */
@@ -600,10 +600,10 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .results_list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
 .results_item{padding-block:var(--space-16);color:var(--results-name);transition:color .8s var(--results-ease)}
 .results_item.is-active{color:var(--results-active-text)}
-.results_name{display:block;font:500 clamp(2.5rem,calc(5.4vw - .25rem),5.75rem)/1.02 var(--font-display);letter-spacing:-.02em;text-wrap:balance}
+.results_name{display:block;font:500 clamp(40px,calc(5.4vw - 4px),92px)/1.02 var(--font-display);letter-spacing:-.02em;text-wrap:balance}
 .results_content{grid-column:8 / 13;height:100vh;padding-top:var(--space-96);position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between}
 .results_title{margin:0;color:var(--results-ink);text-wrap:balance}
-.results_sub{margin:var(--space-16) 0 0;text-wrap:pretty;max-width:40ch;font-weight:400;color:var(--results-ink)}
+.results_sub{margin:var(--space-16) 0 0;max-width:40ch;font-weight:400;color:var(--results-ink)}
 .results_globe-slot{position:relative;flex:none;align-self:center;width:calc(min(100vw,100vh) * .8);aspect-ratio:1;margin-bottom:calc(-22 / 1080 * 100vh)}
 .results_globe{position:absolute;left:50%;top:50%;width:var(--g-size,100%);height:var(--g-size,100%);transform:translate(-50%,-50%);will-change:transform}
 .results_globe::before{content:"";position:absolute;inset:-18%;background:var(--results-glow);pointer-events:none}   /* the glow travels with the globe */
@@ -614,32 +614,25 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .results_fade{transition:opacity .2s,transform .2s}
 .results_marker{--size:28px;position:relative;display:flex;align-items:center;gap:var(--space-12);padding:0;border:0;background:none;color:var(--results-ink);
   font:inherit;transform:translateY(-50%);pointer-events:auto;transition:opacity 1.2s var(--results-ease)}
-@media (hover:hover){.results_globe:has(.results_marker:hover) .results_marker:not(:hover){opacity:.2}}
+.results_globe:has(.results_marker:hover) .results_marker:not(:hover){opacity:.2}
 button.results_marker{cursor:pointer}
 .results_core{position:relative;flex:none;width:var(--size);height:var(--size);margin-left:calc(var(--size) * -.5);border-radius:50%;background:var(--results-halo);
   -webkit-backdrop-filter:blur(2.5px);backdrop-filter:blur(2.5px);transition:transform .8s var(--results-ease),width .8s var(--results-ease),height .8s var(--results-ease)}
 .results_core::before{content:"";position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:var(--results-dot);transform:translate(-50%,-50%);
   transition:transform .8s var(--results-ease),background-color .8s var(--results-ease)}
-@media (hover:hover){button.results_marker:hover .results_core:not(.is-active){width:34px;height:34px}}
+button.results_marker:hover .results_core:not(.is-active){width:34px;height:34px}
 .results_marker.is-active .results_core{transform:scale(.5)}
 .results_marker.is-active .results_core::before{transform:translate(-50%,-50%) scale(4);background:var(--results-pin)}
 /* country names: black (ink) on a linen pill, since ink on green fails contrast (≤ 2.3:1); ink on linen is 15.5:1 */
-.results_label{unicode-bidi:plaintext;white-space:nowrap;padding:var(--space-2) var(--space-12);border-radius:var(--radius-full);background:var(--results-pill-bg);color:var(--results-pill-ink);
+.results_label{unicode-bidi:plaintext;white-space:nowrap;padding:2px 10px;border-radius:999px;background:var(--results-pill-bg);color:var(--results-pill-ink);
   transition:background-color .8s var(--results-ease)}
 button.results_marker .results_label{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
 .results_marker.is-active .results_label{background:var(--results-pin);text-decoration:none}
 .results_marker:not(button) .results_label{opacity:0;transition:opacity .4s}
-@media (hover:hover){.results_marker:not(button):hover .results_label{opacity:1}}
+.results_marker:not(button):hover .results_label{opacity:1}
 .results_marker.is-start .results_label{position:absolute;right:calc(var(--size) + var(--space-12))}
 .results_marker:focus-visible{outline:2px solid var(--results-focus);outline-offset:6px;border-radius:var(--radius-sm)}
 .results_clone{display:contents}
-/* Pause / play for the drifting list and the spinning globe (WCAG 2.2.2: anything moving on its own past 5s can be paused) */
-.results_pause{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-top:var(--space-24);padding-inline:calc(var(--space-20) - var(--space-2)) var(--space-20);border-radius:var(--radius-full);border:1.5px solid var(--results-ink);color:var(--results-ink);transition:background-color .2s,scale .15s ease-out}
-.results_pause[hidden]{display:none}
-@media (hover:hover){.results_pause:hover{background:var(--results-halo)}}
-.results_pause:focus-visible{outline:2px solid var(--results-focus);outline-offset:3px}
-.results_pause .is-play,.results_pause[aria-pressed="true"] .is-pause{display:none}
-.results_pause[aria-pressed="true"] .is-play{display:block}
 
 /* Desktop with motion (after cambium.com's iPad): nothing is pinned. The cards scroll away as usual, while the globe
    starts large at the bottom centre of the intro and travels down through the gap, shrinking and turning, until it
@@ -655,8 +648,8 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
   .results_content{height:auto;padding-top:0;order:-1;display:block}
   .results_globe-slot{width:min(100%,480px);margin:var(--space-48) auto 0}
   .results_list-wrap{height:auto;overflow:visible;-webkit-mask:none;mask:none;padding-bottom:var(--space-96)}
-  .results_name{font-size:calc(var(--h3-size) - .25rem)}
-  .results_label{font-size:var(--body3-size)}
+  .results_name{font-size:calc(var(--h3-size,32px) - 4px)}
+  .results_label{font-size:var(--body3-size,14px)}
 }
 @media (prefers-reduced-motion:reduce){
   .results_contain{height:auto;padding-block:var(--space-128)}
@@ -681,7 +674,6 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 .voices_title-mask{overflow:hidden;padding-bottom:var(--space-8)}
 .voices_title{margin:0;color:var(--color-text-heading)}
 .voices_pager{display:flex;align-items:center;gap:var(--space-12);flex:none}
-.voices_count{color:var(--voices-muted);font-variant-numeric:tabular-nums;margin-inline-end:var(--space-8)}
 .voices_deck{direction:ltr}   /* the testimonials are English; the deck keeps its order in Arabic mode */
 .voices_list{list-style:none;margin:0;padding:0 var(--grid-margin);display:flex;gap:var(--space-16);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--grid-margin);scrollbar-width:none;overscroll-behavior-x:contain}
 .voices_list::-webkit-scrollbar{display:none}
@@ -1135,10 +1127,9 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
             <div class="results_text" data-results-fade data-split-group>
               <h3 class="results_title h2" data-split>Where our scholars study now</h3>
               <p class="results_sub body1" data-split>SFG mentors have helped 143 students win fully funded scholarships in the UK, Ireland, the Netherlands, Belgium, France, Italy, Egypt, Singapore and the USA. These are some of the universities they study at.</p>
-              <button class="results_pause title3" type="button" data-results-pause hidden><svg class="results_pause-icon is-pause" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 3v10M11.5 3v10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="results_pause-icon is-play" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6a.6.6 0 0 0 .9.5l7.6-4.8a.6.6 0 0 0 0-1L5.9 2.7a.6.6 0 0 0-.9.5z" fill="currentColor"/></svg><span data-results-pause-label>Pause motion</span></button>
             </div>
             <div class="results_globe-slot" data-results-slot>
-              <div class="results_globe" data-results-globe><canvas class="results_canvas" aria-hidden="true"></canvas><div class="results_markers" data-results-markers></div></div>
+              <div class="results_globe" data-results-globe aria-hidden="true"><canvas class="results_canvas"></canvas><div class="results_markers" data-results-markers></div></div>
             </div>
           </div>
         </div>
@@ -1149,7 +1140,6 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
         <div class="voices_head">
           <div class="voices_title-mask"><h2 class="voices_title h2" id="voices-title" data-voices-title>Student voices</h2></div>
           <div class="voices_pager">
-            <span class="voices_count title3" data-voices-count aria-hidden="true">01 / 04</span>
             <button class="sb_pager-btn" type="button" data-voices-prev aria-label="Previous story"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M15 10H5M9.5 5.5 5 10l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             <button class="sb_pager-btn" type="button" data-voices-next aria-label="Next story"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           </div>
@@ -1210,6 +1200,20 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
                 <span class="voices_uni title3">Studying in France</span>
               </figcaption>
               <template data-voices-story><p>As a computer engineering graduate pursuing my MBA at IUG, with over seven years of experience in IT project management, I knew I had the qualifications for a scholarship but needed guidance to refine my application.</p><p>Through Scholarships for Ghazza, I was connected with a wonderful mentor who provided invaluable support—proofreading my essays, helping me structure my ideas, and answering my questions as an experienced researcher. Her continuous feedback and responsiveness made a huge difference.</p><p>Having someone with more experience to guide you through the process is essential, as many flaws are unseen from your own perspective. Thanks to this mentorship, I secured the French Excellence Scholarship for students from Palestine.</p></template>
+            </figure>
+          </li>
+          <li class="voices_item" data-voices-item>
+            <figure class="voices_card" aria-labelledby="voice-saher-name">
+              <div class="voices_top">
+                <p class="voices_scholarship title3">France Excellence Scholarship</p>
+                <button class="voices_open title3" type="button" data-voices-open aria-haspopup="dialog">Read full story<span class="sr-only"> of Saher</span><svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              </div>
+              <blockquote class="voices_quote h5"><p>“I wasn’t sure the mentorship program would add much to my application—but I was wrong.”</p></blockquote>
+              <figcaption class="voices_by">
+                <span class="voices_person"><span class="voices_name title3" id="voice-saher-name">Saher</span><span class="voices_study body3">Mechatronics engineer</span></span>
+                <span class="voices_uni title3">Studying in France</span>
+              </figcaption>
+              <template data-voices-story><p>As a Mechatronics Engineer with diverse technical and leadership experience, I initially believed my strong academic background, certifications, and expertise were enough to secure a scholarship. I wasn’t sure the mentorship program would add much to my application—but I was wrong.</p><p>Through Scholarships for Ghazza, I learned how to refine my CV, structure a compelling personal statement, and present my achievements effectively. The small details—clear storytelling, avoiding overly complex language, and maintaining a natural flow—made a huge difference. Having a foreign mentor review my documents provided a fresh perspective I wouldn’t have considered otherwise.</p><p>I was fortunate to secure the France Excellence Scholarship, and I now see how much the program has grown, offering scholarship databases, English improvement communities, and continuous engagement with mentors and peers. This program saves students the hassle of navigating the process alone and significantly strengthens their applications.</p></template>
             </figure>
           </li>
           </ul>
@@ -1950,17 +1954,11 @@ layout();
     if (o.parallax) window.addEventListener('pointermove', function (e) { state.mouse = [e.clientX, e.clientY]; }, { passive: true });
 
     var api = { state: state, resize: resize, running: true, markers: [],
-      setColor: function (c) { o.color = c.trim() || o.color; },
-      // turn (by the shortest way) until this point faces the camera; used when a country button takes keyboard focus
-      face: function (lat, lng) { var p = latLng(lat, lng, 1); state.goal = Math.atan2(p[0], p[2]) - state.offTheta; state.dTheta = 0; } };
+      setColor: function (c) { o.color = c.trim() || o.color; } };
 
     function frame() {
       if (state.autoRotate && o.interactive) state.dTheta -= 2 * Math.PI / 60 / 60 * o.autoRotateSpeed;
       state.theta += state.dTheta * 0.05; state.dTheta *= 0.95;
-      if (state.goal != null) {
-        var d = state.goal - state.theta; d = Math.atan2(Math.sin(d), Math.cos(d));
-        if (Math.abs(d) < 1e-3) state.goal = null; else state.theta += d * 0.08;
-      }
       if (o.parallax) {
         state.rx += (2.5e-4 * state.mouse[1] - state.rx) * 0.05;
         state.ry += (-2.5e-4 * state.mouse[0] - state.ry) * 0.05;
@@ -2043,14 +2041,10 @@ layout();
     var c=COUNTRIES[k], anchor=document.createElement("div"), fade=document.createElement("div"), m=document.createElement(has[k]?"button":"span");
     anchor.className="results_anchor"; fade.className="results_fade";
     if(has[k])anchor.style.zIndex=2;   // clickable countries stay above the plain markers crowded around them
-    m.className="results_marker"+(c.start?" is-start":""); m.innerHTML='<span class="results_core"></span>'+(has[k]?'<span class="sr-only">Highlight universities in </span>':'')+'<span class="results_label body2"></span>'; m.lastChild.textContent=c.name;
-    if(!has[k])anchor.setAttribute("aria-hidden","true");   // a country with no university listed is decoration
-    if(has[k]){m.type="button"; m.setAttribute("aria-pressed","false"); m.addEventListener("click",function(){goTo(k);});
-      // keyboard: focusing a country turns the globe to face it, so the focused button is never on the far side
-      m.addEventListener("focus",function(){if(globe){globe.state.autoRotate=false; if(globe.face)globe.face(c.lat,c.lng);}});
-      m.addEventListener("blur",function(){if(globe)globe.state.autoRotate=spin();});}
+    m.className="results_marker"+(c.start?" is-start":""); m.innerHTML='<span class="results_core"></span><span class="results_label body2"></span>'; m.lastChild.textContent=c.name;
+    if(has[k]){m.type="button"; m.tabIndex=-1; m.addEventListener("click",function(){goTo(k);});}   // the list itself is the accessible content
     m.addEventListener("mouseenter",function(){if(globe)globe.state.autoRotate=false;});
-    m.addEventListener("mouseleave",function(){if(globe)globe.state.autoRotate=spin();});
+    m.addEventListener("mouseleave",function(){if(globe)globe.state.autoRotate=!reduce.matches;});
     fade.appendChild(m); anchor.appendChild(fade); layer.appendChild(anchor);
     return {k:k,anchor:anchor,fade:fade,el:m,core:m.firstChild};
   });
@@ -2063,10 +2057,7 @@ layout();
       mk.anchor.style.transform="translate3d("+p.x.toFixed(1)+"px,"+p.y.toFixed(1)+"px,0) scale("+(p.scale/1.33/gs).toFixed(3)+")";
       mk.fade.style.opacity=p.front?1:0; mk.fade.style.transform="scale("+(p.front?1:.25)+")"; mk.el.style.pointerEvents=p.front?"":"none";});}
   });
-  var paused=false, pauseBtn=root.querySelector("[data-results-pause]"), pauseLabel=root.querySelector("[data-results-pause-label]");
-  function spin(){return !reduce.matches&&!paused;}
-  if(globe)globe.state.autoRotate=spin();
-  pauseBtn.addEventListener("click",function(){paused=!paused; pauseBtn.setAttribute("aria-pressed",String(paused)); pauseLabel.textContent=paused?"Play motion":"Pause motion"; if(globe)globe.state.autoRotate=spin();});
+  if(globe)globe.state.autoRotate=!reduce.matches;
   function recolor(){if(globe)globe.setColor(getComputedStyle(root).getPropertyValue("--results-dot"));}
 
   var setH=0, offset=0, picked=null, tween=null, resumeAt=0, lastT=0, on=false;
@@ -2121,7 +2112,6 @@ layout();
   function measure(){
     measureStage();
     setLoop(wide.matches&&!reduce.matches);
-    pauseBtn.hidden=reduce.matches;   // with reduced motion nothing moves, so there is nothing to pause
     paint(); if(!loop)return;
     setH=0; for(var i=0;i<N;i++)setH+=items[i].offsetHeight;
     offset=setH+items[0].offsetHeight/2-wrapEl.clientHeight/2;   // start on the real list's first university, centred
@@ -2148,7 +2138,7 @@ layout();
     var dt=lastT?Math.min(t-lastT,100):16.7; lastT=t;
     if(loop){
       if(tween){var p=Math.min(1,(t-tween.t0)/tween.dur); offset=tween.from+(tween.to-tween.from)*(1-Math.pow(1-p,4)); if(p===1){tween=null; resumeAt=t+1000;}}
-      else if(t>=resumeAt&&!paused)offset+=.3*dt/(1000/60);
+      else if(t>=resumeAt)offset+=.3*dt/(1000/60);
       if(!tween)offset=wrap(offset);
       track.style.transform="translate3d(0,"+(-offset).toFixed(2)+"px,0)";
     }
@@ -2159,7 +2149,7 @@ layout();
   new IntersectionObserver(function(e){var vis=e[0].isIntersecting; if(globe)globe.running=vis; if(vis&&!on){on=true;requestAnimationFrame(tick);} on=vis;}).observe(root);
   addEventListener("resize",function(){var f=loop?(offset-setH*.5)/setH:0; measure(); if(loop)offset=wrap(setH*.5+f*setH);});
   wide.addEventListener("change",measure);
-  reduce.addEventListener("change",function(){measure(); if(globe)globe.state.autoRotate=spin();});
+  reduce.addEventListener("change",function(){measure(); if(globe)globe.state.autoRotate=!reduce.matches;});
   new MutationObserver(recolor).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
   new MutationObserver(recolor).observe(root,{attributes:true,attributeFilter:["data-palette"]});
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change",recolor);
@@ -2174,7 +2164,7 @@ layout();
       peeks 10% on hover; a green "Read" bubble follows the pointer over the cards. Any card opens its full story
       in a side panel with previous / next. Below 992px, with reduced motion or without JS: a swipe strip.
       Hooks: [data-voices] [data-voices-pin] [data-voices-deck] [data-voices-list] [data-voices-item] [data-voices-open]
-             [data-voices-story] [data-voices-count] [data-voices-prev] [data-voices-next] [data-voices-title]
+             [data-voices-story] [data-voices-prev] [data-voices-next] [data-voices-title]
              [data-voices-cursor] [data-voices-dialog] [data-voices-d-*] */
   (function () {
     "use strict";
@@ -2185,12 +2175,10 @@ layout();
     var deck = section.querySelector("[data-voices-deck]");
     var list = section.querySelector("[data-voices-list]");
     var items = [].slice.call(section.querySelectorAll("[data-voices-item]"));
-    var count = section.querySelector("[data-voices-count]");
     var n = items.length;
     var desktop = matchMedia("(min-width: 992px)");
     var reduced = matchMedia("(prefers-reduced-motion: reduce)");
     var finePointer = matchMedia("(hover: hover) and (pointer: fine)");
-    var pad = function (k) { return (k < 10 ? "0" : "") + k; };
 
     // ---- Pinned deck ---------------------------------------------------------
     var spacer = document.createElement("div");
@@ -2245,7 +2233,6 @@ layout();
     function setCurrent(k) {
       if (k === current) return;
       current = k;
-      count.textContent = pad(k + 1) + " / " + pad(n);
       prev.disabled = k <= 0; next.disabled = k >= n - 1;
     }
 
