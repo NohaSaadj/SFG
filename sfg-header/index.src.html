@@ -98,6 +98,7 @@
       --color-text-pen:var(--red-600);   /* the mentor's handwritten notes: red 500 is 3.9:1 on paper, red 600 is 4.9:1 */
       --color-text-on-inverse-secondary:rgb(247 242 233 / .72);   /* faded body on the inverse green (5.6:1) */
       --color-border-control:var(--neutral-ink);--color-bg-control:rgb(255 255 255 / .72);--color-bg-control-knob:var(--neutral-white);   /* language toggle */
+      --color-bg-tint-red:var(--red-100);--color-bg-tint-neutral:var(--neutral-white);--color-bg-tint-green:var(--green-100);   /* card trio: red and green tints either side of white */
       --h2-size:clamp(2.125rem,3.4vw,3rem);--h2-lh:1.167;--h2-ls:-.0167em;
       --title-size:1.75rem;--title-lh:1.2857;   /* 28/36 */
       --h4-size:2rem;--h4-lh:1.25;--h4-ls:-.0125em;   /* 32/40 */
@@ -110,14 +111,14 @@
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
-      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
+      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;--color-bg-tint-red:var(--red-900);--color-bg-tint-neutral:#16241D;--color-bg-tint-green:var(--green-800);
       --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);
     }}
     :root[data-theme="dark"]{
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
-      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
+      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;--color-bg-tint-red:var(--red-900);--color-bg-tint-neutral:#16241D;--color-bg-tint-green:var(--green-800);
       --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);
     }
 
@@ -663,8 +664,7 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
    Below 992px, with reduced motion or without JS: a native sideways swipe with snap.
    ========================================================== */
 .section_voices{
-  --voices-card-1:var(--color-bg-surface-alt);--voices-card-2:var(--color-bg-surface);   /* sand and paper, one warm family */
-  --voices-chip:var(--color-bg-field);   /* white buttons and pills on the panel */
+  --voices-card-1:var(--color-bg-tint-red);--voices-card-2:var(--color-bg-tint-neutral);--voices-card-3:var(--color-bg-tint-green);   /* red tint, white, green tint */
   --voices-ink:var(--color-text-primary);--voices-muted:var(--color-text-secondary);--voices-achievement:var(--color-text-achievement-on-tint);
   --voices-link:var(--color-action-secondary);--voices-bubble-bg:var(--color-action-secondary);--voices-bubble-ink:var(--color-text-on-secondary);
   --voices-scrim:var(--color-scrim-dialog);
@@ -678,8 +678,9 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 .voices_list{list-style:none;margin:0;padding:0 var(--grid-margin);display:flex;gap:var(--space-16);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--grid-margin);scrollbar-width:none;overscroll-behavior-x:contain}
 .voices_list::-webkit-scrollbar{display:none}
 .voices_item{flex:none;width:var(--voices-w);scroll-snap-align:start;display:flex}
-.voices_item:nth-child(odd) .voices_card{background:var(--voices-card-1)}
-.voices_item:nth-child(even) .voices_card{background:var(--voices-card-2)}
+.voices_item:nth-child(3n+1) .voices_card{background:var(--voices-card-1)}
+.voices_item:nth-child(3n+2) .voices_card{background:var(--voices-card-2)}
+.voices_item:nth-child(3n) .voices_card{background:var(--voices-card-3)}
 
 /* Card: name + study top-left and university top-right (the label a covered card still shows), the student's words in the centre,
    then the scholarship and "Read full story" at the bottom, where reading ends */
@@ -733,16 +734,9 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 .voices_dialog::backdrop{background:var(--voices-scrim);opacity:0;transition:opacity .15s ease-out,overlay .3s allow-discrete,display .3s allow-discrete}
 .voices_dialog[open]::backdrop{opacity:1;transition:opacity .4s ease-out,overlay .6s allow-discrete,display .6s allow-discrete}
 @starting-style{.voices_dialog[open]::backdrop{opacity:0}}
-.voices_panel{display:flex;flex-direction:column;height:100%}
-.voices_bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);padding:var(--space-48) var(--space-48) var(--space-20)}
-.voices_bar-nav{display:flex;gap:var(--space-20)}
-.voices_d-btn{display:grid;place-items:center;width:var(--size-touch-min);height:var(--size-touch-min);border-radius:var(--radius-sm);background:var(--voices-chip);color:var(--color-text-primary);transition:background-color .2s,scale .15s ease-out}
-.voices_d-btn:disabled{opacity:.4;cursor:default}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .section_voices{--voices-chip:var(--color-bg-surface-alt)}}
-:root[data-theme="dark"] .section_voices{--voices-chip:var(--color-bg-surface-alt)}   /* the dark field colour is the page colour, so chips use the raised surface */
-@media (hover:hover){.voices_d-btn:not(:disabled):hover{background:var(--color-bg-selected)}}
-@media (prefers-reduced-motion:no-preference){.voices_d-btn:not(:disabled):active{scale:.96}}
-.voices_scroll{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:0 var(--space-48) var(--space-96)}
+.voices_scroll{--voices-bar-h:calc(var(--space-48) + var(--size-touch-min) + var(--space-20));height:100%;overflow-y:auto;overscroll-behavior:contain;padding:0 var(--space-48) var(--space-96)}
+.voices_bar{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);margin-inline:calc(var(--space-48) * -1);padding:var(--space-48) var(--space-48) var(--space-20);background:var(--color-bg-page)}   /* stays put while the photo and title scroll under it */
+.voices_bar-nav{display:flex;gap:var(--space-12)}
 .voices_d-media{position:relative;margin:0;aspect-ratio:3 / 2;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-bg-surface)}
 .voices_d-photo{display:block;width:100%;height:100%;object-fit:cover;outline:1px solid rgb(0 0 0 / .1);outline-offset:-1px}
 /* Until a photo is added: the tatreez stitch field with the student's initials */
@@ -752,10 +746,12 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 .voices_d-initials{position:relative;display:grid;place-items:center;width:var(--space-128);height:var(--space-128);border-radius:var(--radius-full);background:var(--color-bg-page);color:var(--color-text-heading);letter-spacing:0}
 .voices_d-name{margin:var(--space-48) 0 0;color:var(--color-text-primary);text-wrap:balance}
 .voices_d-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);column-gap:var(--space-48);margin-top:var(--space-48)}
-.voices_d-meta{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-16)}
+.voices_d-meta{position:sticky;top:calc(var(--voices-bar-h) + var(--space-24));align-self:start;display:flex;flex-direction:column;gap:var(--space-24)}   /* pins under the bar until the story ends */
 .voices_d-scholarship{margin:0;color:var(--color-text-achievement-on-tint)}
-.voices_d-tags{display:flex;flex-wrap:wrap;gap:var(--space-8);list-style:none;margin:0;padding:0}
-.voices_d-tag{padding:var(--space-8) var(--space-16);border-radius:var(--radius-full);background:var(--voices-chip);color:var(--color-text-primary)}
+.voices_d-facts{margin:0;border-top:1px solid var(--color-border-subtle)}
+.voices_d-fact{display:flex;flex-direction:column;gap:var(--space-4);padding-block:var(--space-12);border-bottom:1px solid var(--color-border-subtle)}
+.voices_d-fact dt{color:var(--color-text-secondary)}
+.voices_d-fact dd{margin:0;color:var(--color-text-primary);text-wrap:pretty}
 .voices_d-story{max-width:65ch;text-wrap:pretty}
 .voices_d-story p{margin:0 0 var(--space-20)}
 .voices_dialog :focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
@@ -765,8 +761,9 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
   .voices_card{padding:var(--space-24)}
   .voices_by{flex-direction:column;align-items:flex-start}
   .voices_uni{text-align:start}
-  .voices_bar{padding:var(--space-20)}
-  .voices_scroll{padding:0 var(--space-20) var(--space-64)}
+  .voices_scroll{--voices-bar-h:calc(var(--space-20) * 2 + var(--size-touch-min));padding:0 var(--space-20) var(--space-64)}
+  .voices_bar{margin-inline:calc(var(--space-20) * -1);padding:var(--space-20)}
+  .voices_d-meta{position:static}
   .voices_d-name{margin-top:var(--space-32)}
   .voices_d-body{grid-template-columns:1fr;row-gap:var(--space-32);margin-top:var(--space-24)}
 }
@@ -1239,15 +1236,15 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
       </div>
       <div class="voices_cursor" aria-hidden="true" data-voices-cursor><span class="title3">Read</span></div>
       <dialog class="voices_dialog" aria-labelledby="voices-d-name" data-voices-dialog>
-        <div class="voices_panel">
+        <div class="voices_scroll" data-voices-d-scroll>
           <div class="voices_bar">
             <div class="voices_bar-nav">
-              <button class="voices_d-btn" type="button" data-voices-d-prev aria-label="Previous story"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M15 10H5M9.5 5.5 5 10l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <button class="voices_d-btn" type="button" data-voices-d-next aria-label="Next story"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button class="sb_pager-btn" type="button" data-voices-d-prev aria-label="Previous story"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M15 10H5M9.5 5.5 5 10l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button class="sb_pager-btn" type="button" data-voices-d-next aria-label="Next story"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
-            <button class="voices_d-btn" type="button" data-voices-close aria-label="Close story"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+            <button class="sb_pager-btn" type="button" data-voices-close aria-label="Close story" autofocus><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
           </div>
-          <div class="voices_scroll" data-voices-d-scroll dir="ltr" lang="en">
+          <div class="voices_article" dir="ltr" lang="en">
             <figure class="voices_d-media" data-voices-d-media>
               <img class="voices_d-photo" data-voices-d-photo alt="" hidden />
               <div class="voices_d-placeholder" data-voices-d-placeholder aria-hidden="true">
@@ -1259,10 +1256,10 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
             <div class="voices_d-body">
               <div class="voices_d-meta">
                 <p class="voices_d-scholarship title3" data-voices-d-scholarship></p>
-                <ul class="voices_d-tags" role="list">
-                  <li class="voices_d-tag body3" data-voices-d-study></li>
-                  <li class="voices_d-tag body3" data-voices-d-uni></li>
-                </ul>
+                <dl class="voices_d-facts">
+                  <div class="voices_d-fact"><dt class="body3">Programme</dt><dd class="body2" data-voices-d-study></dd></div>
+                  <div class="voices_d-fact"><dt class="body3">University</dt><dd class="body2" data-voices-d-uni></dd></div>
+                </dl>
               </div>
               <div class="voices_d-story body1" data-voices-d-story></div>
             </div>
@@ -2199,6 +2196,25 @@ layout();
     var dScroll = dlg.querySelector("[data-voices-d-scroll]");
     var dPrev = dlg.querySelector("[data-voices-d-prev]"), dNext = dlg.querySelector("[data-voices-d-next]");
     var openIdx = 0, opener = null;
+    // Wheel scrolling in the panel eases like Noho's (Lenis, lerp .1); keys, scrollbar and touch stay native
+    var fine = matchMedia("(pointer:fine)"), glideTo = 0, glideAt = 0, glideRaf = 0;
+    function glide() {
+      glideAt += (glideTo - glideAt) * 0.1;
+      if (Math.abs(glideTo - glideAt) < 0.5) glideAt = glideTo;
+      dScroll.scrollTop = glideAt;
+      glideRaf = glideAt === glideTo ? 0 : requestAnimationFrame(glide);
+    }
+    function stopGlide() { cancelAnimationFrame(glideRaf); glideRaf = 0; }
+    dScroll.addEventListener("wheel", function (e) {
+      if (!fine.matches || reduced.matches || e.ctrlKey) return;
+      e.preventDefault();
+      if (!glideRaf) glideTo = glideAt = dScroll.scrollTop;
+      var dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? dScroll.clientHeight : 1);
+      glideTo = Math.max(0, Math.min(dScroll.scrollHeight - dScroll.clientHeight, glideTo + dy));
+      if (!glideRaf) glideRaf = requestAnimationFrame(glide);
+    }, { passive: false });
+    dScroll.addEventListener("keydown", stopGlide);
+    dScroll.addEventListener("pointerdown", stopGlide);
     function fill(k) {
       openIdx = k;
       var it = items[k];
@@ -2212,7 +2228,7 @@ layout();
       dInit.textContent = dName.textContent.split(/\s+/).map(function (w) { return w.charAt(0); }).slice(0, 2).join("");
       dStory.innerHTML = "";
       dStory.appendChild(it.querySelector("[data-voices-story]").content.cloneNode(true));
-      dScroll.scrollTop = 0;
+      stopGlide(); dScroll.scrollTop = 0;
       dPrev.disabled = k === 0; dNext.disabled = k === n - 1;
     }
     items.forEach(function (it, i) {
