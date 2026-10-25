@@ -94,6 +94,13 @@ After Results. The reference clone is `clone/noho-stories/index.html`, with note
 - **Phones, tablets, reduced motion and no JS:** no pin; the cards are a sideways swipe with snap, and the footer stacks.
 - **Reviews (better-ui, colors, typography, accessibility, writing):** colours come from root tokens (`--color-bg-card-1…3`, `--color-text-achievement-on-tint`, `--color-text-on-secondary`, `--color-scrim-dialog`, light and dark). Quotes use line-height 1.4. Covered quotes fade to 55% at most (3.6:1, large text). The section is `lang="en"`, so screen readers keep English pronunciation in Arabic mode. Previous / next in the story panel announce "Story 2 of 4: …". Shortened quotes are marked with an ellipsis.
 
+## Page-wide review (better-ui, colors, typography, accessibility, writing)
+- **Type tokens** are in `rem` with unitless line-heights and `em` tracking. They render the same as the old pixel values (tracking now scales down with the smaller phone headings). Font smoothing is set once on the root; body copy uses `text-wrap: pretty`.
+- **Colours:** new root tokens `--color-text-pen` (the mentor's notes: red 600 for 4.9:1, red 500 was 3.9:1), `--color-text-on-inverse-secondary` (faded body on green), and `--color-border-control` / `--color-bg-control` / `--color-bg-control-knob` (language toggle). The unused `--color-text-fill-off` is gone. In How SFG began, years that aren't the current step are muted (5.4:1) instead of 30% ochre (1.5:1).
+- **Accessibility:** a visually hidden `<h1>` ("Scholarships for Ghazza", translated). The menu button keeps its name on narrow phones; the open menu is a `<nav>`, moves focus to its first link, makes the page behind it inert, and Esc returns focus to the button. Results has a **Pause motion / Play motion** button for the drifting list and the spinning globe (WCAG 2.2.2); the UK and Ireland markers are real buttons ("Highlight universities in …", with pressed state) that the keyboard reaches, and the globe turns to face the country that has focus. The "What we don't do" columns no longer stay hidden without JavaScript or with reduced motion. The scroll cue bobs three times, then rests.
+- **UI:** hover effects only on devices that can hover; filled and outlined buttons press to 0.96 (not with reduced motion); the Results label and card use the spacing and radius scales.
+- **Writing:** "Skip intro" in sentence case, like every other label. The timeline's last step said 135 scholarships while the text said 143; both now say 143.
+
 ## Copy from the previous SFG website
 The text in About, What we do / What we don't do and How it works now follows the previous SFG site, within the existing layout:
 - **About:** the "Our story" paragraph (a Palestinian-led mentorship programme; Gaza's universities destroyed; education as a path to hope; why SFG exists).
@@ -114,6 +121,7 @@ The text in About, What we do / What we don't do and How it works now follows th
 The page uses `Thmanyah Serif Display`, `Thmanyah Serif Text` and `Thmanyah Sans` whenever they are available. These come from installed fonts, or from the `--font-sfg-*` variables set by a bundler such as `next/font/local`. Otherwise it falls back to Newsreader, Readex Pro and Noto Naskh Arabic. The Thmanyah font files are deliberately **not** in this repository, as the licence requires.
 
 ## Open items
+- **Links with no section yet:** Mentors (`#mentors`), For students (`#students`), Become a mentor (`#become-a-mentor`), Become a partner (`#partner-with-us`) and Start your application (`#for-students`) point to sections that don't exist yet.
 - **Student voices:** Ibrahim Elhout's university isn't named in his testimonial; his card says "Studying in France" and "Computer engineer" until his university and program are confirmed. Shahd's full story has two small fixes to her original post: "@uofglasgow" is written out as "the University of Glasgow", and a doubled "The The" is removed.
 - **How it works:** real photos can replace the illustrations one at a time. The section text is English only so far. The "Start your application" link points to a section that doesn't exist yet.
 - The Arabic paragraph is a draft translation and needs review by a native editor. Its hidden sentence reads «فلسطين متعلّمة يعيد بناءها طلابها».

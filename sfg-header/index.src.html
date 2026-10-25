@@ -69,16 +69,16 @@
       --font-text:"Thmanyah Serif Text",var(--font-sfg-text,"Newsreader"),"Newsreader","Noto Naskh Arabic",Georgia,serif;
       --font-sans:"Thmanyah Sans",var(--font-sfg-sans,"Readex Pro"),"Readex Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
 
-      --h1-size:clamp(40px,4.5vw,64px);--h1-lh:1.125;--h1-ls:-1px;
-      --h3-size:clamp(30px,2.8vw,40px);--h3-lh:1.2;--h3-ls:-0.6px;
-      --h5-size:24px;--h5-lh:32px;--h5-ls:-0.2px;
-      --h6-size:20px;--h6-lh:28px;
-      --title2-size:18px;--title2-lh:26px;
-      --body2-size:16px;--body2-lh:26px;
-      --title1-size:20px;--title1-lh:28px;
-      --title3-size:16px;--title3-lh:24px;
-      --body1-size:18px;--body1-lh:28px;
-      --body3-size:14px;--body3-lh:22px;
+      --h1-size:clamp(2.5rem,4.5vw,4rem);--h1-lh:1.125;--h1-ls:-.0156em;
+      --h3-size:clamp(1.875rem,2.8vw,2.5rem);--h3-lh:1.2;--h3-ls:-.015em;
+      --h5-size:1.5rem;--h5-lh:1.3333;--h5-ls:-.0083em;   /* 24/32 */
+      --h6-size:1.25rem;--h6-lh:1.4;   /* 20/28 */
+      --title2-size:1.125rem;--title2-lh:1.4444;   /* 18/26 */
+      --body2-size:1rem;--body2-lh:1.625;   /* 16/26 */
+      --title1-size:1.25rem;--title1-lh:1.4;   /* 20/28 */
+      --title3-size:1rem;--title3-lh:1.5;   /* 16/24 */
+      --body1-size:1.125rem;--body1-lh:1.5556;   /* 18/28 */
+      --body3-size:.875rem;--body3-lh:1.5714;   /* 14/22 */
 
       /* Layout */
       --space-4:4px;--space-8:8px;--space-12:12px;--space-16:16px;--space-20:20px;--space-24:24px;
@@ -95,11 +95,13 @@
       --color-icon-accent-on-inverse:var(--red-400);   /* line icons on the dark "What we do" sheet (red 400 keeps 3:1 on green) */
       --color-icon-accent:var(--red-600);              /* line icons on light sheets */
       --color-pattern-stitch:var(--neutral-border);--color-pattern-stitch-soft:var(--neutral-sand);
-      --color-text-fill-off:rgb(30 26 22 / .16);   /* About paragraph: words not yet reached by the scroll */
       --color-accent-number:var(--red-600);
-      --h2-size:clamp(34px,3.4vw,48px);--h2-lh:1.167;--h2-ls:-0.8px;
-      --title-size:28px;--title-lh:36px;
-      --h4-size:32px;--h4-lh:40px;--h4-ls:-0.4px;
+      --color-text-pen:var(--red-600);   /* the mentor's handwritten notes: red 500 is 3.9:1 on paper, red 600 is 4.9:1 */
+      --color-text-on-inverse-secondary:rgb(247 242 233 / .72);   /* faded body on the inverse green (5.6:1) */
+      --color-border-control:var(--neutral-ink);--color-bg-control:rgb(255 255 255 / .72);--color-bg-control-knob:var(--neutral-white);   /* language toggle */
+      --h2-size:clamp(2.125rem,3.4vw,3rem);--h2-lh:1.167;--h2-ls:-.0167em;
+      --title-size:1.75rem;--title-lh:1.2857;   /* 28/36 */
+      --h4-size:2rem;--h4-lh:1.25;--h4-ls:-.0125em;   /* 32/40 */
       --ease-out:cubic-bezier(.22,1,.36,1);
 
       /* Intro story roll */
@@ -109,15 +111,15 @@
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
-      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-bg-card-1:#21332A;--color-bg-card-2:#263B31;--color-bg-card-3:#1B2B23;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
-      --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);--color-text-fill-off:rgb(239 232 219 / .18);
+      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-bg-card-1:#21332A;--color-bg-card-2:#263B31;--color-bg-card-3:#1B2B23;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
+      --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);
     }}
     :root[data-theme="dark"]{
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
-      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-bg-card-1:#21332A;--color-bg-card-2:#263B31;--color-bg-card-3:#1B2B23;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
-      --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);--color-text-fill-off:rgb(239 232 219 / .18);
+      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-bg-card-1:#21332A;--color-bg-card-2:#263B31;--color-bg-card-3:#1B2B23;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
+      --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);
     }
 
     /* Type scale */
@@ -139,7 +141,7 @@
        Base
        ========================================================== */
     *,*::before,*::after{box-sizing:border-box}
-    html{-webkit-text-size-adjust:100%}
+    html{-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
     body{margin:0;background:var(--color-bg-inverse);color:var(--color-text-primary);font:400 var(--body2-size)/var(--body2-lh) var(--font-text);overflow-x:hidden}
     img{display:block;max-width:100%}
     a{color:inherit;text-decoration:none}
@@ -175,18 +177,19 @@
     .header_nav-list{display:flex;align-items:center;gap:var(--space-24);list-style:none;margin:0;padding:0}
     .header_nav-link{display:inline-flex;align-items:center;min-height:var(--size-touch-min);position:relative}
     .header_nav-link::after{content:"";position:absolute;inset-inline:0;bottom:8px;height:2px;border-radius:2px;background:currentColor;transform:scaleX(0);transform-origin:var(--origin-start,left);transition:transform .35s var(--ease-out)}
-    .header_nav-link:hover::after{transform:scaleX(1)}
+    @media (hover:hover){.header_nav-link:hover::after{transform:scaleX(1)}}
     .header_actions{display:flex;align-items:center;gap:var(--space-16)}
-    .button-primary{display:inline-flex;align-items:center;justify-content:center;min-height:var(--size-touch-min);padding-inline:var(--space-24);border-radius:var(--radius-full);background:var(--color-action-primary);color:var(--color-text-on-action);transition:background-color .2s ease}
-    .button-primary:hover{background:var(--color-action-primary-hover)}
+    .button-primary{display:inline-flex;align-items:center;justify-content:center;min-height:var(--size-touch-min);padding-inline:var(--space-24);border-radius:var(--radius-full);background:var(--color-action-primary);color:var(--color-text-on-action);transition:background-color .2s ease,scale .15s ease-out}
+    @media (prefers-reduced-motion:no-preference){.button-primary:active,.how_btn:active,.results_pause:active,.sb_pager-btn:not(:disabled):active{scale:.96}}   /* press feedback */
+    @media (hover:hover){.button-primary:hover{background:var(--color-action-primary-hover)}}
 
     /* Language toggle (cloned pill with sliding knob) */
     .lang-toggle{position:relative;display:inline-flex;align-items:center;width:84px;height:var(--size-touch-min);flex:none}
-    .lang-toggle_track{position:absolute;inset:var(--space-8) 0;border-radius:var(--radius-full);border:1px solid var(--neutral-ink);background:rgb(255 255 255 / .72)}
+    .lang-toggle_track{position:absolute;inset:var(--space-8) 0;border-radius:var(--radius-full);border:1px solid var(--color-border-control);background:var(--color-bg-control)}
     .lang-toggle_label{position:absolute;top:50%;transform:translateY(-50%);font:500 var(--title3-size)/1 var(--font-sans);color:var(--color-text-on-panel);transition:opacity .3s ease}
     .lang-toggle_label[data-lang="en"]{left:var(--space-12)}
     .lang-toggle_label[data-lang="ar"]{right:var(--space-16);font-size:var(--title2-size)}
-    .lang-toggle_knob{position:absolute;top:50%;left:5px;width:26px;height:26px;margin-top:-13px;border-radius:50%;background:var(--neutral-white);border:1px solid var(--neutral-ink);transition:transform .45s var(--ease-out)}
+    .lang-toggle_knob{position:absolute;top:50%;left:5px;width:26px;height:26px;margin-top:-13px;border-radius:50%;background:var(--color-bg-control-knob);border:1px solid var(--color-border-control);transition:transform .45s var(--ease-out)}
     /* Knob covers the current language and shows the other one */
     html[lang="en"] .lang-toggle_label[data-lang="en"]{opacity:0}
     html[lang="ar"] .lang-toggle_knob{transform:translateX(47px)}
@@ -217,7 +220,7 @@
       .site-header{padding-block:var(--space-16)}
     }
     @media (max-width:600px){.header_logo-img{height:40px}}
-    @media (max-width:420px){.menu-trigger_text{display:none}}
+    @media (max-width:420px){.menu-trigger_text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}   /* hidden visually, still the button's name */
 
     /* ==========================================================
        Intro (scroll-controlled timeline: forward and back with the mouse, trackpad, touch or arrow keys)
@@ -259,16 +262,16 @@
 
     .intro_cue{position:absolute;z-index:30;left:50%;bottom:var(--space-32);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:var(--space-8);color:var(--color-text-on-inverse);opacity:0;transition:opacity 1s ease;pointer-events:none}
     .intro_cue.is-on{opacity:.85}
-    .intro_cue svg{animation:cue-bob 1.8s ease-in-out infinite}
+    .intro_cue svg{animation:cue-bob 1.8s ease-in-out 3}   /* bobs three times, then rests: nothing moves on its own past 5s */
     @keyframes cue-bob{50%{transform:translateY(6px)}}
 
     .intro_skip{position:absolute;z-index:30;right:var(--grid-margin);bottom:var(--space-32);display:inline-flex;align-items:center;gap:var(--space-16);min-height:var(--size-touch-min);color:var(--color-text-on-inverse);opacity:0;transition:opacity 1.2s ease}
     .intro_skip.is-in{opacity:1}
     .intro_skip svg{width:28px;height:28px;transition:transform .3s var(--ease-out)}
-    .intro_skip:hover svg{transform:translateX(6px)}
+    @media (hover:hover){.intro_skip:hover svg{transform:translateX(6px)}}
     html[dir="rtl"] .intro_skip{right:auto;left:var(--grid-margin)}
     html[dir="rtl"] .intro_skip svg{transform:scaleX(-1)}
-    html[dir="rtl"] .intro_skip:hover svg{transform:scaleX(-1) translateX(6px)}
+    @media (hover:hover){html[dir="rtl"] .intro_skip:hover svg{transform:scaleX(-1) translateX(6px)}}
     .is-finished .intro_skip{opacity:0;pointer-events:none}
     @media (max-width:767px){
       .intro_poem,.intro_row p,.intro_center p,.intro_start,.intro_begin,.intro_fly{--h1-size:var(--h4-size);--h1-lh:var(--h4-lh);--h1-ls:var(--h4-ls)}   /* H4 on phones */
@@ -297,7 +300,7 @@
 .partners_logo.is-phoenix{--logo:url("assets/partners/phoenix-space.png");width:min(100%,104px);aspect-ratio:501/171}
 .partners_logo.is-bseisu{--logo:url("assets/partners/bseisu-foundation.png");width:var(--space-48);aspect-ratio:1}
 .partners_join{white-space:nowrap;display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);color:var(--color-action-secondary);text-decoration:underline;text-underline-offset:4px}
-.partners_join:hover{text-decoration-thickness:2px}
+@media (hover:hover){.partners_join:hover{text-decoration-thickness:2px}}
 .partners_join svg{flex:none}
 html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 @media (max-width:767px){
@@ -308,7 +311,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 }
 
 /* ===== WHAT WE DO / WHAT WE DON'T DO · two sheets: the second slides up over the first as you scroll ===== */
-.section_wwd{position:relative;z-index:2;height:260vh;--color-text-on-inverse-faded:rgb(247 242 233 / .72);background:var(--color-bg-surface-alt)}
+.section_wwd{position:relative;z-index:2;height:260vh;background:var(--color-bg-surface-alt)}
 .wwd_stage{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden}
 .wwd_sheet{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:var(--space-96) var(--grid-margin) var(--space-64);will-change:transform}
 .wwd_sheet.is-do{background:var(--color-bg-inverse);color:var(--color-text-on-inverse);transform-origin:50% 0}
@@ -324,15 +327,16 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .wwd_line{display:block;width:100%;height:100%;fill:none;stroke:var(--color-icon-accent-on-inverse);stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
 .is-dont .wwd_line{stroke:var(--color-icon-accent)}
 .wwd_col-title{margin:0 0 var(--space-16);font-weight:400}   /* lighter than the Title default, as asked */
-.wwd_col-text{margin:0;max-width:32ch;color:var(--color-text-on-inverse-faded)}   /* Cambium "faded" body */
+.wwd_col-text{margin:0;text-wrap:pretty;max-width:32ch;color:var(--color-text-on-inverse-secondary)}   /* Cambium "faded" body */
 .is-dont .wwd_col-text{color:var(--color-text-secondary);opacity:1}
 /* The mentor's red pen: strikes the "don't" icons and underlines "don't" once the sheet has arrived */
 .wwd_pen path{fill:none;stroke:var(--color-pen-default);stroke-width:3;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .7s var(--ease-out-expo)}
 .wwd_mark{position:relative;white-space:nowrap}
 .wwd_pen{position:absolute;inset-inline:-4%;bottom:-.18em;width:108%;height:.32em;overflow:visible}
 .is-dont.is-in .wwd_pen path{stroke-dashoffset:0;transition-delay:.15s}
-.is-dont .wwd_col{opacity:0;transform:translate3d(0,24px,0);transition:opacity .8s var(--ease-out-expo),transform .8s var(--ease-out-expo)}
-.is-dont.is-in .wwd_col{opacity:1;transform:none;transition-delay:calc(.25s + var(--i) * .1s)}
+.js .is-dont .wwd_col{opacity:0;transform:translate3d(0,24px,0);transition:opacity .8s var(--ease-out-expo),transform .8s var(--ease-out-expo)}   /* hidden only when the script can reveal it */
+@media (prefers-reduced-motion:reduce){.js .is-dont .wwd_col{opacity:1;transform:none}}
+.js .is-dont.is-in .wwd_col{opacity:1;transform:none;transition-delay:calc(.25s + var(--i) * .1s)}
 /* Static fallback (reduced motion, small screens, or content taller than the screen): two sheets in a row */
 .section_wwd.is-static{height:auto}
 .is-static .wwd_stage{position:static;height:auto;overflow:visible}
@@ -352,7 +356,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 /* ===== ABOUT SFG · paragraph fills word by word as you scroll ===== */
 .section_about{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-128) var(--grid-margin)}
 .about_grid{display:grid;grid-template-columns:repeat(var(--grid-columns),minmax(0,1fr));column-gap:var(--grid-gutter);align-items:start}
-.about_text{grid-column:7 / span 5;margin:0;color:var(--color-text-secondary)}
+.about_text{grid-column:7 / span 5;margin:0;text-wrap:pretty;color:var(--color-text-secondary)}
 .about_aside{grid-column:1 / span 5}
 .about_eyebrow,.sb_eyebrow{margin:0 0 var(--space-16);color:var(--color-text-primary)}
 .about_title{margin:0;color:var(--color-text-heading)}
@@ -393,7 +397,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .sb_band{width:100%;height:auto;display:block}
 .sb_band .tz-a{fill:var(--color-tatreez-primary)}
 .sb_band .tz-b{fill:var(--color-tatreez-secondary)}
-.sb_sub{margin:var(--space-16) 0 0;max-width:40ch;color:var(--color-text-secondary)}
+.sb_sub{margin:var(--space-16) 0 0;text-wrap:pretty;max-width:40ch;color:var(--color-text-secondary)}
 /* Description on the left, pager on the right, on one line */
 .sb_sub-row{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-48);padding-inline-end:var(--grid-margin)}
 
@@ -405,10 +409,10 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .tl_step{display:flex;align-items:center;gap:var(--space-64);flex:none}
 .tl_text{width:calc(4*var(--tl-col) + 3*var(--grid-gutter));flex:none}
 /* The year leads each step: ochre, faded until its step is the current one */
-.tl_year{margin:0 0 var(--space-16);color:var(--color-text-achievement);opacity:.3;transition:opacity .6s ease}
-.tl_step.is-active .tl_year{opacity:1}
+.tl_year{margin:0 0 var(--space-16);color:var(--color-text-secondary);transition:color .6s ease}   /* muted until its step is current (5.4:1), then ochre */
+.tl_step.is-active .tl_year{color:var(--color-text-achievement)}
 .tl_title{margin:0;color:var(--color-text-primary)}
-.tl_body{margin:var(--space-12) 0 0;color:var(--color-text-secondary);max-width:44ch}
+.tl_body{margin:var(--space-12) 0 0;text-wrap:pretty;color:var(--color-text-secondary);max-width:44ch}
 /* Every photo at the same height and its own width: portraits narrow, Al Jazeera wide, nothing cropped */
 .tl_media{margin:0;flex:none;height:var(--tl-h);border-radius:var(--radius-media);overflow:hidden}
 .tl_media img{display:block;height:100%;width:auto}
@@ -423,8 +427,8 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .sb_pager-current{color:var(--color-text-heading)}
 .sb_pager-total{color:var(--color-text-secondary)}
 .sb_pager-nav{display:flex;gap:var(--space-8)}
-.sb_pager-btn{width:var(--size-touch-min);height:var(--size-touch-min);border-radius:var(--radius-full);border:1.5px solid var(--color-action-secondary);background:transparent;color:var(--color-action-secondary);display:grid;place-items:center;cursor:pointer;transition:background-color .2s}
-.sb_pager-btn:hover{background:var(--color-bg-selected)}
+.sb_pager-btn{width:var(--size-touch-min);height:var(--size-touch-min);border-radius:var(--radius-full);border:1.5px solid var(--color-action-secondary);background:transparent;color:var(--color-action-secondary);display:grid;place-items:center;cursor:pointer;transition:background-color .2s,scale .15s ease-out}
+@media (hover:hover){.sb_pager-btn:hover{background:var(--color-bg-selected)}}
 [dir="rtl"] .sb_pager-btn svg{transform:scaleX(-1)}   /* arrows follow the reading direction */
 .sb_pager-btn:disabled{opacity:.35;cursor:default;background:transparent}
 .sb_pager-btn:focus-visible,.sb_credit:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
@@ -462,7 +466,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .how_head{padding:var(--space-128) var(--grid-margin) 0}
 .how_eyebrow{margin:0 0 var(--space-16);color:var(--color-text-heading)}   /* green label */
 .how_title{margin:0;color:var(--color-text-primary);text-wrap:balance}   /* neutral ink, not green */
-.how_sub{margin:var(--space-16) 0 0;max-width:44ch;color:var(--color-text-secondary)}
+.how_sub{margin:var(--space-16) 0 0;text-wrap:pretty;max-width:44ch;color:var(--color-text-secondary)}
 .how_contain{position:relative;padding:var(--space-128) var(--grid-margin) 0}
 .how_list{position:relative;display:grid;row-gap:var(--space-192);list-style:none;margin:0;padding:0}
 .how_line{position:absolute;left:0;top:0;width:1px;height:1px;overflow:visible;pointer-events:none}
@@ -479,9 +483,9 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
    The script turns it into a soft hole in the line's mask, so the background itself is never painted over. */
 .how_text_bg{position:absolute;inset:calc(-1*var(--space-8)) calc(-1*var(--space-32));visibility:hidden;pointer-events:none}
 .how_step-title{margin:0;color:var(--color-text-primary);font-weight:500;text-wrap:balance}   /* medium: below the bold section title */
-.how_step-text{margin:var(--space-16) 0 0;max-width:var(--how-measure,40ch);color:var(--color-text-secondary)}
-.how_btn{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-top:var(--space-32);padding-inline:var(--space-24);border-radius:var(--radius-full);border:1.5px solid var(--color-action-secondary);color:var(--color-action-secondary);text-decoration:none;transition:background-color .2s}
-.how_btn:hover{background:var(--color-bg-selected)}
+.how_step-text{margin:var(--space-16) 0 0;text-wrap:pretty;max-width:var(--how-measure,40ch);color:var(--color-text-secondary)}
+.how_btn{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-top:var(--space-32);padding-inline:var(--space-24);border-radius:var(--radius-full);border:1.5px solid var(--color-action-secondary);color:var(--color-action-secondary);text-decoration:none;transition:background-color .2s,scale .15s ease-out}
+@media (hover:hover){.how_btn:hover{background:var(--color-bg-selected)}}
 .how_btn:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
 [dir="rtl"] .how_btn svg{transform:scaleX(-1)}
 /* Picture slot: any ratio, never cropped, up to 520–560px tall. A real photo replaces .how_art with <img> and sets --r. */
@@ -517,7 +521,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .how_pen path{fill:none;stroke:var(--color-pen-default);stroke-width:2;stroke-linecap:round;vector-effect:non-scaling-stroke}
 .is-marked .how_pen{left:0;right:0;bottom:-8px;height:8px;width:100%}
 .is-circled .how_pen{left:-10%;top:-12px;width:120%;height:32px}
-.how_note{align-self:flex-end;margin:var(--space-4) 0;color:var(--color-pen-default);font-style:italic}
+.how_note{align-self:flex-end;margin:var(--space-4) 0;color:var(--color-text-pen);font-style:italic}
 .how_card.is-submit{display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:var(--space-32);max-width:640px}
 .how_done{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-4);padding-inline-end:var(--space-32);border-inline-end:1px solid var(--color-border-subtle)}
 .how_check{display:grid;place-items:center;width:var(--space-48);height:var(--space-48);margin-bottom:var(--space-8);border-radius:var(--radius-full);background:var(--color-bg-inverse)}
@@ -577,7 +581,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .results_stats{list-style:none;margin:var(--space-48) auto 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--grid-gutter);max-width:1120px;text-align:start}
 /* cards: 2 columns × 2 rows. Row 1: number | title. Row 2: the description under the title (same start edge), at the bottom. */
 .results_stat{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto 1fr;gap:var(--space-48) var(--space-32);align-items:center;
-  padding:var(--space-24);border-radius:10px;background:var(--results-card-bg)}
+  padding:var(--space-24);border-radius:var(--radius-panel);background:var(--results-card-bg)}
 .results_number{grid-column:1;grid-row:1;color:var(--results-card-number);font-variant-numeric:tabular-nums}   /* H1 */
 .results_stat-title{grid-column:2;grid-row:1;color:var(--results-card-ink)}                                    /* Title: Thmanyah Sans Medium 28/36 */
 .results_stat-text{grid-column:2;grid-row:2;align-self:end;color:var(--results-card-muted);text-wrap:pretty} /* Body2 */
@@ -596,10 +600,10 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .results_list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
 .results_item{padding-block:var(--space-16);color:var(--results-name);transition:color .8s var(--results-ease)}
 .results_item.is-active{color:var(--results-active-text)}
-.results_name{display:block;font:500 clamp(40px,calc(5.4vw - 4px),92px)/1.02 var(--font-display);letter-spacing:-.02em;text-wrap:balance}
+.results_name{display:block;font:500 clamp(2.5rem,calc(5.4vw - .25rem),5.75rem)/1.02 var(--font-display);letter-spacing:-.02em;text-wrap:balance}
 .results_content{grid-column:8 / 13;height:100vh;padding-top:var(--space-96);position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between}
 .results_title{margin:0;color:var(--results-ink);text-wrap:balance}
-.results_sub{margin:var(--space-16) 0 0;max-width:40ch;font-weight:400;color:var(--results-ink)}
+.results_sub{margin:var(--space-16) 0 0;text-wrap:pretty;max-width:40ch;font-weight:400;color:var(--results-ink)}
 .results_globe-slot{position:relative;flex:none;align-self:center;width:calc(min(100vw,100vh) * .8);aspect-ratio:1;margin-bottom:calc(-22 / 1080 * 100vh)}
 .results_globe{position:absolute;left:50%;top:50%;width:var(--g-size,100%);height:var(--g-size,100%);transform:translate(-50%,-50%);will-change:transform}
 .results_globe::before{content:"";position:absolute;inset:-18%;background:var(--results-glow);pointer-events:none}   /* the glow travels with the globe */
@@ -610,25 +614,32 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .results_fade{transition:opacity .2s,transform .2s}
 .results_marker{--size:28px;position:relative;display:flex;align-items:center;gap:var(--space-12);padding:0;border:0;background:none;color:var(--results-ink);
   font:inherit;transform:translateY(-50%);pointer-events:auto;transition:opacity 1.2s var(--results-ease)}
-.results_globe:has(.results_marker:hover) .results_marker:not(:hover){opacity:.2}
+@media (hover:hover){.results_globe:has(.results_marker:hover) .results_marker:not(:hover){opacity:.2}}
 button.results_marker{cursor:pointer}
 .results_core{position:relative;flex:none;width:var(--size);height:var(--size);margin-left:calc(var(--size) * -.5);border-radius:50%;background:var(--results-halo);
   -webkit-backdrop-filter:blur(2.5px);backdrop-filter:blur(2.5px);transition:transform .8s var(--results-ease),width .8s var(--results-ease),height .8s var(--results-ease)}
 .results_core::before{content:"";position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:var(--results-dot);transform:translate(-50%,-50%);
   transition:transform .8s var(--results-ease),background-color .8s var(--results-ease)}
-button.results_marker:hover .results_core:not(.is-active){width:34px;height:34px}
+@media (hover:hover){button.results_marker:hover .results_core:not(.is-active){width:34px;height:34px}}
 .results_marker.is-active .results_core{transform:scale(.5)}
 .results_marker.is-active .results_core::before{transform:translate(-50%,-50%) scale(4);background:var(--results-pin)}
 /* country names: black (ink) on a linen pill, since ink on green fails contrast (≤ 2.3:1); ink on linen is 15.5:1 */
-.results_label{unicode-bidi:plaintext;white-space:nowrap;padding:2px 10px;border-radius:999px;background:var(--results-pill-bg);color:var(--results-pill-ink);
+.results_label{unicode-bidi:plaintext;white-space:nowrap;padding:var(--space-2) var(--space-12);border-radius:var(--radius-full);background:var(--results-pill-bg);color:var(--results-pill-ink);
   transition:background-color .8s var(--results-ease)}
 button.results_marker .results_label{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
 .results_marker.is-active .results_label{background:var(--results-pin);text-decoration:none}
 .results_marker:not(button) .results_label{opacity:0;transition:opacity .4s}
-.results_marker:not(button):hover .results_label{opacity:1}
+@media (hover:hover){.results_marker:not(button):hover .results_label{opacity:1}}
 .results_marker.is-start .results_label{position:absolute;right:calc(var(--size) + var(--space-12))}
 .results_marker:focus-visible{outline:2px solid var(--results-focus);outline-offset:6px;border-radius:var(--radius-sm)}
 .results_clone{display:contents}
+/* Pause / play for the drifting list and the spinning globe (WCAG 2.2.2: anything moving on its own past 5s can be paused) */
+.results_pause{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-top:var(--space-24);padding-inline:calc(var(--space-20) - var(--space-2)) var(--space-20);border-radius:var(--radius-full);border:1.5px solid var(--results-ink);color:var(--results-ink);transition:background-color .2s,scale .15s ease-out}
+.results_pause[hidden]{display:none}
+@media (hover:hover){.results_pause:hover{background:var(--results-halo)}}
+.results_pause:focus-visible{outline:2px solid var(--results-focus);outline-offset:3px}
+.results_pause .is-play,.results_pause[aria-pressed="true"] .is-pause{display:none}
+.results_pause[aria-pressed="true"] .is-play{display:block}
 
 /* Desktop with motion (after cambium.com's iPad): nothing is pinned. The cards scroll away as usual, while the globe
    starts large at the bottom centre of the intro and travels down through the gap, shrinking and turning, until it
@@ -644,8 +655,8 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
   .results_content{height:auto;padding-top:0;order:-1;display:block}
   .results_globe-slot{width:min(100%,480px);margin:var(--space-48) auto 0}
   .results_list-wrap{height:auto;overflow:visible;-webkit-mask:none;mask:none;padding-bottom:var(--space-96)}
-  .results_name{font-size:calc(var(--h3-size,32px) - 4px)}
-  .results_label{font-size:var(--body3-size,14px)}
+  .results_name{font-size:calc(var(--h3-size) - .25rem)}
+  .results_label{font-size:var(--body3-size)}
 }
 @media (prefers-reduced-motion:reduce){
   .results_contain{height:auto;padding-block:var(--space-128)}
@@ -749,9 +760,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
   .voices_bar{padding:var(--space-16) var(--space-20)}
   .voices_scroll{padding:var(--space-32) var(--space-20) var(--space-64)}
 }
-@media (max-width:479px){.voices_pager .sb_pager-btn{display:none}}
-.section_voices .sb_pager-btn{transition:background-color .2s,scale .15s ease-out}
-@media (prefers-reduced-motion:no-preference){.section_voices .sb_pager-btn:not(:disabled):active{scale:.96}}   /* press feedback, Student voices only for now */   /* phones swipe; the count stays */
+@media (max-width:479px){.voices_pager .sb_pager-btn{display:none}}   /* phones swipe; the count stays */
 @media (prefers-reduced-motion:reduce){
   .voices_dialog,[dir="rtl"] .voices_dialog,.voices_dialog[open]{transform:none;opacity:0;transition:opacity .2s ease-out,overlay .2s allow-discrete,display .2s allow-discrete!important}
   .voices_dialog[open]{opacity:1}
@@ -805,7 +814,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
     </div>
   </header>
 
-  <div class="menu-panel" id="menu-panel" aria-label="Menu">
+  <nav class="menu-panel" id="menu-panel" aria-label="Menu">
     <ul class="menu-panel_list h5">
       <li><a class="menu-panel_link" href="#about" data-i18n="navAbout">About</a></li>
       <li><a class="menu-panel_link" href="#how-it-works" data-i18n="navHow">How it works</a></li>
@@ -813,9 +822,10 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
       <li><a class="menu-panel_link" href="#students" data-i18n="navStudents">For students</a></li>
     </ul>
     <a class="button-primary title3" href="#become-a-mentor" data-i18n="navCta">Become a mentor</a>
-  </div>
+  </nav>
 
   <main id="main-content" tabindex="-1">
+    <h1 class="sr-only" data-i18n="title">Scholarships for Ghazza</h1>
     <section class="section_intro" data-intro aria-label="Introduction">
       <div class="intro_bg-list" data-intro-bgs>
         <!-- Wide 1920×1080 frames. Order matters: LSE is last and carries the ending. object-position keeps each student in view on narrow screens. -->
@@ -847,7 +857,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
       </div>
 
       <a class="intro_skip title1" href="#about" data-skip-intro>
-        <span data-i18n="skip">Skip Intro</span>
+        <span data-i18n="skip">Skip intro</span>
         <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M3 14h21M16 6l8 8-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
 
@@ -1125,9 +1135,10 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
             <div class="results_text" data-results-fade data-split-group>
               <h3 class="results_title h2" data-split>Where our scholars study now</h3>
               <p class="results_sub body1" data-split>SFG mentors have helped 143 students win fully funded scholarships in the UK, Ireland, the Netherlands, Belgium, France, Italy, Egypt, Singapore and the USA. These are some of the universities they study at.</p>
+              <button class="results_pause title3" type="button" data-results-pause hidden><svg class="results_pause-icon is-pause" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 3v10M11.5 3v10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="results_pause-icon is-play" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6a.6.6 0 0 0 .9.5l7.6-4.8a.6.6 0 0 0 0-1L5.9 2.7a.6.6 0 0 0-.9.5z" fill="currentColor"/></svg><span data-results-pause-label>Pause motion</span></button>
             </div>
             <div class="results_globe-slot" data-results-slot>
-              <div class="results_globe" data-results-globe aria-hidden="true"><canvas class="results_canvas"></canvas><div class="results_markers" data-results-markers></div></div>
+              <div class="results_globe" data-results-globe><canvas class="results_canvas" aria-hidden="true"></canvas><div class="results_markers" data-results-markers></div></div>
             </div>
           </div>
         </div>
@@ -1277,7 +1288,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
       en: {
         skipToContent: "Skip to main content", brandLine1: "Scholarships for Ghazza", brandLine2: "Supporting education through mentorship",
         navAbout: "About", navHow: "How it works", navMentors: "Mentors", navStudents: "For students", navCta: "Become a mentor",
-        menu: "Menu", skip: "Skip Intro", outro: "Here’s how the story begins.", cue: "Scroll",
+        menu: "Menu", skip: "Skip intro", outro: "Here’s how the story begins.", cue: "Scroll",
         partnersTitle: "Our partners", partnersJoin: "Become a partner",
         sentence: "A highly educated Palestine, rebuilt by its own students.",
         toggleLabel: "Switch to Arabic", title: "Scholarships for Ghazza"
@@ -1561,13 +1572,19 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 
     // ---- Menu + header state ----------------------------------------------
     var trigger = q("[data-menu-trigger]");
-    function closeMenu() { document.body.classList.remove("is-menu-open"); trigger.setAttribute("aria-expanded", "false"); }
-    trigger.addEventListener("click", function () {
-      var open = document.body.classList.toggle("is-menu-open");
+    // The open menu covers the page, so the page behind it is inert; focus moves into the menu and back to the trigger
+    var mainEl = q("#main-content"), panel = q("#menu-panel");
+    function setMenu(open, refocus) {
+      document.body.classList.toggle("is-menu-open", open);
       trigger.setAttribute("aria-expanded", String(open));
-    });
+      mainEl.inert = open;
+      if (open) { var first = panel.querySelector("a"); if (first) setTimeout(function () { first.focus(); }, 50); }
+      else if (refocus) trigger.focus();
+    }
+    function closeMenu() { setMenu(false, false); }
+    trigger.addEventListener("click", function () { setMenu(!document.body.classList.contains("is-menu-open"), true); });
     document.querySelectorAll(".menu-panel a").forEach(function (a) { a.addEventListener("click", closeMenu); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMenu(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && document.body.classList.contains("is-menu-open")) setMenu(false, true); });
     window.addEventListener("scroll", function () { header.classList.toggle("is-solid", window.scrollY > window.innerHeight - 80); }, { passive: true });
     var rz; window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { var r = M ? s / M.end : 0; measure(); if (M) s = target = r * M.end; }, 120); });
 
@@ -1677,7 +1694,7 @@ const STEPS=[
  {n:"04.2024",t:"A promise",b:"Ahmed evacuates Gaza with his wife and two sons, and makes a promise: to help Palestinian students win the fully funded scholarships that changed his life.",card:"portrait",img:[["promise","A notebook of handwritten plans on a café table, beside a blue-and-white teapot"]]},
  {n:"08.2024",t:"SFG begins",b:"It starts with one Instagram story: “Want to help Ghazawi students to get a scholarship?” Ahmed asks for volunteers to guide students through their applications, and Scholarships for Ghazza is born.",card:"story",img:[["story","Ahmed’s Instagram story asking for volunteer mentors, over a photo of a boy writing in a notebook outdoors"]]},
  {n:"03.2026",t:"On Al Jazeera",b:"SFG’s story reaches Al Jazeera’s The Stream, as more students from Gaza win their places.",card:"wide",credit:true,img:[["aj","Ahmed Issa speaking on Al Jazeera’s The Stream"]]},
- {n:"135",t:"Scholarships, and counting",b:"SFG mentors have helped 143 students win fully funded scholarships in the UK, Ireland, the Netherlands, Belgium, France, Italy, Egypt, Singapore and the USA.",card:"mosaic",gold:true,img:[["st0","A scholar at the University of Aberdeen"],["st4","A scholar outside the main building of the University of Glasgow"],["st1","A scholar at LSE"],["st3","A scholar at University College Dublin"],["st2","A scholar at Imperial College London’s School of Public Health"],["st5","A scholar beside the University of Glasgow sign"]]}
+ {n:"143",t:"Scholarships, and counting",b:"SFG mentors have helped 143 students win fully funded scholarships in the UK, Ireland, the Netherlands, Belgium, France, Italy, Egypt, Singapore and the USA.",card:"mosaic",gold:true,img:[["st0","A scholar at the University of Aberdeen"],["st4","A scholar outside the main building of the University of Glasgow"],["st1","A scholar at LSE"],["st3","A scholar at University College Dublin"],["st2","A scholar at Imperial College London’s School of Public Health"],["st5","A scholar beside the University of Glasgow sign"]]}
 ];
 const N=STEPS.length,reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const credit=`<a class="sb_credit" href="${AJ}" target="_blank" rel="noopener">Watch on Al Jazeera’s The Stream<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>`;
@@ -1836,10 +1853,14 @@ layout();
     var c=COUNTRIES[k], anchor=document.createElement("div"), fade=document.createElement("div"), m=document.createElement(has[k]?"button":"span");
     anchor.className="results_anchor"; fade.className="results_fade";
     if(has[k])anchor.style.zIndex=2;   // clickable countries stay above the plain markers crowded around them
-    m.className="results_marker"+(c.start?" is-start":""); m.innerHTML='<span class="results_core"></span><span class="results_label body2"></span>'; m.lastChild.textContent=c.name;
-    if(has[k]){m.type="button"; m.tabIndex=-1; m.addEventListener("click",function(){goTo(k);});}   // the list itself is the accessible content
+    m.className="results_marker"+(c.start?" is-start":""); m.innerHTML='<span class="results_core"></span>'+(has[k]?'<span class="sr-only">Highlight universities in </span>':'')+'<span class="results_label body2"></span>'; m.lastChild.textContent=c.name;
+    if(!has[k])anchor.setAttribute("aria-hidden","true");   // a country with no university listed is decoration
+    if(has[k]){m.type="button"; m.setAttribute("aria-pressed","false"); m.addEventListener("click",function(){goTo(k);});
+      // keyboard: focusing a country turns the globe to face it, so the focused button is never on the far side
+      m.addEventListener("focus",function(){if(globe){globe.state.autoRotate=false; if(globe.face)globe.face(c.lat,c.lng);}});
+      m.addEventListener("blur",function(){if(globe)globe.state.autoRotate=spin();});}
     m.addEventListener("mouseenter",function(){if(globe)globe.state.autoRotate=false;});
-    m.addEventListener("mouseleave",function(){if(globe)globe.state.autoRotate=!reduce.matches;});
+    m.addEventListener("mouseleave",function(){if(globe)globe.state.autoRotate=spin();});
     fade.appendChild(m); anchor.appendChild(fade); layer.appendChild(anchor);
     return {k:k,anchor:anchor,fade:fade,el:m,core:m.firstChild};
   });
@@ -1852,7 +1873,10 @@ layout();
       mk.anchor.style.transform="translate3d("+p.x.toFixed(1)+"px,"+p.y.toFixed(1)+"px,0) scale("+(p.scale/1.33/gs).toFixed(3)+")";
       mk.fade.style.opacity=p.front?1:0; mk.fade.style.transform="scale("+(p.front?1:.25)+")"; mk.el.style.pointerEvents=p.front?"":"none";});}
   });
-  if(globe)globe.state.autoRotate=!reduce.matches;
+  var paused=false, pauseBtn=root.querySelector("[data-results-pause]"), pauseLabel=root.querySelector("[data-results-pause-label]");
+  function spin(){return !reduce.matches&&!paused;}
+  if(globe)globe.state.autoRotate=spin();
+  pauseBtn.addEventListener("click",function(){paused=!paused; pauseBtn.setAttribute("aria-pressed",String(paused)); pauseLabel.textContent=paused?"Play motion":"Pause motion"; if(globe)globe.state.autoRotate=spin();});
   function recolor(){if(globe)globe.setColor(getComputedStyle(root).getPropertyValue("--results-dot"));}
 
   var setH=0, offset=0, picked=null, tween=null, resumeAt=0, lastT=0, on=false;
@@ -1907,6 +1931,7 @@ layout();
   function measure(){
     measureStage();
     setLoop(wide.matches&&!reduce.matches);
+    pauseBtn.hidden=reduce.matches;   // with reduced motion nothing moves, so there is nothing to pause
     paint(); if(!loop)return;
     setH=0; for(var i=0;i<N;i++)setH+=items[i].offsetHeight;
     offset=setH+items[0].offsetHeight/2-wrapEl.clientHeight/2;   // start on the real list's first university, centred
@@ -1933,7 +1958,7 @@ layout();
     var dt=lastT?Math.min(t-lastT,100):16.7; lastT=t;
     if(loop){
       if(tween){var p=Math.min(1,(t-tween.t0)/tween.dur); offset=tween.from+(tween.to-tween.from)*(1-Math.pow(1-p,4)); if(p===1){tween=null; resumeAt=t+1000;}}
-      else if(t>=resumeAt)offset+=.3*dt/(1000/60);
+      else if(t>=resumeAt&&!paused)offset+=.3*dt/(1000/60);
       if(!tween)offset=wrap(offset);
       track.style.transform="translate3d(0,"+(-offset).toFixed(2)+"px,0)";
     }
@@ -1944,7 +1969,7 @@ layout();
   new IntersectionObserver(function(e){var vis=e[0].isIntersecting; if(globe)globe.running=vis; if(vis&&!on){on=true;requestAnimationFrame(tick);} on=vis;}).observe(root);
   addEventListener("resize",function(){var f=loop?(offset-setH*.5)/setH:0; measure(); if(loop)offset=wrap(setH*.5+f*setH);});
   wide.addEventListener("change",measure);
-  reduce.addEventListener("change",function(){measure(); if(globe)globe.state.autoRotate=!reduce.matches;});
+  reduce.addEventListener("change",function(){measure(); if(globe)globe.state.autoRotate=spin();});
   new MutationObserver(recolor).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
   new MutationObserver(recolor).observe(root,{attributes:true,attributeFilter:["data-palette"]});
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change",recolor);
