@@ -684,7 +684,7 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 
 /* Card: name + study top-left and university top-right (the label a covered card still shows), the student's words in the centre,
    then the scholarship and "Read full story" at the bottom, where reading ends */
-.voices_card{position:relative;flex:1;display:grid;grid-template-rows:auto 1fr auto;gap:var(--space-24);min-height:440px;margin:0;padding:var(--space-32);border-radius:var(--radius-panel);overflow:hidden}
+.voices_card{position:relative;flex:1;display:grid;grid-template-rows:auto 1fr auto;gap:var(--space-24);min-height:440px;margin:0;padding:var(--space-32);border-radius:var(--radius-sm);overflow:hidden}
 .voices_actions{display:flex;align-items:center;justify-content:space-between;gap:var(--space-16);min-height:var(--size-touch-min)}
 .voices_scholarship{margin:0;color:var(--voices-achievement)}
 .voices_open{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-inline-end:calc(var(--space-12) * -1);padding-inline:var(--space-12) calc(var(--space-12) - var(--space-2));border:0;border-radius:var(--radius-full);background:none;color:var(--voices-link);cursor:pointer;white-space:nowrap}
@@ -693,7 +693,8 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 .voices_open svg path{vector-effect:non-scaling-stroke;stroke-width:2px}   /* 2px drawn, to match the Medium label */
 @media (hover:hover) and (prefers-reduced-motion:no-preference){.voices_card:hover .voices_open svg{transform:translateX(var(--space-4))}}   /* touch would latch :hover after a tap */
 .voices_open:focus-visible{outline:none}
-.voices_open:focus-visible::after{outline:3px solid var(--color-border-focus);outline-offset:-3px;border-radius:var(--radius-panel)}
+.voices_open:focus-visible::after{outline:3px solid var(--color-border-focus);outline-offset:-3px;border-radius:var(--radius-sm)}
+.voices_open.is-quiet:focus-visible::after{outline:none}
 .voices_quote{margin:0;align-self:center;justify-self:center;max-width:26ch;line-height:1.4;text-align:center;color:var(--voices-ink);text-wrap:balance}
 .voices_quote p{margin:0}
 .is-pinned .voices_quote{opacity:var(--voices-seen,1)}   /* a covered card's cut-off quote fades, so the strip reads as the stack's edge */
@@ -709,8 +710,7 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 .is-pinned .voices_list{position:relative;display:block;height:var(--voices-h);padding:0;overflow:visible;scroll-snap-type:none}
 .is-pinned .voices_item{position:absolute;top:0;left:0;width:var(--voices-w);height:var(--voices-h)}
 .is-pinned .voices_item+.voices_item{will-change:transform}   /* the first card never moves */
-.is-pinned .voices_card{min-height:0;outline:1px solid transparent;outline-offset:-1px;box-shadow:-24px 0 48px -32px rgb(30 26 22 / .28)}   /* the transparent outline draws an edge in forced-colors mode, without changing the card's size */
-.is-pinned .voices_item:first-child .voices_card{box-shadow:none}
+.is-pinned .voices_card{min-height:0;outline:1px solid transparent;outline-offset:-1px}   /* the transparent outline draws an edge in forced-colors mode, without changing the card's size */
 @media (min-width:992px){
   .section_voices{--voices-w:max(440px,calc((100vw - 2 * var(--grid-margin)) / 2));--voices-h:max(440px,calc(var(--voices-w) * .56))}
   .section_voices:not(.is-pinned) .voices_item{height:var(--voices-h)}
@@ -726,7 +726,7 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 @media (hover:hover) and (pointer:fine){.section_voices.has-cursor .voices_card{cursor:none}}
 
 /* Full story panel: slides in from the reading end, like Noho's article popup */
-.voices_dialog{position:fixed;inset:0 0 0 auto;width:min(720px,100vw);max-width:100vw;height:100dvh;max-height:100dvh;margin:0;padding:0;border:0;background:var(--color-bg-surface);color:var(--color-text-primary);
+.voices_dialog{position:fixed;inset:0 0 0 auto;width:min(max(50vw,720px),100vw);max-width:100vw;height:100dvh;max-height:100dvh;margin:0;padding:0;border:0;background:var(--voices-d-bg,var(--color-bg-surface));color:var(--color-text-primary);
   transform:translateX(100%);transition:transform .3s var(--ease-out),overlay .3s allow-discrete,display .3s allow-discrete}   /* closes in .3s, opens in .6s */
 [dir="rtl"] .voices_dialog{inset:0 auto 0 0;transform:translateX(-100%)}
 .voices_dialog[open]{transform:none;transition-duration:.6s}
@@ -734,14 +734,29 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 .voices_dialog::backdrop{background:var(--voices-scrim);opacity:0;transition:opacity .15s ease-out,overlay .3s allow-discrete,display .3s allow-discrete}
 .voices_dialog[open]::backdrop{opacity:1;transition:opacity .4s ease-out,overlay .6s allow-discrete,display .6s allow-discrete}
 @starting-style{.voices_dialog[open]::backdrop{opacity:0}}
+/* The panel takes the colour of the card it opened from, like Noho's article popup */
 .voices_panel{display:flex;flex-direction:column;height:100%}
-.voices_bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);padding:var(--space-24) var(--space-32);border-bottom:1px solid var(--color-border-subtle)}
-.voices_bar-nav{display:flex;gap:var(--space-12)}
-.voices_scroll{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:var(--space-48) var(--space-32) var(--space-96)}
-.voices_d-scholarship{margin:0 0 var(--space-12);color:var(--color-text-achievement)}
-.voices_d-name{margin:0;color:var(--color-text-heading)}
-.voices_d-study{margin:var(--space-8) 0 0;color:var(--color-text-secondary)}
-.voices_d-story{margin-top:var(--space-32);max-width:65ch}
+.voices_bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);padding:var(--space-48) var(--space-48) var(--space-20)}
+.voices_bar-nav{display:flex;gap:var(--space-20)}
+.voices_d-btn{display:grid;place-items:center;width:var(--size-touch-min);height:var(--size-touch-min);border-radius:var(--radius-sm);background:var(--color-bg-field);color:var(--color-text-primary);transition:background-color .2s,scale .15s ease-out}
+.voices_d-btn:disabled{opacity:.4;cursor:default}
+@media (hover:hover){.voices_d-btn:not(:disabled):hover{background:var(--color-bg-selected)}}
+@media (prefers-reduced-motion:no-preference){.voices_d-btn:not(:disabled):active{scale:.96}}
+.voices_scroll{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:0 var(--space-48) var(--space-96)}
+.voices_d-media{position:relative;margin:0;aspect-ratio:2 / 1;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-bg-surface)}
+.voices_d-photo{display:block;width:100%;height:100%;object-fit:cover;outline:1px solid rgb(0 0 0 / .1);outline-offset:-1px}
+/* Until a photo is added: the tatreez stitch field with the student's initials */
+.voices_d-placeholder{position:absolute;inset:0;display:grid;place-items:center}
+.voices_d-placeholder[hidden]{display:none}
+.voices_d-field{position:absolute;inset:0;width:100%;height:100%}
+.voices_d-initials{position:relative;display:grid;place-items:center;width:var(--space-128);height:var(--space-128);border-radius:var(--radius-full);background:var(--voices-d-bg,var(--color-bg-surface));color:var(--color-text-heading);letter-spacing:0}
+.voices_d-name{margin:var(--space-48) 0 0;color:var(--color-text-primary);text-wrap:balance}
+.voices_d-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);column-gap:var(--space-48);margin-top:var(--space-48)}
+.voices_d-meta{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-16)}
+.voices_d-scholarship{margin:0;color:var(--color-text-achievement-on-tint)}
+.voices_d-tags{display:flex;flex-wrap:wrap;gap:var(--space-8);list-style:none;margin:0;padding:0}
+.voices_d-tag{padding:var(--space-8) var(--space-16);border-radius:var(--radius-full);background:var(--color-bg-field);color:var(--color-text-primary)}
+.voices_d-story{max-width:65ch;text-wrap:pretty}
 .voices_d-story p{margin:0 0 var(--space-20)}
 .voices_dialog :focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
 html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the page keeps its place */
@@ -750,8 +765,10 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
   .voices_card{padding:var(--space-24)}
   .voices_by{flex-direction:column;align-items:flex-start}
   .voices_uni{text-align:start}
-  .voices_bar{padding:var(--space-16) var(--space-20)}
-  .voices_scroll{padding:var(--space-32) var(--space-20) var(--space-64)}
+  .voices_bar{padding:var(--space-20)}
+  .voices_scroll{padding:0 var(--space-20) var(--space-64)}
+  .voices_d-name{margin-top:var(--space-32)}
+  .voices_d-body{grid-template-columns:1fr;row-gap:var(--space-32);margin-top:var(--space-24)}
 }
 @media (max-width:479px){.voices_pager .sb_pager-btn{display:none}}   /* phones swipe; the count stays */
 @media (prefers-reduced-motion:reduce){
@@ -1225,17 +1242,31 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
         <div class="voices_panel">
           <div class="voices_bar">
             <div class="voices_bar-nav">
-              <button class="sb_pager-btn" type="button" data-voices-d-prev aria-label="Previous story"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M15 10H5M9.5 5.5 5 10l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <button class="sb_pager-btn" type="button" data-voices-d-next aria-label="Next story"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button class="voices_d-btn" type="button" data-voices-d-prev aria-label="Previous story"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M15 10H5M9.5 5.5 5 10l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button class="voices_d-btn" type="button" data-voices-d-next aria-label="Next story"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
-            <button class="sb_pager-btn" type="button" data-voices-close aria-label="Close story"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+            <button class="voices_d-btn" type="button" data-voices-close aria-label="Close story"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
           </div>
           <div class="voices_scroll" data-voices-d-scroll dir="ltr" lang="en">
-            <p class="voices_d-scholarship title3" data-voices-d-scholarship></p>
-            <h3 class="voices_d-name h3" id="voices-d-name" data-voices-d-name></h3>
-            <p class="voices_d-study title2"><span data-voices-d-study></span><span aria-hidden="true"> · </span><span data-voices-d-uni></span></p>
+            <figure class="voices_d-media" data-voices-d-media>
+              <img class="voices_d-photo" data-voices-d-photo alt="" hidden />
+              <div class="voices_d-placeholder" data-voices-d-placeholder aria-hidden="true">
+                <svg class="voices_d-field" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg>
+                <span class="voices_d-initials h1" data-voices-d-initials></span>
+              </div>
+            </figure>
+            <h3 class="voices_d-name h2" id="voices-d-name" data-voices-d-name></h3>
+            <div class="voices_d-body">
+              <div class="voices_d-meta">
+                <p class="voices_d-scholarship title3" data-voices-d-scholarship></p>
+                <ul class="voices_d-tags" role="list">
+                  <li class="voices_d-tag body3" data-voices-d-study></li>
+                  <li class="voices_d-tag body3" data-voices-d-uni></li>
+                </ul>
+              </div>
+              <div class="voices_d-story body1" data-voices-d-story></div>
+            </div>
             <p class="sr-only" role="status" data-voices-d-status></p>
-            <div class="voices_d-story body1" data-voices-d-story></div>
           </div>
         </div>
       </dialog>
@@ -2163,6 +2194,7 @@ layout();
     var dlg = section.querySelector("[data-voices-dialog]");
     var dName = dlg.querySelector("[data-voices-d-name]"), dStudy = dlg.querySelector("[data-voices-d-study]"), dUni = dlg.querySelector("[data-voices-d-uni]");
     var dStatus = dlg.querySelector("[data-voices-d-status]");
+    var dPhoto = dlg.querySelector("[data-voices-d-photo]"), dPlace = dlg.querySelector("[data-voices-d-placeholder]"), dInit = dlg.querySelector("[data-voices-d-initials]");
     var dSch = dlg.querySelector("[data-voices-d-scholarship]"), dStory = dlg.querySelector("[data-voices-d-story]");
     var dScroll = dlg.querySelector("[data-voices-d-scroll]");
     var dPrev = dlg.querySelector("[data-voices-d-prev]"), dNext = dlg.querySelector("[data-voices-d-next]");
@@ -2174,6 +2206,11 @@ layout();
       dName.textContent = it.querySelector(".voices_name").textContent;
       dStudy.textContent = it.querySelector(".voices_study").textContent;
       dUni.textContent = it.querySelector(".voices_uni").textContent;
+      var fig = it.querySelector(".voices_card"), photo = fig.getAttribute("data-voices-photo");
+      dlg.style.setProperty("--voices-d-bg", getComputedStyle(fig).backgroundColor);
+      dPhoto.hidden = !photo; dPlace.hidden = !!photo;
+      if (photo) { dPhoto.src = photo; dPhoto.alt = fig.getAttribute("data-voices-photo-alt") || ""; } else dPhoto.removeAttribute("src");
+      dInit.textContent = dName.textContent.split(/\s+/).map(function (w) { return w.charAt(0); }).slice(0, 2).join("");
       dStory.innerHTML = "";
       dStory.appendChild(it.querySelector("[data-voices-story]").content.cloneNode(true));
       dScroll.scrollTop = 0;
@@ -2196,7 +2233,11 @@ layout();
       if (opener) {
         // return focus to the card of the story last read
         var b = items[openIdx].querySelector("[data-voices-open]");
+        b.classList.add("is-quiet");   // focus returns quietly: no ring until the next key press
         b.focus({ preventScroll: true });   // in the pinned deck, focusin then glides to that card
+        var wake = function () { b.classList.remove("is-quiet"); document.removeEventListener("keydown", wake, true); b.removeEventListener("blur", away); };
+        var away = function () { setTimeout(function () { if (document.activeElement !== b) wake(); }); };   // a window switch keeps focus on b
+        setTimeout(function () { document.addEventListener("keydown", wake, true); b.addEventListener("blur", away); });
       }
     });
 
