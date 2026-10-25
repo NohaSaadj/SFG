@@ -683,10 +683,11 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 .voices_card{position:relative;flex:1;display:grid;grid-template-rows:auto 1fr auto;gap:var(--space-24);min-height:440px;margin:0;padding:var(--space-32);border-radius:var(--radius-panel);overflow:hidden}
 .voices_top{display:flex;align-items:center;justify-content:space-between;gap:var(--space-16);min-height:var(--size-touch-min)}
 .voices_scholarship{margin:0;color:var(--voices-achievement)}
-.voices_open{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-inline-end:calc(var(--space-12) * -1);padding-inline:var(--space-12);border:0;border-radius:var(--radius-full);background:none;color:var(--voices-link);cursor:pointer;white-space:nowrap}
+.voices_open{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-inline-end:calc(var(--space-12) * -1);padding-inline:var(--space-12) calc(var(--space-12) - var(--space-2));border:0;border-radius:var(--radius-full);background:none;color:var(--voices-link);cursor:pointer;white-space:nowrap}
 .voices_open::after{content:"";position:absolute;inset:0;z-index:1;border-radius:inherit}   /* the whole card opens the story */
 .voices_open svg{transition:transform .3s var(--ease-out)}
-.voices_card:hover .voices_open svg{transform:translateX(var(--space-4))}
+.voices_open svg path{vector-effect:non-scaling-stroke;stroke-width:2px}   /* 2px drawn, to match the Medium label */
+@media (hover:hover) and (prefers-reduced-motion:no-preference){.voices_card:hover .voices_open svg{transform:translateX(var(--space-4))}}   /* touch would latch :hover after a tap */
 .voices_open:focus-visible{outline:none}
 .voices_open:focus-visible::after{outline:3px solid var(--color-border-focus);outline-offset:-3px;border-radius:var(--radius-panel)}
 .voices_quote{margin:0;align-self:center;justify-self:center;max-width:26ch;text-align:center;color:var(--voices-ink);text-wrap:balance}
@@ -702,8 +703,9 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 .section_voices.is-pinned{padding-block:0;display:flex;flex-direction:column;justify-content:center}
 .is-pinned .voices_deck{padding-inline-start:var(--grid-margin);overflow:hidden}
 .is-pinned .voices_list{position:relative;display:block;height:var(--voices-h);padding:0;overflow:visible;scroll-snap-type:none}
-.is-pinned .voices_item{position:absolute;top:0;left:0;width:var(--voices-w);height:var(--voices-h);will-change:transform}
-.is-pinned .voices_card{min-height:0;box-shadow:-24px 0 48px -32px rgb(30 26 22 / .28)}
+.is-pinned .voices_item{position:absolute;top:0;left:0;width:var(--voices-w);height:var(--voices-h)}
+.is-pinned .voices_item+.voices_item{will-change:transform}   /* the first card never moves */
+.is-pinned .voices_card{min-height:0;outline:1px solid transparent;outline-offset:-1px;box-shadow:-24px 0 48px -32px rgb(30 26 22 / .28)}   /* the transparent outline draws an edge in forced-colors mode, without changing the card's size */
 .is-pinned .voices_item:first-child .voices_card{box-shadow:none}
 @media (min-width:992px){
   .section_voices{--voices-w:max(440px,calc((100vw - 2 * var(--grid-margin)) / 2));--voices-h:max(440px,calc(var(--voices-w) * .56))}
@@ -711,22 +713,22 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 }
 
 /* Bubble cursor over the cards (fine pointers only); green, since red stays with "Become a mentor" */
-.voices_cursor{position:fixed;left:0;top:0;z-index:60;display:grid;place-items:center;width:var(--space-12);height:var(--space-12);border-radius:var(--radius-full);background:var(--voices-bubble-bg);color:var(--voices-bubble-ink);opacity:0;pointer-events:none;
-  transition:width .4s var(--ease-out),height .4s var(--ease-out),opacity .2s}
+.voices_cursor{position:fixed;left:0;top:0;z-index:60;display:grid;place-items:center;width:var(--space-128);height:var(--space-128);border-radius:var(--radius-full);background:var(--voices-bubble-bg);color:var(--voices-bubble-ink);opacity:0;pointer-events:none;
+  scale:.09375;transition:scale .4s var(--ease-out),opacity .2s}   /* 12px dot = 128px × .09375; grows by scale, no layout per frame */
 .voices_cursor.is-on{opacity:1}
-.voices_cursor.is-big{width:var(--space-128);height:var(--space-128)}
+.voices_cursor.is-big{scale:1}
 .voices_cursor span{opacity:0;transition:opacity .2s}
 .voices_cursor.is-big span{opacity:1}
 @media (hover:hover) and (pointer:fine){.section_voices.has-cursor .voices_card{cursor:none}}
 
 /* Full story panel: slides in from the reading end, like Noho's article popup */
 .voices_dialog{position:fixed;inset:0 0 0 auto;width:min(720px,100vw);max-width:100vw;height:100dvh;max-height:100dvh;margin:0;padding:0;border:0;background:var(--color-bg-surface);color:var(--color-text-primary);
-  transform:translateX(100%);transition:transform .6s var(--ease-out),overlay .6s allow-discrete,display .6s allow-discrete}
+  transform:translateX(100%);transition:transform .3s var(--ease-out),overlay .3s allow-discrete,display .3s allow-discrete}   /* closes in .3s, opens in .6s */
 [dir="rtl"] .voices_dialog{inset:0 auto 0 0;transform:translateX(-100%)}
-.voices_dialog[open]{transform:none}
+.voices_dialog[open]{transform:none;transition-duration:.6s}
 @starting-style{.voices_dialog[open]{transform:translateX(100%)}[dir="rtl"] .voices_dialog[open]{transform:translateX(-100%)}}
-.voices_dialog::backdrop{background:var(--voices-scrim);opacity:0;transition:opacity .4s,overlay .6s allow-discrete,display .6s allow-discrete}
-.voices_dialog[open]::backdrop{opacity:1}
+.voices_dialog::backdrop{background:var(--voices-scrim);opacity:0;transition:opacity .15s ease-out,overlay .3s allow-discrete,display .3s allow-discrete}
+.voices_dialog[open]::backdrop{opacity:1;transition:opacity .4s ease-out,overlay .6s allow-discrete,display .6s allow-discrete}
 @starting-style{.voices_dialog[open]::backdrop{opacity:0}}
 .voices_panel{display:flex;flex-direction:column;height:100%}
 .voices_bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);padding:var(--space-24) var(--space-32);border-bottom:1px solid var(--color-border-subtle)}
@@ -747,9 +749,14 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
   .voices_bar{padding:var(--space-16) var(--space-20)}
   .voices_scroll{padding:var(--space-32) var(--space-20) var(--space-64)}
 }
-@media (max-width:479px){.voices_pager .sb_pager-btn{display:none}}   /* phones swipe; the count stays */
+@media (max-width:479px){.voices_pager .sb_pager-btn{display:none}}
+.section_voices .sb_pager-btn{transition:background-color .2s,scale .15s ease-out}
+@media (prefers-reduced-motion:no-preference){.section_voices .sb_pager-btn:not(:disabled):active{scale:.96}}   /* press feedback, Student voices only for now */   /* phones swipe; the count stays */
 @media (prefers-reduced-motion:reduce){
-  .voices_dialog,.voices_dialog::backdrop{transition:none}
+  .voices_dialog,[dir="rtl"] .voices_dialog,.voices_dialog[open]{transform:none;opacity:0;transition:opacity .2s ease-out,overlay .2s allow-discrete,display .2s allow-discrete!important}
+  .voices_dialog[open]{opacity:1}
+  @starting-style{.voices_dialog[open]{opacity:0}}
+  .voices_dialog::backdrop,.voices_dialog[open]::backdrop{transition:opacity .2s ease-out,overlay .2s allow-discrete,display .2s allow-discrete!important}
 }
 
     .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -2218,7 +2225,6 @@ layout();
         if (Math.abs(h.to - h.p) < 1e-3) h.p = h.to;
         var grow = 0.1 * w * h.p;
         it.style.transform = "translate3d(" + xFor(i, T) + "px,0,0)";
-        it.firstElementChild.style.width = grow ? w + grow + "px" : "";
         it.firstElementChild.style.transform = grow ? "translate3d(" + -grow + "px,0,0)" : "";
       });
       // how much of each card is uncovered (1 = all of it); below half, its quote fades to 20%
