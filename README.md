@@ -92,6 +92,7 @@ After Results. The reference clone is `clone/noho-stories/index.html`, with note
 - **Desktop with motion (992px and up), as on noho.ink:** the section pins for one viewport of scroll per card. Each card slides over the one before it and leaves 20% of it showing; the last card lands on the right grid margin. A covered card's quote fades to 20% so the cut-off text reads as the edge of the stack. Hovering a covered card uncovers 10% more of it. A green "Read" bubble follows the pointer over the cards (green, because red stays with "Become a mentor"). The count ("02 / 04") and the arrows show and move the position; tabbing to a card glides the deck to it.
 - **Full story:** the whole card is one button that opens a side panel (a modal `<dialog>`: Esc and the scrim close it, focus returns to the card) with the full testimonial and previous / next.
 - **Phones, tablets, reduced motion and no JS:** no pin; the cards are a sideways swipe with snap, and the footer stacks.
+- **Reviews (better-ui, colors, typography, accessibility, writing):** colours come from root tokens (`--color-bg-card-1…3`, `--color-text-achievement-on-tint`, `--color-text-on-secondary`, `--color-scrim-dialog`, light and dark). Quotes use line-height 1.4. Covered quotes fade to 55% at most (3.6:1, large text). The section is `lang="en"`, so screen readers keep English pronunciation in Arabic mode. Previous / next in the story panel announce "Story 2 of 4: …". Shortened quotes are marked with an ellipsis.
 
 ## Copy from the previous SFG website
 The text in About, What we do / What we don't do and How it works now follows the previous SFG site, within the existing layout:
@@ -113,7 +114,7 @@ The text in About, What we do / What we don't do and How it works now follows th
 The page uses `Thmanyah Serif Display`, `Thmanyah Serif Text` and `Thmanyah Sans` whenever they are available. These come from installed fonts, or from the `--font-sfg-*` variables set by a bundler such as `next/font/local`. Otherwise it falls back to Newsreader, Readex Pro and Noto Naskh Arabic. The Thmanyah font files are deliberately **not** in this repository, as the licence requires.
 
 ## Open items
-- **Student voices:** Ibrahim Elhout's university isn't named in his testimonial; his card says "Studying in France" until it is confirmed. Shahd's full story has two small fixes to her original post: "@uofglasgow" is written out as "the University of Glasgow", and a doubled "The The" is removed.
+- **Student voices:** Ibrahim Elhout's university isn't named in his testimonial; his card says "Studying in France" and "Computer engineer" until his university and program are confirmed. Shahd's full story has two small fixes to her original post: "@uofglasgow" is written out as "the University of Glasgow", and a doubled "The The" is removed.
 - **How it works:** real photos can replace the illustrations one at a time. The section text is English only so far. The "Start your application" link points to a section that doesn't exist yet.
 - The Arabic paragraph is a draft translation and needs review by a native editor. Its hidden sentence reads «فلسطين متعلّمة يعيد بناءها طلابها».
 - The header now uses the official SFG logo (`assets/logo.png`), reversed to linen for the dark header (`assets/logo-linen.png`). An SVG version would be sharper on high-density screens.

@@ -47,6 +47,10 @@
       --color-border-subtle:var(--neutral-border);
       --color-border-focus:var(--green-600);
       --color-accent-achievement:var(--ochre-500);
+      --color-text-achievement-on-tint:var(--ochre-800);   /* scholarship names on sand / green-100 cards (ochre 700 drops to 4.2:1 there) */
+      --color-bg-card-1:var(--neutral-sand);--color-bg-card-2:var(--green-100);--color-bg-card-3:var(--neutral-paper);   /* stepped card tones (Student voices) */
+      --color-text-on-secondary:var(--neutral-white);   /* text on a --color-action-secondary fill */
+      --color-scrim-dialog:rgb(13 38 29 / .48);
       --color-pen-default:var(--red-500);
       --color-pen-soft:var(--red-200);
       /* Hero-only tokens: scrim over photography (green 900) and the focus ring on dark imagery */
@@ -105,14 +109,14 @@
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
-      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
+      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-bg-card-1:#21332A;--color-bg-card-2:#263B31;--color-bg-card-3:#1B2B23;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
       --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);--color-text-fill-off:rgb(239 232 219 / .18);
     }}
     :root[data-theme="dark"]{
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
-      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
+      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-bg-card-1:#21332A;--color-bg-card-2:#263B31;--color-bg-card-3:#1B2B23;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
       --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);--color-text-fill-off:rgb(239 232 219 / .18);
     }
 
@@ -656,16 +660,12 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
    Below 992px, with reduced motion or without JS: a native sideways swipe with snap.
    ========================================================== */
 .section_voices{
-  --voices-card-1:var(--neutral-sand);--voices-card-2:var(--green-100);--voices-card-3:var(--neutral-paper);
-  --voices-ink:var(--color-text-primary);--voices-muted:var(--color-text-secondary);--voices-achievement:var(--ochre-800);
-  --voices-link:var(--color-action-secondary);--voices-bubble-bg:var(--color-action-secondary);--voices-bubble-ink:var(--color-text-on-action);
-  --voices-scrim:rgb(13 38 29 / .48);
+  --voices-card-1:var(--color-bg-card-1);--voices-card-2:var(--color-bg-card-2);--voices-card-3:var(--color-bg-card-3);
+  --voices-ink:var(--color-text-primary);--voices-muted:var(--color-text-secondary);--voices-achievement:var(--color-text-achievement-on-tint);
+  --voices-link:var(--color-action-secondary);--voices-bubble-bg:var(--color-action-secondary);--voices-bubble-ink:var(--color-text-on-secondary);
+  --voices-scrim:var(--color-scrim-dialog);
   --voices-w:min(83.333vw,480px);
   position:relative;z-index:2;background:var(--color-bg-page);color:var(--voices-ink);padding-block:var(--space-128)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .section_voices{
-  --voices-card-1:#21332A;--voices-card-2:#263B31;--voices-card-3:#1B2B23;--voices-achievement:#DBBA80;--voices-bubble-ink:#0B1510;--voices-scrim:rgb(0 0 0 / .56)}}
-:root[data-theme="dark"] .section_voices{
-  --voices-card-1:#21332A;--voices-card-2:#263B31;--voices-card-3:#1B2B23;--voices-achievement:#DBBA80;--voices-bubble-ink:#0B1510;--voices-scrim:rgb(0 0 0 / .56)}
 .voices_head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-24);padding-inline:var(--grid-margin);margin-bottom:var(--space-48)}
 .voices_title-mask{overflow:hidden;padding-bottom:var(--space-8)}
 .voices_title{margin:0;color:var(--color-text-heading)}
@@ -690,7 +690,7 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 @media (hover:hover) and (prefers-reduced-motion:no-preference){.voices_card:hover .voices_open svg{transform:translateX(var(--space-4))}}   /* touch would latch :hover after a tap */
 .voices_open:focus-visible{outline:none}
 .voices_open:focus-visible::after{outline:3px solid var(--color-border-focus);outline-offset:-3px;border-radius:var(--radius-panel)}
-.voices_quote{margin:0;align-self:center;justify-self:center;max-width:26ch;text-align:center;color:var(--voices-ink);text-wrap:balance}
+.voices_quote{margin:0;align-self:center;justify-self:center;max-width:26ch;line-height:1.4;text-align:center;color:var(--voices-ink);text-wrap:balance}
 .voices_quote p{margin:0}
 .is-pinned .voices_quote{opacity:var(--voices-seen,1)}   /* a covered card's cut-off quote fades, so the strip reads as the stack's edge */
 .voices_by{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--space-8) var(--space-24)}
@@ -1133,7 +1133,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
         </div>
       </div>
     </section>
-    <section class="section_voices" id="student-voices" aria-labelledby="voices-title" data-voices>
+    <section class="section_voices" id="student-voices" aria-labelledby="voices-title" lang="en" data-voices>
       <div class="voices_pin" data-voices-pin>
         <div class="voices_head">
           <div class="voices_title-mask"><h2 class="voices_title h2" id="voices-title" data-voices-title>Student voices</h2></div>
@@ -1165,7 +1165,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
                 <p class="voices_scholarship title3">Fully funded scholarship</p>
                 <button class="voices_open title3" type="button" data-voices-open aria-haspopup="dialog">Read full story<span class="sr-only"> of Shahd Alwahidi</span><svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
               </div>
-              <blockquote class="voices_quote h5"><p>“He understood when the connection dropped, when I couldn’t focus, when I felt hopeless. Instead, he encouraged me to write freely, to see my story as powerful.”</p></blockquote>
+              <blockquote class="voices_quote h5"><p>“He understood when the connection dropped, when I couldn’t focus, when I felt hopeless. Instead, he encouraged me to write freely, to see my story as powerful…”</p></blockquote>
               <figcaption class="voices_by">
                 <span class="voices_person"><span class="voices_name title3" id="voice-shahd-name">Shahd Alwahidi</span><span class="voices_study body3">Biomedical Engineering</span></span>
                 <span class="voices_uni title3">University of Glasgow</span>
@@ -1179,7 +1179,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
                 <p class="voices_scholarship title3">Salam Scholarship</p>
                 <button class="voices_open title3" type="button" data-voices-open aria-haspopup="dialog">Read full story<span class="sr-only"> of Doaa Nabil Ahmed</span><svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
               </div>
-              <blockquote class="voices_quote h5"><p>“I was unsure if I could manage scholarship applications while living with frequent internet outages, long electricity cuts, and the dangers of bombings in Gaza.”</p></blockquote>
+              <blockquote class="voices_quote h5"><p>“…I was unsure if I could manage scholarship applications while living with frequent internet outages, long electricity cuts, and the dangers of bombings in Gaza.”</p></blockquote>
               <figcaption class="voices_by">
                 <span class="voices_person"><span class="voices_name title3" id="voice-doaa-name">Doaa Nabil Ahmed</span><span class="voices_study body3">MA TESOL</span></span>
                 <span class="voices_uni title3">Ulster University</span>
@@ -1195,7 +1195,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
               </div>
               <blockquote class="voices_quote h5"><p>“Having someone with more experience to guide you through the process is essential, as many flaws are unseen from your own perspective.”</p></blockquote>
               <figcaption class="voices_by">
-                <span class="voices_person"><span class="voices_name title3" id="voice-ibrahim-name">Ibrahim Elhout</span><span class="voices_study body3">Computer Engineering, MBA</span></span>
+                <span class="voices_person"><span class="voices_name title3" id="voice-ibrahim-name">Ibrahim Elhout</span><span class="voices_study body3">Computer engineer</span></span>
                 <span class="voices_uni title3">Studying in France</span>
               </figcaption>
               <template data-voices-story><p>As a computer engineering graduate pursuing my MBA at IUG, with over seven years of experience in IT project management, I knew I had the qualifications for a scholarship but needed guidance to refine my application.</p><p>Through Scholarships for Ghazza, I was connected with a wonderful mentor who provided invaluable support—proofreading my essays, helping me structure my ideas, and answering my questions as an experienced researcher. Her continuous feedback and responsiveness made a huge difference.</p><p>Having someone with more experience to guide you through the process is essential, as many flaws are unseen from your own perspective. Thanks to this mentorship, I secured the French Excellence Scholarship for students from Palestine.</p></template>
@@ -1217,7 +1217,8 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
           <div class="voices_scroll" data-voices-d-scroll dir="ltr" lang="en">
             <p class="voices_d-scholarship title3" data-voices-d-scholarship></p>
             <h3 class="voices_d-name h3" id="voices-d-name" data-voices-d-name></h3>
-            <p class="voices_d-study title2" data-voices-d-study></p>
+            <p class="voices_d-study title2"><span data-voices-d-study></span><span aria-hidden="true"> · </span><span data-voices-d-uni></span></p>
+            <p class="sr-only" role="status" data-voices-d-status></p>
             <div class="voices_d-story body1" data-voices-d-story></div>
           </div>
         </div>
@@ -2043,11 +2044,11 @@ layout();
         it.style.transform = "translate3d(" + xFor(i, T) + "px,0,0)";
         it.firstElementChild.style.transform = grow ? "translate3d(" + -grow + "px,0,0)" : "";
       });
-      // how much of each card is uncovered (1 = all of it); below half, its quote fades to 20%
+      // how much of each card is uncovered (1 = all of it); below half, its quote fades to 55%
       items.forEach(function (it, i) {
         var seen = i === n - 1 ? 1 : (items[i + 1].getBoundingClientRect().left - it.firstElementChild.getBoundingClientRect().left) / w;
         var k = Math.min(1, Math.max(0, (seen - 0.25) / 0.5));
-        it.style.setProperty("--voices-seen", (0.2 + 0.8 * k).toFixed(3));
+        it.style.setProperty("--voices-seen", (0.55 + 0.45 * k).toFixed(3));   // 55% floor keeps 3.6:1 (large text needs 3:1)
       });
       setCurrent(Math.min(n - 1, Math.round(T)));
     }
@@ -2141,7 +2142,8 @@ layout();
 
     // ---- Full story panel ----------------------------------------------------
     var dlg = section.querySelector("[data-voices-dialog]");
-    var dName = dlg.querySelector("[data-voices-d-name]"), dStudy = dlg.querySelector("[data-voices-d-study]");
+    var dName = dlg.querySelector("[data-voices-d-name]"), dStudy = dlg.querySelector("[data-voices-d-study]"), dUni = dlg.querySelector("[data-voices-d-uni]");
+    var dStatus = dlg.querySelector("[data-voices-d-status]");
     var dSch = dlg.querySelector("[data-voices-d-scholarship]"), dStory = dlg.querySelector("[data-voices-d-story]");
     var dScroll = dlg.querySelector("[data-voices-d-scroll]");
     var dPrev = dlg.querySelector("[data-voices-d-prev]"), dNext = dlg.querySelector("[data-voices-d-next]");
@@ -2151,7 +2153,8 @@ layout();
       var it = items[k];
       dSch.textContent = it.querySelector(".voices_scholarship").textContent;
       dName.textContent = it.querySelector(".voices_name").textContent;
-      dStudy.textContent = it.querySelector(".voices_study").textContent + " · " + it.querySelector(".voices_uni").textContent;
+      dStudy.textContent = it.querySelector(".voices_study").textContent;
+      dUni.textContent = it.querySelector(".voices_uni").textContent;
       dStory.innerHTML = "";
       dStory.appendChild(it.querySelector("[data-voices-story]").content.cloneNode(true));
       dScroll.scrollTop = 0;
@@ -2159,13 +2162,14 @@ layout();
     }
     items.forEach(function (it, i) {
       it.querySelector("[data-voices-open]").addEventListener("click", function () {
-        opener = this; fill(i);
+        opener = this; fill(i); dStatus.textContent = "";
         document.documentElement.classList.add("voices-lock");
         dlg.showModal();
       });
     });
-    dPrev.addEventListener("click", function () { fill(openIdx - 1); (openIdx === 0 ? dNext : dPrev).focus(); });
-    dNext.addEventListener("click", function () { fill(openIdx + 1); (openIdx === n - 1 ? dPrev : dNext).focus(); });
+    function announce() { dStatus.textContent = "Story " + (openIdx + 1) + " of " + n + ": " + dName.textContent; }   // focus stays on the arrow, so say what changed
+    dPrev.addEventListener("click", function () { fill(openIdx - 1); announce(); (openIdx === 0 ? dNext : dPrev).focus(); });
+    dNext.addEventListener("click", function () { fill(openIdx + 1); announce(); (openIdx === n - 1 ? dPrev : dNext).focus(); });
     dlg.querySelector("[data-voices-close]").addEventListener("click", function () { dlg.close(); });
     dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });   // click on the scrim
     dlg.addEventListener("close", function () {
