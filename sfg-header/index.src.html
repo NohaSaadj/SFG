@@ -98,7 +98,7 @@
       --color-text-pen:var(--red-600);   /* the mentor's handwritten notes: red 500 is 3.9:1 on paper, red 600 is 4.9:1 */
       --color-text-on-inverse-secondary:rgb(247 242 233 / .72);   /* faded body on the inverse green (5.6:1) */
       --color-border-control:var(--neutral-ink);--color-bg-control:rgb(255 255 255 / .72);--color-bg-control-knob:var(--neutral-white);   /* language toggle */
-      --color-bg-tint-red:var(--red-100);--color-bg-tint-neutral:var(--neutral-white);--color-bg-tint-green:var(--green-100);   /* card trio: red and green tints either side of white */
+      --color-bg-tint-green:var(--green-100);   /* sage: same lightness as sand, so it sits with sand and paper */
       --h2-size:clamp(2.125rem,3.4vw,3rem);--h2-lh:1.167;--h2-ls:-.0167em;
       --title-size:1.75rem;--title-lh:1.2857;   /* 28/36 */
       --h4-size:2rem;--h4-lh:1.25;--h4-ls:-.0125em;   /* 32/40 */
@@ -111,14 +111,14 @@
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
-      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;--color-bg-tint-red:var(--red-900);--color-bg-tint-neutral:#16241D;--color-bg-tint-green:var(--green-800);
+      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;--color-bg-tint-green:var(--green-800);
       --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);
     }}
     :root[data-theme="dark"]{
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
-      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;--color-bg-tint-red:var(--red-900);--color-bg-tint-neutral:#16241D;--color-bg-tint-green:var(--green-800);
+      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;--color-bg-tint-green:var(--green-800);
       --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);
     }
 
@@ -664,7 +664,7 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
    Below 992px, with reduced motion or without JS: a native sideways swipe with snap.
    ========================================================== */
 .section_voices{
-  --voices-card-1:var(--color-bg-tint-red);--voices-card-2:var(--color-bg-tint-neutral);--voices-card-3:var(--color-bg-tint-green);   /* red tint, white, green tint */
+  --voices-card-1:var(--color-bg-surface-alt);--voices-card-2:var(--color-bg-surface);--voices-card-3:var(--color-bg-tint-green);   /* sand, paper, sage */
   --voices-ink:var(--color-text-primary);--voices-muted:var(--color-text-secondary);--voices-achievement:var(--color-text-achievement-on-tint);
   --voices-link:var(--color-action-secondary);--voices-bubble-bg:var(--color-action-secondary);--voices-bubble-ink:var(--color-text-on-secondary);
   --voices-scrim:var(--color-scrim-dialog);
