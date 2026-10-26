@@ -722,7 +722,7 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 @media (hover:hover) and (pointer:fine){.section_voices.has-cursor .voices_card{cursor:none}}
 
 /* Full story panel: slides in from the reading end, like Noho's article popup */
-.voices_dialog{position:fixed;inset:0 0 0 auto;width:min(max(50vw,720px),100vw);max-width:100vw;height:100dvh;max-height:100dvh;margin:0;padding:0;border:0;background:var(--color-bg-page);color:var(--color-text-primary);
+.voices_dialog{position:fixed;inset:0 0 0 auto;width:min(max(62.5vw,920px),100vw);max-width:100vw;height:100dvh;max-height:100dvh;margin:0;padding:0;border:0;background:var(--color-bg-page);color:var(--color-text-primary);
   transform:translateX(100%);transition:transform .3s var(--ease-out),overlay .3s allow-discrete,display .3s allow-discrete}   /* closes in .3s, opens in .6s */
 [dir="rtl"] .voices_dialog{inset:0 auto 0 0;transform:translateX(-100%)}
 .voices_dialog[open]{transform:none;transition-duration:.6s}
@@ -733,7 +733,7 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 .voices_scroll{--voices-bar-h:calc(var(--space-48) + var(--size-touch-min) + var(--space-20));height:100%;overflow-y:auto;overscroll-behavior:contain;padding:0 var(--space-48) var(--space-96)}
 .voices_bar{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);margin-inline:calc(var(--space-48) * -1);padding:var(--space-48) var(--space-48) var(--space-20);background:var(--color-bg-page)}   /* stays put while the photo and title scroll under it */
 .voices_bar-nav{display:flex;gap:var(--space-12)}
-.voices_d-media{position:relative;margin:0;aspect-ratio:3 / 2;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-bg-surface)}
+.voices_d-media{position:relative;margin:0;aspect-ratio:3 / 2;max-height:50dvh;width:100%;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-bg-surface)}
 .voices_d-photo{display:block;width:100%;height:100%;object-fit:cover;outline:1px solid rgb(0 0 0 / .1);outline-offset:-1px}
 /* Until a photo is added: the tatreez stitch field with the student's initials */
 .voices_d-placeholder{position:absolute;inset:0;display:grid;place-items:center}
@@ -741,14 +741,14 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 .voices_d-field{position:absolute;inset:0;width:100%;height:100%}
 .voices_d-initials{position:relative;display:grid;place-items:center;width:var(--space-128);height:var(--space-128);border-radius:var(--radius-full);background:var(--color-bg-page);color:var(--color-text-heading);letter-spacing:0}
 .voices_d-name{margin:var(--space-48) 0 0;color:var(--color-text-primary);text-wrap:balance}
-.voices_d-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);column-gap:var(--space-48);margin-top:var(--space-48)}
+.voices_d-body{display:grid;grid-template-columns:minmax(0,13rem) minmax(0,1fr);column-gap:var(--space-48);margin-top:var(--space-48)}
 .voices_d-meta{position:sticky;top:calc(var(--voices-bar-h) + var(--space-24));align-self:start;display:flex;flex-direction:column;gap:var(--space-24)}   /* pins under the bar until the story ends */
 .voices_d-scholarship{margin:0;color:var(--color-text-achievement-on-tint)}
 .voices_d-facts{margin:0;border-top:1px solid var(--color-border-subtle)}
 .voices_d-fact{display:flex;flex-direction:column;gap:var(--space-4);padding-block:var(--space-12);border-bottom:1px solid var(--color-border-subtle)}
 .voices_d-fact dt{color:var(--color-text-secondary)}
 .voices_d-fact dd{margin:0;color:var(--color-text-primary);text-wrap:pretty}
-.voices_d-story{max-width:65ch;text-wrap:pretty}
+.voices_d-story{max-width:60ch;text-wrap:pretty}
 .voices_d-story p{margin:0 0 var(--space-20)}
 .voices_dialog :focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
 html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the page keeps its place */
