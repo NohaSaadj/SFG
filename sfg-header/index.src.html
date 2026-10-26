@@ -98,7 +98,7 @@
       --color-text-pen:var(--red-600);   /* the mentor's handwritten notes: red 500 is 3.9:1 on paper, red 600 is 4.9:1 */
       --color-text-on-inverse-secondary:rgb(247 242 233 / .72);   /* faded body on the inverse green (5.6:1) */
       --color-border-control:var(--neutral-ink);--color-bg-control:rgb(255 255 255 / .72);--color-bg-control-knob:var(--neutral-white);   /* language toggle */
-      --color-bg-tint-green:var(--green-100);   /* sage: same lightness as sand, so it sits with sand and paper */
+      
       --h2-size:clamp(2.125rem,3.4vw,3rem);--h2-lh:1.167;--h2-ls:-.0167em;
       --title-size:1.75rem;--title-lh:1.2857;   /* 28/36 */
       --h4-size:2rem;--h4-lh:1.25;--h4-ls:-.0125em;   /* 32/40 */
@@ -111,14 +111,14 @@
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
-      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;--color-bg-tint-green:var(--green-800);
+      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
       --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);
     }}
     :root[data-theme="dark"]{
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
-      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;--color-bg-tint-green:var(--green-800);
+      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
       --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);
     }
 
@@ -664,8 +664,8 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
    Below 992px, with reduced motion or without JS: a native sideways swipe with snap.
    ========================================================== */
 .section_voices{
-  --voices-card-1:var(--color-bg-surface-alt);--voices-card-2:var(--color-bg-surface);--voices-card-3:var(--color-bg-tint-green);   /* sand, paper, sage */
-  --voices-ink:var(--color-text-primary);--voices-muted:var(--color-text-secondary);--voices-achievement:var(--color-text-achievement-on-tint);
+  --voices-card-1:var(--color-bg-surface-alt);--voices-card-2:var(--color-bg-surface);   /* sand and paper */
+  --voices-ink:var(--color-text-primary);--voices-muted:var(--color-text-secondary);
   --voices-link:var(--color-action-secondary);--voices-bubble-bg:var(--color-action-secondary);--voices-bubble-ink:var(--color-text-on-secondary);
   --voices-scrim:var(--color-scrim-dialog);
   --voices-w:min(83.333vw,480px);
@@ -678,16 +678,14 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 .voices_list{list-style:none;margin:0;padding:0 var(--grid-margin);display:flex;gap:var(--space-16);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--grid-margin);scrollbar-width:none;overscroll-behavior-x:contain}
 .voices_list::-webkit-scrollbar{display:none}
 .voices_item{flex:none;width:var(--voices-w);scroll-snap-align:start;display:flex}
-.voices_item:nth-child(3n+1) .voices_card{background:var(--voices-card-1)}
-.voices_item:nth-child(3n+2) .voices_card{background:var(--voices-card-2)}
-.voices_item:nth-child(3n) .voices_card{background:var(--voices-card-3)}
+.voices_item:nth-child(odd) .voices_card{background:var(--voices-card-1)}
+.voices_item:nth-child(even) .voices_card{background:var(--voices-card-2)}
 
 /* Card: name + study top-left and university top-right (the label a covered card still shows), the student's words in the centre,
    then the scholarship and "Read full story" at the bottom, where reading ends */
 .voices_card{position:relative;flex:1;display:grid;grid-template-rows:auto 1fr auto;gap:var(--space-24);min-height:440px;margin:0;padding:var(--space-32);border-radius:var(--radius-sm);overflow:hidden}
-.voices_actions{display:flex;align-items:center;justify-content:space-between;gap:var(--space-16);min-height:var(--size-touch-min)}
-.voices_scholarship{margin:0;color:var(--voices-achievement)}
-.voices_open{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-inline-end:calc(var(--space-12) * -1);padding-inline:var(--space-12) calc(var(--space-12) - var(--space-2));border:0;border-radius:var(--radius-full);background:none;color:var(--voices-link);cursor:pointer;white-space:nowrap}
+.voices_actions{display:flex;align-items:center;min-height:var(--size-touch-min)}   /* the card's one action, on the same left edge as the name */
+.voices_open{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-inline-start:calc(var(--space-12) * -1);padding-inline:var(--space-12) calc(var(--space-12) - var(--space-2));border:0;border-radius:var(--radius-full);background:none;color:var(--voices-link);cursor:pointer;white-space:nowrap}
 .voices_open::after{content:"";position:absolute;inset:0;z-index:1;border-radius:inherit}   /* the whole card opens the story */
 .voices_open svg{transition:transform .3s var(--ease-out)}
 .voices_open svg path{vector-effect:non-scaling-stroke;stroke-width:2px}   /* 2px drawn, to match the Medium label */
@@ -698,11 +696,9 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 .voices_quote{margin:0;align-self:center;justify-self:center;max-width:26ch;line-height:1.4;text-align:center;color:var(--voices-ink);text-wrap:balance}
 .voices_quote p{margin:0}
 .is-pinned .voices_quote{opacity:var(--voices-seen,1)}   /* a covered card's cut-off quote fades, so the strip reads as the stack's edge */
-.voices_by{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:var(--space-8) var(--space-24);margin:0}
-.voices_person{display:flex;flex-direction:column}
+.voices_by{display:flex;flex-direction:column;margin:0}   /* who: name (medium, ink) over university (regular, grey) */
 .voices_name{color:var(--voices-ink)}
-.voices_study{color:var(--voices-muted)}
-.voices_uni{color:var(--voices-ink);text-align:end}
+.voices_uni{color:var(--voices-muted)}
 
 /* Desktop pin (set by the script): absolute cards that stack, 20% of each covered card stays visible */
 .section_voices.is-pinned{padding-block:0;display:flex;flex-direction:column;justify-content:center}
@@ -759,8 +755,6 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 @media (max-width:991px){
   .voices_head{flex-wrap:wrap;margin-bottom:var(--space-32)}
   .voices_card{padding:var(--space-24)}
-  .voices_by{flex-direction:column;align-items:flex-start}
-  .voices_uni{text-align:start}
   .voices_scroll{--voices-bar-h:calc(var(--space-20) * 2 + var(--size-touch-min));padding:0 var(--space-20) var(--space-64)}
   .voices_bar{margin-inline:calc(var(--space-20) * -1);padding:var(--space-20)}
   .voices_d-meta{position:static}
@@ -1162,70 +1156,65 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
         <div class="voices_deck" data-voices-deck>
           <ul class="voices_list" role="list" data-voices-list>
           <li class="voices_item" data-voices-item>
-            <figure class="voices_card" aria-labelledby="voice-ola-name" data-voices-photo="assets/voices/ola.webp" data-voices-photo-alt="Ola Aburamadan on a park bench under autumn trees, holding a sign that reads “I can’t keep calm, I’ve been chosen for Chevening!”">
+            <figure class="voices_card" aria-labelledby="voice-ola-name" data-voices-photo="assets/voices/ola.webp" data-voices-photo-alt="Ola Aburamadan on a park bench under autumn trees, holding a sign that reads “I can’t keep calm, I’ve been chosen for Chevening!”" data-voices-study="Education and International Development" data-voices-scholarship="Chevening Scholarship">
               <figcaption class="voices_by">
-                <span class="voices_person"><span class="voices_name title3" id="voice-ola-name">Ola Aburamadan</span><span class="voices_study body3">Education and International Development</span></span>
-                <span class="voices_uni title3">University College London</span>
+                <span class="voices_name title3" id="voice-ola-name">Ola Aburamadan</span>
+                <span class="voices_uni body3">University College London</span>
               </figcaption>
               <blockquote class="voices_quote h5"><p>“They guided me through every essay, encouraged me when I broke down, and reminded me that my voice and my story mattered.”</p></blockquote>
               <div class="voices_actions">
-                <p class="voices_scholarship title3">Chevening Scholarship</p>
                 <button class="voices_open title3" type="button" data-voices-open aria-haspopup="dialog">Read full story<span class="sr-only"> of Ola Aburamadan</span><svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
               </div>
               <template data-voices-story><p>I’m Ola Aburamadan, an English teacher from Gaza. My story is one of survival, hope, and the power of mentorship.</p><p>When the genocide began, life turned into a daily fight for safety. There were days when I couldn’t sleep because of the bombings. Nights when the sound of explosions replaced silence. I watched schools — the very symbol of hope — turn to rubble. Sometimes, I couldn’t even imagine a future beyond the destruction.</p><p>Still, I held on to my dream of rebuilding through education. I had founded a small initiative that grew into a school serving more than 5,000 students, later supported by UNICEF. But to make a real change, I needed to learn — and that’s when SFG came into my life.</p><p>During the genocide, applying for the Chevening Awards felt impossible. Electricity cuts, weak internet, trauma — everything made the process harder.</p><p>Yet, my SFG mentor Beth and the founder, Ahmed Issa, never left my side. They guided me through every essay, encouraged me when I broke down, and reminded me that my voice and my story mattered.</p><p>SFG even helped me prepare for interviews and offered to cover my English test fees when I couldn’t afford them. They were my light when the world around me went dark.</p><p>Today, I’m studying Education and International Development at University College London (UCL) on a fully funded Chevening Scholarship. But this success belongs not only to me — it belongs to those who believed in me when I almost stopped believing in myself.</p></template>
             </figure>
           </li>
           <li class="voices_item" data-voices-item>
-            <figure class="voices_card" aria-labelledby="voice-shahd-name" data-voices-photo="assets/voices/shahd.webp" data-voices-photo-alt="Shahd Alwahidi in a University of Glasgow hoodie in front of the university’s main building">
+            <figure class="voices_card" aria-labelledby="voice-shahd-name" data-voices-photo="assets/voices/shahd.webp" data-voices-photo-alt="Shahd Alwahidi in a University of Glasgow hoodie in front of the university’s main building" data-voices-study="Biomedical Engineering" data-voices-scholarship="Fully funded scholarship">
               <figcaption class="voices_by">
-                <span class="voices_person"><span class="voices_name title3" id="voice-shahd-name">Shahd Alwahidi</span><span class="voices_study body3">Biomedical Engineering</span></span>
-                <span class="voices_uni title3">University of Glasgow</span>
+                <span class="voices_name title3" id="voice-shahd-name">Shahd Alwahidi</span>
+                <span class="voices_uni body3">University of Glasgow</span>
               </figcaption>
               <blockquote class="voices_quote h5"><p>“He understood when the connection dropped, when I couldn’t focus, when I felt hopeless. Instead, he encouraged me to write freely, to see my story as powerful…”</p></blockquote>
               <div class="voices_actions">
-                <p class="voices_scholarship title3">Fully funded scholarship</p>
                 <button class="voices_open title3" type="button" data-voices-open aria-haspopup="dialog">Read full story<span class="sr-only"> of Shahd Alwahidi</span><svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
               </div>
               <template data-voices-story><p>I never imagined applying for scholarships while living through a genocide. After being displaced in Gaza, I often found myself in a tent, with no stable internet and no quiet place to write. Many times, I thought about giving up.</p><p>When I joined the Scholarships For Ghazza (SFG) mentorship initiative, I worried my mentor wouldn’t understand the reality I was facing.</p><p>But Chris, my mentor, was patient in ways I didn’t expect. He never rushed me. He understood when the connection dropped, when I couldn’t focus, when I felt hopeless. Instead, he encouraged me to write freely, to see my story as powerful, and to believe that my voice mattered.</p><p>At first, I hated the writing process. I didn’t think I was good enough. But Chris guided me step by step—helping me shape raw thoughts into strong personal statements, reminding me to keep going after rejections, and lifting me up when I felt like quitting. Slowly, I started to dream again.</p><p>That support changed everything. I secured a fully funded scholarship at the University of Washington in Seattle, as well as offers from The University of Manchester, the University of Glasgow, University of Leicester, and the University of Alberta. Today, I am pursuing Biomedical Engineering at the University of Glasgow, holding on to the hope and resilience that carried me through this journey.</p><p>This journey showed me that mentorship is not only about guidance—it’s about patience, kindness, and believing in someone until they can believe in themselves again.</p></template>
             </figure>
           </li>
           <li class="voices_item" data-voices-item>
-            <figure class="voices_card" aria-labelledby="voice-doaa-name" data-voices-photo="assets/voices/doaa.webp" data-voices-photo-alt="Doaa Nabil Ahmed at the Diamond and Octagon entrance of Ulster University, under a banner naming it UK and Ireland University of the Year">
+            <figure class="voices_card" aria-labelledby="voice-doaa-name" data-voices-photo="assets/voices/doaa.webp" data-voices-photo-alt="Doaa Nabil Ahmed at the Diamond and Octagon entrance of Ulster University, under a banner naming it UK and Ireland University of the Year" data-voices-study="MA TESOL" data-voices-scholarship="Salam Scholarship">
               <figcaption class="voices_by">
-                <span class="voices_person"><span class="voices_name title3" id="voice-doaa-name">Doaa Nabil Ahmed</span><span class="voices_study body3">MA TESOL</span></span>
-                <span class="voices_uni title3">Ulster University</span>
+                <span class="voices_name title3" id="voice-doaa-name">Doaa Nabil Ahmed</span>
+                <span class="voices_uni body3">Ulster University</span>
               </figcaption>
               <blockquote class="voices_quote h5"><p>“…I was unsure if I could manage scholarship applications while living with frequent internet outages, long electricity cuts, and the dangers of bombings in Gaza.”</p></blockquote>
               <div class="voices_actions">
-                <p class="voices_scholarship title3">Salam Scholarship</p>
                 <button class="voices_open title3" type="button" data-voices-open aria-haspopup="dialog">Read full story<span class="sr-only"> of Doaa Nabil Ahmed</span><svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
               </div>
               <template data-voices-story><p>My name is Doaa Nabil Ahmed. I hold a Bachelor’s degree in English Language and Literature with a minor in Translation (2023) and a Bachelor’s degree in English Language Education (2025), and I am honored to have been awarded the Salam Scholarship for Palestinian women to pursue an MA in TESOL at Ulster University – Coleraine Campus.</p><p>Before joining the mentorship programme, I was unsure if I could manage scholarship applications while living with frequent internet outages, long electricity cuts, and the dangers of bombings in Gaza. But the programme gave me something rare: dedicated mentors, supportive peers, and a community that believed in me. With their guidance, I gained the skills, confidence, and resources that helped me secure my scholarship.</p><p>This experience showed me how powerful mentorship can be in transforming lives. That is why I wholeheartedly encourage more mentors to join this initiative. Your guidance does not only help students achieve academic goals—it gives hope, resilience, and the belief that even under the hardest circumstances, dreams are still possible.</p></template>
             </figure>
           </li>
           <li class="voices_item" data-voices-item>
-            <figure class="voices_card" aria-labelledby="voice-etaf-name" data-voices-photo="assets/voices/etaf.webp" data-voices-photo-alt="Etaf Abu Hadda and her mentor Nour Ali at Heathrow Airport, holding a Palestinian flag between them">
+            <figure class="voices_card" aria-labelledby="voice-etaf-name" data-voices-photo="assets/voices/etaf.webp" data-voices-photo-alt="Etaf Abu Hadda and her mentor Nour Ali at Heathrow Airport, holding a Palestinian flag between them" data-voices-study="MSc Cyber Security Engineering" data-voices-scholarship="WMG-Bseisu Foundation Scholarship">
               <figcaption class="voices_by">
-                <span class="voices_person"><span class="voices_name title3" id="voice-etaf-name">Etaf Abu Hadda</span><span class="voices_study body3">MSc Cyber Security Engineering</span></span>
-                <span class="voices_uni title3">University of Warwick</span>
+                <span class="voices_name title3" id="voice-etaf-name">Etaf Abu Hadda</span>
+                <span class="voices_uni body3">University of Warwick</span>
               </figcaption>
               <blockquote class="voices_quote h5"><p>“I still remember our first call—me in a noisy, crowded tent where drones buzzed overhead… Despite the chaos, Nour never gave up on me.”</p></blockquote>
               <div class="voices_actions">
-                <p class="voices_scholarship title3">WMG-Bseisu Foundation Scholarship</p>
                 <button class="voices_open title3" type="button" data-voices-open aria-haspopup="dialog">Read full story<span class="sr-only"> of Etaf Abu Hadda</span><svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
               </div>
               <template data-voices-story><p>My name is Etaf Abu Hadda, 26 years old from Gaza. I graduated with honours in Information Security Engineering and worked in cybersecurity with UNRWA, UNICC, and Medical Aid for Palestinians (MAP). Amid the Gaza genocide, I balanced volunteering in humanitarian relief with chasing my academic dream.</p><p>Living in a tent in Mawasi Khanyounis with no electricity or internet, I kept applying for scholarships—walking long distances to shared workspaces I couldn’t afford. That’s when the Scholarships for Ghazza mentorship programme stepped in—covering my workspace subscription, my English test fees, and, most importantly, connecting me with a mentor who believed in me.</p><p>My mentor, Nour Ali, guided me through drafts, gave thoughtful feedback, and encouraged me when applications were rejected. I still remember our first call—me in a noisy, crowded tent where drones buzzed overhead, making it almost impossible to hear. Despite the chaos, Nour never gave up on me. With her support, I kept going.</p><p>Not every application was successful, but together we refined my essays, explored MSc programmes, and built resilience. Against all odds, I was blessed to be awarded the WMG-Bseisu Foundation Scholarship 2025 to study MSc Cyber Security Engineering at the University of Warwick.</p><p>This mentorship gave me more than academic support—it gave me hope, resilience, and a global community. And meeting Nour in person at Heathrow last week was a powerful reminder that mentorship truly changes lives.</p></template>
             </figure>
           </li>
           <li class="voices_item" data-voices-item>
-            <figure class="voices_card" aria-labelledby="voice-saher-name">
+            <figure class="voices_card" aria-labelledby="voice-saher-name" data-voices-study="Mechatronics engineer" data-voices-scholarship="France Excellence Scholarship">
               <figcaption class="voices_by">
-                <span class="voices_person"><span class="voices_name title3" id="voice-saher-name">Saher</span><span class="voices_study body3">Mechatronics engineer</span></span>
-                <span class="voices_uni title3">Studying in France</span>
+                <span class="voices_name title3" id="voice-saher-name">Saher</span>
+                <span class="voices_uni body3">Studying in France</span>
               </figcaption>
               <blockquote class="voices_quote h5"><p>“I wasn’t sure the mentorship program would add much to my application—but I was wrong.”</p></blockquote>
               <div class="voices_actions">
-                <p class="voices_scholarship title3">France Excellence Scholarship</p>
                 <button class="voices_open title3" type="button" data-voices-open aria-haspopup="dialog">Read full story<span class="sr-only"> of Saher</span><svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
               </div>
               <template data-voices-story><p>As a Mechatronics Engineer with diverse technical and leadership experience, I initially believed my strong academic background, certifications, and expertise were enough to secure a scholarship. I wasn’t sure the mentorship program would add much to my application—but I was wrong.</p><p>Through Scholarships for Ghazza, I learned how to refine my CV, structure a compelling personal statement, and present my achievements effectively. The small details—clear storytelling, avoiding overly complex language, and maintaining a natural flow—made a huge difference. Having a foreign mentor review my documents provided a fresh perspective I wouldn’t have considered otherwise.</p><p>I was fortunate to secure the France Excellence Scholarship, and I now see how much the program has grown, offering scholarship databases, English improvement communities, and continuous engagement with mentors and peers. This program saves students the hassle of navigating the process alone and significantly strengthens their applications.</p></template>
@@ -2218,11 +2207,12 @@ layout();
     function fill(k) {
       openIdx = k;
       var it = items[k];
-      dSch.textContent = it.querySelector(".voices_scholarship").textContent;
+      var fig = it.querySelector(".voices_card");
+      dSch.textContent = fig.getAttribute("data-voices-scholarship");   // programme and scholarship live only in the panel
       dName.textContent = it.querySelector(".voices_name").textContent;
-      dStudy.textContent = it.querySelector(".voices_study").textContent;
+      dStudy.textContent = fig.getAttribute("data-voices-study");
       dUni.textContent = it.querySelector(".voices_uni").textContent;
-      var fig = it.querySelector(".voices_card"), photo = fig.getAttribute("data-voices-photo");
+      var photo = fig.getAttribute("data-voices-photo");
       dPhoto.hidden = !photo; dPlace.hidden = !!photo;
       if (photo) { dPhoto.src = photo; dPhoto.alt = fig.getAttribute("data-voices-photo-alt") || ""; } else dPhoto.removeAttribute("src");
       dInit.textContent = dName.textContent.split(/\s+/).map(function (w) { return w.charAt(0); }).slice(0, 2).join("");
