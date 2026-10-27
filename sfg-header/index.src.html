@@ -772,6 +772,51 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
     .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
     /* Reduced motion: final state, no roll */
+/* ==========================================================================
+   In remembrance: a letter on the inverse green, with the three photos laid on it like prints.
+   Quiet on purpose: no pin, no carousel, no hover effects, nothing to click. Red is never used here.
+   ========================================================================== */
+.section_memory{
+  --memory-paper:var(--color-bg-surface);--memory-ink:var(--color-text-primary);--memory-muted:var(--color-text-secondary);
+  --memory-rule:var(--color-pattern-stitch-soft);   /* faint ruled lines: sand on paper */
+  position:relative;z-index:2;background:var(--color-bg-inverse);color:var(--color-text-on-inverse);padding:var(--space-192) var(--grid-margin) var(--space-160)}
+.memory_title{margin:0 0 var(--space-64);text-align:center;color:var(--color-text-on-inverse)}
+.memory_prints{position:relative;z-index:1;display:flex;justify-content:center;align-items:flex-start;gap:var(--space-32);list-style:none;margin:0 0 calc(var(--space-64) * -1);padding:0}
+.memory_print{flex:none;rotate:var(--tilt,0deg)}
+.memory_print:nth-child(1){--tilt:-2.5deg}
+.memory_print:nth-child(2){--tilt:2deg;margin-top:var(--space-24)}
+.memory_print:nth-child(3){--tilt:-2deg;margin-top:var(--space-8)}
+.memory_frame{margin:0;padding:var(--space-12) var(--space-12) var(--space-16);background:var(--memory-paper);border:1px solid var(--color-border-subtle);border-radius:var(--radius-sm)}
+.memory_frame img{display:block;height:184px;width:auto;border-radius:2px}   /* shown at the source's own size */
+.memory_frame figcaption{display:flex;flex-direction:column;gap:var(--space-2);margin-top:var(--space-12);width:min-content;min-width:100%}
+.memory_name{color:var(--memory-ink)}
+.memory_dream{color:var(--memory-muted);text-wrap:pretty}
+.memory_dream.is-achievement{color:var(--color-text-achievement)}   /* what they had already earned */
+.memory_letter{max-width:48rem;margin:0 auto;padding:calc(var(--space-64) + var(--space-56)) var(--space-64) var(--space-64);background:var(--memory-paper);color:var(--memory-ink);border-radius:var(--radius-sm)}
+.memory_text{max-width:60ch;margin-inline:auto;text-wrap:pretty;
+  background:repeating-linear-gradient(to bottom,transparent 0 calc(1lh - 1px),var(--memory-rule) calc(1lh - 1px) 1lh)}   /* one rule under every line, set by the text's own line-height */
+.memory_text p{margin:0 0 1lh}   /* paragraph gaps are whole lines, so the rules stay in step */
+.memory_keep{white-space:nowrap}   /* names never break at their hyphen */
+.memory_sign{display:flex;flex-direction:column;max-width:60ch;margin:var(--space-32) auto 0}
+.memory_sign-role{color:var(--memory-muted)}
+@media (prefers-reduced-motion:no-preference){
+  .js .memory_print{opacity:0;translate:0 var(--space-24);rotate:0deg;transition:opacity 1.2s ease-out,translate 1.2s var(--ease-out),rotate 1.2s var(--ease-out)}
+  .js .memory_print:nth-child(2){transition-delay:.15s}
+  .js .memory_print:nth-child(3){transition-delay:.3s}
+  .js .section_memory.is-in .memory_print{opacity:1;translate:0 0;rotate:var(--tilt)}   /* the prints settle once */
+}
+@media (max-width:991px){
+  .section_memory{padding-block:var(--space-128) var(--space-96)}
+  .memory_prints{flex-wrap:wrap;gap:var(--space-24);margin-bottom:var(--space-32)}
+  .memory_print,.js .section_memory.is-in .memory_print{--tilt:0deg;margin-top:0}   /* straight, in reading order, and clear of the letter on smaller screens */
+  .memory_letter{padding:var(--space-48) var(--space-48)}
+}
+@media (max-width:599px){
+  .memory_prints{flex-direction:column;align-items:center}
+  .memory_letter{padding:var(--space-48) var(--space-24)}
+}
+@media (max-width:420px){.memory_frame img{height:auto;max-width:calc(100vw - 2 * var(--grid-margin) - 2 * var(--space-12) - 2px)}}
+
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{transition:none!important;animation:none!important}
       .intro_begin{place-items:end center;padding-bottom:var(--space-128)}
@@ -1256,6 +1301,37 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
           </div>
         </div>
       </dialog>
+    </section>
+    <section class="section_memory" id="in-remembrance" aria-labelledby="memory-title" lang="en" dir="ltr" data-memory>
+      <h2 class="memory_title h2" id="memory-title">In remembrance</h2>
+      <ul class="memory_prints" role="list">
+        <li class="memory_print">
+          <figure class="memory_frame">
+            <img src="assets/memory/shaban.webp" width="185" height="184" alt="Sha’ban A-Dalo sitting in front of a destroyed building" loading="lazy" />
+            <figcaption><span class="memory_name title3">Sha’ban A-Dalo</span><span class="memory_dream body3">Applying for scholarships to study abroad</span></figcaption>
+          </figure>
+        </li>
+        <li class="memory_print">
+          <figure class="memory_frame">
+            <img src="assets/memory/dalia-sally.webp" width="330" height="184" alt="Twin sisters Dalia and Sally Ibaid in graduation gowns and keffiyeh stoles, holding their certificates" loading="lazy" />
+            <figcaption><span class="memory_name title3">Dalia and Sally Ibaid</span><span class="memory_dream is-achievement body3">Accepted to a PhD at the University of Waterloo</span></figcaption>
+          </figure>
+        </li>
+        <li class="memory_print">
+          <figure class="memory_frame">
+            <img src="assets/memory/nada.webp" width="185" height="186" alt="Nada Issa in her graduation gown, placing her graduation cap on her father’s head" loading="lazy" />
+            <figcaption><span class="memory_name title3">Nada Issa, with her father, also martyred</span><span class="memory_dream body3">Preparing to study for an MBA</span></figcaption>
+          </figure>
+        </li>
+      </ul>
+      <article class="memory_letter" aria-label="A letter from Ahmed Issa">
+        <div class="memory_text body1">
+          <p>In the spirit of the SfG community and the mission that unites us, we always remember with deep sorrow our mentees <span class="memory_keep">Sha’ban A-Dalo</span>, Dalia Ibaid, her twin sister Sally Ibaid, and Nada Issa, who were martyred during the Israeli genocide on Gaza. Sha’ban, Dalia, Sally, and Nada were brilliant young students striving to obtain scholarships to pursue their education abroad in a stable and supportive environment after the brutal genocide on Gaza destroyed their universities and placed them under unimaginable circumstances. Despite all the horrors they endured, they never gave up. They insisted on achieving their dreams and securing their right to a <span class="memory_keep">high-quality</span> education — a right each and every human being deserves.</p>
+          <p>However, the Zionist forces did not allow that dream to continue. As with so many stories of Gaza’s martyrs, people with normal lives, loving families and friends, and great ambitions, their stories ended in tragedy. The occupation forces attacked Sha’ban’s family tent near <span class="memory_keep">Al-Aqsa</span> Hospital in <span class="memory_keep">Deir al-Balah</span> and burned him alive along with several of his family members. They also killed Dalia and her twin sister Sally, who had both been accepted into a PhD program at the University of Waterloo in Canada, while they were in the process of applying for study permits and preparing to cross the Rafah border into Egypt. Nada was also martyred during the genocide while preparing to pursue graduate studies in business and management. A talented translator and project coordinator, she combined language, strategy, and leadership in her work and dreamed of continuing her education through an MBA to contribute to her community’s development.</p>
+          <p>Today, we dedicate this document to the memory of Sha’ban, Dalia, Sally, and Nada, four of our brightest mentees whose dreams and determination continue to inspire us. Through this work, and through every effort to help Gazan students access education and rebuild their futures, we honour their lives, their ambitions, and their unshakable belief in hope and learning. We pray that Allah (SWT) has mercy upon them and grants them <span class="memory_keep">Jannat al-Firdaws</span>. Ameen.</p>
+        </div>
+        <p class="memory_sign"><span class="title3">Ahmed Issa</span><span class="memory_sign-role body3">Initiative Founder</span></p>
+      </article>
     </section>
   </main>
 
@@ -2252,6 +2328,18 @@ layout();
     reduced.addEventListener("change", measure);
     (document.fonts ? document.fonts.ready : Promise.resolve()).then(measure);
     measure();
+  })();
+  </script>
+  <script>
+  /* In remembrance: the prints settle once when the section comes into view.
+     Hooks: [data-memory] */
+  (function () {
+    var sec = document.querySelector("[data-memory]");
+    if (!sec) return;
+    if (!("IntersectionObserver" in window)) { sec.classList.add("is-in"); return; }
+    new IntersectionObserver(function (es, o) {
+      if (es[0].isIntersecting) { sec.classList.add("is-in"); o.disconnect(); }
+    }, { threshold: 0.25 }).observe(sec);
   })();
   </script>
 </body>
