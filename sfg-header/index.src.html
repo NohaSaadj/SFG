@@ -779,40 +779,44 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 .section_memory{
   --memory-paper:var(--color-bg-surface);--memory-ink:var(--color-text-primary);--memory-muted:var(--color-text-secondary);
   --memory-rule:var(--color-pattern-stitch-soft);   /* faint ruled lines: sand on paper */
-  position:relative;z-index:2;background:var(--color-bg-inverse);color:var(--color-text-on-inverse);padding:var(--space-160) var(--grid-margin) var(--space-128)}
-.memory_title{margin:0 0 var(--space-64);text-align:center;color:var(--color-text-on-inverse)}
-.memory_layout{position:relative;max-width:48rem;margin-inline:auto}
+  --memory-bg:var(--color-bg-inverse);--memory-title:var(--color-text-on-inverse);--memory-edge:transparent;
+  position:relative;z-index:2;background:var(--memory-bg);color:var(--memory-title);padding:var(--space-160) var(--grid-margin) var(--space-128)}
+.section_memory[data-palette="page"]{--memory-bg:var(--color-bg-page);--memory-title:var(--color-text-heading);--memory-edge:var(--color-border-subtle)}   /* linen: paper needs an edge, it is only 1.05:1 against the page */
+.memory_title{margin:0 0 var(--space-64);text-align:center;color:var(--memory-title)}
+.memory_layout{max-width:48rem;margin-inline:auto}
 /* three prints of one size: 14rem wide, 4:3 photos, the same caption room */
-.memory_prints{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-16);list-style:none;margin:0 0 var(--space-48);padding:0}
+.memory_prints{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-16);margin:0 0 var(--space-48)}
+.memory_side{display:contents}   /* small screens: the three prints share one row */
 .memory_print{width:14rem}
-.memory_frame{height:100%;margin:0;padding:var(--space-12) var(--space-12) var(--space-16);background:var(--memory-paper);border:1px solid var(--color-border-subtle);border-radius:var(--radius-sm)}
+.memory_frame{margin:0;padding:var(--space-12) var(--space-12) var(--space-16);background:var(--memory-paper);border:1px solid var(--color-border-subtle);border-radius:var(--radius-sm)}
 .memory_frame img{display:block;width:100%;height:auto;aspect-ratio:4 / 3;object-fit:cover;border-radius:2px}
-.memory_print:nth-child(2) img{object-position:50% 25%}
-.memory_print:nth-child(3) img{object-position:50% 15%}   /* keep faces in the 4:3 crop */
+.memory_side.is-end .memory_print:first-child img{object-position:50% 25%}
+.memory_side.is-end .memory_print:last-child img{object-position:50% 15%}   /* keep faces in the 4:3 crop */
 .memory_frame figcaption{display:flex;flex-direction:column;gap:var(--space-2);min-height:6.5rem;margin-top:var(--space-12)}   /* room for the longest caption, so every print is the same height */
 .memory_name{color:var(--memory-ink)}
 .memory_dream{color:var(--memory-muted);text-wrap:pretty}
 .memory_dream.is-achievement{color:var(--color-text-achievement)}   /* what they had already earned */
-.memory_letter{width:100%;margin:0;padding:var(--space-64);background:var(--memory-paper);color:var(--memory-ink);border-radius:var(--radius-sm)}
+.memory_letter{width:100%;margin:0;padding:var(--space-64);background:var(--memory-paper);color:var(--memory-ink);border:1px solid var(--memory-edge);border-radius:var(--radius-sm)}
 .memory_text{max-width:60ch;margin-inline:auto;text-wrap:pretty;
   background:repeating-linear-gradient(to bottom,transparent 0 calc(1lh - 1px),var(--memory-rule) calc(1lh - 1px) 1lh)}   /* one rule under every line, set by the text's own line-height */
 .memory_text p{margin:0 0 1lh}   /* paragraph gaps are whole lines, so the rules stay in step */
 .memory_keep{white-space:nowrap}   /* names never break at their hyphen */
 .memory_sign{display:flex;flex-direction:column;max-width:60ch;margin:var(--space-32) auto 0}
 .memory_sign-role{color:var(--memory-muted)}
-/* wide screens: the letter in the middle, the prints laid around it, straight, overlapping only the paper's margin */
+/* wide screens: one print on the left, the letter in the middle, two prints on the right; both sides pin while the letter scrolls */
 @media (min-width:1200px){
-  .section_memory{overflow-x:clip}
-  .memory_prints{display:block;margin:0}
-  .memory_print{position:absolute;z-index:1}
-  .memory_print:nth-child(1){inset-inline-start:-10rem;top:calc(var(--space-48) * -1)}
-  .memory_print:nth-child(2){inset-inline-end:-10rem;top:28%}
-  .memory_print:nth-child(3){inset-inline-start:-10rem;top:60%}
+  .section_memory{padding-inline:var(--space-64)}
+  .memory_layout{display:grid;grid-template-columns:14rem minmax(0,44rem) 14rem;justify-content:center;align-items:start;column-gap:var(--space-48);max-width:none}
+  .memory_prints{display:contents}
+  .memory_side{display:flex;flex-direction:column;gap:var(--space-16);position:sticky;top:var(--space-96)}
+  .memory_side.is-start{grid-column:1;grid-row:1;margin-top:var(--space-96)}   /* lower than the right pair, so the three don't line up */
+  .memory_side.is-end{grid-column:3;grid-row:1}
+  .memory_letter{grid-column:2;grid-row:1;padding:var(--space-64) var(--space-48)}
 }
 @media (prefers-reduced-motion:no-preference){
   .js .memory_print{opacity:0;translate:0 var(--space-24);transition:opacity 1.2s ease-out,translate 1.2s var(--ease-out)}
-  .js .memory_print:nth-child(2){transition-delay:.15s}
-  .js .memory_print:nth-child(3){transition-delay:.3s}
+  .js .memory_side.is-end .memory_print:first-child{transition-delay:.15s}
+  .js .memory_side.is-end .memory_print:last-child{transition-delay:.3s}
   .js .section_memory.is-in .memory_print{opacity:1;translate:0 0}   /* the prints settle once */
 }
 @media (max-width:991px){.section_memory{padding-block:var(--space-96)}.memory_title{margin-bottom:var(--space-48)}}
@@ -1303,29 +1307,27 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
         </div>
       </dialog>
     </section>
-    <section class="section_memory" id="in-remembrance" aria-labelledby="memory-title" lang="en" dir="ltr" data-memory>
+    <section class="section_memory" id="in-remembrance" aria-labelledby="memory-title" lang="en" dir="ltr" data-memory data-palette="inverse">
       <h2 class="memory_title h2" id="memory-title">In remembrance</h2>
       <div class="memory_layout">
-      <ul class="memory_prints" role="list">
-        <li class="memory_print">
-          <figure class="memory_frame">
+      <div class="memory_prints">
+        <div class="memory_side is-start">
+          <figure class="memory_print memory_frame">
             <img src="assets/memory/dalia-sally.webp" width="330" height="184" alt="Twin sisters Dalia and Sally Ibaid in graduation gowns and keffiyeh stoles, holding their certificates" loading="lazy" />
             <figcaption><span class="memory_name title3">Dalia and Sally Ibaid</span><span class="memory_dream is-achievement body3">Accepted to a PhD at the University of Waterloo</span></figcaption>
           </figure>
-        </li>
-        <li class="memory_print">
-          <figure class="memory_frame">
+        </div>
+        <div class="memory_side is-end">
+          <figure class="memory_print memory_frame">
             <img src="assets/memory/shaban.webp" width="185" height="184" alt="Sha’ban A-Dalo sitting in front of a destroyed building" loading="lazy" />
             <figcaption><span class="memory_name title3">Sha’ban A-Dalo</span><span class="memory_dream body3">Applying for scholarships to study abroad</span></figcaption>
           </figure>
-        </li>
-        <li class="memory_print">
-          <figure class="memory_frame">
+          <figure class="memory_print memory_frame">
             <img src="assets/memory/nada.webp" width="185" height="186" alt="Nada Issa in her graduation gown, placing her graduation cap on her father’s head" loading="lazy" />
             <figcaption><span class="memory_name title3">Nada Issa, with her father, also martyred</span><span class="memory_dream body3">Preparing to study for an MBA</span></figcaption>
           </figure>
-        </li>
-      </ul>
+        </div>
+      </div>
       <article class="memory_letter" aria-label="A letter from Ahmed Issa">
         <div class="memory_text body1">
           <p>In the spirit of the SfG community and the mission that unites us, we always remember with deep sorrow our mentees <span class="memory_keep">Sha’ban A-Dalo</span>, Dalia Ibaid, her twin sister Sally Ibaid, and Nada Issa, who were martyred during the Israeli genocide on Gaza. Sha’ban, Dalia, Sally, and Nada were brilliant young students striving to obtain scholarships to pursue their education abroad in a stable and supportive environment after the brutal genocide on Gaza destroyed their universities and placed them under unimaginable circumstances. Despite all the horrors they endured, they never gave up. They insisted on achieving their dreams and securing their right to a <span class="memory_keep">high-quality</span> education — a right each and every human being deserves.</p>
