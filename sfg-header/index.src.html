@@ -781,50 +781,42 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
   --memory-rule:var(--color-pattern-stitch-soft);   /* faint ruled lines: sand on paper */
   position:relative;z-index:2;background:var(--color-bg-inverse);color:var(--color-text-on-inverse);padding:var(--space-160) var(--grid-margin) var(--space-128)}
 .memory_title{margin:0 0 var(--space-64);text-align:center;color:var(--color-text-on-inverse)}
-.memory_layout{display:flex;flex-direction:column;align-items:center;gap:var(--space-48)}
-/* the people: Dalia and Sally full width, then Sha'ban and Nada side by side (same order as the DOM) */
-.memory_prints{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-16);width:min(100%,24rem);list-style:none;margin:0;padding:0}
-.memory_print:first-child{grid-column:1 / -1}
+.memory_layout{position:relative;max-width:48rem;margin-inline:auto}
+/* three prints of one size: 14rem wide, 4:3 photos, the same caption room */
+.memory_prints{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-16);list-style:none;margin:0 0 var(--space-48);padding:0}
+.memory_print{width:14rem}
 .memory_frame{height:100%;margin:0;padding:var(--space-12) var(--space-12) var(--space-16);background:var(--memory-paper);border:1px solid var(--color-border-subtle);border-radius:var(--radius-sm)}
-.memory_frame img{display:block;width:100%;height:auto;border-radius:2px}
-.memory_frame figcaption{display:flex;flex-direction:column;gap:var(--space-2);margin-top:var(--space-12)}
+.memory_frame img{display:block;width:100%;height:auto;aspect-ratio:4 / 3;object-fit:cover;border-radius:2px}
+.memory_print:nth-child(2) img{object-position:50% 25%}
+.memory_print:nth-child(3) img{object-position:50% 15%}   /* keep faces in the 4:3 crop */
+.memory_frame figcaption{display:flex;flex-direction:column;gap:var(--space-2);min-height:6.5rem;margin-top:var(--space-12)}   /* room for the longest caption, so every print is the same height */
 .memory_name{color:var(--memory-ink)}
 .memory_dream{color:var(--memory-muted);text-wrap:pretty}
 .memory_dream.is-achievement{color:var(--color-text-achievement)}   /* what they had already earned */
-.memory_letter{width:100%;max-width:48rem;margin:0;padding:var(--space-64);background:var(--memory-paper);color:var(--memory-ink);border-radius:var(--radius-sm)}
+.memory_letter{width:100%;margin:0;padding:var(--space-64);background:var(--memory-paper);color:var(--memory-ink);border-radius:var(--radius-sm)}
 .memory_text{max-width:60ch;margin-inline:auto;text-wrap:pretty;
   background:repeating-linear-gradient(to bottom,transparent 0 calc(1lh - 1px),var(--memory-rule) calc(1lh - 1px) 1lh)}   /* one rule under every line, set by the text's own line-height */
 .memory_text p{margin:0 0 1lh}   /* paragraph gaps are whole lines, so the rules stay in step */
 .memory_keep{white-space:nowrap}   /* names never break at their hyphen */
 .memory_sign{display:flex;flex-direction:column;max-width:60ch;margin:var(--space-32) auto 0}
 .memory_sign-role{color:var(--memory-muted)}
-/* wide screens: the people beside the letter, pinned while it is read */
+/* wide screens: the letter in the middle, the prints laid around it, straight, overlapping only the paper's margin */
 @media (min-width:1200px){
-  .memory_layout{display:grid;grid-template-columns:20rem minmax(0,48rem);justify-content:center;align-items:start;gap:var(--space-48)}
-  .memory_prints{position:sticky;top:var(--space-96);width:100%}
-  .memory_print{rotate:var(--tilt,0deg)}
-  .memory_print:nth-child(1){--tilt:-1.5deg}
-  .memory_print:nth-child(2){--tilt:2deg}
-  .memory_print:nth-child(3){--tilt:-2deg}
-}
-/* mid widths: the three prints in one row above the letter */
-@media (min-width:600px) and (max-width:1199px){
-  .memory_prints{display:flex;justify-content:center;align-items:flex-start;gap:var(--space-16);width:auto}
-  .memory_frame img{width:auto;height:140px}
-  .memory_frame figcaption{width:min-content;min-width:100%}
+  .section_memory{overflow-x:clip}
+  .memory_prints{display:block;margin:0}
+  .memory_print{position:absolute;z-index:1}
+  .memory_print:nth-child(1){inset-inline-start:-10rem;top:calc(var(--space-48) * -1)}
+  .memory_print:nth-child(2){inset-inline-end:-10rem;top:28%}
+  .memory_print:nth-child(3){inset-inline-start:-10rem;top:60%}
 }
 @media (prefers-reduced-motion:no-preference){
-  .js .memory_print{opacity:0;translate:0 var(--space-24);transition:opacity 1.2s ease-out,translate 1.2s var(--ease-out),rotate 1.2s var(--ease-out)}
+  .js .memory_print{opacity:0;translate:0 var(--space-24);transition:opacity 1.2s ease-out,translate 1.2s var(--ease-out)}
   .js .memory_print:nth-child(2){transition-delay:.15s}
   .js .memory_print:nth-child(3){transition-delay:.3s}
   .js .section_memory.is-in .memory_print{opacity:1;translate:0 0}   /* the prints settle once */
 }
-@media (prefers-reduced-motion:no-preference) and (min-width:1200px){
-  .js .memory_print{rotate:0deg}
-  .js .section_memory.is-in .memory_print{rotate:var(--tilt)}
-}
 @media (max-width:991px){.section_memory{padding-block:var(--space-96)}.memory_title{margin-bottom:var(--space-48)}}
-@media (max-width:599px){.memory_layout{gap:var(--space-32)}.memory_letter{padding:var(--space-48) var(--space-24)}}
+@media (max-width:599px){.memory_prints{margin-bottom:var(--space-32)}.memory_print{width:calc((100% - var(--space-16)) / 2)}.memory_frame figcaption{min-height:7.5rem}.memory_letter{padding:var(--space-48) var(--space-24)}}   /* two prints, then one, all the same width */
 
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{transition:none!important;animation:none!important}
