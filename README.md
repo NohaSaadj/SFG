@@ -102,7 +102,7 @@ A quiet memorial for four mentees killed in the genocide: Sha’ban A-Dalo, Dali
 - **Letter:** Ahmed Issa's letter in full on paper, Body1, 60ch (about 67–74 characters a line), on faint ruled lines (sand, drawn from the text's own line-height so every line has one), signed "Ahmed Issa, Initiative Founder". Hyphenated names never break across lines. The surname is spelled A-Dalo throughout, as confirmed.
 - **Motion:** the prints settle once (fade, rise and tilt, 1.2s, staggered) when the section comes into view; nothing moves with reduced motion.
 - **Smaller screens:** prints wrap straight (two and one) on tablets and stack on phones, above the letter, in reading order.
-- **To confirm:** the letter says "we dedicate this document"; on a web page "this page" may read better. Left as written. No Arabic version yet, so the section is `lang="en"` and stays left-to-right in Arabic mode.
+- **Wording:** "we dedicate this document" reads "we dedicate this page", as agreed. No Arabic version yet, so the section is `lang="en"` and stays left-to-right in Arabic mode.
 
 ## Page-wide review (better-ui, colors, typography, accessibility, writing)
 - **Type tokens** are in `rem` with unitless line-heights and `em` tracking. They render the same as the old pixel values (tracking now scales down with the smaller phone headings). Font smoothing is set once on the root; body copy uses `text-wrap: pretty`.
