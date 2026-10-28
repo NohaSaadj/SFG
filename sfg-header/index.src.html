@@ -419,7 +419,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .tl_media.is-mosaic{display:grid;grid-template:1fr 1fr / repeat(3,1fr);gap:var(--space-4);aspect-ratio:3/2;border-radius:0}   /* six scholars, 3 × 2 */
 .tl_media.is-mosaic img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm)}
 .sb_credit{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-top:var(--space-16);color:var(--color-action-secondary);text-decoration:underline;text-underline-offset:4px;font:500 var(--title3-size)/var(--title3-lh) var(--font-sans)}
-/* Pager (from the previous version): "01 / 06", previous/next, progress line and the next step's name.
+/* Pager (from the previous version): "01 / 05", previous/next, progress line and the next step's name.
    It sits at the top of the pinned area, on the same left line as the section's description. */
 .sb_pager{flex:none;width:calc(4*var(--tl-col) + 3*var(--grid-gutter))}
 .sb_pager-top{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-16)}
@@ -671,7 +671,6 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
   --voices-w:min(83.333vw,480px);
   position:relative;z-index:2;background:var(--color-bg-page);color:var(--voices-ink);padding-block:var(--space-128)}
 .voices_head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-24);padding-inline:var(--grid-margin);margin-bottom:var(--space-48)}
-.voices_title-mask{overflow:hidden;padding-bottom:var(--space-8)}
 .voices_title{margin:0;color:var(--color-text-heading)}
 .voices_pager{display:flex;align-items:center;gap:var(--space-12);flex:none}
 .voices_deck{direction:ltr}   /* the testimonials are English; the deck keeps its order in Arabic mode */
@@ -947,7 +946,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
           <p class="sb_sub body1" data-split>One scholarship, one promise, and a growing network of mentors.</p>
             <nav class="sb_pager" aria-label="Story steps">
               <div class="sb_pager-top">
-                <p class="sb_pager-count"><span class="sb_pager-current title" data-sb-current>01</span><span class="sb_pager-total title3">/ 06</span></p>
+                <p class="sb_pager-count"><span class="sb_pager-current title" data-sb-current>01</span><span class="sb_pager-total title3">/ 05</span></p>
                 <div class="sb_pager-nav">
                   <button class="sb_pager-btn" type="button" data-sb-prev aria-label="Previous step"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M15 10H5M9.5 5.5 5 10l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                   <button class="sb_pager-btn" type="button" data-sb-next aria-label="Next step"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -968,20 +967,20 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
         <div class="wwd_sheet is-do" data-wwd-do>
           <h2 class="wwd_title h1" data-split>What we do</h2>
           <ul class="wwd_cols" role="list">
-          <li class="wwd_col" style="--i:0;--d:0.0s" data-reveal>
+          <li class="wwd_col" style="--i:0" data-split-group>
             <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14.2c2.9.3 5 2.4 5 5.3"/></svg></span>
-            <h3 class="wwd_col-title title">Mentor</h3>
-            <p class="wwd_col-text body2">Every student is paired with an academic mentor and an SFG organiser, bringing hope and purpose back to studies the genocide brought to a halt.</p>
+            <h3 class="wwd_col-title title" data-split>Mentor</h3>
+            <p class="wwd_col-text body2" data-split>Every student is paired with an academic mentor and an SFG organiser, bringing hope and purpose back to studies the genocide brought to a halt.</p>
           </li>
-          <li class="wwd_col" style="--i:1;--d:0.1s" data-reveal>
+          <li class="wwd_col" style="--i:1" data-split-group>
             <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21H11"/><path d="M13 3l5 5v2"/><path d="M13 3v5h5"/><path d="M8.5 12.5h5M8.5 16h3"/><path d="M19.5 13.5l1.5 1.5-5.5 5.5H14v-1.5z"/></svg></span>
-            <h3 class="wwd_col-title title">Guide</h3>
-            <p class="wwd_col-text body2">Mentors help students curate applications and write strong personal statements, CVs and recommendation letters, then prepare them with mock interviews and English practice for TOEFL, IELTS and Duolingo.</p>
+            <h3 class="wwd_col-title title" data-split>Guide</h3>
+            <p class="wwd_col-text body2" data-split>Mentors help students curate applications and write strong personal statements, CVs and recommendation letters, then prepare them with mock interviews and English practice for TOEFL, IELTS and Duolingo.</p>
           </li>
-          <li class="wwd_col" style="--i:2;--d:0.2s" data-reveal>
+          <li class="wwd_col" style="--i:2" data-split-group>
             <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1.2 1.2"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1.2-1.2"/></svg></span>
-            <h3 class="wwd_col-title title">Connect</h3>
-            <p class="wwd_col-text body2">We guide students to existing scholarships and universities abroad, help them choose courses and request fee waivers, and support them as they write to universities and scholarship boards.</p>
+            <h3 class="wwd_col-title title" data-split>Connect</h3>
+            <p class="wwd_col-text body2" data-split>We guide students to existing scholarships and universities abroad, help them choose courses and request fee waivers, and support them as they write to universities and scholarship boards.</p>
           </li>
           </ul>
           <span class="wwd_dim" aria-hidden="true"></span>
@@ -1157,12 +1156,12 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
     </section>
     <section class="section_results" id="results" aria-labelledby="results-title" data-results data-palette="night">
       <div class="results_stage" data-results-stage>
-        <div class="results_intro" data-results-intro>
-          <h2 class="results_intro-title h2" id="results-title">What mentorship made possible</h2>
+        <div class="results_intro" data-results-intro data-split-group>
+          <h2 class="results_intro-title h2" id="results-title" data-split>What mentorship made possible</h2>
           <ul class="results_stats" role="list">
-            <li class="results_stat"><span class="results_number h1" data-count="143">143</span><span class="results_stat-title title">Scholarship winners</span><span class="results_stat-text body2">Students who have won fully funded scholarships with SFG mentors so far.</span></li>
-            <li class="results_stat"><span class="results_number h1" data-count="50" data-suffix="+">50+</span><span class="results_stat-title title">Universities</span><span class="results_stat-text body2">Including Cambridge, Imperial, UCL, LSE and Trinity College Dublin.</span></li>
-            <li class="results_stat"><span class="results_number h1" data-count="14">14</span><span class="results_stat-title title">Countries</span><span class="results_stat-text body2">From the UK and Ireland to Qatar, Malaysia and Singapore.</span></li>
+            <li class="results_stat"><span class="results_number h1" data-count="143">143</span><span class="results_stat-title title" data-split>Scholarship winners</span><span class="results_stat-text body2" data-split>Students who have won fully funded scholarships with SFG mentors so far.</span></li>
+            <li class="results_stat"><span class="results_number h1" data-count="50" data-suffix="+">50+</span><span class="results_stat-title title" data-split>Universities</span><span class="results_stat-text body2" data-split>Including Cambridge, Imperial, UCL, LSE and Trinity College Dublin.</span></li>
+            <li class="results_stat"><span class="results_number h1" data-count="14">14</span><span class="results_stat-title title" data-split>Countries</span><span class="results_stat-text body2" data-split>From the UK and Ireland to Qatar, Malaysia and Singapore.</span></li>
           </ul>
         </div>
         <div class="results_contain">
@@ -1239,7 +1238,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
     <section class="section_voices" id="student-voices" aria-labelledby="voices-title" lang="en" data-voices>
       <div class="voices_pin" data-voices-pin>
         <div class="voices_head">
-          <div class="voices_title-mask"><h2 class="voices_title h2" id="voices-title" data-voices-title>Student voices</h2></div>
+          <h2 class="voices_title h2" id="voices-title" data-split>Student voices</h2>
           <div class="voices_pager">
             <button class="sb_pager-btn" type="button" data-voices-prev aria-label="Previous story"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M15 10H5M9.5 5.5 5 10l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             <button class="sb_pager-btn" type="button" data-voices-next aria-label="Next story"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -1350,7 +1349,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
       </dialog>
     </section>
     <section class="section_memory" id="in-remembrance" aria-labelledby="memory-title" lang="en" dir="ltr" data-memory>
-      <h2 class="memory_title h2" id="memory-title">In Remembrance</h2>
+      <h2 class="memory_title h2" id="memory-title" data-split>In Remembrance</h2>
       <div class="memory_layout">
       <div class="memory_prints">
         <div class="memory_side is-start">
@@ -1372,9 +1371,9 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
       </div>
       <article class="memory_letter" aria-label="A letter from Ahmed Issa">
         <div class="memory_text body1">
-          <p>In the spirit of the SfG community and the mission that unites us, we always remember with deep sorrow our mentees <span class="memory_keep">Sha’ban A-Dalo</span>, Dalia Obaid, her twin sister Sally Obaid, and Nada Issa, who were martyred during the Israeli genocide on Gaza. Sha’ban, Dalia, Sally, and Nada were brilliant young students striving to obtain scholarships to pursue their education abroad in a stable and supportive environment after the brutal genocide on Gaza destroyed their universities and placed them under unimaginable circumstances. Despite all the horrors they endured, they never gave up. They insisted on achieving their dreams and securing their right to a <span class="memory_keep">high-quality</span> education — a right each and every human being deserves.</p>
-          <p>However, the Zionist forces did not allow that dream to continue. As with so many stories of Gaza’s martyrs, people with normal lives, loving families and friends, and great ambitions, their stories ended in tragedy. The occupation forces attacked Sha’ban’s family tent near <span class="memory_keep">Al-Aqsa</span> Hospital in <span class="memory_keep">Deir al-Balah</span> and burned him alive along with several of his family members. They also killed Dalia and her twin sister Sally, who had both been accepted into a PhD program at the University of Waterloo in Canada, while they were in the process of applying for study permits and preparing to cross the Rafah border into Egypt. Nada was also martyred during the genocide while preparing to pursue graduate studies in business and management. A talented translator and project coordinator, she combined language, strategy, and leadership in her work and dreamed of continuing her education through an MBA to contribute to her community’s development.</p>
-          <p>Today, we dedicate this page to the memory of Sha’ban, Dalia, Sally, and Nada, four of our brightest mentees whose dreams and determination continue to inspire us. Through this work, and through every effort to help Gazan students access education and rebuild their futures, we honour their lives, their ambitions, and their unshakable belief in hope and learning. We pray that Allah (SWT) has mercy upon them and grants them <span class="memory_keep">Jannat al-Firdaws</span>. Ameen.</p>
+          <p data-split>In the spirit of the SfG community and the mission that unites us, we always remember with deep sorrow our mentees <span class="memory_keep">Sha’ban A-Dalo</span>, Dalia Obaid, her twin sister Sally Obaid, and Nada Issa, who were martyred during the Israeli genocide on Gaza. Sha’ban, Dalia, Sally, and Nada were brilliant young students striving to obtain scholarships to pursue their education abroad in a stable and supportive environment after the brutal genocide on Gaza destroyed their universities and placed them under unimaginable circumstances. Despite all the horrors they endured, they never gave up. They insisted on achieving their dreams and securing their right to a <span class="memory_keep">high-quality</span> education — a right each and every human being deserves.</p>
+          <p data-split>However, the Zionist forces did not allow that dream to continue. As with so many stories of Gaza’s martyrs, people with normal lives, loving families and friends, and great ambitions, their stories ended in tragedy. The occupation forces attacked Sha’ban’s family tent near <span class="memory_keep">Al-Aqsa</span> Hospital in <span class="memory_keep">Deir al-Balah</span> and burned him alive along with several of his family members. They also killed Dalia and her twin sister Sally, who had both been accepted into a PhD program at the University of Waterloo in Canada, while they were in the process of applying for study permits and preparing to cross the Rafah border into Egypt. Nada was also martyred during the genocide while preparing to pursue graduate studies in business and management. A talented translator and project coordinator, she combined language, strategy, and leadership in her work and dreamed of continuing her education through an MBA to contribute to her community’s development.</p>
+          <p data-split>Today, we dedicate this page to the memory of Sha’ban, Dalia, Sally, and Nada, four of our brightest mentees whose dreams and determination continue to inspire us. Through this work, and through every effort to help Gazan students access education and rebuild their futures, we honour their lives, their ambitions, and their unshakable belief in hope and learning. We pray that Allah (SWT) has mercy upon them and grants them <span class="memory_keep">Jannat al-Firdaws</span>. Ameen.</p>
         </div>
         <p class="memory_sign"><span class="title3">Ahmed Issa</span><span class="memory_sign-role body3">Initiative Founder</span></p>
       </article>
@@ -1752,7 +1751,7 @@ window.SFGReveal=(function(){
   var esc=function(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;");};
   // Split a plain-text element into masked lines; returns how many lines it made
   function split(el,start){
-    if(el._orig==null) el._orig=el.textContent.trim();
+    if(el._orig==null){el._orig=el.textContent.trim(); el._html=el.innerHTML;}   // keep inner markup (names kept whole, links) to restore after
     var words=el._orig.split(/\s+/);
     el.innerHTML=words.map(function(w){return '<span class="st-w">'+esc(w)+'</span>';}).join(" ");
     var lines=[],top=null;
@@ -1765,7 +1764,7 @@ window.SFGReveal=(function(){
     el.setAttribute("aria-label",el._orig); el.classList.add("is-split");
     return lines.length;
   }
-  function settle(el){ if(el._orig!=null){el.textContent=el._orig;el.removeAttribute("aria-label");} }
+  function settle(el){ if(el._orig!=null){el.innerHTML=el._html;el.removeAttribute("aria-label");} }
   // Play a group: each target's lines continue the stagger of the one before it (heading, then text)
   function play(targets,startAt){
     var n=startAt||0;
@@ -1831,19 +1830,18 @@ window.SFGReveal=(function(){
 })();
 // ===== Section 2 · How SFG began · v2.0 (structure + motion after setup.sa "Giga Projects") =====
 (function(){
-const SB={"warwick":"assets/story/warwick.jpg","gaza":"assets/story/gaza.jpg","promise":"assets/story/promise.jpg","story":"assets/story/story.jpg","aj":"assets/story/aj.jpg","st0":"assets/story/st0.jpg","st1":"assets/story/st1.jpg","st2":"assets/story/st2.jpg","st3":"assets/story/st3.jpg","st4":"assets/story/st4.jpg","st5":"assets/story/st5.jpg"};
+const SB={"warwick":"assets/story/warwick.jpg","gaza":"assets/story/gaza.jpg","promise":"assets/story/promise.jpg","story":"assets/story/story.jpg","aj":"assets/story/aj.jpg"};
 const AJ="https://www.youtube.com/watch?v=mTQXXAByvro";
 const STEPS=[
  {n:"2020",t:"A Chevening scholar",b:"Ahmed Issa leaves Gaza for Warwick Business School on a fully funded Chevening scholarship.",card:"portrait",img:[["warwick","Ahmed Issa holding his certificate in the foyer of Warwick Business School"]]},
  {n:"2022",t:"Back to Gaza",b:"He returns home, believing education is how Palestinians will lead and rebuild.",card:"portrait",img:[["gaza","Ahmed in a light blue shirt, smiling at his office desk in Gaza"]]},
  {n:"04.2024",t:"A promise",b:"Ahmed evacuates Gaza with his wife and two sons, and makes a promise: to help Palestinian students win the fully funded scholarships that changed his life.",card:"portrait",img:[["promise","A notebook of handwritten plans on a café table, beside a blue-and-white teapot"]]},
  {n:"08.2024",t:"SFG begins",b:"It starts with one Instagram story: “Want to help Ghazawi students to get a scholarship?” Ahmed asks for volunteers to guide students through their applications, and Scholarships for Ghazza is born.",card:"story",img:[["story","Ahmed’s Instagram story asking for volunteer mentors, over a photo of a boy writing in a notebook outdoors"]]},
- {n:"03.2026",t:"On Al Jazeera",b:"SFG’s story reaches Al Jazeera’s The Stream, as more students from Gaza win their places.",card:"wide",credit:true,img:[["aj","Ahmed Issa speaking on Al Jazeera’s The Stream"]]},
- {n:"143",t:"Scholarships, and counting",b:"SFG mentors have helped 143 students win fully funded scholarships at more than 50 universities in 14 countries.",card:"mosaic",gold:true,img:[["st0","A scholar at the University of Aberdeen"],["st4","A scholar outside the main building of the University of Glasgow"],["st1","A scholar at LSE"],["st3","A scholar at University College Dublin"],["st2","A scholar at Imperial College London’s School of Public Health"],["st5","A scholar beside the University of Glasgow sign"]]}
+ {n:"03.2026",t:"On Al Jazeera",b:"SFG’s story reaches Al Jazeera’s The Stream, as more students from Gaza win their places.",card:"wide",credit:true,img:[["aj","Ahmed Issa speaking on Al Jazeera’s The Stream"]]}
 ];
 const N=STEPS.length,reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const credit=`<a class="sb_credit" href="${AJ}" target="_blank" rel="noopener">Watch on Al Jazeera’s The Stream<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>`;
-const SIZE={warwick:[800,1066],gaza:[800,1067],promise:[800,1066],story:[900,1125],aj:[1280,720],st0:[460,460],st1:[460,460],st2:[600,600],st3:[600,600],st4:[600,600],st5:[600,600]};   // original sizes: photos are shown whole
+const SIZE={warwick:[800,1066],gaza:[800,1067],promise:[800,1066],story:[900,1125],aj:[1280,720]};   // original sizes: photos are shown whole
 const media=d=>{
   const imgs=d.img.map(([k,a])=>`<img src="${SB[k]}" alt="${a}" width="${SIZE[k][0]}" height="${SIZE[k][1]}" decoding="async">`).join("");
   return `<figure class="tl_media is-${d.card}" data-reveal-media>${imgs}</figure>`;
@@ -2126,7 +2124,7 @@ layout();
       peeks 10% on hover; a green "Read" bubble follows the pointer over the cards. Any card opens its full story
       in a side panel with previous / next. Below 992px, with reduced motion or without JS: a swipe strip.
       Hooks: [data-voices] [data-voices-pin] [data-voices-deck] [data-voices-list] [data-voices-item] [data-voices-open]
-             [data-voices-story] [data-voices-prev] [data-voices-next] [data-voices-title]
+             [data-voices-story] [data-voices-prev] [data-voices-next]
              [data-voices-cursor] [data-voices-dialog] [data-voices-d-*] */
   (function () {
     "use strict";
@@ -2266,18 +2264,6 @@ layout();
       it.addEventListener("focusin", function () { if (on && i !== current) goTo(i); });
     });
 
-    // ---- Title reveal (mask slide-up, once) ---------------------------------
-    var title = section.querySelector("[data-voices-title]");
-    if (!reduced.matches && "IntersectionObserver" in window) {
-      title.style.transform = "translateY(108%)";
-      var io = new IntersectionObserver(function (es) {
-        if (!es[0].isIntersecting) return;
-        title.style.transition = "transform 1s cubic-bezier(.17,.17,0,1)";
-        title.style.transform = "none";
-        io.disconnect();
-      }, { rootMargin: "0px 0px -80px 0px" });
-      io.observe(title.parentElement);
-    }
 
     // ---- "Read" bubble cursor ------------------------------------------------
     var cur = section.querySelector("[data-voices-cursor]");
