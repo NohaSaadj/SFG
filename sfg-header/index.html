@@ -796,17 +796,17 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 .memory_dream{color:var(--memory-muted);text-wrap:pretty}
 .memory_dream.is-achievement{color:var(--color-text-achievement)}   /* what they had already earned: ochre 700, 4.9:1 on linen */
 /* the letter: a green card on the linen */
-.memory_letter{width:100%;margin:0;padding:var(--space-64) clamp(var(--space-24),7vw,var(--space-128));background:var(--memory-card);color:var(--memory-card-ink);border:1px solid var(--color-border-on-inverse);border-radius:var(--radius-card)}   /* the hairline keeps the card's edge in dark mode, where green and page are 1.05:1 */
-.memory_text{max-width:60ch;margin-inline:auto;text-wrap:pretty;
+.memory_letter{width:100%;margin:0;padding:var(--space-48);background:var(--memory-card);color:var(--memory-card-ink);border:1px solid var(--color-border-on-inverse);border-radius:var(--radius-card)}   /* the hairline keeps the card's edge in dark mode, where green and page are 1.05:1 */
+.memory_text{max-width:62ch;margin-inline:auto;text-wrap:pretty;
   background:repeating-linear-gradient(to bottom,transparent 0 calc(1lh - 1px),var(--memory-rule) calc(1lh - 1px) 1lh)}   /* one rule under every line, set by the text's own line-height */
 .memory_text p{margin:0 0 1lh}   /* paragraph gaps are whole lines, so the rules stay in step */
 .memory_keep{white-space:nowrap}   /* names never break at their hyphen */
-.memory_sign{display:flex;flex-direction:column;max-width:60ch;margin:var(--space-32) auto 0;font-size:1.125rem}   /* 18px base, so 60ch matches the letter's measure */
+.memory_sign{display:flex;flex-direction:column;max-width:62ch;margin:var(--space-32) auto 0;font-size:1.125rem}   /* 18px base, so 62ch matches the letter's measure */
 .memory_sign-role{color:var(--memory-card-muted)}
 /* wide screens: the letter in the middle, photos beside it at uneven heights, pinned while the letter scrolls; captions stay on the linen, never on the card */
 @media (min-width:1200px){
   .section_memory{padding-inline:var(--space-64)}
-  .memory_layout{display:grid;grid-template-columns:14rem minmax(0,52rem) 14rem;justify-content:center;align-items:start;column-gap:var(--space-32);max-width:none}
+  .memory_layout{display:grid;grid-template-columns:14rem fit-content(52rem) 14rem;justify-content:center;align-items:start;column-gap:var(--space-32);max-width:none}
   .memory_prints{display:contents}
   .memory_side{position:sticky;z-index:1;display:flex;flex-direction:column;gap:var(--space-48)}
   .memory_side.is-start{grid-column:1;grid-row:1;top:var(--space-192);margin-top:var(--space-128)}
