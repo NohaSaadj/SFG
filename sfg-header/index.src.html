@@ -47,7 +47,6 @@
       --color-border-subtle:var(--neutral-border);
       --color-border-focus:var(--green-600);
       --color-accent-achievement:var(--ochre-500);
-      --color-bg-tint-green:var(--green-100);   /* light green cards on the linen (1.16:1 against it) */
       --color-text-achievement-on-inverse:var(--ochre-300);   /* achievements straight on the inverse green: 5.5:1 */
       --color-text-achievement-on-tint:var(--ochre-800);   /* scholarship names on sand / green-100 cards (ochre 700 drops to 4.2:1 there) */
       --color-text-on-secondary:var(--neutral-white);   /* text on a --color-action-secondary fill */
@@ -113,14 +112,14 @@
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
-      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;--color-bg-tint-green:var(--green-800);
+      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
       --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);
     }}
     :root[data-theme="dark"]{
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
-      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;--color-bg-tint-green:var(--green-800);
+      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
       --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);
     }
 
@@ -779,35 +778,34 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
    Quiet on purpose: no pin, no carousel, no hover effects, nothing to click. Red is never used here.
    ========================================================================== */
 .section_memory{
-  --memory-card:var(--color-bg-inverse);--memory-card-ink:var(--color-text-on-inverse);--memory-card-muted:var(--color-text-on-inverse-secondary);
-  --memory-rule:var(--color-border-on-inverse);   /* faint ruled lines on the green letter */
-  --memory-ink:var(--color-text-primary);--memory-muted:var(--color-text-secondary);
-  position:relative;z-index:2;background:var(--color-bg-page);color:var(--memory-ink);padding:var(--space-160) var(--grid-margin) var(--space-128)}
-.memory_title{margin:0 0 var(--space-64);text-align:center;color:var(--color-text-heading)}
+  --memory-ink:var(--color-text-on-inverse);--memory-muted:var(--color-text-on-inverse-secondary);   /* linen 9.2:1, soft linen 5.6:1 on the green */
+  --memory-rule:var(--color-border-on-inverse);   /* faint ruled lines */
+  position:relative;z-index:2;background:var(--color-bg-inverse);color:var(--memory-ink);padding:var(--space-160) var(--grid-margin) var(--space-128)}
+.memory_title{margin:0 0 var(--space-64);text-align:center;color:var(--memory-ink)}
 .memory_layout{max-width:52rem;margin-inline:auto}
-/* the photos: one size (14rem, 4:3, the same caption room), straight on the linen */
+/* the photos: one size (14rem, 4:3, the same caption room), straight on the green; space groups them, no cards */
 .memory_prints{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-16);margin:0 0 var(--space-48)}
 .memory_side{display:contents}   /* small screens: the three photos share one row */
-.memory_print{width:14rem;margin:0;padding:var(--space-12) var(--space-12) var(--space-16);background:var(--color-bg-tint-green);border-radius:var(--radius-card)}   /* a light green card, kin to the green letter */
+.memory_print{width:14rem;margin:0}
 .memory_print img{display:block;width:100%;height:auto;aspect-ratio:4 / 3;object-fit:cover;border-radius:var(--radius-sm)}
 .memory_side.is-end .memory_print:first-child img{object-position:50% 30%}
 .memory_side.is-end .memory_print:last-child img{object-position:50% 20%}   /* keep faces in the 4:3 crop */
 .memory_print figcaption{display:flex;flex-direction:column;gap:var(--space-2);min-height:6.5rem;margin-top:var(--space-12)}   /* room for the longest caption, so every photo block is the same height */
 .memory_name{color:var(--memory-ink)}
 .memory_dream{color:var(--memory-muted);text-wrap:pretty}
-.memory_dream.is-achievement{color:var(--color-text-achievement-on-tint)}   /* what they had already earned: ochre 800, 6.2:1 on the green tint */
-/* the letter: a green card on the linen */
-.memory_letter{width:100%;margin:0;padding:var(--space-48);background:var(--memory-card);color:var(--memory-card-ink);border:1px solid var(--color-border-on-inverse);border-radius:var(--radius-card)}   /* the hairline keeps the card's edge in dark mode, where green and page are 1.05:1 */
+.memory_dream.is-achievement{color:var(--color-text-achievement-on-inverse)}   /* what they had already earned: ochre 300, 5.5:1 on the green */
+/* the letter: straight on the green, its ruled lines mark the column */
+.memory_letter{width:100%;margin:0}
 .memory_text{max-width:62ch;margin-inline:auto;text-wrap:pretty;
   background:repeating-linear-gradient(to bottom,transparent 0 calc(1lh - 1px),var(--memory-rule) calc(1lh - 1px) 1lh)}   /* one rule under every line, set by the text's own line-height */
 .memory_text p{margin:0 0 1lh}   /* paragraph gaps are whole lines, so the rules stay in step */
 .memory_keep{white-space:nowrap}   /* names never break at their hyphen */
 .memory_sign{display:flex;flex-direction:column;max-width:62ch;margin:var(--space-32) auto 0;font-size:1.125rem}   /* 18px base, so 62ch matches the letter's measure */
-.memory_sign-role{color:var(--memory-card-muted)}
+.memory_sign-role{color:var(--memory-muted)}
 /* wide screens: the letter in the middle, photos beside it at uneven heights, pinned while the letter scrolls; captions stay on the linen, never on the card */
 @media (min-width:1200px){
   .section_memory{padding-inline:var(--space-64)}
-  .memory_layout{display:grid;grid-template-columns:14rem fit-content(52rem) 14rem;justify-content:center;align-items:start;column-gap:var(--space-32);max-width:none}
+  .memory_layout{display:grid;grid-template-columns:14rem fit-content(52rem) 14rem;justify-content:center;align-items:start;column-gap:clamp(var(--space-48),6vw,var(--space-96));max-width:none}
   .memory_prints{display:contents}
   .memory_side{position:sticky;z-index:1;display:flex;flex-direction:column;gap:var(--space-48)}
   .memory_side.is-start{grid-column:1;grid-row:1;top:var(--space-192);margin-top:var(--space-128)}
@@ -821,7 +819,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
   .js .section_memory.is-in .memory_print{opacity:1;translate:0 0}   /* the photos settle once */
 }
 @media (max-width:991px){.section_memory{padding-block:var(--space-96)}.memory_title{margin-bottom:var(--space-48)}}
-@media (max-width:599px){.memory_prints{margin-bottom:var(--space-32)}.memory_print{width:calc((100% - var(--space-16)) / 2)}.memory_print figcaption{min-height:7.5rem}.memory_letter{padding:var(--space-48) var(--space-24)}}   /* two photos, then one, all the same width */
+@media (max-width:599px){.memory_prints{margin-bottom:var(--space-32)}.memory_print{width:calc((100% - var(--space-16)) / 2)}.memory_print figcaption{min-height:7.5rem}}   /* two photos, then one, all the same width */
 
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{transition:none!important;animation:none!important}
