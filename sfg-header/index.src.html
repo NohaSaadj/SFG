@@ -577,7 +577,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 
 /* Intro: three result cards */
 .results_intro{position:relative;z-index:3;padding:var(--space-128) var(--grid-margin) var(--space-64);text-align:center}
-.results_intro-title{margin:0;color:var(--results-ink);white-space:nowrap}   /* one line; sized to fit 360px and up */
+.results_intro-title{margin:0;color:var(--results-ink);text-wrap:balance}   /* one line on wide screens; wraps evenly on phones instead of clipping */
 @media (max-width:359px){.results_intro-title{font-size:var(--h5-size);line-height:var(--h5-lh)}}
 .results_stats{list-style:none;margin:var(--space-48) auto 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--grid-gutter);max-width:1120px;text-align:start}
 /* cards: 2 columns × 2 rows. Row 1: number | title. Row 2: the description under the title (same start edge), at the bottom. */
@@ -1160,31 +1160,76 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
     <section class="section_results" id="results" aria-labelledby="results-title" data-results data-palette="night">
       <div class="results_stage" data-results-stage>
         <div class="results_intro" data-results-intro>
-          <h2 class="results_intro-title h2" id="results-title">Our impact in numbers</h2>
+          <h2 class="results_intro-title h2" id="results-title">What mentorship made possible</h2>
           <ul class="results_stats" role="list">
             <li class="results_stat"><span class="results_number h1" data-count="143">143</span><span class="results_stat-title title">Scholarship winners</span><span class="results_stat-text body2">Students who have won fully funded scholarships with SFG mentors so far.</span></li>
-            <li class="results_stat"><span class="results_number h1" data-count="7" data-suffix="+">7+</span><span class="results_stat-title title">Universities</span><span class="results_stat-text body2">Including Warwick, Imperial, LSE, Glasgow and University College Dublin.</span></li>
-            <li class="results_stat"><span class="results_number h1" data-count="9">9</span><span class="results_stat-title title">Countries</span><span class="results_stat-text body2">The UK, Ireland, the Netherlands, Belgium, France, Italy, Egypt, Singapore and the USA.</span></li>
+            <li class="results_stat"><span class="results_number h1" data-count="50" data-suffix="+">50+</span><span class="results_stat-title title">Universities</span><span class="results_stat-text body2">Including Cambridge, Imperial, UCL, LSE and Trinity College Dublin.</span></li>
+            <li class="results_stat"><span class="results_number h1" data-count="14">14</span><span class="results_stat-title title">Countries</span><span class="results_stat-text body2">From the UK and Ireland to Qatar, Malaysia and Singapore.</span></li>
           </ul>
         </div>
         <div class="results_contain">
           <div class="results_list-wrap" data-results-fade>
             <div class="results_track" data-results-track>
             <ol class="results_list" role="list" data-results-list>
-              <li class="results_item" data-country="uk"><span class="results_name">University of Warwick</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Cambridge</span></li>
               <li class="results_item" data-country="uk"><span class="results_name">Imperial College London</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University College London</span></li>
               <li class="results_item" data-country="uk"><span class="results_name">London School of Economics</span></li>
-              <li class="results_item" data-country="uk"><span class="results_name">University of Sussex</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">King’s College London</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Edinburgh</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Warwick</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of St Andrews</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">Durham University</span></li>
               <li class="results_item" data-country="uk"><span class="results_name">University of Glasgow</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Bristol</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of York</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Exeter</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Birmingham</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Leeds</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Liverpool</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Sheffield</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Sussex</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Reading</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">University of Leicester</span></li>
               <li class="results_item" data-country="uk"><span class="results_name">University of Aberdeen</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">Ulster University</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">SOAS University of London</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">Goldsmiths, University of London</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">Royal College of Art</span></li>
+              <li class="results_item" data-country="uk"><span class="results_name">Oxford Centre for Islamic Studies</span></li>
+              <li class="results_item" data-country="ie"><span class="results_name">Trinity College Dublin</span></li>
               <li class="results_item" data-country="ie"><span class="results_name">University College Dublin</span></li>
+              <li class="results_item" data-country="ie"><span class="results_name">Dublin City University</span></li>
+              <li class="results_item" data-country="ie"><span class="results_name">Mary Immaculate College</span></li>
+              <li class="results_item" data-country="ie"><span class="results_name">National College of Art and Design</span></li>
+              <li class="results_item" data-country="ie"><span class="results_name">South East Technological University</span></li>
+              <li class="results_item" data-country="us"><span class="results_name">University of Washington</span></li>
+              <li class="results_item" data-country="us"><span class="results_name">University of Tennessee</span></li>
+              <li class="results_item" data-country="sg"><span class="results_name">National University of Singapore</span></li>
+              <li class="results_item" data-country="sg"><span class="results_name">Singapore University of Social Sciences</span></li>
+              <li class="results_item" data-country="nl"><span class="results_name">University of Amsterdam</span></li>
+              <li class="results_item" data-country="be"><span class="results_name">Vrije Universiteit Brussel</span></li>
+              <li class="results_item" data-country="fr"><span class="results_name">Université Paris-Saclay</span></li>
+              <li class="results_item" data-country="fr"><span class="results_name">Grenoble École de Management</span></li>
+              <li class="results_item" data-country="fr"><span class="results_name">IAE Savoie Mont-Blanc</span></li>
+              <li class="results_item" data-country="fr"><span class="results_name">Université de Lille</span></li>
+              <li class="results_item" data-country="it"><span class="results_name">University of Bologna</span></li>
+              <li class="results_item" data-country="it"><span class="results_name">University of Milan</span></li>
+              <li class="results_item" data-country="it"><span class="results_name">University of Genoa</span></li>
+              <li class="results_item" data-country="it"><span class="results_name">University of Eastern Piedmont</span></li>
+              <li class="results_item" data-country="it"><span class="results_name">University of Molise</span></li>
+              <li class="results_item" data-country="it"><span class="results_name">University of Salerno</span></li>
+              <li class="results_item" data-country="it"><span class="results_name">University of Camerino</span></li>
+              <li class="results_item" data-country="hu"><span class="results_name">University of Debrecen</span></li>
+              <li class="results_item" data-country="qa"><span class="results_name">Hamad Bin Khalifa University</span></li>
+              <li class="results_item" data-country="eg"><span class="results_name">Egypt-Japan University of Science and Technology</span></li>
             </ol>
             </div>
           </div>
           <div class="results_content">
             <div class="results_text" data-results-fade data-split-group>
               <h3 class="results_title h2" data-split>Where our scholars study now</h3>
-              <p class="results_sub body1" data-split>SFG mentors have helped 143 students win fully funded scholarships in the UK, Ireland, the Netherlands, Belgium, France, Italy, Egypt, Singapore and the USA. These are some of the universities they study at.</p>
+              <p class="results_sub body1" data-split>881 students have joined SFG mentorship programmes, and 143 have won fully funded scholarships to study in 14 countries. These are some of the universities they study at.</p>
             </div>
             <div class="results_globe-slot" data-results-slot>
               <div class="results_globe" data-results-globe aria-hidden="true"><canvas class="results_canvas"></canvas><div class="results_markers" data-results-markers></div></div>
@@ -1796,7 +1841,7 @@ const STEPS=[
  {n:"04.2024",t:"A promise",b:"Ahmed evacuates Gaza with his wife and two sons, and makes a promise: to help Palestinian students win the fully funded scholarships that changed his life.",card:"portrait",img:[["promise","A notebook of handwritten plans on a café table, beside a blue-and-white teapot"]]},
  {n:"08.2024",t:"SFG begins",b:"It starts with one Instagram story: “Want to help Ghazawi students to get a scholarship?” Ahmed asks for volunteers to guide students through their applications, and Scholarships for Ghazza is born.",card:"story",img:[["story","Ahmed’s Instagram story asking for volunteer mentors, over a photo of a boy writing in a notebook outdoors"]]},
  {n:"03.2026",t:"On Al Jazeera",b:"SFG’s story reaches Al Jazeera’s The Stream, as more students from Gaza win their places.",card:"wide",credit:true,img:[["aj","Ahmed Issa speaking on Al Jazeera’s The Stream"]]},
- {n:"143",t:"Scholarships, and counting",b:"SFG mentors have helped 143 students win fully funded scholarships in the UK, Ireland, the Netherlands, Belgium, France, Italy, Egypt, Singapore and the USA.",card:"mosaic",gold:true,img:[["st0","A scholar at the University of Aberdeen"],["st4","A scholar outside the main building of the University of Glasgow"],["st1","A scholar at LSE"],["st3","A scholar at University College Dublin"],["st2","A scholar at Imperial College London’s School of Public Health"],["st5","A scholar beside the University of Glasgow sign"]]}
+ {n:"143",t:"Scholarships, and counting",b:"SFG mentors have helped 143 students win fully funded scholarships at more than 50 universities in 14 countries.",card:"mosaic",gold:true,img:[["st0","A scholar at the University of Aberdeen"],["st4","A scholar outside the main building of the University of Glasgow"],["st1","A scholar at LSE"],["st3","A scholar at University College Dublin"],["st2","A scholar at Imperial College London’s School of Public Health"],["st5","A scholar beside the University of Glasgow sign"]]}
 ];
 const N=STEPS.length,reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const credit=`<a class="sb_credit" href="${AJ}" target="_blank" rel="noopener">Watch on Al Jazeera’s The Stream<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>`;
@@ -1932,7 +1977,12 @@ layout();
     be:{name:"Belgium",lat:50.6,lng:4.6,start:true},
     eg:{name:"Egypt",lat:26.8,lng:30.8},
     sg:{name:"Singapore",lat:1.35,lng:103.8},
-    us:{name:"USA",lat:39.8,lng:-98.6}
+    us:{name:"USA",lat:39.8,lng:-98.6},
+    hu:{name:"Hungary",lat:47.2,lng:19.5},
+    pl:{name:"Poland",lat:52.0,lng:19.1},
+    tr:{name:"Turkey",lat:39.0,lng:35.2},
+    qa:{name:"Qatar",lat:25.3,lng:51.2},
+    my:{name:"Malaysia",lat:4.2,lng:101.9}
   };
   var keys=Object.keys(COUNTRIES), reduce=matchMedia("(prefers-reduced-motion: reduce)"), wide=matchMedia("(min-width:992px)");
   var stage=root.querySelector("[data-results-stage]"), intro=root.querySelector("[data-results-intro]"), slot=root.querySelector("[data-results-slot]");
