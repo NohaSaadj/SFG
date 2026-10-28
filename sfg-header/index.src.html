@@ -47,7 +47,6 @@
       --color-border-subtle:var(--neutral-border);
       --color-border-focus:var(--green-600);
       --color-accent-achievement:var(--ochre-500);
-      --color-text-achievement-on-inverse:var(--ochre-300);   /* achievements straight on the inverse green: 5.5:1 */
       --color-text-achievement-on-tint:var(--ochre-800);   /* scholarship names on sand / green-100 cards (ochre 700 drops to 4.2:1 there) */
       --color-text-on-secondary:var(--neutral-white);   /* text on a --color-action-secondary fill */
       --color-scrim-dialog:rgb(13 38 29 / .48);
@@ -793,7 +792,6 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 .memory_print figcaption{display:flex;flex-direction:column;gap:var(--space-2);min-height:6.5rem;margin-top:var(--space-12)}   /* room for the longest caption, so every photo block is the same height */
 .memory_name{color:var(--memory-ink)}
 .memory_dream{color:var(--memory-muted);text-wrap:pretty}
-.memory_dream.is-achievement{color:var(--color-text-achievement-on-inverse)}   /* what they had already earned: ochre 300, 5.5:1 on the green */
 /* the letter: straight on the green, its ruled lines mark the column */
 .memory_letter{width:100%;margin:0}
 .memory_text{max-width:62ch;margin-inline:auto;text-wrap:pretty;
@@ -1352,13 +1350,13 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
       </dialog>
     </section>
     <section class="section_memory" id="in-remembrance" aria-labelledby="memory-title" lang="en" dir="ltr" data-memory>
-      <h2 class="memory_title h2" id="memory-title">In remembrance</h2>
+      <h2 class="memory_title h2" id="memory-title">In Remembrance</h2>
       <div class="memory_layout">
       <div class="memory_prints">
         <div class="memory_side is-start">
           <figure class="memory_print">
-            <img src="assets/memory/dalia-sally.webp" width="620" height="349" alt="Twin sisters Dalia and Sally Ibaid in graduation gowns and keffiyeh stoles, holding their certificates" loading="lazy" />
-            <figcaption><span class="memory_name title3">Dalia and Sally Ibaid</span><span class="memory_dream is-achievement body3">Accepted to a PhD at the University of Waterloo</span></figcaption>
+            <img src="assets/memory/dalia-sally.webp" width="620" height="349" alt="Twin sisters Dalia and Sally Obaid in graduation gowns and keffiyeh stoles, holding their certificates" loading="lazy" />
+            <figcaption><span class="memory_name title3">Dalia and Sally Obaid</span><span class="memory_dream body3">Accepted to a PhD at the University of Waterloo</span></figcaption>
           </figure>
         </div>
         <div class="memory_side is-end">
@@ -1374,7 +1372,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
       </div>
       <article class="memory_letter" aria-label="A letter from Ahmed Issa">
         <div class="memory_text body1">
-          <p>In the spirit of the SfG community and the mission that unites us, we always remember with deep sorrow our mentees <span class="memory_keep">Sha’ban A-Dalo</span>, Dalia Ibaid, her twin sister Sally Ibaid, and Nada Issa, who were martyred during the Israeli genocide on Gaza. Sha’ban, Dalia, Sally, and Nada were brilliant young students striving to obtain scholarships to pursue their education abroad in a stable and supportive environment after the brutal genocide on Gaza destroyed their universities and placed them under unimaginable circumstances. Despite all the horrors they endured, they never gave up. They insisted on achieving their dreams and securing their right to a <span class="memory_keep">high-quality</span> education — a right each and every human being deserves.</p>
+          <p>In the spirit of the SfG community and the mission that unites us, we always remember with deep sorrow our mentees <span class="memory_keep">Sha’ban A-Dalo</span>, Dalia Obaid, her twin sister Sally Obaid, and Nada Issa, who were martyred during the Israeli genocide on Gaza. Sha’ban, Dalia, Sally, and Nada were brilliant young students striving to obtain scholarships to pursue their education abroad in a stable and supportive environment after the brutal genocide on Gaza destroyed their universities and placed them under unimaginable circumstances. Despite all the horrors they endured, they never gave up. They insisted on achieving their dreams and securing their right to a <span class="memory_keep">high-quality</span> education — a right each and every human being deserves.</p>
           <p>However, the Zionist forces did not allow that dream to continue. As with so many stories of Gaza’s martyrs, people with normal lives, loving families and friends, and great ambitions, their stories ended in tragedy. The occupation forces attacked Sha’ban’s family tent near <span class="memory_keep">Al-Aqsa</span> Hospital in <span class="memory_keep">Deir al-Balah</span> and burned him alive along with several of his family members. They also killed Dalia and her twin sister Sally, who had both been accepted into a PhD program at the University of Waterloo in Canada, while they were in the process of applying for study permits and preparing to cross the Rafah border into Egypt. Nada was also martyred during the genocide while preparing to pursue graduate studies in business and management. A talented translator and project coordinator, she combined language, strategy, and leadership in her work and dreamed of continuing her education through an MBA to contribute to her community’s development.</p>
           <p>Today, we dedicate this page to the memory of Sha’ban, Dalia, Sally, and Nada, four of our brightest mentees whose dreams and determination continue to inspire us. Through this work, and through every effort to help Gazan students access education and rebuild their futures, we honour their lives, their ambitions, and their unshakable belief in hope and learning. We pray that Allah (SWT) has mercy upon them and grants them <span class="memory_keep">Jannat al-Firdaws</span>. Ameen.</p>
         </div>
