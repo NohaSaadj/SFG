@@ -778,57 +778,49 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
    Quiet on purpose: no pin, no carousel, no hover effects, nothing to click. Red is never used here.
    ========================================================================== */
 .section_memory{
-  --memory-paper:var(--color-bg-surface);--memory-ink:var(--color-text-primary);--memory-muted:var(--color-text-secondary);
-  --memory-rule:var(--color-pattern-stitch-soft);   /* faint ruled lines: sand on paper */
-  --memory-bg:var(--color-bg-inverse);--memory-title:var(--color-text-on-inverse);--memory-edge:transparent;
-  position:relative;z-index:2;background:var(--memory-bg);color:var(--memory-title);padding:var(--space-160) var(--grid-margin) var(--space-128)}
-.section_memory[data-palette="inverse"]{   /* letter and photos straight on the green, no paper */
-  --memory-paper:transparent;--memory-ink:var(--color-text-on-inverse);--memory-muted:var(--color-text-on-inverse-secondary);
-  --memory-rule:var(--color-border-on-inverse);--memory-achievement:var(--color-text-achievement-on-inverse)}
-.section_memory[data-palette="inverse"] .memory_frame{padding:0;border:0}
-.section_memory[data-palette="inverse"] .memory_letter{padding:0}
-.section_memory[data-palette="inverse"] :is(.memory_text,.memory_sign){margin-inline:0}   /* no sheet to centre on: text and signature share the column's start edge */
-@media (min-width:1200px){.section_memory[data-palette="inverse"] .memory_layout{grid-template-columns:14rem minmax(0,34rem) 14rem;column-gap:clamp(var(--space-48),6vw,var(--space-96))}}
-.section_memory[data-palette="page"]{--memory-bg:var(--color-bg-page);--memory-title:var(--color-text-heading);--memory-edge:var(--color-border-subtle)}   /* linen: paper needs an edge, it is only 1.05:1 against the page */
-.memory_title{margin:0 0 var(--space-64);text-align:center;color:var(--memory-title)}
-.memory_layout{max-width:48rem;margin-inline:auto}
-/* three prints of one size: 14rem wide, 4:3 photos, the same caption room */
+  --memory-card:var(--color-bg-inverse);--memory-card-ink:var(--color-text-on-inverse);--memory-card-muted:var(--color-text-on-inverse-secondary);
+  --memory-rule:var(--color-border-on-inverse);   /* faint ruled lines on the green letter */
+  --memory-ink:var(--color-text-primary);--memory-muted:var(--color-text-secondary);
+  position:relative;z-index:2;background:var(--color-bg-page);color:var(--memory-ink);padding:var(--space-160) var(--grid-margin) var(--space-128)}
+.memory_title{margin:0 0 var(--space-64);text-align:center;color:var(--color-text-heading)}
+.memory_layout{max-width:52rem;margin-inline:auto}
+/* the photos: one size (14rem, 4:3, the same caption room), straight on the linen */
 .memory_prints{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-16);margin:0 0 var(--space-48)}
-.memory_side{display:contents}   /* small screens: the three prints share one row */
-.memory_print{width:14rem}
-.memory_frame{margin:0;padding:var(--space-12) var(--space-12) var(--space-16);background:var(--memory-paper);border:1px solid var(--color-border-subtle);border-radius:var(--radius-sm)}
-.memory_frame img{display:block;width:100%;height:auto;aspect-ratio:4 / 3;object-fit:cover;border-radius:2px}
+.memory_side{display:contents}   /* small screens: the three photos share one row */
+.memory_print{width:14rem;margin:0}
+.memory_print img{display:block;width:100%;height:auto;aspect-ratio:4 / 3;object-fit:cover;border-radius:var(--radius-sm)}
 .memory_side.is-end .memory_print:first-child img{object-position:50% 30%}
 .memory_side.is-end .memory_print:last-child img{object-position:50% 20%}   /* keep faces in the 4:3 crop */
-.memory_frame figcaption{display:flex;flex-direction:column;gap:var(--space-2);min-height:6.5rem;margin-top:var(--space-12)}   /* room for the longest caption, so every print is the same height */
+.memory_print figcaption{display:flex;flex-direction:column;gap:var(--space-2);min-height:6.5rem;margin-top:var(--space-12)}   /* room for the longest caption, so every photo block is the same height */
 .memory_name{color:var(--memory-ink)}
 .memory_dream{color:var(--memory-muted);text-wrap:pretty}
-.memory_dream.is-achievement{color:var(--memory-achievement,var(--color-text-achievement))}   /* what they had already earned */
-.memory_letter{width:100%;margin:0;padding:var(--space-64);background:var(--memory-paper);color:var(--memory-ink);border:1px solid var(--memory-edge);border-radius:var(--radius-sm)}
+.memory_dream.is-achievement{color:var(--color-text-achievement)}   /* what they had already earned: ochre 700, 4.9:1 on linen */
+/* the letter: a green card on the linen */
+.memory_letter{width:100%;margin:0;padding:var(--space-64) clamp(var(--space-24),7vw,var(--space-128));background:var(--memory-card);color:var(--memory-card-ink);border:1px solid var(--color-border-on-inverse);border-radius:var(--radius-card)}   /* the hairline keeps the card's edge in dark mode, where green and page are 1.05:1 */
 .memory_text{max-width:60ch;margin-inline:auto;text-wrap:pretty;
   background:repeating-linear-gradient(to bottom,transparent 0 calc(1lh - 1px),var(--memory-rule) calc(1lh - 1px) 1lh)}   /* one rule under every line, set by the text's own line-height */
 .memory_text p{margin:0 0 1lh}   /* paragraph gaps are whole lines, so the rules stay in step */
 .memory_keep{white-space:nowrap}   /* names never break at their hyphen */
-.memory_sign{display:flex;flex-direction:column;max-width:60ch;margin:var(--space-32) auto 0}
-.memory_sign-role{color:var(--memory-muted)}
-/* wide screens: one print on the left, the letter in the middle, two prints on the right; both sides pin while the letter scrolls */
+.memory_sign{display:flex;flex-direction:column;max-width:60ch;margin:var(--space-32) auto 0;font-size:1.125rem}   /* 18px base, so 60ch matches the letter's measure */
+.memory_sign-role{color:var(--memory-card-muted)}
+/* wide screens: the letter in the middle, photos beside it at uneven heights, pinned while the letter scrolls; captions stay on the linen, never on the card */
 @media (min-width:1200px){
   .section_memory{padding-inline:var(--space-64)}
-  .memory_layout{display:grid;grid-template-columns:14rem minmax(0,44rem) 14rem;justify-content:center;align-items:start;column-gap:var(--space-48);max-width:none}
+  .memory_layout{display:grid;grid-template-columns:14rem minmax(0,52rem) 14rem;justify-content:center;align-items:start;column-gap:var(--space-32);max-width:none}
   .memory_prints{display:contents}
-  .memory_side{display:flex;flex-direction:column;gap:var(--space-16);position:sticky;top:var(--space-96)}
-  .memory_side.is-start{grid-column:1;grid-row:1;margin-top:var(--space-96)}   /* lower than the right pair, so the three don't line up */
-  .memory_side.is-end{grid-column:3;grid-row:1}
-  .memory_letter{grid-column:2;grid-row:1;padding:var(--space-64) var(--space-48)}
+  .memory_side{position:sticky;z-index:1;display:flex;flex-direction:column;gap:var(--space-48)}
+  .memory_side.is-start{grid-column:1;grid-row:1;top:var(--space-192);margin-top:var(--space-128)}
+  .memory_side.is-end{grid-column:3;grid-row:1;top:var(--space-96);margin-top:var(--space-32)}
+  .memory_letter{grid-column:2;grid-row:1}
 }
 @media (prefers-reduced-motion:no-preference){
   .js .memory_print{opacity:0;translate:0 var(--space-24);transition:opacity 1.2s ease-out,translate 1.2s var(--ease-out)}
   .js .memory_side.is-end .memory_print:first-child{transition-delay:.15s}
   .js .memory_side.is-end .memory_print:last-child{transition-delay:.3s}
-  .js .section_memory.is-in .memory_print{opacity:1;translate:0 0}   /* the prints settle once */
+  .js .section_memory.is-in .memory_print{opacity:1;translate:0 0}   /* the photos settle once */
 }
 @media (max-width:991px){.section_memory{padding-block:var(--space-96)}.memory_title{margin-bottom:var(--space-48)}}
-@media (max-width:599px){.memory_prints{margin-bottom:var(--space-32)}.memory_print{width:calc((100% - var(--space-16)) / 2)}.memory_frame figcaption{min-height:7.5rem}.memory_letter{padding:var(--space-48) var(--space-24)}}   /* two prints, then one, all the same width */
+@media (max-width:599px){.memory_prints{margin-bottom:var(--space-32)}.memory_print{width:calc((100% - var(--space-16)) / 2)}.memory_print figcaption{min-height:7.5rem}.memory_letter{padding:var(--space-48) var(--space-24)}}   /* two photos, then one, all the same width */
 
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{transition:none!important;animation:none!important}
@@ -1315,22 +1307,22 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
         </div>
       </dialog>
     </section>
-    <section class="section_memory" id="in-remembrance" aria-labelledby="memory-title" lang="en" dir="ltr" data-memory data-palette="inverse">
+    <section class="section_memory" id="in-remembrance" aria-labelledby="memory-title" lang="en" dir="ltr" data-memory>
       <h2 class="memory_title h2" id="memory-title">In remembrance</h2>
       <div class="memory_layout">
       <div class="memory_prints">
         <div class="memory_side is-start">
-          <figure class="memory_print memory_frame">
+          <figure class="memory_print">
             <img src="assets/memory/dalia-sally.webp" width="620" height="349" alt="Twin sisters Dalia and Sally Ibaid in graduation gowns and keffiyeh stoles, holding their certificates" loading="lazy" />
             <figcaption><span class="memory_name title3">Dalia and Sally Ibaid</span><span class="memory_dream is-achievement body3">Accepted to a PhD at the University of Waterloo</span></figcaption>
           </figure>
         </div>
         <div class="memory_side is-end">
-          <figure class="memory_print memory_frame">
+          <figure class="memory_print">
             <img src="assets/memory/shaban.webp" width="640" height="640" alt="Sha’ban A-Dalo sitting in front of a destroyed building" loading="lazy" />
             <figcaption><span class="memory_name title3">Sha’ban A-Dalo</span><span class="memory_dream body3">Applying for scholarships to study abroad</span></figcaption>
           </figure>
-          <figure class="memory_print memory_frame">
+          <figure class="memory_print">
             <img src="assets/memory/nada.webp" width="640" height="640" alt="Nada Issa in her graduation gown, placing her graduation cap on her father’s head" loading="lazy" />
             <figcaption><span class="memory_name title3">Nada Issa, with her father, also martyred</span><span class="memory_dream body3">Preparing to study for an MBA</span></figcaption>
           </figure>
