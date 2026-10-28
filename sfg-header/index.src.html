@@ -47,6 +47,7 @@
       --color-border-subtle:var(--neutral-border);
       --color-border-focus:var(--green-600);
       --color-accent-achievement:var(--ochre-500);
+      --color-text-achievement-on-inverse:var(--ochre-300);   /* achievements straight on the inverse green: 5.5:1 */
       --color-text-achievement-on-tint:var(--ochre-800);   /* scholarship names on sand / green-100 cards (ochre 700 drops to 4.2:1 there) */
       --color-text-on-secondary:var(--neutral-white);   /* text on a --color-action-secondary fill */
       --color-scrim-dialog:rgb(13 38 29 / .48);
@@ -781,6 +782,13 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
   --memory-rule:var(--color-pattern-stitch-soft);   /* faint ruled lines: sand on paper */
   --memory-bg:var(--color-bg-inverse);--memory-title:var(--color-text-on-inverse);--memory-edge:transparent;
   position:relative;z-index:2;background:var(--memory-bg);color:var(--memory-title);padding:var(--space-160) var(--grid-margin) var(--space-128)}
+.section_memory[data-palette="inverse"]{   /* letter and photos straight on the green, no paper */
+  --memory-paper:transparent;--memory-ink:var(--color-text-on-inverse);--memory-muted:var(--color-text-on-inverse-secondary);
+  --memory-rule:var(--color-border-on-inverse);--memory-achievement:var(--color-text-achievement-on-inverse)}
+.section_memory[data-palette="inverse"] .memory_frame{padding:0;border:0}
+.section_memory[data-palette="inverse"] .memory_letter{padding:0}
+.section_memory[data-palette="inverse"] :is(.memory_text,.memory_sign){margin-inline:0}   /* no sheet to centre on: text and signature share the column's start edge */
+@media (min-width:1200px){.section_memory[data-palette="inverse"] .memory_layout{grid-template-columns:14rem minmax(0,34rem) 14rem;column-gap:clamp(var(--space-48),6vw,var(--space-96))}}
 .section_memory[data-palette="page"]{--memory-bg:var(--color-bg-page);--memory-title:var(--color-text-heading);--memory-edge:var(--color-border-subtle)}   /* linen: paper needs an edge, it is only 1.05:1 against the page */
 .memory_title{margin:0 0 var(--space-64);text-align:center;color:var(--memory-title)}
 .memory_layout{max-width:48rem;margin-inline:auto}
@@ -790,12 +798,12 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 .memory_print{width:14rem}
 .memory_frame{margin:0;padding:var(--space-12) var(--space-12) var(--space-16);background:var(--memory-paper);border:1px solid var(--color-border-subtle);border-radius:var(--radius-sm)}
 .memory_frame img{display:block;width:100%;height:auto;aspect-ratio:4 / 3;object-fit:cover;border-radius:2px}
-.memory_side.is-end .memory_print:first-child img{object-position:50% 25%}
-.memory_side.is-end .memory_print:last-child img{object-position:50% 15%}   /* keep faces in the 4:3 crop */
+.memory_side.is-end .memory_print:first-child img{object-position:50% 30%}
+.memory_side.is-end .memory_print:last-child img{object-position:50% 20%}   /* keep faces in the 4:3 crop */
 .memory_frame figcaption{display:flex;flex-direction:column;gap:var(--space-2);min-height:6.5rem;margin-top:var(--space-12)}   /* room for the longest caption, so every print is the same height */
 .memory_name{color:var(--memory-ink)}
 .memory_dream{color:var(--memory-muted);text-wrap:pretty}
-.memory_dream.is-achievement{color:var(--color-text-achievement)}   /* what they had already earned */
+.memory_dream.is-achievement{color:var(--memory-achievement,var(--color-text-achievement))}   /* what they had already earned */
 .memory_letter{width:100%;margin:0;padding:var(--space-64);background:var(--memory-paper);color:var(--memory-ink);border:1px solid var(--memory-edge);border-radius:var(--radius-sm)}
 .memory_text{max-width:60ch;margin-inline:auto;text-wrap:pretty;
   background:repeating-linear-gradient(to bottom,transparent 0 calc(1lh - 1px),var(--memory-rule) calc(1lh - 1px) 1lh)}   /* one rule under every line, set by the text's own line-height */
@@ -1313,17 +1321,17 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
       <div class="memory_prints">
         <div class="memory_side is-start">
           <figure class="memory_print memory_frame">
-            <img src="assets/memory/dalia-sally.webp" width="330" height="184" alt="Twin sisters Dalia and Sally Ibaid in graduation gowns and keffiyeh stoles, holding their certificates" loading="lazy" />
+            <img src="assets/memory/dalia-sally.webp" width="620" height="349" alt="Twin sisters Dalia and Sally Ibaid in graduation gowns and keffiyeh stoles, holding their certificates" loading="lazy" />
             <figcaption><span class="memory_name title3">Dalia and Sally Ibaid</span><span class="memory_dream is-achievement body3">Accepted to a PhD at the University of Waterloo</span></figcaption>
           </figure>
         </div>
         <div class="memory_side is-end">
           <figure class="memory_print memory_frame">
-            <img src="assets/memory/shaban.webp" width="185" height="184" alt="Sha’ban A-Dalo sitting in front of a destroyed building" loading="lazy" />
+            <img src="assets/memory/shaban.webp" width="640" height="640" alt="Sha’ban A-Dalo sitting in front of a destroyed building" loading="lazy" />
             <figcaption><span class="memory_name title3">Sha’ban A-Dalo</span><span class="memory_dream body3">Applying for scholarships to study abroad</span></figcaption>
           </figure>
           <figure class="memory_print memory_frame">
-            <img src="assets/memory/nada.webp" width="185" height="186" alt="Nada Issa in her graduation gown, placing her graduation cap on her father’s head" loading="lazy" />
+            <img src="assets/memory/nada.webp" width="640" height="640" alt="Nada Issa in her graduation gown, placing her graduation cap on her father’s head" loading="lazy" />
             <figcaption><span class="memory_name title3">Nada Issa, with her father, also martyred</span><span class="memory_dream body3">Preparing to study for an MBA</span></figcaption>
           </figure>
         </div>
