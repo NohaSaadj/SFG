@@ -47,6 +47,7 @@
       --color-border-subtle:var(--neutral-border);
       --color-border-focus:var(--green-600);
       --color-accent-achievement:var(--ochre-500);
+      --color-bg-tint-green:var(--green-100);   /* light green cards on the linen (1.16:1 against it) */
       --color-text-achievement-on-inverse:var(--ochre-300);   /* achievements straight on the inverse green: 5.5:1 */
       --color-text-achievement-on-tint:var(--ochre-800);   /* scholarship names on sand / green-100 cards (ochre 700 drops to 4.2:1 there) */
       --color-text-on-secondary:var(--neutral-white);   /* text on a --color-action-secondary fill */
@@ -112,14 +113,14 @@
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
-      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
+      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;--color-bg-tint-green:var(--green-800);
       --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);
     }}
     :root[data-theme="dark"]{
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
       --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
-      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
+      --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;--color-bg-tint-green:var(--green-800);
       --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);
     }
 
@@ -787,14 +788,14 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 /* the photos: one size (14rem, 4:3, the same caption room), straight on the linen */
 .memory_prints{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-16);margin:0 0 var(--space-48)}
 .memory_side{display:contents}   /* small screens: the three photos share one row */
-.memory_print{width:14rem;margin:0}
+.memory_print{width:14rem;margin:0;padding:var(--space-12) var(--space-12) var(--space-16);background:var(--color-bg-tint-green);border-radius:var(--radius-card)}   /* a light green card, kin to the green letter */
 .memory_print img{display:block;width:100%;height:auto;aspect-ratio:4 / 3;object-fit:cover;border-radius:var(--radius-sm)}
 .memory_side.is-end .memory_print:first-child img{object-position:50% 30%}
 .memory_side.is-end .memory_print:last-child img{object-position:50% 20%}   /* keep faces in the 4:3 crop */
 .memory_print figcaption{display:flex;flex-direction:column;gap:var(--space-2);min-height:6.5rem;margin-top:var(--space-12)}   /* room for the longest caption, so every photo block is the same height */
 .memory_name{color:var(--memory-ink)}
 .memory_dream{color:var(--memory-muted);text-wrap:pretty}
-.memory_dream.is-achievement{color:var(--color-text-achievement)}   /* what they had already earned: ochre 700, 4.9:1 on linen */
+.memory_dream.is-achievement{color:var(--color-text-achievement-on-tint)}   /* what they had already earned: ochre 800, 6.2:1 on the green tint */
 /* the letter: a green card on the linen */
 .memory_letter{width:100%;margin:0;padding:var(--space-48);background:var(--memory-card);color:var(--memory-card-ink);border:1px solid var(--color-border-on-inverse);border-radius:var(--radius-card)}   /* the hairline keeps the card's edge in dark mode, where green and page are 1.05:1 */
 .memory_text{max-width:62ch;margin-inline:auto;text-wrap:pretty;
