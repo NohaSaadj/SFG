@@ -106,7 +106,7 @@ A quiet memorial for four mentees killed in the genocide: Sha’ban A-Dalo, Dali
 
 ## Mentor voices (after In Remembrance, before Become a mentor)
 Three mentors in their own words, placed right before the mentor sign-up: Student voices shows mentors the impact; this section answers what holds a mentor back (am I qualified, how long does it take, is it worth it), in the words of people like them.
-- **Lighter than Student voices on purpose:** one still row of three columns on the linen page, no deck, no panel, no cards. Each column has a hairline top rule, the quote (H5, line-height 1.4), then the name (Title3) and one plain fact (Body3, grey) aligned to the column bottom.
+- **Lighter than Student voices on purpose:** one still row of three columns on the linen page, no deck, no panel, no cards. Each column has a hairline top rule, the quote (H5 size in the serif text face, medium 500, line-height 1.4), then the name (Title3) and one plain fact (Body3, grey) aligned to the column bottom.
 - **Quotes** are exact sentences from each mentor's words: Elisa Giammarini, PhD, FHEA (her first student's fully funded scholarship; three academic years, three students), Claire Ramsay ("If you have any experience with universities, scholarships, or standardized English tests…", which answers "am I qualified?"; eight months), Luis Morales-Navarro, PhD (meeting a former mentee in London; since SFG's first year, three scholars).
 - **Motion:** the shared line reveal (title, then each quote). One column on screens under 992px.
 
