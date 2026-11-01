@@ -817,6 +817,22 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 }
 @media (max-width:991px){.section_memory{padding-block:var(--space-96)}.memory_title{margin-bottom:var(--space-48)}}
 @media (max-width:599px){.memory_prints{margin-bottom:var(--space-32)}.memory_print{width:calc((100% - var(--space-16)) / 2)}.memory_print figcaption{min-height:7.5rem}}   /* two photos, then one, all the same width */
+/* ==========================================================================
+   Mentor voices: three mentors in their own words, straight before "Become a mentor".
+   Lighter than Student voices on purpose: one still row, no deck, no panel. Each column answers a
+   mentor's doubt (impact, "am I qualified?", what it feels like) and ends on a plain fact (time, results).
+   ========================================================================== */
+.section_mentors{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-128) var(--grid-margin)}
+.mentors_title{margin:0 0 var(--space-64);color:var(--color-text-heading)}
+.mentors_list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-48)}
+.mentors_list>li{display:flex}
+.mentors_item{flex:1;margin:0;display:flex;flex-direction:column;gap:var(--space-24);padding-top:var(--space-24);border-top:1px solid var(--color-border-subtle)}
+.mentors_quote{margin:0;color:var(--color-text-primary);line-height:1.4;text-wrap:pretty}
+.mentors_quote p{margin:0}
+.mentors_by{display:flex;flex-direction:column;gap:var(--space-2);margin-top:auto}   /* names line up at the bottom of every column */
+.mentors_name{color:var(--color-text-primary)}
+.mentors_fact{color:var(--color-text-secondary)}
+@media (max-width:991px){.section_mentors{padding-block:var(--space-96)}.mentors_title{margin-bottom:var(--space-48)}.mentors_list{grid-template-columns:minmax(0,1fr);gap:var(--space-48)}.mentors_by{margin-top:0}}
 
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{transition:none!important;animation:none!important}
@@ -1378,6 +1394,29 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
         <p class="memory_sign"><span class="title3">Ahmed Issa</span><span class="memory_sign-role body3">Initiative Founder</span></p>
       </article>
       </div>
+    </section>
+    <section class="section_mentors" id="mentor-voices" aria-labelledby="mentors-title" lang="en" dir="ltr">
+      <h2 class="mentors_title h2" id="mentors-title" data-split>Mentor voices</h2>
+      <ul class="mentors_list" role="list">
+        <li>
+          <figure class="mentors_item" data-split-group>
+            <blockquote class="mentors_quote h5"><p data-split>“My very first student, who I couldn’t be more proud of, successfully obtained a fully funded scholarship. My other two brilliant students keep receiving offers from top universities.”</p></blockquote>
+            <figcaption class="mentors_by"><span class="mentors_name title3">Elisa Giammarini, PhD, FHEA</span><span class="mentors_fact body3">Mentor for three academic years · three students</span></figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="mentors_item" data-split-group>
+            <blockquote class="mentors_quote h5"><p data-split>“If you have any experience with universities, scholarships, or standardized English tests and would like to put that to good use supporting Gazan students in achieving their goals, I can’t recommend volunteering with SFG enough.”</p></blockquote>
+            <figcaption class="mentors_by"><span class="mentors_name title3">Claire Ramsay</span><span class="mentors_fact body3">Mentor for eight months</span></figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="mentors_item" data-split-group>
+            <blockquote class="mentors_quote h5"><p data-split>“Last summer I met one of my former mentees in London, and it was incredibly fulfilling to see them thrive as they study and think about how they can contribute to rebuilding Gaza.”</p></blockquote>
+            <figcaption class="mentors_by"><span class="mentors_name title3">Luis Morales-Navarro, PhD</span><span class="mentors_fact body3">Mentor since SFG’s first year · three scholars</span></figcaption>
+          </figure>
+        </li>
+      </ul>
     </section>
   </main>
 
