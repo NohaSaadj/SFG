@@ -834,34 +834,45 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 .mentors_fact{color:var(--color-text-secondary)}
 @media (max-width:991px){.section_mentors{padding-block:var(--space-96)}.mentors_title{margin-bottom:var(--space-48)}.mentors_list{grid-template-columns:minmax(0,1fr);gap:var(--space-48)}.mentors_by{margin-top:0}}
 /* ==========================================================================
-   Become a mentor: the decision section. Left column pins with the ask and the one red button;
-   the right column answers what a mentor needs before applying: who we look for, what you'll do,
-   how we support you. It doesn't repeat "What we do" or "How it works".
+   Become a mentor (after cerebrium.com "Why Cerebrium"): a pinned list of four topics on the left,
+   the four topic panels scroll on the right. No scroll-jacking: the page scrolls normally and the
+   topic whose panel crosses the middle of the screen is marked current. All text is real text in
+   the panels; the list is navigation only. Phones: no pin, each panel carries its own heading.
    ========================================================================== */
 .section_join{position:relative;z-index:2;background:var(--color-bg-surface-alt);color:var(--color-text-primary);padding:var(--space-128) var(--grid-margin)}
 .join_grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:var(--space-96);align-items:start}
-.join_ask{position:sticky;top:var(--space-128);display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-24)}
+.join_ask{position:sticky;top:var(--space-128);display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-48)}
 .join_eyebrow{margin:0;color:var(--color-text-heading)}
-.join_title{margin:0;color:var(--color-text-primary);text-wrap:balance}
-.join_lead{margin:0;max-width:36ch;color:var(--color-text-secondary);text-wrap:pretty}
-.join_facts{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-8)}
-.join_fact{padding:var(--space-4) var(--space-12);border:1px solid var(--color-border-subtle);border-radius:var(--radius-full);color:var(--color-text-primary)}
-.join_actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-12) var(--space-24);margin-top:var(--space-8)}
+.join_nav{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-4)}
+.join_tab{display:block;margin:0;padding:var(--space-4) 0;border:0;background:none;text-align:start;cursor:pointer;color:var(--color-text-secondary);transition:color .3s var(--ease-out)}   /* grey 4.8:1 on sand, so even the inactive topics stay readable */
+.join_tab[aria-current="true"]{color:var(--color-text-primary)}
+@media (hover:hover){.join_tab:hover{color:var(--color-text-primary)}}
+.join_tab:focus-visible,.join_link:focus-visible,.section_join .button-primary:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px;border-radius:var(--radius-sm)}
+.join_actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-12) var(--space-24)}
 .join_link{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);color:var(--color-action-secondary);text-decoration:underline;text-underline-offset:4px}
-.join_link:focus-visible,.section_join .button-primary:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
-.join_blocks{display:flex;flex-direction:column;gap:var(--space-64)}
-.join_block{display:flex;flex-direction:column;gap:var(--space-20)}
-.join_block-title{margin:0;color:var(--color-text-primary)}
-.join_list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-12)}
-.join_list li{display:grid;grid-template-columns:20px minmax(0,1fr);column-gap:var(--space-12);color:var(--color-text-primary);text-wrap:pretty}
-.join_list svg{margin-top:4px;color:var(--color-action-secondary)}
-.join_note{margin:0;color:var(--color-text-secondary);text-wrap:pretty}
-.join_note strong{font-weight:500;color:var(--color-text-primary)}
+.join_panels{display:flex;flex-direction:column}
+.join_panel{min-height:72vh;display:flex;flex-direction:column;justify-content:center;gap:var(--space-24);padding-block:var(--space-48);scroll-margin-top:var(--space-96)}
+.join_panel-title{margin:0}
+.join_stage{position:relative;display:grid;place-items:center;min-height:400px;padding:var(--space-48) var(--space-32);overflow:hidden;border-radius:var(--radius-media);background:var(--color-bg-page);box-shadow:inset 0 0 0 1px var(--color-border-subtle)}
+.join_field{position:absolute;inset:0;width:100%;height:100%}
+.join_card{position:relative;width:min(100%,400px);display:flex;flex-direction:column;gap:var(--space-16);padding:var(--space-24);border-radius:var(--radius-card);background:var(--color-bg-surface);box-shadow:0 8px 24px rgb(30 26 22 / .08),0 0 0 1px var(--color-border-subtle)}
+.join_card-label{margin:0;color:var(--color-text-secondary)}
+.join_points{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-12)}
+.join_points li{display:grid;grid-template-columns:20px minmax(0,1fr);column-gap:var(--space-12);text-wrap:pretty}
+.join_points svg{margin-top:2px;color:var(--color-action-secondary)}
+.join_big{align-items:center;gap:var(--space-4);text-align:center}
+.join_big p{margin:0}
+.join_big .h1{color:var(--color-text-achievement)}   /* numbers are ochre in the system */
+.join_caption{margin:0;color:var(--color-text-primary);text-wrap:balance}
 @media (max-width:991px){
   .section_join{padding-block:var(--space-96)}
-  .join_grid{grid-template-columns:minmax(0,1fr);row-gap:var(--space-64)}
-  .join_ask{position:static}
+  .join_grid{grid-template-columns:minmax(0,1fr);row-gap:var(--space-48)}
+  .join_ask{position:static;gap:var(--space-24)}
+  .join_nav{display:none}   /* phones read the panels in order; each one shows its own heading */
+  .join_panel{min-height:0;padding-block:var(--space-32)}
+  .join_stage{min-height:0;padding:var(--space-32) var(--space-20)}
 }
+@media (min-width:992px){.join_panel-title{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}   /* the pinned list shows the topic; the heading stays for screen readers */
 
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{transition:none!important;animation:none!important}
@@ -1447,54 +1458,78 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
         </li>
       </ul>
     </section>
-    <section class="section_join" id="become-a-mentor" aria-labelledby="join-title" lang="en" dir="ltr">
+    <section class="section_join" id="become-a-mentor" aria-labelledby="join-title" lang="en" dir="ltr" data-join>
       <div class="join_grid">
-        <div class="join_ask" data-split-group>
-          <p class="join_eyebrow title3" data-split>Become a mentor</p>
-          <h2 class="join_title h2" id="join-title" data-split>Could you guide a student from Gaza?</h2>
-          <p class="join_lead body1" data-split>If you’ve been through the scholarship application process or have experience guiding others, you could make a huge impact.</p>
-          <ul class="join_facts" role="list" aria-label="At a glance">
-            <li class="join_fact body3">3–4 hours a week</li>
-            <li class="join_fact body3">On WhatsApp</li>
-            <li class="join_fact body3">Weekly support calls</li>
+        <div class="join_ask">
+          <h2 class="join_eyebrow title3" id="join-title" data-split>Become a mentor</h2>
+          <ul class="join_nav" role="list" aria-label="Topics">
+            <li><button class="join_tab h3" type="button" data-join-tab="join-who" aria-controls="join-who" aria-current="true">Who we need</button></li>
+            <li><button class="join_tab h3" type="button" data-join-tab="join-do" aria-controls="join-do">What you’ll do</button></li>
+            <li><button class="join_tab h3" type="button" data-join-tab="join-support" aria-controls="join-support">How we support you</button></li>
+            <li><button class="join_tab h3" type="button" data-join-tab="join-time" aria-controls="join-time">Your time</button></li>
           </ul>
           <div class="join_actions">
             <a class="button-primary title3" href="https://secure.lglforms.com/form_engine/s/g_DgjZr8NO-ar4ZbK8qO7Q" target="_blank" rel="noopener">Become a mentor<span class="sr-only"> (opens the application form in a new tab)</span></a>
             <a class="join_link title3" href="https://docs.google.com/document/d/13uX0ClWeqEinlqcHFDqgCYSa4T1SQ60xR9QBD7iY3Jw/edit?usp=sharing" target="_blank" rel="noopener">Read the mentor handbook<span class="sr-only"> (opens in a new tab)</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
           </div>
         </div>
-        <div class="join_blocks">
-          <div class="join_block" data-split-group>
-            <h3 class="join_block-title title" data-split>Who we’re looking for</h3>
-            <ul class="join_list" role="list">
-              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You received a scholarship to study in an English-speaking or Western country, ideally the UK, Ireland, Italy, the USA, Canada, Belgium or Spain.</span></li>
-              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You have experience helping students write, edit and proofread university and scholarship applications.</span></li>
-              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You hold a postgraduate degree (Master’s or PhD).</span></li>
-              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You can give 3–4 hours a week to your mentee.</span></li>
-              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You bring patience, empathy and professionalism to guiding students living through genocide.</span></li>
-              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You understand the cultural context and challenges of students from conflict-affected communities.</span></li>
-            </ul>
-            <p class="join_note body2">We welcome mentors from every discipline, and need you most in <strong>health, medicine, engineering and computer science</strong>.</p>
-          </div>
-          <div class="join_block" data-split-group>
-            <h3 class="join_block-title title" data-split>What you’ll do</h3>
-            <ul class="join_list" role="list">
-              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Help your mentee navigate applications and meet every eligibility requirement.</span></li>
-              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Refine their CV, personal statement and scholarship essays.</span></li>
-              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Run mock interviews before the real ones.</span></li>
-              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Help them communicate with universities and scholarship boards.</span></li>
-              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Build their confidence in English.</span></li>
-            </ul>
-          </div>
-          <div class="join_block" data-split-group>
-            <h3 class="join_block-title title" data-split>How we support you</h3>
-            <ul class="join_list" role="list">
-              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You work with your mentee in a WhatsApp group, alongside an SFG organiser.</span></li>
-              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You can join weekly support calls with the organising team.</span></li>
-              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You follow clear guidelines that keep the relationship professional and considerate.</span></li>
-            </ul>
-            <p class="join_note body2"><strong>You never write applications for students.</strong> You give them the skills and confidence to do it themselves.</p>
-          </div>
+        <div class="join_panels">
+          <article class="join_panel" id="join-who" aria-labelledby="join-who-title" data-join-panel>
+            <h3 class="join_panel-title h3" id="join-who-title">Who we need</h3>
+            <div class="join_stage">
+              <svg class="join_field" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg>
+              <div class="join_card">
+                <p class="join_card-label title3">Mentor profile</p>
+                <ul class="join_points" role="list">
+                  <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>A scholarship alum from a Western university</span></li>
+                  <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>A Master’s or PhD</span></li>
+                  <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Experience editing applications</span></li>
+                </ul>
+              </div>
+            </div>
+            <p class="join_caption title1">Most needed in health, medicine, engineering and computer science.</p>
+          </article>
+          <article class="join_panel" id="join-do" aria-labelledby="join-do-title" data-join-panel>
+            <h3 class="join_panel-title h3" id="join-do-title">What you’ll do</h3>
+            <div class="join_stage">
+              <svg class="join_field" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg>
+              <div class="join_card">
+                <p class="join_card-label title3">Your role</p>
+                <ul class="join_points" role="list">
+                  <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Shape their CV, statement and essays</span></li>
+                  <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Run mock interviews</span></li>
+                  <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Build their English confidence</span></li>
+                </ul>
+              </div>
+            </div>
+            <p class="join_caption title1">You guide. They write.</p>
+          </article>
+          <article class="join_panel" id="join-support" aria-labelledby="join-support-title" data-join-panel>
+            <h3 class="join_panel-title h3" id="join-support-title">How we support you</h3>
+            <div class="join_stage">
+              <svg class="join_field" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg>
+              <div class="join_card">
+                <p class="join_card-label title3">Your support</p>
+                <ul class="join_points" role="list">
+                  <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>A WhatsApp group with an SFG organiser</span></li>
+                  <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Weekly support calls</span></li>
+                  <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Clear mentor guidelines</span></li>
+                </ul>
+              </div>
+            </div>
+            <p class="join_caption title1">You’re never on your own.</p>
+          </article>
+          <article class="join_panel" id="join-time" aria-labelledby="join-time-title" data-join-panel>
+            <h3 class="join_panel-title h3" id="join-time-title">Your time</h3>
+            <div class="join_stage">
+              <svg class="join_field" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg>
+              <div class="join_card join_big">
+                <p class="h1">3–4</p>
+                <p class="title">hours a week</p>
+              </div>
+            </div>
+            <p class="join_caption title1">Patience and empathy matter as much as your CV.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -2681,6 +2716,20 @@ layout();
     new IntersectionObserver(function (es, o) {
       if (es[0].isIntersecting) { sec.classList.add("is-in"); o.disconnect(); }
     }, { threshold: 0.25 }).observe(sec);
+  })();
+  </script>
+  <script>
+  /* Become a mentor: the topic whose panel crosses the middle of the screen is marked current;
+     clicking a topic scrolls to its panel. Hooks: [data-join] [data-join-tab] [data-join-panel] */
+  (function () {
+    var sec = document.querySelector("[data-join]"); if (!sec) return;
+    var tabs = [].slice.call(sec.querySelectorAll("[data-join-tab]")), panels = [].slice.call(sec.querySelectorAll("[data-join-panel]"));
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)");
+    function mark(id) { tabs.forEach(function (t) { if (t.getAttribute("data-join-tab") === id) t.setAttribute("aria-current", "true"); else t.removeAttribute("aria-current"); }); }
+    tabs.forEach(function (t) { t.addEventListener("click", function () { var p = document.getElementById(t.getAttribute("data-join-tab")); mark(p.id); p.scrollIntoView({ behavior: reduce.matches ? "auto" : "smooth", block: "center" }); }); });
+    if (!("IntersectionObserver" in window)) return;
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) mark(e.target.id); }); }, { rootMargin: "-45% 0px -45% 0px" });
+    panels.forEach(function (p) { io.observe(p); });
   })();
   </script>
 </body>
