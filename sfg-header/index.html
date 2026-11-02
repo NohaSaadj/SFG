@@ -833,6 +833,35 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 .mentors_name{color:var(--color-text-primary)}
 .mentors_fact{color:var(--color-text-secondary)}
 @media (max-width:991px){.section_mentors{padding-block:var(--space-96)}.mentors_title{margin-bottom:var(--space-48)}.mentors_list{grid-template-columns:minmax(0,1fr);gap:var(--space-48)}.mentors_by{margin-top:0}}
+/* ==========================================================================
+   Become a mentor: the decision section. Left column pins with the ask and the one red button;
+   the right column answers what a mentor needs before applying: who we look for, what you'll do,
+   how we support you. It doesn't repeat "What we do" or "How it works".
+   ========================================================================== */
+.section_join{position:relative;z-index:2;background:var(--color-bg-surface-alt);color:var(--color-text-primary);padding:var(--space-128) var(--grid-margin)}
+.join_grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:var(--space-96);align-items:start}
+.join_ask{position:sticky;top:var(--space-128);display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-24)}
+.join_eyebrow{margin:0;color:var(--color-text-heading)}
+.join_title{margin:0;color:var(--color-text-primary);text-wrap:balance}
+.join_lead{margin:0;max-width:36ch;color:var(--color-text-secondary);text-wrap:pretty}
+.join_facts{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-8)}
+.join_fact{padding:var(--space-4) var(--space-12);border:1px solid var(--color-border-subtle);border-radius:var(--radius-full);color:var(--color-text-primary)}
+.join_actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-12) var(--space-24);margin-top:var(--space-8)}
+.join_link{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);color:var(--color-action-secondary);text-decoration:underline;text-underline-offset:4px}
+.join_link:focus-visible,.section_join .button-primary:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
+.join_blocks{display:flex;flex-direction:column;gap:var(--space-64)}
+.join_block{display:flex;flex-direction:column;gap:var(--space-20)}
+.join_block-title{margin:0;color:var(--color-text-primary)}
+.join_list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-12)}
+.join_list li{display:grid;grid-template-columns:20px minmax(0,1fr);column-gap:var(--space-12);color:var(--color-text-primary);text-wrap:pretty}
+.join_list svg{margin-top:4px;color:var(--color-action-secondary)}
+.join_note{margin:0;color:var(--color-text-secondary);text-wrap:pretty}
+.join_note strong{font-weight:500;color:var(--color-text-primary)}
+@media (max-width:991px){
+  .section_join{padding-block:var(--space-96)}
+  .join_grid{grid-template-columns:minmax(0,1fr);row-gap:var(--space-64)}
+  .join_ask{position:static}
+}
 
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{transition:none!important;animation:none!important}
@@ -856,7 +885,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
           <ul class="header_nav-list title3">
             <li><a class="header_nav-link" href="#about" data-i18n="navAbout">About</a></li>
             <li><a class="header_nav-link" href="#how-it-works" data-i18n="navHow">How it works</a></li>
-            <li><a class="header_nav-link" href="#mentors" data-i18n="navMentors">Mentors</a></li>
+            <li><a class="header_nav-link" href="#mentor-voices" data-i18n="navMentors">Mentors</a></li>
             <li><a class="header_nav-link" href="#students" data-i18n="navStudents">For students</a></li>
           </ul>
           <div class="header_actions">
@@ -881,7 +910,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
     <ul class="menu-panel_list h5">
       <li><a class="menu-panel_link" href="#about" data-i18n="navAbout">About</a></li>
       <li><a class="menu-panel_link" href="#how-it-works" data-i18n="navHow">How it works</a></li>
-      <li><a class="menu-panel_link" href="#mentors" data-i18n="navMentors">Mentors</a></li>
+      <li><a class="menu-panel_link" href="#mentor-voices" data-i18n="navMentors">Mentors</a></li>
       <li><a class="menu-panel_link" href="#students" data-i18n="navStudents">For students</a></li>
     </ul>
     <a class="button-primary title3" href="#become-a-mentor" data-i18n="navCta">Become a mentor</a>
@@ -1417,6 +1446,57 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
           </figure>
         </li>
       </ul>
+    </section>
+    <section class="section_join" id="become-a-mentor" aria-labelledby="join-title" lang="en" dir="ltr">
+      <div class="join_grid">
+        <div class="join_ask" data-split-group>
+          <p class="join_eyebrow title3" data-split>Become a mentor</p>
+          <h2 class="join_title h2" id="join-title" data-split>Could you guide a student from Gaza?</h2>
+          <p class="join_lead body1" data-split>If you’ve been through the scholarship application process or have experience guiding others, you could make a huge impact.</p>
+          <ul class="join_facts" role="list" aria-label="At a glance">
+            <li class="join_fact body3">3–4 hours a week</li>
+            <li class="join_fact body3">On WhatsApp</li>
+            <li class="join_fact body3">Weekly support calls</li>
+          </ul>
+          <div class="join_actions">
+            <a class="button-primary title3" href="https://secure.lglforms.com/form_engine/s/g_DgjZr8NO-ar4ZbK8qO7Q" target="_blank" rel="noopener">Become a mentor<span class="sr-only"> (opens the application form in a new tab)</span></a>
+            <a class="join_link title3" href="https://docs.google.com/document/d/13uX0ClWeqEinlqcHFDqgCYSa4T1SQ60xR9QBD7iY3Jw/edit?usp=sharing" target="_blank" rel="noopener">Read the mentor handbook<span class="sr-only"> (opens in a new tab)</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+          </div>
+        </div>
+        <div class="join_blocks">
+          <div class="join_block" data-split-group>
+            <h3 class="join_block-title title" data-split>Who we’re looking for</h3>
+            <ul class="join_list" role="list">
+              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You received a scholarship to study in an English-speaking or Western country, ideally the UK, Ireland, Italy, the USA, Canada, Belgium or Spain.</span></li>
+              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You have experience helping students write, edit and proofread university and scholarship applications.</span></li>
+              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You hold a postgraduate degree (Master’s or PhD).</span></li>
+              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You can give 3–4 hours a week to your mentee.</span></li>
+              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You bring patience, empathy and professionalism to guiding students living through genocide.</span></li>
+              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You understand the cultural context and challenges of students from conflict-affected communities.</span></li>
+            </ul>
+            <p class="join_note body2">We welcome mentors from every discipline, and need you most in <strong>health, medicine, engineering and computer science</strong>.</p>
+          </div>
+          <div class="join_block" data-split-group>
+            <h3 class="join_block-title title" data-split>What you’ll do</h3>
+            <ul class="join_list" role="list">
+              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Help your mentee navigate applications and meet every eligibility requirement.</span></li>
+              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Refine their CV, personal statement and scholarship essays.</span></li>
+              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Run mock interviews before the real ones.</span></li>
+              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Help them communicate with universities and scholarship boards.</span></li>
+              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Build their confidence in English.</span></li>
+            </ul>
+          </div>
+          <div class="join_block" data-split-group>
+            <h3 class="join_block-title title" data-split>How we support you</h3>
+            <ul class="join_list" role="list">
+              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You work with your mentee in a WhatsApp group, alongside an SFG organiser.</span></li>
+              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You can join weekly support calls with the organising team.</span></li>
+              <li class="body1"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You follow clear guidelines that keep the relationship professional and considerate.</span></li>
+            </ul>
+            <p class="join_note body2"><strong>You never write applications for students.</strong> You give them the skills and confidence to do it themselves.</p>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 

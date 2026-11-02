@@ -110,6 +110,13 @@ Three mentors in their own words, placed right before the mentor sign-up: Studen
 - **Quotes** are exact sentences from each mentor's words: Elisa Giammarini, PhD, FHEA (her first student's fully funded scholarship; three academic years, three students), Claire Ramsay ("If you have any experience with universities, scholarships, or standardized English tests…", which answers "am I qualified?"; eight months), Luis Morales-Navarro, PhD (meeting a former mentee in London; since SFG's first year, three scholars).
 - **Motion:** the shared line reveal (title, then each quote). One column on screens under 992px.
 
+## Become a mentor (after Mentor voices)
+The decision section. It answers what a mentor needs before applying and does not repeat "What we do" or "How it works".
+- **Layout:** sand (`--color-bg-surface-alt`). Two columns; the left one pins while the right one scrolls, so the red button never leaves view. Left: eyebrow, H2 "Could you guide a student from Gaza?", the lead line, three at-a-glance pills (3–4 hours a week · On WhatsApp · Weekly support calls), the red **Become a mentor** button (the intake form, new tab) and a green **Read the mentor handbook** link (Google Doc, new tab). Both links say in screen-reader text that they open a new tab.
+- **Right:** three blocks with green ticks: *Who we're looking for* (the six criteria, written as "You…", plus "we need you most in health, medicine, engineering and computer science"), *What you'll do* (five tasks), *How we support you* (WhatsApp with an SFG organiser, weekly calls, guidelines) ending on "You never write applications for students."
+- **Links:** intake form `https://secure.lglforms.com/form_engine/s/g_DgjZr8NO-ar4ZbK8qO7Q`; handbook `https://docs.google.com/document/d/13uX0ClWeqEinlqcHFDqgCYSa4T1SQ60xR9QBD7iY3Jw/edit`. The header's "Become a mentor" jumps to this section (`#become-a-mentor`); its "Mentors" link now goes to Mentor voices.
+- One column on screens under 992px.
+
 ## Page-wide review (better-ui, colors, typography, accessibility, writing)
 - **Type tokens** are in `rem` with unitless line-heights and `em` tracking. They render the same as the old pixel values (tracking now scales down with the smaller phone headings). Font smoothing is set once on the root; body copy uses `text-wrap: pretty`.
 - **Colours:** new root tokens `--color-text-pen` (the mentor's notes: red 600 for 4.9:1, red 500 was 3.9:1), `--color-text-on-inverse-secondary` (faded body on green), and `--color-border-control` / `--color-bg-control` / `--color-bg-control-knob` (language toggle). The unused `--color-text-fill-off` is gone. In How SFG began, years that aren't the current step are muted (5.4:1) instead of 30% ochre (1.5:1).
