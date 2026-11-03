@@ -838,7 +838,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
    left, four short topics as an accordion on the right. Native <details>/<summary>, so it works
    with the keyboard and screen readers without script; the first topic starts open.
    ========================================================================== */
-.section_join{position:relative;z-index:2;background:var(--color-bg-surface-alt);color:var(--color-text-primary);padding:var(--space-128) var(--grid-margin)}
+.section_join{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-128) var(--grid-margin)}
 .join_grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:var(--space-96);align-items:start}
 .join_ask{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-24)}
 .join_eyebrow{margin:0;color:var(--color-text-heading)}
@@ -848,13 +848,13 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 .section_join .button-primary:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
 .join_list{list-style:none;margin:0;padding:0;border-top:1px solid var(--color-border-subtle)}
 .join_item{border-bottom:1px solid var(--color-border-subtle)}
-.join_sum{display:grid;grid-template-columns:24px minmax(0,1fr) 24px;align-items:center;column-gap:var(--space-20);min-height:var(--size-touch-min);padding:var(--space-24) 0;cursor:pointer;list-style:none;color:var(--color-text-primary)}
+.join_sum{display:grid;grid-template-columns:minmax(0,1fr) 24px;align-items:center;column-gap:var(--space-20);min-height:var(--size-touch-min);padding:var(--space-24) 0;cursor:pointer;list-style:none;color:var(--color-text-primary)}
 .join_sum::-webkit-details-marker{display:none}
 .join_sum:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px;border-radius:var(--radius-sm)}
-.join_icon,.join_plus{color:var(--color-action-secondary)}
+.join_plus{color:var(--color-action-secondary)}
 .join_plus path.is-v{transform-origin:12px 12px;transition:transform .3s var(--ease-out)}
 .join_item[open] .join_plus path.is-v{transform:scaleY(0)}   /* + becomes − */
-.join_body{padding:0 0 var(--space-32) calc(24px + var(--space-20))}
+.join_body{padding:0 0 var(--space-32)}
 .join_points{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-8)}
 .join_points li{position:relative;padding-inline-start:var(--space-20);color:var(--color-text-primary);text-wrap:pretty}
 .join_points li::before{content:"";position:absolute;inset-inline-start:0;top:.7em;width:6px;height:6px;border-radius:var(--radius-full);background:var(--color-action-secondary)}
@@ -1455,25 +1455,25 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
       <div class="join_grid">
         <div class="join_ask" data-split-group>
           <p class="join_eyebrow title3" data-split>Become a mentor</p>
-          <h2 class="join_title h1" id="join-title" data-split>Could you guide a student from Gaza?</h2>
+          <h2 class="join_title h2" id="join-title" data-split>Is mentoring for you?</h2>
           <p class="join_lead body1" data-split>If you’ve been through the scholarship application process or have experience guiding others, you could make a huge impact.</p>
           <a class="button-primary title3" href="https://secure.lglforms.com/form_engine/s/g_DgjZr8NO-ar4ZbK8qO7Q" target="_blank" rel="noopener">Become a mentor<span class="sr-only"> (opens the application form in a new tab)</span></a>
         </div>
         <ul class="join_list" role="list">
             <li><details class="join_item" open>
-              <summary class="join_sum"><svg class="join_icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.9 3.1-6.5 7-6.5s7 2.6 7 6.5"/></svg><span class="join_label title1">Who we need</span><svg class="join_plus" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path class="is-v" d="M12 5v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary>
+              <summary class="join_sum"><span class="join_label title1">Who we need</span><svg class="join_plus" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path class="is-v" d="M12 5v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary>
               <div class="join_body"><ul class="join_points" role="list"><li class="body1">A scholarship alum from a Western university</li><li class="body1">A Master’s or PhD</li><li class="body1">Experience editing applications</li></ul><p class="join_note body2">Most needed in health, medicine, engineering and computer science.</p></div>
             </details></li>
             <li><details class="join_item">
-              <summary class="join_sum"><svg class="join_icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21H11"/><path d="M13 3l5 5v2"/><path d="M13 3v5h5"/><path d="M8.5 12.5h5M8.5 16h3"/><path d="M19.5 13.5l1.5 1.5-5.5 5.5H14v-1.5z"/></svg><span class="join_label title1">What you’ll do</span><svg class="join_plus" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path class="is-v" d="M12 5v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary>
+              <summary class="join_sum"><span class="join_label title1">What you’ll do</span><svg class="join_plus" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path class="is-v" d="M12 5v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary>
               <div class="join_body"><ul class="join_points" role="list"><li class="body1">Shape their CV, statement and essays</li><li class="body1">Run mock interviews</li><li class="body1">Build their English confidence</li></ul><p class="join_note body2">You guide. They write.</p></div>
             </details></li>
             <li><details class="join_item">
-              <summary class="join_sum"><svg class="join_icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg><span class="join_label title1">How we support you</span><svg class="join_plus" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path class="is-v" d="M12 5v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary>
+              <summary class="join_sum"><span class="join_label title1">How we support you</span><svg class="join_plus" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path class="is-v" d="M12 5v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary>
               <div class="join_body"><ul class="join_points" role="list"><li class="body1">A WhatsApp group with an SFG organiser</li><li class="body1">Weekly support calls</li><li class="body1">Clear mentor guidelines</li></ul><p class="join_note body2">You’re never on your own.</p></div>
             </details></li>
             <li><details class="join_item">
-              <summary class="join_sum"><svg class="join_icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><span class="join_label title1">Your time</span><svg class="join_plus" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path class="is-v" d="M12 5v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary>
+              <summary class="join_sum"><span class="join_label title1">Your time</span><svg class="join_plus" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path class="is-v" d="M12 5v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary>
               <div class="join_body"><p class="join_big title"><b>3–4</b> hours a week</p><p class="join_note body2">Patience and empathy matter as much as your CV.</p></div>
             </details></li>
         </ul>
