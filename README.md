@@ -111,6 +111,7 @@ On the linen page colour (`--color-bg-page`), like the sections around it. No ph
 - **Foot:** a rule whose green fill shows progress (1/3, 2/3, 3/3); the name (Title1) and one fact (Body3) on the left; the round pager (`.sb_pager-btn`) on the right.
 - **Behaviour:** no autoplay; previous/next disabled at the ends with focus moved to the other button; a status line announces "Mentor 2 of 3: …"; every slide carries the mentor's name for screen readers. Slides share one grid cell, so the height never changes; hidden slides are `inert`. Without JavaScript all three are listed.
 - Phones: one column, the pager under the name.
+- **Divider:** the same tatreez hem as above How SFG began (`.page_divider`, margin to margin, wipes in) separates Mentor voices from Become a mentor.
 
 ## Become a mentor (after Mentor voices; layout after Beckley Retreats "Why Beckley")
 One action only: the red **Become a mentor** button (intake form `https://secure.lglforms.com/form_engine/s/g_DgjZr8NO-ar4ZbK8qO7Q`, new tab). No handbook link here.

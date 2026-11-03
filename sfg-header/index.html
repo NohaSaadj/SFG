@@ -459,6 +459,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
    fixed on the page margin. Picture slots keep any ratio (--r); illustrations stand in until SFG has photos. */
 .section_how{--how-bg:var(--color-bg-page);--how-max-h:min(72vh,560px);position:relative;z-index:2;background:var(--how-bg);color:var(--color-text-primary);padding-bottom:var(--space-128);overflow-x:clip}
 .how_divider{padding:0 var(--grid-margin);line-height:0}
+.page_divider{position:relative;z-index:2;background:var(--color-bg-page);padding:0 var(--grid-margin);line-height:0}   /* the tatreez hem between two linen sections */
 /* The tatreez band from "How SFG began", margin to margin; the script fits whole motifs to the width */
 .how_band{display:block;width:100%;height:auto}
 .how_band .tz-a{fill:var(--color-tatreez-primary)}
@@ -1479,6 +1480,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
         </div>
       </div>
     </section>
+    <div class="page_divider" aria-hidden="true"><svg class="how_band" viewBox="0 0 1101.6 25.2" data-tatreez-fit data-reveal-wipe aria-hidden="true" focusable="false"><rect width="1101.6" height="25.2" fill="url(#tatreezBand)"/></svg></div>
     <section class="section_join" id="become-a-mentor" aria-labelledby="join-title" lang="en" dir="ltr">
       <div class="join_grid">
         <div class="join_ask" data-split-group>
