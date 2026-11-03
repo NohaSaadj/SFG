@@ -824,7 +824,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
    whose fill shows progress, the name on the left and the round pager on the right. No autoplay.
    ========================================================================== */
 .section_mentors{position:relative;z-index:2;background:var(--color-bg-surface-alt);color:var(--color-text-primary);padding:var(--space-96) var(--grid-margin) var(--space-128)}
-.mentors_eyebrow{margin:0 0 var(--space-64);padding-top:var(--space-16);border-top:1px solid var(--color-border-subtle);color:var(--color-text-heading)}
+.mentors_eyebrow{margin:0 0 var(--space-64);color:var(--color-text-heading)}
 .mentors_grid{display:grid;grid-template-columns:var(--space-128) minmax(0,56rem);column-gap:var(--space-32)}
 .mentors_mark{margin:0;font:700 9rem/.8 var(--font-display);color:var(--color-border-subtle);user-select:none}   /* decorative */
 .mentors_slides{display:grid}
@@ -843,7 +843,6 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 .mentors_name{color:var(--color-text-primary)}
 .mentors_fact{color:var(--color-text-secondary)}
 .mentors_pager{display:flex;align-items:center;gap:var(--space-12)}
-.mentors_count{margin:0 var(--space-12) 0 0;color:var(--color-text-secondary);font-variant-numeric:tabular-nums}
 html:not(.js) .mentors_pager,html:not(.js) .mentors_rule{display:none}
 html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bottom:var(--space-32)}   /* without script, everything is listed */
 @media (max-width:991px){.section_mentors{padding-block:var(--space-64) var(--space-96)}.mentors_eyebrow{margin-bottom:var(--space-32)}.mentors_grid{grid-template-columns:minmax(0,1fr);row-gap:var(--space-8)}.mentors_mark{font-size:5rem}.mentors_foot{grid-column:1;margin-top:var(--space-32)}.mentors_row{align-items:flex-start;flex-direction:column}}
@@ -1472,7 +1471,6 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
               <p class="mentors_by" data-mentor-by aria-hidden="true"><span class="mentors_name title1">Luis Morales-Navarro, PhD</span><span class="mentors_fact body3">Mentor since SFG’s first year · three scholars</span></p>
             </div>
             <div class="mentors_pager">
-              <p class="mentors_count body3" aria-hidden="true"><span data-mentors-current>1</span> / 3</p>
               <button class="sb_pager-btn" type="button" data-mentors-prev aria-label="Previous mentor" disabled><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M15 10H5M9.5 5.5 5 10l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
               <button class="sb_pager-btn" type="button" data-mentors-next aria-label="Next mentor"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
@@ -2517,14 +2515,14 @@ layout();
     var sec = document.querySelector("[data-mentors]"); if (!sec) return;
     var slides = [].slice.call(sec.querySelectorAll("[data-mentor]")), k = 0;
     var prev = sec.querySelector("[data-mentors-prev]"), next = sec.querySelector("[data-mentors-next]");
-    var cur = sec.querySelector("[data-mentors-current]"), status = sec.querySelector("[data-mentors-status]");
+    var status = sec.querySelector("[data-mentors-status]");
     var bys = [].slice.call(sec.querySelectorAll("[data-mentor-by]")), fill = sec.querySelector("[data-mentors-fill]");
     function show(n, say) {
       k = Math.max(0, Math.min(slides.length - 1, n));
       slides.forEach(function (s, i) { s.classList.toggle("is-current", i === k); if (i === k) s.removeAttribute("inert"); else s.setAttribute("inert", ""); });
       bys.forEach(function (b, i) { b.classList.toggle("is-current", i === k); });
       fill.style.width = ((k + 1) / slides.length * 100) + "%";
-      prev.disabled = k === 0; next.disabled = k === slides.length - 1; cur.textContent = k + 1;
+      prev.disabled = k === 0; next.disabled = k === slides.length - 1;
       if (say) status.textContent = slides[k].getAttribute("aria-label");
     }
     prev.addEventListener("click", function () { show(k - 1, true); if (prev.disabled) next.focus(); });

@@ -106,9 +106,9 @@ A quiet memorial for four mentees killed in the genocide: Sha’ban A-Dalo, Dali
 
 ## Mentor voices (after In Remembrance, before Become a mentor; layout after Sadewa's testimonials band)
 A sand band (`--color-bg-surface-alt`) between the linen sections, so it reads as its own block. No photos or icons.
-- **Top:** a hairline with the eyebrow "Mentor voices" (the section's H2, Title3 size, green).
+- **Top:** the eyebrow "Mentor voices" (the section's H2, Title3 size, green).
 - **Quote:** a large decorative “ (`aria-hidden`) in the left column; one mentor at a time on the right: a short line in their words (H3 size, serif text medium) and the rest of the quote under it (Body1, grey, 62ch). Claire Ramsay ("…one of the most rewarding volunteering experiences I've ever had."), Elisa Giammarini, PhD, FHEA ("For the third academic year in a row, I am proud to keep volunteering."), Luis Morales-Navarro, PhD ("…it was incredibly fulfilling to see them thrive.").
-- **Foot:** a rule whose green fill shows progress (1/3, 2/3, 3/3); the name (Title1) and one fact (Body3) on the left; "1 / 3" and the round pager (`.sb_pager-btn`) on the right.
+- **Foot:** a rule whose green fill shows progress (1/3, 2/3, 3/3); the name (Title1) and one fact (Body3) on the left; the round pager (`.sb_pager-btn`) on the right.
 - **Behaviour:** no autoplay; previous/next disabled at the ends with focus moved to the other button; a status line announces "Mentor 2 of 3: …"; every slide carries the mentor's name for screen readers. Slides share one grid cell, so the height never changes; hidden slides are `inert`. Without JavaScript all three are listed.
 - Phones: one column, the pager under the name.
 
