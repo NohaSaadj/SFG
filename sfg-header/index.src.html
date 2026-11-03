@@ -818,21 +818,32 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 @media (max-width:991px){.section_memory{padding-block:var(--space-96)}.memory_title{margin-bottom:var(--space-48)}}
 @media (max-width:599px){.memory_prints{margin-bottom:var(--space-32)}.memory_print{width:calc((100% - var(--space-16)) / 2)}.memory_print figcaption{min-height:7.5rem}}   /* two photos, then one, all the same width */
 /* ==========================================================================
-   Mentor voices: three mentors in their own words, straight before "Become a mentor".
-   Lighter than Student voices on purpose: one still row, no deck, no panel. Each column answers a
-   mentor's doubt (impact, "am I qualified?", what it feels like) and ends on a plain fact (time, results).
+   Mentor voices (after a "client stories" layout): same grid as "Become a mentor" below it,
+   so the two read as one block. Left: eyebrow, H2, one line, the round pager and "1 / 3".
+   Right: one mentor at a time: a short line in their words, the longer quote, name and a fact.
+   No autoplay; all three slides share one grid cell, so the height never jumps.
    ========================================================================== */
-.section_mentors{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-128) var(--grid-margin)}
-.mentors_title{margin:0 0 var(--space-64);color:var(--color-text-heading)}
-.mentors_list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-48)}
-.mentors_list>li{display:flex}
-.mentors_item{flex:1;margin:0;display:flex;flex-direction:column;gap:var(--space-24);padding-top:var(--space-24);border-top:1px solid var(--color-border-subtle)}
-.mentors_quote{margin:0;color:var(--color-text-primary);font-family:var(--font-text);font-weight:500;line-height:1.4;text-wrap:pretty}   /* medium, not bold: Serif Text carries the medium cut */
-.mentors_quote p{margin:0}
-.mentors_by{display:flex;flex-direction:column;gap:var(--space-2);margin-top:auto}   /* names line up at the bottom of every column */
+.section_mentors{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-128) var(--grid-margin) 0}
+.mentors_grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:var(--space-96);align-items:start}
+.mentors_aside{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-24)}
+.mentors_eyebrow{margin:0;color:var(--color-text-heading)}
+.mentors_title{margin:0;color:var(--color-text-primary);text-wrap:balance}
+.mentors_lead{margin:0;max-width:40ch;color:var(--color-text-secondary);text-wrap:pretty}
+.mentors_pager{display:flex;align-items:center;gap:var(--space-12);margin-top:var(--space-8)}
+.mentors_count{margin:0 0 0 var(--space-12);color:var(--color-text-secondary);font-variant-numeric:tabular-nums}
+.mentors_slides{display:grid}
+.mentors_slide{grid-area:1 / 1;margin:0;display:flex;flex-direction:column;gap:var(--space-24);padding-top:var(--space-24);border-top:1px solid var(--color-border-subtle)}
+.js .mentors_slide{transition:opacity .3s var(--ease-out),visibility .3s}
+.js .mentors_slide:not(.is-current){opacity:0;visibility:hidden}
+.mentors_quote{margin:0;display:flex;flex-direction:column;gap:var(--space-16)}
+.mentors_line{margin:0;font-family:var(--font-text);font-weight:500;color:var(--color-text-primary);text-wrap:balance}
+.mentors_more{margin:0;color:var(--color-text-secondary);text-wrap:pretty}
+.mentors_by{display:flex;flex-direction:column;gap:var(--space-2)}
 .mentors_name{color:var(--color-text-primary)}
 .mentors_fact{color:var(--color-text-secondary)}
-@media (max-width:991px){.section_mentors{padding-block:var(--space-96)}.mentors_title{margin-bottom:var(--space-48)}.mentors_list{grid-template-columns:minmax(0,1fr);gap:var(--space-48)}.mentors_by{margin-top:0}}
+html:not(.js) .mentors_pager{display:none}
+html:not(.js) .mentors_slide{grid-area:auto;margin-bottom:var(--space-48)}   /* without script, all three are listed */
+@media (max-width:991px){.section_mentors{padding-top:var(--space-96)}.mentors_grid{grid-template-columns:minmax(0,1fr);row-gap:var(--space-48)}}
 /* ==========================================================================
    Become a mentor (after beckleyretreats.com "Why Beckley"): the ask and the one red button on the
    left, four short topics as an accordion on the right. Native <details>/<summary>, so it works
@@ -1428,28 +1439,43 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
       </article>
       </div>
     </section>
-    <section class="section_mentors" id="mentor-voices" aria-labelledby="mentors-title" lang="en" dir="ltr">
-      <h2 class="mentors_title h2" id="mentors-title" data-split>Mentor voices</h2>
-      <ul class="mentors_list" role="list">
-        <li>
-          <figure class="mentors_item" data-split-group>
-            <blockquote class="mentors_quote h5"><p data-split>“My very first student, who I couldn’t be more proud of, successfully obtained a fully funded scholarship. My other two brilliant students keep receiving offers from top universities.”</p></blockquote>
-            <figcaption class="mentors_by"><span class="mentors_name title3">Elisa Giammarini, PhD, FHEA</span><span class="mentors_fact body3">Mentor for three academic years · three students</span></figcaption>
-          </figure>
-        </li>
-        <li>
-          <figure class="mentors_item" data-split-group>
-            <blockquote class="mentors_quote h5"><p data-split>“If you have any experience with universities, scholarships, or standardized English tests and would like to put that to good use supporting Gazan students in achieving their goals, I can’t recommend volunteering with SFG enough.”</p></blockquote>
+    <section class="section_mentors" id="mentor-voices" aria-labelledby="mentors-title" lang="en" dir="ltr" data-mentors>
+      <div class="mentors_grid">
+        <div class="mentors_aside" data-split-group>
+          <p class="mentors_eyebrow title3" data-split>Mentor voices</p>
+          <h2 class="mentors_title h2" id="mentors-title" data-split>Why mentors stay</h2>
+          <p class="mentors_lead body1" data-split>Real mentors, in their own words.</p>
+          <div class="mentors_pager">
+            <button class="sb_pager-btn" type="button" data-mentors-prev aria-label="Previous mentor" disabled><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M15 10H5M9.5 5.5 5 10l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="sb_pager-btn" type="button" data-mentors-next aria-label="Next mentor"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <p class="mentors_count title3" aria-hidden="true"><span data-mentors-current>1</span> / 3</p>
+          </div>
+          <p class="sr-only" role="status" data-mentors-status></p>
+        </div>
+        <div class="mentors_slides">
+          <figure class="mentors_slide is-current" data-mentor aria-label="Mentor 1 of 3: Claire Ramsay">
+            <blockquote class="mentors_quote">
+              <p class="mentors_line h4">“…one of the most rewarding volunteering experiences I’ve ever had.”</p>
+              <p class="mentors_more body1">“If you have any experience with universities, scholarships, or standardized English tests and would like to put that to good use supporting Gazan students in achieving their goals, I can’t recommend volunteering with SFG enough.”</p>
+            </blockquote>
             <figcaption class="mentors_by"><span class="mentors_name title3">Claire Ramsay</span><span class="mentors_fact body3">Mentor for eight months</span></figcaption>
           </figure>
-        </li>
-        <li>
-          <figure class="mentors_item" data-split-group>
-            <blockquote class="mentors_quote h5"><p data-split>“Last summer I met one of my former mentees in London, and it was incredibly fulfilling to see them thrive as they study and think about how they can contribute to rebuilding Gaza.”</p></blockquote>
+          <figure class="mentors_slide" data-mentor aria-label="Mentor 2 of 3: Elisa Giammarini, PhD, FHEA">
+            <blockquote class="mentors_quote">
+              <p class="mentors_line h4">“For the third academic year in a row, I am proud to keep volunteering.”</p>
+              <p class="mentors_more body1">“My very first student, who I couldn’t be more proud of, successfully obtained a fully funded scholarship. My other two brilliant students keep receiving offers from top universities.”</p>
+            </blockquote>
+            <figcaption class="mentors_by"><span class="mentors_name title3">Elisa Giammarini, PhD, FHEA</span><span class="mentors_fact body3">Mentor for three academic years · three students</span></figcaption>
+          </figure>
+          <figure class="mentors_slide" data-mentor aria-label="Mentor 3 of 3: Luis Morales-Navarro, PhD">
+            <blockquote class="mentors_quote">
+              <p class="mentors_line h4">“…it was incredibly fulfilling to see them thrive.”</p>
+              <p class="mentors_more body1">“I was privileged to mentor three students that obtained scholarships in Ireland, the UK, and Italy during the first year of SFG. Last summer I met one of my former mentees in London.”</p>
+            </blockquote>
             <figcaption class="mentors_by"><span class="mentors_name title3">Luis Morales-Navarro, PhD</span><span class="mentors_fact body3">Mentor since SFG’s first year · three scholars</span></figcaption>
           </figure>
-        </li>
-      </ul>
+        </div>
+      </div>
     </section>
     <section class="section_join" id="become-a-mentor" aria-labelledby="join-title" lang="en" dir="ltr">
       <div class="join_grid">
@@ -2478,6 +2504,25 @@ layout();
     new IntersectionObserver(function (es, o) {
       if (es[0].isIntersecting) { sec.classList.add("is-in"); o.disconnect(); }
     }, { threshold: 0.25 }).observe(sec);
+  })();
+  </script>
+  <script>
+  /* Mentor voices: previous / next show one mentor at a time (no autoplay).
+     Hooks: [data-mentors] [data-mentor] [data-mentors-prev] [data-mentors-next] [data-mentors-current] [data-mentors-status] */
+  (function () {
+    var sec = document.querySelector("[data-mentors]"); if (!sec) return;
+    var slides = [].slice.call(sec.querySelectorAll("[data-mentor]")), k = 0;
+    var prev = sec.querySelector("[data-mentors-prev]"), next = sec.querySelector("[data-mentors-next]");
+    var cur = sec.querySelector("[data-mentors-current]"), status = sec.querySelector("[data-mentors-status]");
+    function show(n, say) {
+      k = Math.max(0, Math.min(slides.length - 1, n));
+      slides.forEach(function (s, i) { s.classList.toggle("is-current", i === k); if (i === k) s.removeAttribute("inert"); else s.setAttribute("inert", ""); });
+      prev.disabled = k === 0; next.disabled = k === slides.length - 1; cur.textContent = k + 1;
+      if (say) status.textContent = slides[k].getAttribute("aria-label");
+    }
+    prev.addEventListener("click", function () { show(k - 1, true); if (prev.disabled) next.focus(); });
+    next.addEventListener("click", function () { show(k + 1, true); if (next.disabled) prev.focus(); });
+    show(0, false);
   })();
   </script>
 </body>

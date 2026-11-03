@@ -105,10 +105,11 @@ A quiet memorial for four mentees killed in the genocide: Sha’ban A-Dalo, Dali
 - **Wording:** "we dedicate this document" reads "we dedicate this page", as agreed. No Arabic version yet, so the section is `lang="en"` and stays left-to-right in Arabic mode.
 
 ## Mentor voices (after In Remembrance, before Become a mentor)
-Three mentors in their own words, placed right before the mentor sign-up: Student voices shows mentors the impact; this section answers what holds a mentor back (am I qualified, how long does it take, is it worth it), in the words of people like them.
-- **Lighter than Student voices on purpose:** one still row of three columns on the linen page, no deck, no panel, no cards. Each column has a hairline top rule, the quote (H5 size in the serif text face, medium 500, line-height 1.4), then the name (Title3) and one plain fact (Body3, grey) aligned to the column bottom.
-- **Quotes** are exact sentences from each mentor's words: Elisa Giammarini, PhD, FHEA (her first student's fully funded scholarship; three academic years, three students), Claire Ramsay ("If you have any experience with universities, scholarships, or standardized English tests…", which answers "am I qualified?"; eight months), Luis Morales-Navarro, PhD (meeting a former mentee in London; since SFG's first year, three scholars).
-- **Motion:** the shared line reveal (title, then each quote). One column on screens under 992px.
+Three mentors in their own words, right before the sign-up, on the **same grid as Become a mentor** (5:6 columns, 96px gap, the page margins), so the two read as one block. No photos or icons.
+- **Left:** eyebrow "Mentor voices", H2 "Why mentors stay", one line "Real mentors, in their own words.", then the round pager buttons (`.sb_pager-btn`, as in Student voices) and "1 / 3".
+- **Right:** one mentor at a time, on a hairline top rule: a short line from their words (H4 size, serif text medium), the longer quote (Body1, grey), the name (Title3) and one fact (Body3). Claire Ramsay ("…one of the most rewarding volunteering experiences I've ever had."), Elisa Giammarini, PhD, FHEA ("For the third academic year in a row, I am proud to keep volunteering."), Luis Morales-Navarro, PhD ("…it was incredibly fulfilling to see them thrive.").
+- **Behaviour:** no autoplay; previous/next only, disabled at the ends with focus moved to the other button; a status line announces "Mentor 2 of 3: …". All three slides share one grid cell, so the section never changes height. Hidden slides are `inert`. Without JavaScript all three are listed.
+- One column under 992px.
 
 ## Become a mentor (after Mentor voices; layout after Beckley Retreats "Why Beckley")
 One action only: the red **Become a mentor** button (intake form `https://secure.lglforms.com/form_engine/s/g_DgjZr8NO-ar4ZbK8qO7Q`, new tab). No handbook link here.
