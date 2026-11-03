@@ -105,7 +105,7 @@ A quiet memorial for four mentees killed in the genocide: Sha’ban A-Dalo, Dali
 - **Wording:** "we dedicate this document" reads "we dedicate this page", as agreed. No Arabic version yet, so the section is `lang="en"` and stays left-to-right in Arabic mode.
 
 ## Mentor voices (after In Remembrance, before Become a mentor; layout after Sadewa's testimonials band)
-A sand band (`--color-bg-surface-alt`) between the linen sections, so it reads as its own block. No photos or icons.
+On the linen page colour (`--color-bg-page`), like the sections around it. No photos or icons.
 - **Top:** the eyebrow "Mentor voices" (the section's H2, Title3 size, green).
 - **Quote:** a large decorative “ (`aria-hidden`) in the left column; one mentor at a time on the right: a short line in their words (H3 size, serif text medium) and the rest of the quote under it (Body1, grey, 62ch). Claire Ramsay ("…one of the most rewarding volunteering experiences I've ever had."), Elisa Giammarini, PhD, FHEA ("For the third academic year in a row, I am proud to keep volunteering."), Luis Morales-Navarro, PhD ("…it was incredibly fulfilling to see them thrive.").
 - **Foot:** a rule whose green fill shows progress (1/3, 2/3, 3/3); the name (Title1) and one fact (Body3) on the left; the round pager (`.sb_pager-btn`) on the right.
