@@ -818,32 +818,35 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 @media (max-width:991px){.section_memory{padding-block:var(--space-96)}.memory_title{margin-bottom:var(--space-48)}}
 @media (max-width:599px){.memory_prints{margin-bottom:var(--space-32)}.memory_print{width:calc((100% - var(--space-16)) / 2)}.memory_print figcaption{min-height:7.5rem}}   /* two photos, then one, all the same width */
 /* ==========================================================================
-   Mentor voices (after a "client stories" layout): same grid as "Become a mentor" below it,
-   so the two read as one block. Left: eyebrow, H2, one line, the round pager and "1 / 3".
-   Right: one mentor at a time: a short line in their words, the longer quote, name and a fact.
-   No autoplay; all three slides share one grid cell, so the height never jumps.
+   Mentor voices (after Sadewa's testimonials band): a sand band between the linen sections, so it
+   reads as its own block. Eyebrow on a hairline, a large decorative quote mark, then one mentor at
+   a time: a short line in their words (large) and the rest of the quote (smaller). Below, a rule
+   whose fill shows progress, the name on the left and the round pager on the right. No autoplay.
    ========================================================================== */
-.section_mentors{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-128) var(--grid-margin) 0}
-.mentors_grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:var(--space-96);align-items:start}
-.mentors_aside{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-24)}
-.mentors_eyebrow{margin:0;color:var(--color-text-heading)}
-.mentors_title{margin:0;color:var(--color-text-primary);text-wrap:balance}
-.mentors_lead{margin:0;max-width:40ch;color:var(--color-text-secondary);text-wrap:pretty}
-.mentors_pager{display:flex;align-items:center;gap:var(--space-12);margin-top:var(--space-8)}
-.mentors_count{margin:0 0 0 var(--space-12);color:var(--color-text-secondary);font-variant-numeric:tabular-nums}
+.section_mentors{position:relative;z-index:2;background:var(--color-bg-surface-alt);color:var(--color-text-primary);padding:var(--space-96) var(--grid-margin) var(--space-128)}
+.mentors_eyebrow{margin:0 0 var(--space-64);padding-top:var(--space-16);border-top:1px solid var(--color-border-subtle);color:var(--color-text-heading)}
+.mentors_grid{display:grid;grid-template-columns:var(--space-128) minmax(0,56rem);column-gap:var(--space-32)}
+.mentors_mark{margin:0;font:700 9rem/.8 var(--font-display);color:var(--color-border-subtle);user-select:none}   /* decorative */
 .mentors_slides{display:grid}
-.mentors_slide{grid-area:1 / 1;margin:0;display:flex;flex-direction:column;gap:var(--space-24);padding-top:var(--space-24);border-top:1px solid var(--color-border-subtle)}
+.mentors_slide{grid-area:1 / 1;margin:0;display:flex;flex-direction:column;gap:var(--space-24)}
 .js .mentors_slide{transition:opacity .3s var(--ease-out),visibility .3s}
 .js .mentors_slide:not(.is-current){opacity:0;visibility:hidden}
-.mentors_quote{margin:0;display:flex;flex-direction:column;gap:var(--space-16)}
 .mentors_line{margin:0;font-family:var(--font-text);font-weight:500;color:var(--color-text-primary);text-wrap:balance}
-.mentors_more{margin:0;color:var(--color-text-secondary);text-wrap:pretty}
-.mentors_by{display:flex;flex-direction:column;gap:var(--space-2)}
+.mentors_more{margin:0;max-width:62ch;color:var(--color-text-secondary);text-wrap:pretty}
+.mentors_foot{grid-column:2;margin-top:var(--space-48)}
+.mentors_rule{position:relative;height:1px;background:var(--color-border-subtle)}
+.mentors_fill{position:absolute;inset:-1px auto -1px 0;width:calc(100% / 3);background:var(--color-text-heading);transition:width .4s var(--ease-out)}
+.mentors_row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-24);padding-top:var(--space-24)}
+.mentors_people{display:grid}
+.mentors_by{grid-area:1 / 1;display:flex;flex-direction:column;gap:var(--space-2)}
+.js .mentors_by:not(.is-current){visibility:hidden}
 .mentors_name{color:var(--color-text-primary)}
 .mentors_fact{color:var(--color-text-secondary)}
-html:not(.js) .mentors_pager{display:none}
-html:not(.js) .mentors_slide{grid-area:auto;margin-bottom:var(--space-48)}   /* without script, all three are listed */
-@media (max-width:991px){.section_mentors{padding-top:var(--space-96)}.mentors_grid{grid-template-columns:minmax(0,1fr);row-gap:var(--space-48)}}
+.mentors_pager{display:flex;align-items:center;gap:var(--space-12)}
+.mentors_count{margin:0 var(--space-12) 0 0;color:var(--color-text-secondary);font-variant-numeric:tabular-nums}
+html:not(.js) .mentors_pager,html:not(.js) .mentors_rule{display:none}
+html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bottom:var(--space-32)}   /* without script, everything is listed */
+@media (max-width:991px){.section_mentors{padding-block:var(--space-64) var(--space-96)}.mentors_eyebrow{margin-bottom:var(--space-32)}.mentors_grid{grid-template-columns:minmax(0,1fr);row-gap:var(--space-8)}.mentors_mark{font-size:5rem}.mentors_foot{grid-column:1;margin-top:var(--space-32)}.mentors_row{align-items:flex-start;flex-direction:column}}
 /* ==========================================================================
    Become a mentor (after beckleyretreats.com "Why Beckley"): the ask and the one red button on the
    left, four short topics as an accordion on the right. Native <details>/<summary>, so it works
@@ -1440,40 +1443,41 @@ html:not(.js) .mentors_slide{grid-area:auto;margin-bottom:var(--space-48)}   /* 
       </div>
     </section>
     <section class="section_mentors" id="mentor-voices" aria-labelledby="mentors-title" lang="en" dir="ltr" data-mentors>
+      <h2 class="mentors_eyebrow title3" id="mentors-title">Mentor voices</h2>
       <div class="mentors_grid">
-        <div class="mentors_aside" data-split-group>
-          <p class="mentors_eyebrow title3" data-split>Mentor voices</p>
-          <h2 class="mentors_title h2" id="mentors-title" data-split>Why mentors stay</h2>
-          <p class="mentors_lead body1" data-split>Real mentors, in their own words.</p>
-          <div class="mentors_pager">
-            <button class="sb_pager-btn" type="button" data-mentors-prev aria-label="Previous mentor" disabled><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M15 10H5M9.5 5.5 5 10l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            <button class="sb_pager-btn" type="button" data-mentors-next aria-label="Next mentor"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            <p class="mentors_count title3" aria-hidden="true"><span data-mentors-current>1</span> / 3</p>
+        <p class="mentors_mark" aria-hidden="true">“</p>
+        <div class="mentors_slides">
+            <blockquote class="mentors_slide is-current" data-mentor aria-label="Mentor 1 of 3: Claire Ramsay">
+              <p class="mentors_line h3">…one of the most rewarding volunteering experiences I’ve ever had.</p>
+              <p class="mentors_more body1">If you have any experience with universities, scholarships, or standardized English tests and would like to put that to good use supporting Gazan students in achieving their goals, I can’t recommend volunteering with SFG enough.</p>
+              <p class="sr-only">Claire Ramsay, Mentor for eight months</p>
+            </blockquote>
+            <blockquote class="mentors_slide" data-mentor aria-label="Mentor 2 of 3: Elisa Giammarini, PhD, FHEA">
+              <p class="mentors_line h3">For the third academic year in a row, I am proud to keep volunteering.</p>
+              <p class="mentors_more body1">My very first student, who I couldn’t be more proud of, successfully obtained a fully funded scholarship. My other two brilliant students keep receiving offers from top universities.</p>
+              <p class="sr-only">Elisa Giammarini, PhD, FHEA, Mentor for three academic years · three students</p>
+            </blockquote>
+            <blockquote class="mentors_slide" data-mentor aria-label="Mentor 3 of 3: Luis Morales-Navarro, PhD">
+              <p class="mentors_line h3">…it was incredibly fulfilling to see them thrive.</p>
+              <p class="mentors_more body1">I was privileged to mentor three students that obtained scholarships in Ireland, the UK, and Italy during the first year of SFG. Last summer I met one of my former mentees in London.</p>
+              <p class="sr-only">Luis Morales-Navarro, PhD, Mentor since SFG’s first year · three scholars</p>
+            </blockquote>
+        </div>
+        <div class="mentors_foot">
+          <div class="mentors_rule" aria-hidden="true"><span class="mentors_fill" data-mentors-fill></span></div>
+          <div class="mentors_row">
+            <div class="mentors_people">
+              <p class="mentors_by is-current" data-mentor-by aria-hidden="true"><span class="mentors_name title1">Claire Ramsay</span><span class="mentors_fact body3">Mentor for eight months</span></p>
+              <p class="mentors_by" data-mentor-by aria-hidden="true"><span class="mentors_name title1">Elisa Giammarini, PhD, FHEA</span><span class="mentors_fact body3">Mentor for three academic years · three students</span></p>
+              <p class="mentors_by" data-mentor-by aria-hidden="true"><span class="mentors_name title1">Luis Morales-Navarro, PhD</span><span class="mentors_fact body3">Mentor since SFG’s first year · three scholars</span></p>
+            </div>
+            <div class="mentors_pager">
+              <p class="mentors_count body3" aria-hidden="true"><span data-mentors-current>1</span> / 3</p>
+              <button class="sb_pager-btn" type="button" data-mentors-prev aria-label="Previous mentor" disabled><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M15 10H5M9.5 5.5 5 10l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button class="sb_pager-btn" type="button" data-mentors-next aria-label="Next mentor"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
           </div>
           <p class="sr-only" role="status" data-mentors-status></p>
-        </div>
-        <div class="mentors_slides">
-          <figure class="mentors_slide is-current" data-mentor aria-label="Mentor 1 of 3: Claire Ramsay">
-            <blockquote class="mentors_quote">
-              <p class="mentors_line h4">“…one of the most rewarding volunteering experiences I’ve ever had.”</p>
-              <p class="mentors_more body1">“If you have any experience with universities, scholarships, or standardized English tests and would like to put that to good use supporting Gazan students in achieving their goals, I can’t recommend volunteering with SFG enough.”</p>
-            </blockquote>
-            <figcaption class="mentors_by"><span class="mentors_name title3">Claire Ramsay</span><span class="mentors_fact body3">Mentor for eight months</span></figcaption>
-          </figure>
-          <figure class="mentors_slide" data-mentor aria-label="Mentor 2 of 3: Elisa Giammarini, PhD, FHEA">
-            <blockquote class="mentors_quote">
-              <p class="mentors_line h4">“For the third academic year in a row, I am proud to keep volunteering.”</p>
-              <p class="mentors_more body1">“My very first student, who I couldn’t be more proud of, successfully obtained a fully funded scholarship. My other two brilliant students keep receiving offers from top universities.”</p>
-            </blockquote>
-            <figcaption class="mentors_by"><span class="mentors_name title3">Elisa Giammarini, PhD, FHEA</span><span class="mentors_fact body3">Mentor for three academic years · three students</span></figcaption>
-          </figure>
-          <figure class="mentors_slide" data-mentor aria-label="Mentor 3 of 3: Luis Morales-Navarro, PhD">
-            <blockquote class="mentors_quote">
-              <p class="mentors_line h4">“…it was incredibly fulfilling to see them thrive.”</p>
-              <p class="mentors_more body1">“I was privileged to mentor three students that obtained scholarships in Ireland, the UK, and Italy during the first year of SFG. Last summer I met one of my former mentees in London.”</p>
-            </blockquote>
-            <figcaption class="mentors_by"><span class="mentors_name title3">Luis Morales-Navarro, PhD</span><span class="mentors_fact body3">Mentor since SFG’s first year · three scholars</span></figcaption>
-          </figure>
         </div>
       </div>
     </section>
@@ -2514,9 +2518,12 @@ layout();
     var slides = [].slice.call(sec.querySelectorAll("[data-mentor]")), k = 0;
     var prev = sec.querySelector("[data-mentors-prev]"), next = sec.querySelector("[data-mentors-next]");
     var cur = sec.querySelector("[data-mentors-current]"), status = sec.querySelector("[data-mentors-status]");
+    var bys = [].slice.call(sec.querySelectorAll("[data-mentor-by]")), fill = sec.querySelector("[data-mentors-fill]");
     function show(n, say) {
       k = Math.max(0, Math.min(slides.length - 1, n));
       slides.forEach(function (s, i) { s.classList.toggle("is-current", i === k); if (i === k) s.removeAttribute("inert"); else s.setAttribute("inert", ""); });
+      bys.forEach(function (b, i) { b.classList.toggle("is-current", i === k); });
+      fill.style.width = ((k + 1) / slides.length * 100) + "%";
       prev.disabled = k === 0; next.disabled = k === slides.length - 1; cur.textContent = k + 1;
       if (say) status.textContent = slides[k].getAttribute("aria-label");
     }

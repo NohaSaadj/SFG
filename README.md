@@ -104,12 +104,13 @@ A quiet memorial for four mentees killed in the genocide: Sha’ban A-Dalo, Dali
 - **Layout:** from 1200px Dalia and Sally sit on the left and Sha’ban and Nada on the right (48–96px from the letter) at uneven heights: the left one pins 192px from the top, the right pair 96px. Both sides pin while the letter scrolls and never cover it. 1.5 screens tall at 1440×900, with the letter starting on the first screen. From 600 to 1199px the photos sit in a row above the letter (wrapping when needed); under 600px two sit side by side with the third below. In the DOM the photos come before the letter, so screen readers meet the people first.
 - **Wording:** "we dedicate this document" reads "we dedicate this page", as agreed. No Arabic version yet, so the section is `lang="en"` and stays left-to-right in Arabic mode.
 
-## Mentor voices (after In Remembrance, before Become a mentor)
-Three mentors in their own words, right before the sign-up, on the **same grid as Become a mentor** (5:6 columns, 96px gap, the page margins), so the two read as one block. No photos or icons.
-- **Left:** eyebrow "Mentor voices", H2 "Why mentors stay", one line "Real mentors, in their own words.", then the round pager buttons (`.sb_pager-btn`, as in Student voices) and "1 / 3".
-- **Right:** one mentor at a time, on a hairline top rule: a short line from their words (H4 size, serif text medium), the longer quote (Body1, grey), the name (Title3) and one fact (Body3). Claire Ramsay ("…one of the most rewarding volunteering experiences I've ever had."), Elisa Giammarini, PhD, FHEA ("For the third academic year in a row, I am proud to keep volunteering."), Luis Morales-Navarro, PhD ("…it was incredibly fulfilling to see them thrive.").
-- **Behaviour:** no autoplay; previous/next only, disabled at the ends with focus moved to the other button; a status line announces "Mentor 2 of 3: …". All three slides share one grid cell, so the section never changes height. Hidden slides are `inert`. Without JavaScript all three are listed.
-- One column under 992px.
+## Mentor voices (after In Remembrance, before Become a mentor; layout after Sadewa's testimonials band)
+A sand band (`--color-bg-surface-alt`) between the linen sections, so it reads as its own block. No photos or icons.
+- **Top:** a hairline with the eyebrow "Mentor voices" (the section's H2, Title3 size, green).
+- **Quote:** a large decorative “ (`aria-hidden`) in the left column; one mentor at a time on the right: a short line in their words (H3 size, serif text medium) and the rest of the quote under it (Body1, grey, 62ch). Claire Ramsay ("…one of the most rewarding volunteering experiences I've ever had."), Elisa Giammarini, PhD, FHEA ("For the third academic year in a row, I am proud to keep volunteering."), Luis Morales-Navarro, PhD ("…it was incredibly fulfilling to see them thrive.").
+- **Foot:** a rule whose green fill shows progress (1/3, 2/3, 3/3); the name (Title1) and one fact (Body3) on the left; "1 / 3" and the round pager (`.sb_pager-btn`) on the right.
+- **Behaviour:** no autoplay; previous/next disabled at the ends with focus moved to the other button; a status line announces "Mentor 2 of 3: …"; every slide carries the mentor's name for screen readers. Slides share one grid cell, so the height never changes; hidden slides are `inert`. Without JavaScript all three are listed.
+- Phones: one column, the pager under the name.
 
 ## Become a mentor (after Mentor voices; layout after Beckley Retreats "Why Beckley")
 One action only: the red **Become a mentor** button (intake form `https://secure.lglforms.com/form_engine/s/g_DgjZr8NO-ar4ZbK8qO7Q`, new tab). No handbook link here.
