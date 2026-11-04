@@ -824,7 +824,13 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
    a time: a short line in their words (large) and the rest of the quote (smaller). Below, a rule
    whose fill shows progress, the name on the left and the round pager on the right. No autoplay.
    ========================================================================== */
-.section_mentors{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-96) var(--grid-margin) var(--space-128)}
+.section_mentors{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-64) 0;overflow:clip}
+/* tatreez backdrop (after Cambium's testimonial): two stitch-field blocks behind the panel, seen only at its edges */
+.mentors_field{position:absolute;pointer-events:none}
+.mentors_field svg{display:block;width:100%;height:100%}
+.mentors_field.is-a{top:0;left:0;width:calc(var(--grid-margin) + var(--space-128));height:62%}
+.mentors_field.is-b{right:0;bottom:0;width:48%;height:44%}
+.mentors_panel{position:relative;margin-inline:max(0px,calc(var(--grid-margin) - var(--space-64)));padding:var(--space-96) min(var(--space-64),var(--grid-margin));background:var(--color-bg-page)}
 .mentors_eyebrow{margin:0 0 var(--space-64);color:var(--color-text-heading)}
 .mentors_grid{display:grid;grid-template-columns:var(--space-128) minmax(0,56rem);column-gap:var(--space-32)}
 .mentors_mark{margin:0;font:700 9rem/.8 var(--font-display);color:var(--color-border-subtle);user-select:none}   /* decorative */
@@ -846,7 +852,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 .mentors_pager{display:flex;align-items:center;gap:var(--space-12)}
 html:not(.js) .mentors_pager,html:not(.js) .mentors_rule{display:none}
 html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bottom:var(--space-32)}   /* without script, everything is listed */
-@media (max-width:991px){.section_mentors{padding-block:var(--space-64) var(--space-96)}.mentors_eyebrow{margin-bottom:var(--space-32)}.mentors_grid{grid-template-columns:minmax(0,1fr);row-gap:var(--space-8)}.mentors_mark{font-size:5rem}.mentors_foot{grid-column:1;margin-top:var(--space-32)}.mentors_row{align-items:flex-start;flex-direction:column}}
+@media (max-width:991px){.section_mentors{padding-block:var(--space-32)}.mentors_panel{margin-inline:var(--space-12);padding:var(--space-64) calc(var(--grid-margin) - var(--space-12))}.mentors_field.is-a{width:var(--space-64);height:50%}.mentors_field.is-b{width:60%;height:30%}.mentors_eyebrow{margin-bottom:var(--space-32)}.mentors_grid{grid-template-columns:minmax(0,1fr);row-gap:var(--space-8)}.mentors_mark{font-size:5rem}.mentors_foot{grid-column:1;margin-top:var(--space-32)}.mentors_row{align-items:flex-start;flex-direction:column}}
 /* ==========================================================================
    Become a mentor (after beckleyretreats.com "Why Beckley"): the ask and the one red button on the
    left, four short topics as an accordion on the right. Native <details>/<summary>, so it works
@@ -1443,6 +1449,9 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
       </div>
     </section>
     <section class="section_mentors" id="mentor-voices" aria-labelledby="mentors-title" lang="en" dir="ltr" data-mentors>
+      <div class="mentors_field is-a" aria-hidden="true"><svg focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg></div>
+      <div class="mentors_field is-b" aria-hidden="true"><svg focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg></div>
+      <div class="mentors_panel">
       <h2 class="mentors_eyebrow title3" id="mentors-title">Mentor voices</h2>
       <div class="mentors_grid">
         <p class="mentors_mark" aria-hidden="true">“</p>
@@ -1478,6 +1487,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
           </div>
           <p class="sr-only" role="status" data-mentors-status></p>
         </div>
+      </div>
       </div>
     </section>
     <div class="page_divider" aria-hidden="true"><svg class="how_band" viewBox="0 0 1101.6 25.2" data-tatreez-fit data-reveal-wipe aria-hidden="true" focusable="false"><rect width="1101.6" height="25.2" fill="url(#tatreezBand)"/></svg></div>
