@@ -112,6 +112,7 @@ On the linen page colour (`--color-bg-page`), like the sections around it. No ph
 - **Behaviour:** no autoplay; previous/next disabled at the ends with focus moved to the other button; a status line announces "Mentor 2 of 3: …"; every slide carries the mentor's name for screen readers. Slides share one grid cell, so the height never changes; hidden slides are `inert`. Without JavaScript all three are listed.
 - Phones: one column, the pager under the name.
 - **Divider:** the same tatreez hem as above How SFG began (`.page_divider`, margin to margin, wipes in) separates Mentor voices from Become a mentor.
+- **Tatreez backdrop (after Cambium's testimonial):** two blocks of the neutral stitch field (`#stitchField`, the Partners texture) sit behind the section, top-left and bottom-right; the content sits on a linen panel above them, so the pattern shows only at the panel's edges (a 12px edge on phones). Decorative, `aria-hidden`.
 
 ## Become a mentor (after Mentor voices; layout after Beckley Retreats "Why Beckley")
 One action only: the red **Become a mentor** button (intake form `https://secure.lglforms.com/form_engine/s/g_DgjZr8NO-ar4ZbK8qO7Q`, new tab). No handbook link here.
