@@ -70,6 +70,7 @@ A clone of Cambium's "process line" section (`how_wrap`: Sourcing → Transport 
 - **SFG mapping:** linen background (Cambium's #FAF2E7 is almost identical), type hierarchy by weight: the "How it works" eyebrow in green Title3 (Sans Medium 16px), the section heading H2 Bold (48px, ink), step headings H2 size in Medium 500 (ink), descriptions Body2 (16px Regular, muted, 40ch). Headings use neutral ink (`--color-text-primary`), not green; dots in the mentor's red pen (12px, solid), and one secondary green button on the last step ("Start your application"). The section keeps SFG's opening (eyebrow, H2, text), which Cambium's section doesn't have because its hero sits right above it.
 - **Fonts:** the medium step headings need Thmanyah Serif Display Medium (500) bundled next to Bold; the Newsreader fallback now loads 500 too.
 - **Phones:** one column, centred text with the picture underneath, and the line running straight down the middle behind the text and pictures. Illustrations are shown at full size. Reduced motion: line drawn in full, no drift.
+- **Students' next step (no separate For students section):** after the five steps, a centred closing row (`#for-students`): H3 "Ready to start?", a green **Start your application** button (mentee application form `https://secure.lglforms.com/form_engine/s/gj0TRCbaEZdlSZIsRp5jKg`, new tab) and a green **Read the student handbook** link (`https://docs.google.com/document/d/13uX0ClWeqEinlqcHFDqgCYSa4T1SQ60xR9QBD7iY3Jw/edit`, new tab). It sits after step 5, not inside it, so it reads as the end of the whole journey rather than "submit your scholarship". Green, because red stays with Become a mentor. The header's "For students" jumps to How it works.
 
 ## Results (after iventions.com, home page "produced" section)
 After How it works. The reference clone is `clone/iventions-produced/index.html`, with notes in `reference/iventions-produced/`.
@@ -147,10 +148,10 @@ The text in About, What we do / What we don't do and How it works now follows th
 The page uses `Thmanyah Serif Display`, `Thmanyah Serif Text` and `Thmanyah Sans` whenever they are available. These come from installed fonts, or from the `--font-sfg-*` variables set by a bundler such as `next/font/local`. Otherwise it falls back to Newsreader, Readex Pro and Noto Naskh Arabic. The Thmanyah font files are deliberately **not** in this repository, as the licence requires.
 
 ## Open items
-- **Links with no section yet:** Mentors (`#mentors`), For students (`#students`), Become a mentor (`#become-a-mentor`), Become a partner (`#partner-with-us`) and Start your application (`#for-students`) point to sections that don't exist yet.
+- **Links with no section yet:** Become a partner (`#partner-with-us`). The header's Mentors, For students and Become a mentor links now go to Mentor voices, How it works and Become a mentor.
 - **Results (What mentorship made possible)** is kept exactly as it was before the page-wide review, at your request. The review's two accessibility items for it are not applied: there is no pause control for the drifting list and spinning globe (WCAG 2.2.2), and the UK / Ireland markers still work with a mouse only.
 - **Student voices:** Saher's surname is still to come. Shahd's full story has two small fixes to her original post: "@uofglasgow" is written out as "the University of Glasgow", and a doubled "The The" is removed.
-- **How it works:** real photos can replace the illustrations one at a time. The section text is English only so far. The "Start your application" link points to a section that doesn't exist yet.
+- **How it works:** real photos can replace the illustrations one at a time. The section text is English only so far.
 - The Arabic paragraph is a draft translation and needs review by a native editor. Its hidden sentence reads «فلسطين متعلّمة يعيد بناءها طلابها».
 - The header now uses the official SFG logo (`assets/logo.png`), reversed to linen for the dark header (`assets/logo-linen.png`). An SVG version would be sharper on high-density screens.
 - Two photos (Sussex, LSE) have the SFG logo burned into the corner. Clean originals would look better behind the header.
