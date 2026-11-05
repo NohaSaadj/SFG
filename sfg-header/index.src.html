@@ -489,16 +489,16 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 @media (hover:hover){.how_btn:hover{background:var(--color-bg-selected)}}
 .how_btn:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
 [dir="rtl"] .how_btn svg{transform:scaleX(-1)}
-/* closing row: the student's next step after the five steps (green; red stays with "Become a mentor") */
-.how_start{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:var(--space-24);margin-top:var(--space-160);text-align:center}
-.how_start-title{margin:0;color:var(--color-text-primary)}
-.how_start-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:var(--space-12) var(--space-32)}
+/* step 1 actions: apply (one green button; red stays with "Become a mentor") and the Arabic student guide as a quieter text link */
+.how_actions{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:var(--space-12);margin-top:var(--space-32)}
+.how_actions .how_link{display:inline-block;min-height:0;padding-block:var(--space-12);text-align:center;text-wrap:balance}   /* wraps as text, the arrow stays with the last word */
+.how_actions .how_link svg{display:inline;vertical-align:-1px;margin-inline-start:var(--space-4)}
 .how_cta{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);padding-inline:var(--space-24);border-radius:var(--radius-full);background:var(--color-action-secondary);color:var(--color-text-on-secondary);text-decoration:none;transition:scale .15s ease-out}
 .how_link{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);color:var(--color-action-secondary);text-decoration:underline;text-underline-offset:4px}
 .how_cta:focus-visible,.how_link:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
 [dir="rtl"] .how_cta svg{transform:scaleX(-1)}
 @media (prefers-reduced-motion:no-preference){.how_cta:active{scale:.96}}
-@media (max-width:991px){.how_start{margin-top:var(--space-96)}}
+
 /* Picture slot: any ratio, never cropped, up to 520–560px tall. A real photo replaces .how_art with <img> and sets --r. */
 .how_media{position:relative;margin:0;overflow:hidden;border-radius:var(--radius-media);background:var(--color-bg-page);box-shadow:inset 0 0 0 1px var(--color-border-subtle);aspect-ratio:var(--r);width:min(100%,calc(var(--how-max-h) * var(--r)))}
 .how_media > img{display:block;width:100%;height:100%}
@@ -1109,6 +1109,10 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
               <div class="how_text_wrap" data-split-group>
                 <h3 class="how_step-title h2" data-split>Apply to SFG</h3>
                 <p class="how_step-text body2" data-split>Tell us what you study, where you hope to go and the degree you are aiming for. SFG is free, always.</p>
+                <div class="how_actions" id="for-students">
+                  <a class="how_cta title3" href="https://secure.lglforms.com/form_engine/s/gj0TRCbaEZdlSZIsRp5jKg" target="_blank" rel="noopener">Start your application<span class="sr-only"> (opens the application form in a new tab)</span><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                  <a class="how_link body2" hreflang="ar" href="https://docs.google.com/document/d/13uX0ClWeqEinlqcHFDqgCYSa4T1SQ60xR9QBD7iY3Jw/edit?usp=sharing" target="_blank" rel="noopener">Not ready yet? Read our student guide (in Arabic)<span class="sr-only">, opens in a new tab</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+                </div>
                 <span class="how_text_bg" aria-hidden="true"></span>
               </div>
             </div>
@@ -1230,13 +1234,6 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
             </div>
           </li>
         </ol>
-        <div class="how_start" id="for-students" data-split-group>
-          <h3 class="how_start-title h3" data-split>Ready to start?</h3>
-          <div class="how_start-actions">
-            <a class="how_cta title3" href="https://secure.lglforms.com/form_engine/s/gj0TRCbaEZdlSZIsRp5jKg" target="_blank" rel="noopener">Start your application<span class="sr-only"> (opens the application form in a new tab)</span><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-            <a class="how_link title3" href="https://docs.google.com/document/d/13uX0ClWeqEinlqcHFDqgCYSa4T1SQ60xR9QBD7iY3Jw/edit?usp=sharing" target="_blank" rel="noopener">Read the student handbook<span class="sr-only"> (opens in a new tab)</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
-          </div>
-        </div>
       </div>
     </section>
     <section class="section_results" id="results" aria-labelledby="results-title" data-results data-palette="night">
