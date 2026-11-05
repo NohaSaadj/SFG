@@ -83,23 +83,33 @@ Thmanyah weights available: Light 300 · Regular 400 · Medium 500 · Bold 700 �
 
 ### 2.2 Type scale
 
-| Style | Family | Weight | Size | Line height | Letter spacing |
-|---|---|---|---|---|---|
-| **H1** | Thmanyah Serif Display | Bold 700 | 64px | 72px | -1px |
-| **H2** | Thmanyah Serif Display | Bold 700 | 48px | 56px | -0.8px |
-| **H3** | Thmanyah Serif Display | Bold 700 | 40px | 48px | -0.6px |
-| **H4** | Thmanyah Serif Display | Bold 700 | 32px | 40px | -0.4px |
-| **H5** | Thmanyah Serif Display | Bold 700 | 24px | 32px | -0.2px |
-| **H6** | Thmanyah Serif Display | Bold 700 | 20px | 28px | 0 |
-| **Title** | Thmanyah Sans | Medium 500 | 28px | 36px | 0 |
-| **Title1** | Thmanyah Sans | Medium 500 | 20px | 28px | 0 |
-| **Title2** | Thmanyah Sans | Medium 500 | 18px | 26px | 0 |
-| **Title3** | Thmanyah Sans | Medium 500 | 16px | 24px | 0 |
-| **Body1** | Thmanyah Serif Text | Regular 400 | 18px | 28px | 0 |
-| **Body2** | Thmanyah Serif Text | Regular 400 | 16px | 26px | 0 |
-| **Body3** | Thmanyah Serif Text | Regular 400 | 14px | 22px | 0 |
+Sizes are in `rem` (1rem = 16px), line heights are unitless and letter spacing is in `em`, so text follows the reader's browser font size. The px values are what they render at by default.
 
-Line heights sit on a 4px grid. On mobile, scale H1–H3 down fluidly (suggested `clamp()` values are in the CSS below).
+| Style | Family | Weight | Size (desktop → phone) | Line height | Letter spacing | Use |
+|---|---|---|---|---|---|---|
+| **Display** | Thmanyah Serif Display | Medium 500 | 92px → 40px (fluid) | 1.1 | -0.02em | One very large statement per page, e.g. a list of university names. Not a heading level. In a long list on phones, step down to the H4 size. |
+| **H1** | Thmanyah Serif Display | Bold 700 | 64px → 40px (fluid) | 1.125 (72px) | -0.0156em (-1px) | The page's main heading |
+| **H2** | Thmanyah Serif Display | Bold 700 | 48px → 34px (fluid) | 1.167 (56px) | -0.0167em (-0.8px) | Every section title, one size across the page |
+| **H3** | Thmanyah Serif Display | Bold 700 | 40px → 30px (fluid) | 1.2 (48px) | -0.015em (-0.6px) | A heading inside a section, below its H2 |
+| **H4** | Thmanyah Serif Display | Bold 700 | 32px → 28px (fluid) | 1.25 (40px) | -0.0125em (-0.4px) | |
+| **H5** | Thmanyah Serif Display | Bold 700 | 24px | 1.333 (32px) | -0.0083em (-0.2px) | |
+| **H6** | Thmanyah Serif Display | Bold 700 | 20px | 1.4 (28px) | 0 | |
+| **Quote** | Thmanyah Serif Text | Medium 500 | 40px → 30px (fluid) | 1.2 | -0.015em | A large pull quote (testimonials). Medium, not Bold, so it reads as a voice rather than a heading. |
+| **Title** | Thmanyah Sans | Medium 500 | 28px | 1.286 (36px) | 0 | |
+| **Title1** | Thmanyah Sans | Medium 500 | 20px | 1.4 (28px) | 0 | |
+| **Title2** | Thmanyah Sans | Medium 500 | 18px | 1.444 (26px) | 0 | |
+| **Title3** | Thmanyah Sans | Medium 500 | 16px | 1.5 (24px) | 0 | Eyebrows, labels, buttons |
+| **Body1** | Thmanyah Serif Text | Regular 400 | 18px | 1.556 (28px) | 0 | |
+| **Body2** | Thmanyah Serif Text | Regular 400 | 16px | 1.625 (26px) | 0 | |
+| **Body3** | Thmanyah Serif Text | Regular 400 | 14px | 1.571 (22px) | 0 | |
+
+Line heights sit on a 4px grid. On phones H1–H4 and Quote scale down fluidly (the `clamp()` values are in the CSS below); each heading level stays smaller than the one above it at every width.
+
+**Rules for using the scale**
+- Heading sizes descend with level: an H3 is never the same size as the H2 it sits under. All section titles use H2.
+- Weights: Serif Display Bold (headings) and Medium (Display, plus a deliberately lighter heading); Serif Text Regular (body) and Medium (Quote); Sans Medium (titles). Don't set a weight the font loading below doesn't include, or the browser shows a different one.
+- Cap body text at 60–75 characters a line (about `54ch`–`62ch` for Serif Text at 18px).
+- Body copy uses `text-wrap: pretty`; headings and short lines use `text-wrap: balance`.
 
 ---
 
@@ -112,11 +122,17 @@ Line heights sit on a 4px grid. On mobile, scale H1–H3 down fluidly (suggested
 import localFont from "next/font/local";
 
 export const sfgDisplay = localFont({
-  src: [{ path: "../fonts/thmanyahserifdisplay-Bold.woff2", weight: "700", style: "normal" }],
+  src: [
+    { path: "../fonts/thmanyahserifdisplay-Medium.woff2", weight: "500", style: "normal" },  // Display style
+    { path: "../fonts/thmanyahserifdisplay-Bold.woff2",   weight: "700", style: "normal" },  // H1–H6
+  ],
   variable: "--font-sfg-display", display: "swap",
 });
 export const sfgText = localFont({
-  src: [{ path: "../fonts/thmanyahseriftext-Regular.woff2", weight: "400", style: "normal" }],
+  src: [
+    { path: "../fonts/thmanyahseriftext-Regular.woff2", weight: "400", style: "normal" },  // Body1–3
+    { path: "../fonts/thmanyahseriftext-Medium.woff2",  weight: "500", style: "normal" },  // Quote
+  ],
   variable: "--font-sfg-text", display: "swap",
 });
 export const sfgSans = localFont({
@@ -176,19 +192,22 @@ File names above match the Thmanyah download (adjust if the Serif files are name
   --font-text:var(--font-sfg-text),"Newsreader",Georgia,serif;
   --font-sans:var(--font-sfg-sans),"Readex Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
 
-  --h1-size:clamp(40px,4.5vw,64px);--h1-lh:1.125;--h1-ls:-1px;
-  --h2-size:clamp(34px,3.4vw,48px);--h2-lh:1.167;--h2-ls:-0.8px;
-  --h3-size:clamp(30px,2.8vw,40px);--h3-lh:1.2;--h3-ls:-0.6px;
-  --h4-size:32px;--h4-lh:40px;--h4-ls:-0.4px;
-  --h5-size:24px;--h5-lh:32px;--h5-ls:-0.2px;
-  --h6-size:20px;--h6-lh:28px;
-  --title-size:28px;--title-lh:36px;
-  --title1-size:20px;--title1-lh:28px;
-  --title2-size:18px;--title2-lh:26px;
-  --title3-size:16px;--title3-lh:24px;
-  --body1-size:18px;--body1-lh:28px;
-  --body2-size:16px;--body2-lh:26px;
-  --body3-size:14px;--body3-lh:22px;
+  /* rem sizes, unitless line heights, em tracking: same render as the px values, but they follow the browser font size */
+  --display-size:clamp(2.5rem,calc(5.4vw - .25rem),5.75rem);--display-lh:1.1;--display-ls:-.02em;   /* 40 → 92 */
+  --h1-size:clamp(2.5rem,4.5vw,4rem);--h1-lh:1.125;--h1-ls:-.0156em;        /* 64/72 */
+  --h2-size:clamp(2.125rem,3.4vw,3rem);--h2-lh:1.167;--h2-ls:-.0167em;      /* 48/56 */
+  --h3-size:clamp(1.875rem,2.8vw,2.5rem);--h3-lh:1.2;--h3-ls:-.015em;       /* 40/48 */
+  --h4-size:clamp(1.75rem,2.2vw,2rem);--h4-lh:1.25;--h4-ls:-.0125em;        /* 32/40, 28 on phones so it stays below H3 */
+  --h5-size:1.5rem;--h5-lh:1.3333;--h5-ls:-.0083em;                         /* 24/32 */
+  --h6-size:1.25rem;--h6-lh:1.4;                                            /* 20/28 */
+  --quote-size:var(--h3-size);--quote-lh:1.2;--quote-ls:-.015em;            /* 40 → 30 */
+  --title-size:1.75rem;--title-lh:1.2857;      /* 28/36 */
+  --title1-size:1.25rem;--title1-lh:1.4;       /* 20/28 */
+  --title2-size:1.125rem;--title2-lh:1.4444;   /* 18/26 */
+  --title3-size:1rem;--title3-lh:1.5;          /* 16/24 */
+  --body1-size:1.125rem;--body1-lh:1.5556;     /* 18/28 */
+  --body2-size:1rem;--body2-lh:1.625;          /* 16/26 */
+  --body3-size:.875rem;--body3-lh:1.5714;      /* 14/22 */
 }
 
 /* Semantic: dark (system preference, unless forced light) */
@@ -206,12 +225,14 @@ File names above match the Thmanyah download (adjust if the Serif files are name
 }
 
 /* Type scale classes */
+.display{font:500 var(--display-size)/var(--display-lh) var(--font-display);letter-spacing:var(--display-ls)}
 .h1{font:700 var(--h1-size)/var(--h1-lh) var(--font-display);letter-spacing:var(--h1-ls)}
 .h2{font:700 var(--h2-size)/var(--h2-lh) var(--font-display);letter-spacing:var(--h2-ls)}
 .h3{font:700 var(--h3-size)/var(--h3-lh) var(--font-display);letter-spacing:var(--h3-ls)}
 .h4{font:700 var(--h4-size)/var(--h4-lh) var(--font-display);letter-spacing:var(--h4-ls)}
 .h5{font:700 var(--h5-size)/var(--h5-lh) var(--font-display);letter-spacing:var(--h5-ls)}
 .h6{font:700 var(--h6-size)/var(--h6-lh) var(--font-display)}
+.quote{font:500 var(--quote-size)/var(--quote-lh) var(--font-text);letter-spacing:var(--quote-ls)}
 .title{font:500 var(--title-size)/var(--title-lh) var(--font-sans)}
 .title1{font:500 var(--title1-size)/var(--title1-lh) var(--font-sans)}
 .title2{font:500 var(--title2-size)/var(--title2-lh) var(--font-sans)}
