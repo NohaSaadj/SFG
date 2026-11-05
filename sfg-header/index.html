@@ -101,7 +101,9 @@
       
       --h2-size:clamp(2.125rem,3.4vw,3rem);--h2-lh:1.167;--h2-ls:-.0167em;
       --title-size:1.75rem;--title-lh:1.2857;   /* 28/36 */
-      --h4-size:2rem;--h4-lh:1.25;--h4-ls:-.0125em;   /* 32/40 */
+      --h4-size:clamp(1.75rem,2.2vw,2rem);--h4-lh:1.25;--h4-ls:-.0125em;   /* 32/40, 28 on phones so it stays below H3 */
+      --display-size:clamp(2.5rem,calc(5.4vw - .25rem),5.75rem);--display-lh:1.1;--display-ls:-.02em;   /* Display: 40 → 92 */
+      --quote-size:var(--h3-size);--quote-lh:1.2;--quote-ls:-.015em;   /* Quote: 40 → 30 */
       --ease-out:cubic-bezier(.22,1,.36,1);
 
       /* Intro story roll */
@@ -127,6 +129,8 @@
     .h2{font:700 var(--h2-size)/var(--h2-lh) var(--font-display);letter-spacing:var(--h2-ls)}
     .h3{font:700 var(--h3-size)/var(--h3-lh) var(--font-display);letter-spacing:var(--h3-ls)}
     .h4{font:700 var(--h4-size)/var(--h4-lh) var(--font-display);letter-spacing:var(--h4-ls)}
+.display{font:500 var(--display-size)/var(--display-lh) var(--font-display);letter-spacing:var(--display-ls)}
+.quote{font:500 var(--quote-size)/var(--quote-lh) var(--font-text);letter-spacing:var(--quote-ls)}
     .h5{font:700 var(--h5-size)/var(--h5-lh) var(--font-display);letter-spacing:var(--h5-ls)}
     .title{font:500 var(--title-size)/var(--title-lh) var(--font-sans)}
     .title1{font:500 var(--title1-size)/var(--title1-lh) var(--font-sans)}
@@ -274,7 +278,7 @@
     @media (hover:hover){html[dir="rtl"] .intro_skip:hover svg{transform:scaleX(-1) translateX(6px)}}
     .is-finished .intro_skip{opacity:0;pointer-events:none}
     @media (max-width:767px){
-      .intro_poem,.intro_row p,.intro_center p,.intro_start,.intro_begin,.intro_fly{--h1-size:var(--h4-size);--h1-lh:var(--h4-lh);--h1-ls:var(--h4-ls)}   /* H4 on phones */
+      .intro_poem,.intro_row p,.intro_center p,.intro_start,.intro_begin,.intro_fly{--h1-size:var(--h3-size);--h1-lh:var(--h3-lh);--h1-ls:var(--h3-ls)}   /* H3 on phones */
       .intro_row{top:92px}
       /* Phones: the sentence is set a little smaller so it still sits on two lines */
       .intro_row p,.intro_center p,.intro_start{--h1-size:var(--h5-size);--h1-lh:var(--h5-lh)}   /* H5 */
@@ -326,7 +330,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .wwd_icon{position:relative;display:block;width:var(--space-48);height:var(--space-48);margin-bottom:var(--space-64)}   /* icon, then a long breath to the title */
 .wwd_line{display:block;width:100%;height:100%;fill:none;stroke:var(--color-icon-accent-on-inverse);stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
 .is-dont .wwd_line{stroke:var(--color-icon-accent)}
-.wwd_col-title{margin:0 0 var(--space-16);font-weight:400}   /* lighter than the Title default, as asked */
+.wwd_col-title{margin:0 0 var(--space-16)}   /* lighter than the Title default, as asked */
 .wwd_col-text{margin:0;text-wrap:pretty;max-width:32ch;color:var(--color-text-on-inverse-secondary)}   /* Cambium "faded" body */
 .is-dont .wwd_col-text{color:var(--color-text-secondary);opacity:1}
 /* The mentor's red pen: strikes the "don't" icons and underlines "don't" once the sheet has arrived */
@@ -611,7 +615,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .results_list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
 .results_item{padding-block:var(--space-16);color:var(--results-name);transition:color .8s var(--results-ease)}
 .results_item.is-active{color:var(--results-active-text)}
-.results_name{display:block;font:500 clamp(40px,calc(5.4vw - 4px),92px)/1.1 var(--font-display);letter-spacing:-.02em;text-wrap:balance}
+.results_name{display:block;font:500 var(--display-size)/var(--display-lh) var(--font-display);letter-spacing:var(--display-ls);text-wrap:balance}
 .results_content{grid-column:8 / 13;height:100vh;padding-top:var(--space-96);position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between}
 .results_title{margin:0;color:var(--results-ink);text-wrap:balance}
 .results_sub{margin:var(--space-16) 0 0;max-width:40ch;font-weight:400;color:var(--results-ink)}
@@ -659,7 +663,7 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
   .results_content{height:auto;padding-top:0;order:-1;display:block}
   .results_globe-slot{width:min(100%,480px);margin:var(--space-48) auto 0}
   .results_list-wrap{height:auto;overflow:visible;-webkit-mask:none;mask:none;padding-bottom:var(--space-96)}
-  .results_name{font-size:calc(var(--h3-size,32px) - 4px)}
+  .results_name{font-size:var(--h4-size)}   /* Display in a long list steps down to the H4 size on phones */
   .results_label{font-size:var(--body3-size);line-height:var(--body3-lh)}
 }
 @media (prefers-reduced-motion:reduce){
@@ -842,7 +846,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 .mentors_slide{grid-area:1 / 1;margin:0;display:flex;flex-direction:column;gap:var(--space-24)}
 .js .mentors_slide{transition:opacity .3s var(--ease-out),visibility .3s}
 .js .mentors_slide:not(.is-current){opacity:0;visibility:hidden}
-.mentors_line{margin:0;font-family:var(--font-text);font-weight:500;color:var(--color-text-primary);text-wrap:balance}
+.mentors_line{margin:0;color:var(--color-text-primary);text-wrap:balance}
 .mentors_more{margin:0;max-width:54ch;color:var(--color-text-secondary);text-wrap:pretty}
 .mentors_foot{grid-column:2;margin-top:var(--space-48)}
 .mentors_rule{position:relative;height:1px;background:var(--color-border-subtle)}
@@ -1500,17 +1504,17 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
         <p class="mentors_mark" aria-hidden="true">“</p>
         <div class="mentors_slides">
             <blockquote class="mentors_slide is-current" data-mentor aria-label="Mentor 1 of 3: Claire Ramsay">
-              <p class="mentors_line h3">…one of the most rewarding volunteering experiences I’ve ever had.</p>
+              <p class="mentors_line quote">…one of the most rewarding volunteering experiences I’ve ever had.</p>
               <p class="mentors_more body1">If you have any experience with universities, scholarships, or standardized English tests and would like to put that to good use supporting Gazan students in achieving their goals, I can’t recommend volunteering with SFG enough.</p>
               <p class="sr-only">Claire Ramsay, Mentor for eight months</p>
             </blockquote>
             <blockquote class="mentors_slide" data-mentor aria-label="Mentor 2 of 3: Elisa Giammarini, PhD, FHEA">
-              <p class="mentors_line h3">For the third academic year in a row, I am proud to keep volunteering.</p>
+              <p class="mentors_line quote">For the third academic year in a row, I am proud to keep volunteering.</p>
               <p class="mentors_more body1">My very first student, who I couldn’t be more proud of, successfully obtained a fully funded scholarship. My other two brilliant students keep receiving offers from top universities.</p>
               <p class="sr-only">Elisa Giammarini, PhD, FHEA, Mentor for three academic years · three students</p>
             </blockquote>
             <blockquote class="mentors_slide" data-mentor aria-label="Mentor 3 of 3: Luis Morales-Navarro, PhD">
-              <p class="mentors_line h3">…it was incredibly fulfilling to see them thrive.</p>
+              <p class="mentors_line quote">…it was incredibly fulfilling to see them thrive.</p>
               <p class="mentors_more body1">I was privileged to mentor three students that obtained scholarships in Ireland, the UK, and Italy during the first year of SFG. Last summer I met one of my former mentees in London.</p>
               <p class="sr-only">Luis Morales-Navarro, PhD, Mentor since SFG’s first year · three scholars</p>
             </blockquote>
