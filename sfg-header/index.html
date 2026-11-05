@@ -611,7 +611,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .results_list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
 .results_item{padding-block:var(--space-16);color:var(--results-name);transition:color .8s var(--results-ease)}
 .results_item.is-active{color:var(--results-active-text)}
-.results_name{display:block;font:500 clamp(40px,calc(5.4vw - 4px),92px)/1.02 var(--font-display);letter-spacing:-.02em;text-wrap:balance}
+.results_name{display:block;font:500 clamp(40px,calc(5.4vw - 4px),92px)/1.1 var(--font-display);letter-spacing:-.02em;text-wrap:balance}
 .results_content{grid-column:8 / 13;height:100vh;padding-top:var(--space-96);position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between}
 .results_title{margin:0;color:var(--results-ink);text-wrap:balance}
 .results_sub{margin:var(--space-16) 0 0;max-width:40ch;font-weight:400;color:var(--results-ink)}
@@ -660,7 +660,7 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
   .results_globe-slot{width:min(100%,480px);margin:var(--space-48) auto 0}
   .results_list-wrap{height:auto;overflow:visible;-webkit-mask:none;mask:none;padding-bottom:var(--space-96)}
   .results_name{font-size:calc(var(--h3-size,32px) - 4px)}
-  .results_label{font-size:var(--body3-size,14px)}
+  .results_label{font-size:var(--body3-size);line-height:var(--body3-lh)}
 }
 @media (prefers-reduced-motion:reduce){
   .results_contain{height:auto;padding-block:var(--space-128)}
@@ -808,7 +808,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
   background:repeating-linear-gradient(to bottom,transparent 0 calc(1lh - 1px),var(--memory-rule) calc(1lh - 1px) 1lh)}   /* one rule under every line, set by the text's own line-height */
 .memory_text p{margin:0 0 1lh}   /* paragraph gaps are whole lines, so the rules stay in step */
 .memory_keep{white-space:nowrap}   /* names never break at their hyphen */
-.memory_sign{display:flex;flex-direction:column;max-width:62ch;margin:var(--space-32) auto 0;font-size:1.125rem}   /* 18px base, so 62ch matches the letter's measure */
+.memory_sign{display:flex;flex-direction:column;max-width:62ch;margin:var(--space-32) auto 0;font-size:var(--body1-size)}   /* 18px base, so 62ch matches the letter's measure */
 .memory_sign-role{color:var(--memory-muted)}
 /* wide screens: the letter in the middle, photos beside it at uneven heights, pinned while the letter scrolls; captions stay on the linen, never on the card */
 @media (min-width:1200px){
@@ -843,7 +843,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 .js .mentors_slide{transition:opacity .3s var(--ease-out),visibility .3s}
 .js .mentors_slide:not(.is-current){opacity:0;visibility:hidden}
 .mentors_line{margin:0;font-family:var(--font-text);font-weight:500;color:var(--color-text-primary);text-wrap:balance}
-.mentors_more{margin:0;max-width:62ch;color:var(--color-text-secondary);text-wrap:pretty}
+.mentors_more{margin:0;max-width:54ch;color:var(--color-text-secondary);text-wrap:pretty}
 .mentors_foot{grid-column:2;margin-top:var(--space-48)}
 .mentors_rule{position:relative;height:1px;background:var(--color-border-subtle)}
 .mentors_fill{position:absolute;inset:-1px auto -1px 0;width:calc(100% / 3);background:var(--color-text-heading);transition:width .4s var(--ease-out)}
@@ -1077,7 +1077,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
     <section class="section_wwd" id="what-we-do" aria-label="What we do, and what we don’t do" data-wwd>
       <div class="wwd_stage">
         <div class="wwd_sheet is-do" data-wwd-do>
-          <h2 class="wwd_title h1" data-split>What we do</h2>
+          <h2 class="wwd_title h2" data-split>What we do</h2>
           <ul class="wwd_cols" role="list">
           <li class="wwd_col" style="--i:0" data-split-group>
             <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14.2c2.9.3 5 2.4 5 5.3"/></svg></span>
@@ -1098,7 +1098,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
           <span class="wwd_dim" aria-hidden="true"></span>
         </div>
         <div class="wwd_sheet is-dont" data-wwd-dont>
-          <h2 class="wwd_title h1">What we <span class="wwd_mark">don’t<svg class="wwd_pen" viewBox="0 0 120 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M3 11 C 30 4, 62 13, 117 6" pathLength="1"/></svg></span> do</h2>
+          <h2 class="wwd_title h2">What we <span class="wwd_mark">don’t<svg class="wwd_pen" viewBox="0 0 120 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M3 11 C 30 4, 62 13, 117 6" pathLength="1"/></svg></span> do</h2>
           <ul class="wwd_cols" role="list">
           <li class="wwd_col" style="--i:0">
             <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="6" width="19" height="12" rx="1.5"/><circle cx="12" cy="12" r="2.5"/><path d="M6 9.5v5M18 9.5v5"/></svg></span>
@@ -1140,7 +1140,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
             <div class="how_content">
               <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
               <div class="how_text_wrap" data-split-group>
-                <h3 class="how_step-title h2" data-split>Apply to SFG</h3>
+                <h3 class="how_step-title h3" data-split>Apply to SFG</h3>
                 <p class="how_step-text body2" data-split>Tell us what you study, where you hope to go and the degree you are aiming for. SFG is free, always.</p>
                 <div class="how_actions" id="for-students">
                   <a class="how_cta title3" href="https://secure.lglforms.com/form_engine/s/gj0TRCbaEZdlSZIsRp5jKg" target="_blank" rel="noopener">Start your application<span class="sr-only"> (opens the application form in a new tab)</span><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -1168,7 +1168,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
             <div class="how_content">
               <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
               <div class="how_text_wrap" data-split-group>
-                <h3 class="how_step-title h2" data-split>Meet your mentor</h3>
+                <h3 class="how_step-title h3" data-split>Meet your mentor</h3>
                 <p class="how_step-text body2" data-split>You join a WhatsApp group with your academic mentor and an SFG organiser, where you share documents, get feedback and stay on track.</p>
                 <span class="how_text_bg" aria-hidden="true"></span>
               </div>
@@ -1191,7 +1191,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
             <div class="how_content">
               <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
               <div class="how_text_wrap" data-split-group>
-                <h3 class="how_step-title h2" data-split>Choose your scholarships</h3>
+                <h3 class="how_step-title h3" data-split>Choose your scholarships</h3>
                 <p class="how_step-text body2" data-split>Together you find the existing scholarships worth applying for, check every eligibility requirement and choose your courses.</p>
                 <span class="how_text_bg" aria-hidden="true"></span>
               </div>
@@ -1217,7 +1217,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
             <div class="how_content">
               <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
               <div class="how_text_wrap" data-split-group>
-                <h3 class="how_step-title h2" data-split>Write, draft by draft</h3>
+                <h3 class="how_step-title h3" data-split>Write, draft by draft</h3>
                 <p class="how_step-text body2" data-split>Your CV, personal statement and scholarship essays, refined with your mentor until they tell your story the way each scholarship is looking for.</p>
                 <span class="how_text_bg" aria-hidden="true"></span>
               </div>
@@ -1244,7 +1244,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
             <div class="how_content">
               <span class="how_content_anchor" data-process-dot aria-hidden="true"></span>
               <div class="how_text_wrap" data-split-group>
-                <h3 class="how_step-title h2" data-split>Interview and submit</h3>
+                <h3 class="how_step-title h3" data-split>Interview and submit</h3>
                 <p class="how_step-text body2" data-split>Mock interviews and English practice prepare you for the real thing, and your mentor helps you communicate with universities and scholarship boards until the decision arrives.</p>
                 <span class="how_text_bg" aria-hidden="true"></span>
               </div>
@@ -1340,7 +1340,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
           </div>
           <div class="results_content">
             <div class="results_text" data-results-fade data-split-group>
-              <h3 class="results_title h2" data-split>Where our scholars study now</h3>
+              <h3 class="results_title h3" data-split>Where our scholars study now</h3>
               <p class="results_sub body1" data-split>881 students have joined SFG mentorship programmes, and 143 have won fully funded scholarships to study in 14 countries. These are some of the universities they study at.</p>
             </div>
             <div class="results_globe-slot" data-results-slot>
