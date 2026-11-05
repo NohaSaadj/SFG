@@ -113,13 +113,20 @@ On the linen page colour (`--color-bg-page`), like the sections around it. No ph
 - **Behaviour:** no autoplay; previous/next disabled at the ends with focus moved to the other button; a status line announces "Mentor 2 of 3: …"; every slide carries the mentor's name for screen readers. Slides share one grid cell, so the height never changes; hidden slides are `inert`. Without JavaScript all three are listed.
 - Phones: one column, the pager under the name.
 - **Divider:** the same tatreez hem as above How SFG began (`.page_divider`, margin to margin, wipes in) separates Mentor voices from Become a mentor.
-- **Tatreez backdrop (after Cambium's testimonial):** two blocks of the neutral stitch field (`#stitchField`, the Partners texture) sit behind the section, top-left and bottom-right; the content sits on a linen panel above them, so the pattern shows only at the panel's edges (a 12px edge on phones). Decorative, `aria-hidden`.
 
 ## Become a mentor (after Mentor voices; layout after Beckley Retreats "Why Beckley")
 One action only: the red **Become a mentor** button (intake form `https://secure.lglforms.com/form_engine/s/g_DgjZr8NO-ar4ZbK8qO7Q`, new tab). No handbook link here.
 - **Left:** eyebrow "Become a mentor", H2 "Is mentoring for you?", one lead line, the red button. Linen background (`--color-bg-page`), like the rest of the page.
 - **Right:** a four-topic accordion on hairline rules, native `<details>`/`<summary>` (keyboard and screen readers work without script). Each row: the topic (Title1) and a green + that turns into −; no icons. *Who we need* starts open; several can be open at once. Content: *Who we need*: a scholarship alum from a Western university, a Master's or PhD, experience editing applications; "Most needed in health, medicine, engineering and computer science." *What you'll do*: shape their CV, statement and essays, run mock interviews, build their English confidence; "You guide. They write." *How we support you*: a WhatsApp group with an SFG organiser, weekly support calls, clear mentor guidelines; "You're never on your own." *Your time*: **3–4** (ochre) hours a week; "Patience and empathy matter as much as your CV."
 - No pinning, no scroll tracking. One column under 992px. The header's "Become a mentor" jumps here; "Mentors" goes to Mentor voices.
+- **Tatreez backdrop (after cambium.com/technology's last testimonial):** two blocks of the neutral stitch field (`#stitchField`) sit behind the section, top-left and bottom-right, and wipe in like the hem; the content sits on a linen panel above them, so the pattern shows only at its edges, and the lower block runs down to the footer. On phones a 12px edge shows.
+
+## Footer (after Become a mentor)
+The inverse green (`--color-bg-inverse`), straight after the stitch field.
+- **Top:** the linen logo and one line ("A Palestinian-led mentorship initiative helping students from Gaza win fully funded scholarships."), then three link columns in a `<nav aria-label="Footer">`: *Explore* (About SFG, Our story, How it works, Our impact), *For students* (Apply to SFG and the Arabic student guide, both new tab; Student voices), *For mentors* (Become a mentor, new tab; Mentor voices; Our partners). Column labels are Title3 in soft linen; links Body1 linen with 48px rows.
+- **Bottom:** a hairline, then "© 2026 Scholarships for Ghazza" and "In memory of Sha’ban, Dalia, Sally and Nada".
+- **Reveal:** the footer content rises into place as the footer comes into view (scroll-linked, from −30% to 0); no movement with reduced motion or when the footer is taller than the screen.
+- **Still to add:** contact email and social links (none on the page yet). English only for now.
 
 ## Page-wide review (better-ui, colors, typography, accessibility, writing)
 - **Type tokens** are in `rem` with unitless line-heights and `em` tracking. They render the same as the old pixel values (tracking now scales down with the smaller phone headings). Font smoothing is set once on the root; body copy uses `text-wrap: pretty`.

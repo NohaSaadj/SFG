@@ -834,13 +834,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
    a time: a short line in their words (large) and the rest of the quote (smaller). Below, a rule
    whose fill shows progress, the name on the left and the round pager on the right. No autoplay.
    ========================================================================== */
-.section_mentors{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-64) 0;overflow:clip}
-/* tatreez backdrop (after Cambium's testimonial): two stitch-field blocks behind the panel, seen only at its edges */
-.mentors_field{position:absolute;pointer-events:none}
-.mentors_field svg{display:block;width:100%;height:100%}
-.mentors_field.is-a{top:0;left:0;width:calc(var(--grid-margin) + var(--space-128));height:62%}
-.mentors_field.is-b{right:0;bottom:0;width:48%;height:44%}
-.mentors_panel{position:relative;margin-inline:max(0px,calc(var(--grid-margin) - var(--space-64)));padding:var(--space-96) min(var(--space-64),var(--grid-margin));background:var(--color-bg-page)}
+.section_mentors{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-96) var(--grid-margin) var(--space-128)}
 .mentors_eyebrow{margin:0 0 var(--space-64);color:var(--color-text-heading)}
 .mentors_grid{display:grid;grid-template-columns:var(--space-128) minmax(0,56rem);column-gap:var(--space-32)}
 .mentors_mark{margin:0;font:700 9rem/.8 var(--font-display);color:var(--color-border-subtle);user-select:none}   /* decorative */
@@ -862,13 +856,20 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 .mentors_pager{display:flex;align-items:center;gap:var(--space-12)}
 html:not(.js) .mentors_pager,html:not(.js) .mentors_rule{display:none}
 html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bottom:var(--space-32)}   /* without script, everything is listed */
-@media (max-width:991px){.section_mentors{padding-block:var(--space-32)}.mentors_panel{margin-inline:var(--space-12);padding:var(--space-64) calc(var(--grid-margin) - var(--space-12))}.mentors_field.is-a{width:var(--space-64);height:50%}.mentors_field.is-b{width:60%;height:30%}.mentors_eyebrow{margin-bottom:var(--space-32)}.mentors_grid{grid-template-columns:minmax(0,1fr);row-gap:var(--space-8)}.mentors_mark{font-size:5rem}.mentors_foot{grid-column:1;margin-top:var(--space-32)}.mentors_row{align-items:flex-start;flex-direction:column}}
+@media (max-width:991px){.section_mentors{padding-block:var(--space-64) var(--space-96)}.mentors_eyebrow{margin-bottom:var(--space-32)}.mentors_grid{grid-template-columns:minmax(0,1fr);row-gap:var(--space-8)}.mentors_mark{font-size:5rem}.mentors_foot{grid-column:1;margin-top:var(--space-32)}.mentors_row{align-items:flex-start;flex-direction:column}}
 /* ==========================================================================
    Become a mentor (after beckleyretreats.com "Why Beckley"): the ask and the one red button on the
    left, four short topics as an accordion on the right. Native <details>/<summary>, so it works
    with the keyboard and screen readers without script; the first topic starts open.
    ========================================================================== */
-.section_join{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-128) var(--grid-margin)}
+.section_join{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-64) 0;overflow:clip}
+/* tatreez backdrop (after cambium.com/technology's last testimonial): two stitch-field blocks behind the panel, seen only
+   at its edges; the lower one runs down to the footer. They wipe in like the tatreez hem. */
+.join_field{position:absolute;pointer-events:none}
+.join_field svg{display:block;width:100%;height:100%}
+.join_field.is-a{top:0;left:0;width:calc(var(--grid-margin) + var(--space-128));height:62%}
+.join_field.is-b{right:0;bottom:0;width:55%;height:45%}
+.join_panel{position:relative;margin-inline:max(0px,calc(var(--grid-margin) - var(--space-96)));padding:var(--space-128) min(var(--space-96),var(--grid-margin)) var(--space-96);background:var(--color-bg-page)}
 .join_grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:var(--space-96);align-items:start}
 .join_ask{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-24)}
 .join_eyebrow{margin:0;color:var(--color-text-heading)}
@@ -893,10 +894,35 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
 .join_big b{font-weight:inherit;color:var(--color-text-achievement)}
 @media (hover:hover){.join_sum:hover .join_label{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}}
 @media (max-width:991px){
-  .section_join{padding-block:var(--space-96)}
+  .section_join{padding-block:var(--space-32)}
+  .join_panel{margin-inline:var(--space-12);padding:var(--space-64) calc(var(--grid-margin) - var(--space-12))}
+  .join_field.is-a{width:var(--space-64);height:45%}
+  .join_field.is-b{width:60%;height:30%}
   .join_grid{grid-template-columns:minmax(0,1fr);row-gap:var(--space-48)}
 }
 
+
+/* ==========================================================================
+   Footer: the inverse green, after the stitch field. Its content rises into place as the footer comes into view
+   (a scroll-linked reveal, as on cambium.com); no movement with reduced motion.
+   ========================================================================== */
+.site-footer{position:relative;z-index:2;overflow:clip;background:var(--color-bg-inverse);color:var(--color-text-on-inverse)}
+.footer_inner{padding:var(--space-96) var(--grid-margin) var(--space-48);will-change:transform}
+.footer_top{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);column-gap:var(--space-96);row-gap:var(--space-64)}
+.footer_brand{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-24)}
+.footer_logo{display:block;width:120px;height:auto}
+.footer_line{margin:0;max-width:32ch;color:var(--color-text-on-inverse-secondary);text-wrap:pretty}
+.footer_cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--space-48);row-gap:var(--space-48)}
+.footer_col h2{margin:0 0 var(--space-16);color:var(--color-text-on-inverse-secondary)}
+.footer_col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.footer_col a{display:inline-block;padding-block:var(--space-12);color:var(--color-text-on-inverse);text-decoration:none;text-wrap:balance}
+.footer_col a svg{display:inline;vertical-align:-1px;margin-inline-start:var(--space-4)}   /* the arrow stays with the last word */
+@media (hover:hover){.footer_col a:hover{text-decoration:underline;text-underline-offset:4px}}
+.site-footer a:focus-visible{outline:3px solid var(--color-border-focus-on-inverse);outline-offset:3px;border-radius:var(--radius-sm)}
+.footer_bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-16);margin-top:var(--space-96);padding-top:var(--space-24);border-top:1px solid var(--color-border-on-inverse);color:var(--color-text-on-inverse-secondary)}
+.footer_bottom p{margin:0}
+@media (max-width:991px){.footer_inner{padding-block:var(--space-64) var(--space-32)}.footer_top{grid-template-columns:minmax(0,1fr)}.footer_cols{grid-template-columns:repeat(2,minmax(0,1fr))}.footer_bottom{margin-top:var(--space-64)}}
+@media (max-width:479px){.footer_cols{grid-template-columns:minmax(0,1fr)}}
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{transition:none!important;animation:none!important}
       .intro_begin{place-items:end center;padding-bottom:var(--space-128)}
@@ -1462,9 +1488,6 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
       </div>
     </section>
     <section class="section_mentors" id="mentor-voices" aria-labelledby="mentors-title" lang="en" dir="ltr" data-mentors>
-      <div class="mentors_field is-a" aria-hidden="true"><svg focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg></div>
-      <div class="mentors_field is-b" aria-hidden="true"><svg focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg></div>
-      <div class="mentors_panel">
       <h2 class="mentors_eyebrow title3" id="mentors-title">Mentor voices</h2>
       <div class="mentors_grid">
         <p class="mentors_mark" aria-hidden="true">“</p>
@@ -1501,10 +1524,12 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
           <p class="sr-only" role="status" data-mentors-status></p>
         </div>
       </div>
-      </div>
     </section>
     <div class="page_divider" aria-hidden="true"><svg class="how_band" viewBox="0 0 1101.6 25.2" data-tatreez-fit data-reveal-wipe aria-hidden="true" focusable="false"><rect width="1101.6" height="25.2" fill="url(#tatreezBand)"/></svg></div>
     <section class="section_join" id="become-a-mentor" aria-labelledby="join-title" lang="en" dir="ltr">
+      <div class="join_field is-a" aria-hidden="true" data-reveal-wipe><svg focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg></div>
+      <div class="join_field is-b" aria-hidden="true" data-reveal-wipe><svg focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg></div>
+      <div class="join_panel">
       <div class="join_grid">
         <div class="join_ask" data-split-group>
           <p class="join_eyebrow title3" data-split>Become a mentor</p>
@@ -1531,8 +1556,51 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
             </details></li>
         </ul>
       </div>
+      </div>
     </section>
   </main>
+
+  <footer class="site-footer" lang="en" dir="ltr" data-footer>
+    <div class="footer_inner" data-footer-inner>
+      <div class="footer_top">
+        <div class="footer_brand">
+          <img class="footer_logo" src="assets/logo-linen.png" alt="Scholarships for Ghazza" width="89" height="48" />
+          <p class="footer_line body2">A Palestinian-led mentorship initiative helping students from Gaza win fully funded scholarships.</p>
+        </div>
+        <nav class="footer_cols" aria-label="Footer">
+          <div class="footer_col">
+            <h2 class="title3">Explore</h2>
+            <ul role="list">
+              <li><a class="body1" href="#about">About SFG</a></li>
+              <li><a class="body1" href="#how-it-began">Our story</a></li>
+              <li><a class="body1" href="#how-it-works">How it works</a></li>
+              <li><a class="body1" href="#results">Our impact</a></li>
+            </ul>
+          </div>
+          <div class="footer_col">
+            <h2 class="title3">For students</h2>
+            <ul role="list">
+              <li><a class="body1" href="https://secure.lglforms.com/form_engine/s/gj0TRCbaEZdlSZIsRp5jKg" target="_blank" rel="noopener">Apply to SFG<span class="sr-only"> (opens in a new tab)</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a></li>
+              <li><a class="body1" href="https://docs.google.com/document/d/13uX0ClWeqEinlqcHFDqgCYSa4T1SQ60xR9QBD7iY3Jw/edit?usp=sharing" target="_blank" rel="noopener" hreflang="ar">Student guide (in Arabic)<span class="sr-only">, opens in a new tab</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a></li>
+              <li><a class="body1" href="#student-voices">Student voices</a></li>
+            </ul>
+          </div>
+          <div class="footer_col">
+            <h2 class="title3">For mentors</h2>
+            <ul role="list">
+              <li><a class="body1" href="https://secure.lglforms.com/form_engine/s/g_DgjZr8NO-ar4ZbK8qO7Q" target="_blank" rel="noopener">Become a mentor<span class="sr-only"> (opens in a new tab)</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a></li>
+              <li><a class="body1" href="#mentor-voices">Mentor voices</a></li>
+              <li><a class="body1" href="#partners">Our partners</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="footer_bottom body3">
+        <p>© 2026 Scholarships for Ghazza</p>
+        <p>In memory of Sha’ban, Dalia, Sally and Nada</p>
+      </div>
+    </div>
+  </footer>
 
   <script>
   /*! SFG Intro Story Roll v4.0.0 (scroll-controlled)
@@ -2553,6 +2621,22 @@ layout();
     prev.addEventListener("click", function () { show(k - 1, true); if (prev.disabled) next.focus(); });
     next.addEventListener("click", function () { show(k + 1, true); if (next.disabled) prev.focus(); });
     show(0, false);
+  })();
+  </script>
+  <script>
+  /* Footer reveal: its content rises into place as the footer comes into view. Hooks: [data-footer] [data-footer-inner] */
+  (function () {
+    var f = document.querySelector("[data-footer]"), inner = f && f.querySelector("[data-footer-inner]");
+    if (!inner || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var raf = 0;
+    function tick() {
+      raf = 0;
+      var r = f.getBoundingClientRect(), vh = innerHeight;
+      var p = Math.max(0, Math.min(1, (vh - r.top) / Math.min(r.height, vh)));   // 0 when the footer's top reaches the screen's bottom, 1 when it is in full view
+      inner.style.transform = "translate3d(0," + ((1 - p) * -30).toFixed(2) + "%,0)";
+    }
+    addEventListener("scroll", function () { if (!raf) raf = requestAnimationFrame(tick); }, { passive: true });
+    addEventListener("resize", tick); tick();
   })();
   </script>
 </body>
