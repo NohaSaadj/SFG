@@ -862,14 +862,16 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
    left, four short topics as an accordion on the right. Native <details>/<summary>, so it works
    with the keyboard and screen readers without script; the first topic starts open.
    ========================================================================== */
-.section_join{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-64) 0;overflow:clip}
-/* tatreez backdrop (after cambium.com/technology's last testimonial): two stitch-field blocks behind the panel, seen only
-   at its edges; the lower one runs down to the footer. They wipe in like the tatreez hem. */
+.section_join{--join-gap:3.125%;position:relative;z-index:2;background:var(--color-bg-surface);color:var(--color-text-primary);padding:0 0 var(--space-64);overflow:clip}
+/* tatreez backdrop, measured from cambium.com/technology's last testimonial (1920px): the panel starts 15% in, leaves a
+   60px (3.125%) gap on the right and 64px at the bottom; three stitch-field blocks show around it: top-left (15% wide,
+   64% tall), a right strip (from 20% down) and a bottom strip under the right half, which runs into the footer. */
 .join_field{position:absolute;pointer-events:none}
 .join_field svg{display:block;width:100%;height:100%}
-.join_field.is-a{top:0;left:0;width:calc(var(--grid-margin) + var(--space-128));height:62%}
-.join_field.is-b{right:0;bottom:0;width:55%;height:45%}
-.join_panel{position:relative;margin-inline:max(0px,calc(var(--grid-margin) - var(--space-96)));padding:var(--space-128) min(var(--space-96),var(--grid-margin)) var(--space-96);background:var(--color-bg-page)}
+.join_field.is-a{top:0;left:0;width:15%;height:64%}
+.join_field.is-b{top:20%;right:0;bottom:0;width:var(--join-gap)}
+.join_field.is-c{left:50%;right:0;bottom:0;height:var(--space-64)}
+.join_panel{position:relative;margin:0 var(--join-gap) 0 15%;padding:var(--space-128) calc(var(--grid-margin) - var(--join-gap)) var(--space-96) var(--space-56);background:var(--color-bg-page)}
 .join_grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:var(--space-96);align-items:start}
 .join_ask{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-24)}
 .join_eyebrow{margin:0;color:var(--color-text-heading)}
@@ -894,10 +896,10 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
 .join_big b{font-weight:inherit;color:var(--color-text-achievement)}
 @media (hover:hover){.join_sum:hover .join_label{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}}
 @media (max-width:991px){
-  .section_join{padding-block:var(--space-32)}
-  .join_panel{margin-inline:var(--space-12);padding:var(--space-64) calc(var(--grid-margin) - var(--space-12))}
-  .join_field.is-a{width:var(--space-64);height:45%}
-  .join_field.is-b{width:60%;height:30%}
+  .section_join{--join-gap:var(--space-12);padding-bottom:var(--space-32)}
+  .join_panel{margin:0 var(--join-gap) 0 var(--space-12);padding:var(--space-64) calc(var(--grid-margin) - var(--space-12)) var(--space-48)}
+  .join_field.is-a{width:var(--space-12);height:45%}
+  .join_field.is-c{height:var(--space-32)}
   .join_grid{grid-template-columns:minmax(0,1fr);row-gap:var(--space-48)}
 }
 
@@ -912,6 +914,11 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
 .footer_brand{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-24)}
 .footer_logo{display:block;width:120px;height:auto}
 .footer_line{margin:0;max-width:32ch;color:var(--color-text-on-inverse-secondary);text-wrap:pretty}
+.footer_contact{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-4)}
+.footer_contact a{display:inline-block;padding-block:var(--space-12);color:var(--color-text-on-inverse);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--color-border-on-inverse);overflow-wrap:anywhere}
+.footer_contact a svg{display:inline;vertical-align:-1px;margin-inline-start:var(--space-4)}
+@media (hover:hover){.footer_contact a:hover{text-decoration-color:currentColor}}
+.footer_social{display:flex;flex-wrap:wrap;gap:0 var(--space-24)}
 .footer_cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--space-48);row-gap:var(--space-48)}
 .footer_col h2{margin:0 0 var(--space-16);color:var(--color-text-on-inverse-secondary)}
 .footer_col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
@@ -1529,6 +1536,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
     <section class="section_join" id="become-a-mentor" aria-labelledby="join-title" lang="en" dir="ltr">
       <div class="join_field is-a" aria-hidden="true" data-reveal-wipe><svg focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg></div>
       <div class="join_field is-b" aria-hidden="true" data-reveal-wipe><svg focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg></div>
+      <div class="join_field is-c" aria-hidden="true" data-reveal-wipe><svg focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg></div>
       <div class="join_panel">
       <div class="join_grid">
         <div class="join_ask" data-split-group>
@@ -1566,6 +1574,13 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
         <div class="footer_brand">
           <img class="footer_logo" src="assets/logo-linen.png" alt="Scholarships for Ghazza" width="89" height="48" />
           <p class="footer_line body2">A Palestinian-led mentorship initiative helping students from Gaza win fully funded scholarships.</p>
+          <ul class="footer_contact" role="list" aria-label="Contact">
+            <li><a class="body1" href="mailto:scholarshipsforghazza@gmail.com">scholarshipsforghazza@gmail.com</a></li>
+            <li class="footer_social">
+              <a class="title3" href="https://www.instagram.com/scholarshipsforghazza/" target="_blank" rel="noopener">Instagram<span class="sr-only"> (opens in a new tab)</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+              <a class="title3" href="https://www.linkedin.com/company/scholarships-for-ghazza-sfg/home/" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in a new tab)</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3h6v6M11 3 3 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+            </li>
+          </ul>
         </div>
         <nav class="footer_cols" aria-label="Footer">
           <div class="footer_col">
