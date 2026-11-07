@@ -26,10 +26,10 @@ Single source of truth for how the Scholarships for Ghazza website looks. Always
 - The "In their memory" section uses sand background, ink/muted text and `--color-pen-soft` only: no ochre, no strong red, no buttons or CTAs.
 
 **Typography**
-- Headings H1–H6: Thmanyah Serif Display, Bold. Display (one very large statement): Serif Display, Medium. Quote (large testimonials): Serif Text, Medium. Titles: Thmanyah Sans, Medium (no Regular titles). Body1–3: Thmanyah Serif Text, Regular.
+- **Nothing is Bold: Medium (500) is the heaviest weight used anywhere.** Headings H1–H6: Thmanyah Serif Display, Medium. Display (one very large statement): Serif Display, Medium. Quote (large testimonials): Serif Text, Medium. Titles: Thmanyah Sans, Medium (no Regular titles). Body1–3: Thmanyah Serif Text, Regular.
 - Heading sizes descend with level: every section title is H2, and a heading inside a section is H3 or smaller, never the same size as its H2.
 - Sizes in `rem`, line heights unitless, letter spacing in `em`. Cap body text at 60–75 characters a line.
-- Load every weight you use (Display 500 and 700, Text 400 and 500, Sans 400/500/700); a missing face makes the browser show a different weight.
+- Load every weight you use (Display 500, Text 400 and 500, Sans 400 and 500); a missing face makes the browser show a different weight.
 - Use the type-scale classes or tokens; don't invent new sizes. H1–H4, Display and Quote use the fluid `clamp()` sizes on smaller screens.
 - All three Thmanyah families support Arabic. For the Arabic (RTL) version use the same families with `dir="rtl"` and mirrored layouts.
 
@@ -45,6 +45,12 @@ Single source of truth for how the Scholarships for Ghazza website looks. Always
 - Primary buttons use red 600 with white text (red 500 fails contrast for normal text).
 - Respect `prefers-reduced-motion`: show final states without animation.
 
+**Motion and icons** (details in section 5 of `references/tokens.md`)
+- **Text reveal animation:** every piece of content text appears the same way, with its lines rising out of a mask (1.1s, 0.08s apart, ease-out-expo). Hidden content plays when it is shown.
+- **Section titles** carry a dot on the reading-start side; it appears first, then the title writes in.
+- **Primary buttons:** a darker panel slides up from below while the label shrinks and rises (after cambium.com). **Secondary text links:** no underline at rest, and on hover it draws in from the left.
+- **Arrows:** one full-arrow SVG (rotated for ↗ and ↓), and a chevron for carousel previous / next. No text arrows or emoji.
+
 ## Checklist before finishing
 
 - [ ] No hard-coded hex colors in components; only `--color-*` tokens.
@@ -54,3 +60,4 @@ Single source of truth for how the Scholarships for Ghazza website looks. Always
 - [ ] Dark mode checked; text contrast ≥ 4.5:1.
 - [ ] Layout follows the 12/4-column grid; spacing uses only the scale values.
 - [ ] Interactive elements ≥ 48px; focus visible; reduced motion respected.
+- [ ] No Bold anywhere; text uses the text reveal animation; section titles have the dot; arrows use the shared SVGs.
