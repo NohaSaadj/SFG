@@ -87,7 +87,7 @@ Sizes are in `rem` (1rem = 16px), line heights are unitless and letter spacing i
 
 | Style | Family | Weight | Size (desktop → phone) | Line height | Letter spacing | Use |
 |---|---|---|---|---|---|---|
-| **Display** | Thmanyah Serif Display | Medium 500 | 92px → 40px (fluid) | 1.1 | -0.02em | One very large statement per page, e.g. a list of university names. Not a heading level. In a long list on phones, step down to the H4 size. |
+| **Display** | Thmanyah Serif Display | Medium 500 | 64px → 40px (fluid, the H1 size) | 1.1 | -0.02em | One very large statement per page, e.g. a list of university names. Not a heading level. In a long list on phones, step down to the H4 size. |
 | **H1** | Thmanyah Serif Display | Bold 700 | 64px → 40px (fluid) | 1.125 (72px) | -0.0156em (-1px) | The page's main heading |
 | **H2** | Thmanyah Serif Display | Bold 700 | 48px → 34px (fluid) | 1.167 (56px) | -0.0167em (-0.8px) | Every section title, one size across the page |
 | **H3** | Thmanyah Serif Display | Bold 700 | 40px → 30px (fluid) | 1.2 (48px) | -0.015em (-0.6px) | A heading inside a section, below its H2 |
@@ -193,7 +193,7 @@ File names above match the Thmanyah download (adjust if the Serif files are name
   --font-sans:var(--font-sfg-sans),"Readex Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
 
   /* rem sizes, unitless line heights, em tracking: same render as the px values, but they follow the browser font size */
-  --display-size:clamp(2.5rem,calc(5.4vw - .25rem),5.75rem);--display-lh:1.1;--display-ls:-.02em;   /* 40 → 92 */
+  --display-size:var(--h1-size);--display-lh:1.1;--display-ls:-.02em;   /* the H1 size (40 → 64) in Medium */
   --h1-size:clamp(2.5rem,4.5vw,4rem);--h1-lh:1.125;--h1-ls:-.0156em;        /* 64/72 */
   --h2-size:clamp(2.125rem,3.4vw,3rem);--h2-lh:1.167;--h2-ls:-.0167em;      /* 48/56 */
   --h3-size:clamp(1.875rem,2.8vw,2.5rem);--h3-lh:1.2;--h3-ls:-.015em;       /* 40/48 */
