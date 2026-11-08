@@ -25,6 +25,9 @@ Single source of truth for how the Scholarships for Ghazza website looks. Always
 - Support dark mode through the provided `prefers-color-scheme` block and `[data-theme]` overrides.
 - The "In their memory" section uses sand background, ink/muted text and `--color-pen-soft` only: no ochre, no strong red, no buttons or CTAs.
 
+**Text colour (after cambium.com)**
+- All text is one dark green ink (`text/primary` = `text/heading` = green 800). Details (body copy under a title, captions) use the same ink faded to 76% (`text/secondary`). On inverse sections it is linen, faded to 72% for details. Red and ochre stay accents only.
+
 **Typography**
 - **Nothing is Bold: Medium (500) is the heaviest weight used anywhere.** Headings H1–H6: Thmanyah Serif Display, Medium. Display (one very large statement): Serif Display, Medium. Quote (large testimonials): Serif Text, Medium. Titles: Thmanyah Sans, Medium (no Regular titles). Body1–3: Thmanyah Serif Text, Regular.
 - Heading sizes descend with level: every section title is H2, and a heading inside a section is H3 or smaller, never the same size as its H2.
@@ -47,7 +50,7 @@ Single source of truth for how the Scholarships for Ghazza website looks. Always
 
 **Motion and icons** (details in section 5 of `references/tokens.md`)
 - **Text reveal animation:** every piece of content text appears the same way, with its lines rising out of a mask (1.1s, 0.08s apart, ease-out-expo). Hidden content plays when it is shown.
-- **Section titles** carry a dot on the reading-start side; it appears first, then the title writes in.
+- **Every section opens the same way:** a label (Title2, 18px) with a dot on its reading-start side, then the headline (H2), then details if needed. The label and headline share one colour. The dot appears first, then the label writes in.
 - **Primary buttons:** a darker panel slides up from below while the label shrinks and rises (after cambium.com). **Secondary text links:** no underline at rest, and on hover it draws in from the left.
 - **Arrows:** one full-arrow SVG (rotated for ↗ and ↓), and a chevron for carousel previous / next. No text arrows or emoji.
 

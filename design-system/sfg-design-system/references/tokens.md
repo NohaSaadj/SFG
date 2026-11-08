@@ -33,9 +33,9 @@ Bold = base brand value (red 500 and green 600 are sampled from SFG's own brand 
 | `bg/inverse` | green/700 | night/inverse | Dark feature sections, footer |
 | `bg/field` | white | white | Inputs |
 | `bg/selected` | green/50 | green/50 | Selected states |
-| `text/primary` | ink | night/text | Body text |
-| `text/secondary` | muted | night/text-2 | Captions, metadata |
-| `text/heading` | green/600 | night/heading | Headlines, chapter labels |
+| `text/primary` | green/800 | night/text | Body text, titles: one ink for all text (after cambium.com) |
+| `text/secondary` | green/800 at 76% | night/text at 74% | Details: body copy under a title, captions, metadata (the same ink, faded) |
+| `text/heading` | green/800 | night/text | Section labels and headlines (same as text/primary) |
 | `text/on-inverse` | linen | night/text | Text on dark sections |
 | `text/on-action` | white | white | Text on red buttons |
 | `text/on-panel` | ink | ink | Text on light panels inside dark sections |
@@ -88,9 +88,9 @@ Sizes are in `rem` (1rem = 16px), line heights are unitless and letter spacing i
 
 | Style | Family | Weight | Size (desktop → phone) | Line height | Letter spacing | Use |
 |---|---|---|---|---|---|---|
-| **Display** | Thmanyah Serif Display | Medium 500 | 64px → 40px (fluid, the H1 size) | 1.1 | -0.02em | One very large statement per page, e.g. a list of university names. Not a heading level. In a long list on phones, step down to the H4 size. |
+| **Display** | Thmanyah Serif Display | Medium 500 | 48px → 34px (fluid, the H2 size) | 1.1 | -0.02em | One very large statement per page, e.g. a list of university names. Not a heading level. In a long list on phones, step down to the H4 size. |
 | **H1** | Thmanyah Serif Display | Medium 500 | 64px → 40px (fluid) | 1.125 (72px) | -0.0156em (-1px) | The page's main heading |
-| **H2** | Thmanyah Serif Display | Medium 500 | 48px → 34px (fluid) | 1.167 (56px) | -0.0167em (-0.8px) | Every section title, one size across the page |
+| **H2** | Thmanyah Serif Display | Medium 500 | 48px → 34px (fluid) | 1.167 (56px) | -0.0167em (-0.8px) | The headline under a section label, one size across the page |
 | **H3** | Thmanyah Serif Display | Medium 500 | 40px → 30px (fluid) | 1.2 (48px) | -0.015em (-0.6px) | A heading inside a section, below its H2 |
 | **H4** | Thmanyah Serif Display | Medium 500 | 32px → 28px (fluid) | 1.25 (40px) | -0.0125em (-0.4px) | |
 | **H5** | Thmanyah Serif Display | Medium 500 | 24px | 1.333 (32px) | -0.0083em (-0.2px) | |
@@ -167,9 +167,9 @@ File names above match the Thmanyah download (adjust if the Serif files are name
   --color-bg-inverse:var(--green-700);
   --color-bg-field:var(--neutral-white);
   --color-bg-selected:var(--green-50);
-  --color-text-primary:var(--neutral-ink);
-  --color-text-secondary:var(--neutral-muted);
-  --color-text-heading:var(--green-600);
+  --color-text-primary:var(--green-800);                                        /* one dark green ink for titles and text */
+  --color-text-secondary:color-mix(in srgb,var(--green-800) 76%,transparent);  /* details: the same ink, faded (≥ 4.5:1 on linen and paper) */
+  --color-text-heading:var(--green-800);
   --color-text-on-inverse:var(--neutral-linen);
   --color-text-on-action:var(--neutral-white);
   --color-text-on-panel:var(--neutral-ink);
@@ -193,7 +193,7 @@ File names above match the Thmanyah download (adjust if the Serif files are name
   --font-sans:var(--font-sfg-sans),"Readex Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
 
   /* rem sizes, unitless line heights, em tracking: same render as the px values, but they follow the browser font size */
-  --display-size:var(--h1-size);--display-lh:1.1;--display-ls:-.02em;   /* the H1 size (40 → 64) in Medium */
+  --display-size:var(--h2-size);--display-lh:1.1;--display-ls:-.02em;   /* the H2 size (34 → 48) */
   --h1-size:clamp(2.5rem,4.5vw,4rem);--h1-lh:1.125;--h1-ls:-.0156em;        /* 64/72 */
   --h2-size:clamp(2.125rem,3.4vw,3rem);--h2-lh:1.167;--h2-ls:-.0167em;      /* 48/56 */
   --h3-size:clamp(1.875rem,2.8vw,2.5rem);--h3-lh:1.2;--h3-ls:-.015em;       /* 40/48 */
@@ -213,13 +213,13 @@ File names above match the Thmanyah download (adjust if the Serif files are name
 /* Semantic: dark (system preference, unless forced light) */
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
-  --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
+  --color-text-primary:#EFE8DB;--color-text-secondary:color-mix(in srgb,#EFE8DB 74%,transparent);--color-text-heading:#EFE8DB;--color-text-on-inverse:#EFE8DB;
   --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-action-secondary-hover:#D8E6DF;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
   --color-accent-achievement:#DBBA80;--color-accent-number:var(--red-400);--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;
 }}
 :root[data-theme="dark"]{
   --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
-  --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
+  --color-text-primary:#EFE8DB;--color-text-secondary:color-mix(in srgb,#EFE8DB 74%,transparent);--color-text-heading:#EFE8DB;--color-text-on-inverse:#EFE8DB;
   --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-action-secondary-hover:#D8E6DF;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
   --color-accent-achievement:#DBBA80;--color-accent-number:var(--red-400);--color-pen-default:#E27760;--color-pen-soft:#7D4A3E;
 }
@@ -301,11 +301,16 @@ The one way text appears on the page (After cambium.com; used by About and Our s
 .is-in .st-in{transform:none}
 ```
 
-### 5.2 Section-title dot
-Every section title (the H2 of a section) has a small round dot on its reading-start side (left in English, right in Arabic) in the title's colour.
-- Size `max(8px, .25em)`, gap `max(8px, .33em)`, centred on the first line (`top: calc(.5lh - size / 2)`).
-- Desktop: it hangs in the margin, so the title stays on the grid line. Phones: the title steps in by dot + gap.
-- **Motion:** the dot scales in first (0.5s, `--ease-out-expo`), and the title's lines start 0.32s later (4 stagger steps). The dot stays.
+### 5.2 Section label and its dot
+Every section opens the same way, in one colour (`text/heading`; on inverse sections `text/on-inverse`):
+1. **Section label**: Title2 (Sans Medium 18px), with a small round dot on its reading-start side (left in English, right in Arabic) in the same colour.
+2. **Headline**: H2 (Serif Display Medium 48 → 34px), where the section has one.
+3. **Details**: Body1/Body2 in `text/secondary` (the same ink, faded), where needed.
+
+The label is the section's `<h2>` when there is no headline; otherwise the headline is the `<h2>` and the label a `<p>`.
+- Dot size `max(8px, .25em)`, gap `max(8px, .33em)`, centred on the first line (`top: calc(.5lh - size / 2)`). The label is `width: fit-content`, so on a centred label the dot sits beside the text.
+- Desktop: the dot hangs in the margin, so the label stays on the grid line. Phones: the label steps in by dot + gap.
+- **Motion:** the dot scales in first (0.5s, `--ease-out-expo`), and the label's lines start 0.32s later (4 stagger steps). The dot stays.
 
 ### 5.3 Button motion: primary (filled) buttons
 After cambium.com. The button clips two layers:

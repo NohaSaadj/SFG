@@ -31,9 +31,9 @@
       --color-bg-surface:var(--neutral-paper);
       --color-bg-surface-alt:var(--neutral-sand);
       --color-bg-inverse:var(--green-700);
-      --color-text-primary:var(--neutral-ink);
-      --color-text-secondary:var(--neutral-muted);
-      --color-text-heading:var(--green-600);
+      --color-text-primary:var(--green-800);
+      --color-text-secondary:color-mix(in srgb,var(--green-800) 76%,transparent);
+      --color-text-heading:var(--green-800);
       --color-text-on-inverse:var(--neutral-linen);
       --color-text-on-action:var(--neutral-white);
       --color-text-on-panel:var(--neutral-ink);
@@ -103,7 +103,7 @@
       --h2-size:clamp(2.125rem,3.4vw,3rem);--h2-lh:1.167;--h2-ls:-.0167em;
       --title-size:1.75rem;--title-lh:1.2857;   /* 28/36 */
       --h4-size:clamp(1.75rem,2.2vw,2rem);--h4-lh:1.25;--h4-ls:-.0125em;   /* 32/40, 28 on phones so it stays below H3 */
-      --display-size:var(--h1-size);--display-lh:1.1;--display-ls:-.02em;   /* Display: the H1 size (40 → 64) in Medium */
+      --display-size:var(--h2-size);--display-lh:1.1;--display-ls:-.02em;   /* Display: the H2 size (34 → 48) */
       --quote-size:var(--h3-size);--quote-lh:1.2;--quote-ls:-.015em;   /* Quote: 40 → 30 */
       --ease-out:cubic-bezier(.22,1,.36,1);--ease-smooth:cubic-bezier(.38,.005,.215,1);
 
@@ -112,14 +112,14 @@
     }
     @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
-      --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
+      --color-text-primary:#EFE8DB;--color-text-secondary:color-mix(in srgb,#EFE8DB 74%,transparent);--color-text-heading:#EFE8DB;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-action-secondary-hover:#D8E6DF;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
       --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
       --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);
     }}
     :root[data-theme="dark"]{
       --color-bg-page:#101B16;--color-bg-surface:#16241D;--color-bg-surface-alt:#1B2B23;--color-bg-inverse:#0B1510;
-      --color-text-primary:#EFE8DB;--color-text-secondary:#B9AE9F;--color-text-heading:#A9CBB9;--color-text-on-inverse:#EFE8DB;
+      --color-text-primary:#EFE8DB;--color-text-secondary:color-mix(in srgb,#EFE8DB 74%,transparent);--color-text-heading:#EFE8DB;--color-text-on-inverse:#EFE8DB;
       --color-text-achievement:#DBBA80;--color-action-secondary:#A9CBB9;--color-action-secondary-hover:#D8E6DF;--color-border-subtle:#2E4238;--color-border-focus:#A9CBB9;
       --color-bg-field:#101B16;--color-line-process:rgb(239 232 219 / .24);--color-accent-achievement:#DBBA80;--color-text-achievement-on-tint:#DBBA80;--color-text-on-secondary:#0B1510;--color-scrim-dialog:rgb(0 0 0 / .56);--color-pen-default:#E27760;--color-text-pen:#E27760;--color-pen-soft:#7D4A3E;--color-accent-number:var(--red-400);--color-bg-glass:rgb(16 27 22 / .55);--color-text-glass:#EFE8DB;--color-border-glass:rgb(239 232 219 / .1);--glass-logo-ink:none;--glass-logo-linen:block;--color-pattern-stitch:#2E4238;--color-pattern-stitch-soft:#1B2B23;
       --color-scrim-hero:rgb(11 21 16 / .42);--color-scrim-hero-edge:rgb(11 21 16 / .8);--color-scrim-hero-soft:rgb(11 21 16 / .3);
@@ -340,7 +340,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .wwd_sheet.is-do{background:var(--color-bg-inverse);color:var(--color-text-on-inverse);transform-origin:50% 0}
 .wwd_sheet.is-dont{background:var(--color-bg-page);color:var(--color-text-primary);border-radius:var(--radius-panel) var(--radius-panel) 0 0;transform:translateY(100%);box-shadow:0 -24px 48px rgb(13 38 29 / .18)}
 .wwd_dim{position:absolute;inset:0;background:var(--color-bg-inverse);opacity:0;pointer-events:none}
-.wwd_title{margin:0 0 var(--space-96)}   /* Cambium: H1, then a wide gap to the cards */
+.wwd_title{margin:0 0 var(--space-64)}   /* Cambium: H1, then a wide gap to the cards */
 .is-dont .wwd_title{color:var(--color-text-heading)}
 /* Three equal columns from margin to margin; the text hugs a short measure so there is room between columns */
 .wwd_cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--space-64);list-style:none;margin:0;padding:0}
@@ -379,7 +379,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .about_grid{display:grid;grid-template-columns:repeat(var(--grid-columns),minmax(0,1fr));column-gap:var(--grid-gutter);align-items:start}
 .about_text{grid-column:7 / span 5;margin:0;text-wrap:pretty;color:var(--color-text-secondary)}
 .about_aside{grid-column:1 / span 5}
-.about_eyebrow,.sb_eyebrow{margin:0 0 var(--space-16);color:var(--color-text-primary)}
+.about_eyebrow,.sb_eyebrow{margin:0 0 var(--space-16);color:var(--color-text-heading)}
 .about_title{margin:0;color:var(--color-text-heading)}
 @media (max-width:991px){
   .section_about{padding:var(--space-96) var(--grid-margin)}
@@ -389,7 +389,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 /* ===== Reveals, after cambium.com: split-text lines rise out of a mask, media uncovers, details fade up ===== */
 :root{--ease-out-expo:cubic-bezier(.16,1,.3,1)}
 /* Section titles: a dot on the reading-start side appears first, then the title writes in; the dot stays */
-.sec-dot{position:relative;--dot:max(var(--space-8),.25em);--dot-gap:max(var(--space-8),.33em)}
+.sec-dot{position:relative;width:fit-content;--dot:max(var(--space-8),.25em);--dot-gap:max(var(--space-8),.33em)}
 .sec-dot::before{content:"";position:absolute;inset-inline-start:calc(-1 * (var(--dot) + var(--dot-gap)));top:calc(.5lh - var(--dot) / 2);width:var(--dot);height:var(--dot);border-radius:var(--radius-full);background:currentColor}
 @media (max-width:767px){.sec-dot{padding-inline-start:calc(var(--dot) + var(--dot-gap))}.sec-dot::before{inset-inline-start:0}}   /* phones: the margin is too narrow to hang the dot, so the title steps in */
 .js .sec-dot::before{scale:0;transition:scale .5s var(--ease-out-expo) var(--dot-d,0s)}
@@ -534,7 +534,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .how_pattern{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .how_art{position:absolute;left:0;top:0;width:calc(var(--r) * 520px);height:520px;display:grid;place-items:center;padding:var(--space-48);transform-origin:0 0;transform:scale(var(--k,1))}
 /* Illustrations (placeholders until SFG photos arrive) */
-.how_card{display:flex;flex-direction:column;gap:var(--space-12);width:100%;max-width:520px;padding:var(--space-24);border-radius:var(--radius-card);background:var(--color-bg-surface);color:var(--color-text-primary);box-shadow:0 1px 2px rgb(30 26 22 / .06),0 12px 32px rgb(30 26 22 / .08)}
+.how_card{display:flex;flex-direction:column;gap:var(--space-12);width:100%;max-width:520px;padding:var(--space-24);border-radius:var(--radius-card);background:var(--color-bg-surface);color:var(--color-text-primary)}
 .how_card-top{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-12);padding-bottom:var(--space-12);border-bottom:1px solid var(--color-border-subtle)}
 .how_muted{color:var(--color-text-secondary)}
 .how_ochre{color:var(--color-text-achievement)}
@@ -557,6 +557,20 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .how_card.is-doc{gap:var(--space-8)}
 .how_card.is-doc .how_card-top{margin-bottom:var(--space-8)}
 .how_pen{position:absolute;overflow:visible;pointer-events:none}
+/* Illustration motion: when a picture is 40% in view its parts play in order, once (paused on their first frame until then) */
+@media (prefers-reduced-motion:no-preference){
+  .js .how-a{animation:var(--how-k,how-in) .7s var(--ease-out-expo) calc(.15s + var(--a,0) * .12s) both paused}
+  .js .how-a[data-a="grow"]{transform-origin:left center;animation-duration:.9s}
+  .js[dir="rtl"] .how-a[data-a="grow"]{transform-origin:right center}
+  .js .is-play .how-a{animation-play-state:running}
+  .js .how_pen path{stroke-dasharray:1;stroke-dashoffset:1}
+  .js .is-play .how_pen path{stroke-dashoffset:0;transition:stroke-dashoffset .8s var(--ease-out) var(--pen-d,1s)}
+}
+@keyframes how-in{from{opacity:0;transform:translate3d(0,12px,0)}to{opacity:1;transform:none}}
+@keyframes how-left{from{opacity:0;transform:translate3d(-32px,0,0)}to{opacity:1;transform:none}}
+@keyframes how-right{from{opacity:0;transform:translate3d(32px,0,0)}to{opacity:1;transform:none}}
+@keyframes how-grow{from{transform:scaleX(0)}to{transform:none}}
+@keyframes how-pop{0%{opacity:0;transform:scale(.6)}60%{opacity:1;transform:scale(1.06)}to{opacity:1;transform:none}}
 .how_pen path{fill:none;stroke:var(--color-pen-default);stroke-width:2;stroke-linecap:round;vector-effect:non-scaling-stroke}
 .is-marked .how_pen{left:0;right:0;bottom:-8px;height:8px;width:100%}
 .is-circled .how_pen{left:-10%;top:-12px;width:120%;height:32px}
@@ -600,8 +614,8 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .section_results{--results-ease:cubic-bezier(.165,.84,.44,1);
   --results-bg:var(--green-900);--results-glow:radial-gradient(closest-side,rgb(31 93 70 / .9),rgb(24 73 55 / .45) 60%,transparent);
   --results-ink:var(--neutral-linen);--results-name:var(--green-200);--results-active-text:var(--ochre-300);
-  --results-eyebrow:var(--ochre-300);--results-number:var(--ochre-300);
-  --results-card-bg:var(--neutral-paper);--results-card-number:var(--ochre-700);--results-card-ink:var(--neutral-ink);--results-card-muted:var(--neutral-muted);
+  --results-eyebrow:var(--results-ink);--results-number:var(--ochre-300);
+  --results-card-bg:var(--neutral-paper);--results-card-number:var(--ochre-700);--results-card-ink:var(--green-800);--results-card-muted:color-mix(in srgb,var(--green-800) 76%,transparent);
   --results-dot:#F7F2E9;--results-pin:var(--ochre-300);--results-halo:rgb(247 242 233 / .16);
   --results-pill-bg:var(--neutral-linen);--results-pill-ink:var(--neutral-ink);--results-focus:var(--ochre-300);
   position:relative;z-index:2;background:var(--results-bg);color:var(--results-ink);overflow:clip}
@@ -615,20 +629,22 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 
 /* Intro: three result cards */
 .results_intro{position:relative;z-index:3;padding:var(--space-128) var(--grid-margin) var(--space-64);text-align:center}
+.results_eyebrow{margin:0 auto var(--space-16);color:var(--results-eyebrow)}
 .results_intro-title{margin:0;color:var(--results-ink);text-wrap:balance}   /* one line on wide screens; wraps evenly on phones instead of clipping */
 @media (max-width:359px){.results_intro-title{font-size:var(--h5-size);line-height:var(--h5-lh)}}
 .results_stats{list-style:none;margin:var(--space-48) auto 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--grid-gutter);max-width:1120px;text-align:start}
-/* cards: 2 columns × 2 rows. Row 1: number | title. Row 2: the description under the title (same start edge), at the bottom. */
-.results_stat{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto 1fr;gap:var(--space-48) var(--space-32);align-items:center;
+/* cards: the number (H2, ochre) beside a title (Title1) with its description (Body2, faded) directly under it */
+.results_stat{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-24);row-gap:var(--space-8);align-items:start;align-content:start;
   padding:var(--space-24);border-radius:10px;background:var(--results-card-bg)}
-.results_number{grid-column:1;grid-row:1;color:var(--results-card-number);font-variant-numeric:tabular-nums}   /* H1 */
-.results_stat-title{grid-column:2;grid-row:1;color:var(--results-card-ink)}                                    /* Title: Thmanyah Sans Medium 28/36 */
-.results_stat-text{grid-column:2;grid-row:2;align-self:end;color:var(--results-card-muted);text-wrap:pretty} /* Body2 */
-@media (min-width:992px) and (max-width:1439px),(max-width:359px){   /* cards narrower than 360px: number on top, then title and description */
-  .results_stat{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto 1fr;row-gap:var(--space-24)}
-  .results_stat-title{grid-column:1;grid-row:2}
-  .results_stat-text{grid-column:1;grid-row:3;margin-top:var(--space-24)}
+.results_number{grid-column:1;grid-row:1 / span 2;color:var(--results-card-number);font-variant-numeric:tabular-nums;line-height:1}   /* H2 */
+.results_stat-title{grid-column:2;grid-row:1;color:var(--results-card-ink)}                                                         /* Title1 */
+.results_stat-text{grid-column:2;grid-row:2;margin:0;color:var(--results-card-muted);text-wrap:pretty}                             /* Body2 */
+@media (min-width:992px) and (max-width:1439px),(max-width:359px){   /* narrow cards: number on top, then title and description */
+  .results_stat{grid-template-columns:minmax(0,1fr)}
+  .results_number{grid-row:auto;margin-bottom:var(--space-8)}
+  .results_stat-title,.results_stat-text{grid-column:1;grid-row:auto}
 }
+
 .results_intro-title,.results_stat-title,.results_stat-text,.results_title,.results_sub,.results_name{unicode-bidi:plaintext}   /* English copy keeps its punctuation in Arabic mode */
 
 /* Layout: list on the left, heading and globe on the right (one screen tall) */
@@ -818,7 +834,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
   --memory-ink:var(--color-text-on-inverse);--memory-muted:var(--color-text-on-inverse-secondary);   /* linen 9.2:1, soft linen 5.6:1 on the green */
   --memory-rule:var(--color-border-on-inverse);   /* faint ruled lines */
   position:relative;z-index:2;background:var(--color-bg-inverse);color:var(--memory-ink);padding:var(--space-160) var(--grid-margin) var(--space-128)}
-.memory_title{margin:0 0 var(--space-64);text-align:center;color:var(--memory-ink)}
+.memory_title{margin:0 auto var(--space-48);text-align:center;color:var(--memory-ink)}
 .memory_layout{max-width:52rem;margin-inline:auto}
 /* the photos: one size (14rem, 4:3, the same caption room), straight on the green; space groups them, no cards */
 .memory_prints{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-16);margin:0 0 var(--space-48)}
@@ -890,7 +906,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
    left, four short topics as an accordion on the right. Native <details>/<summary>, so it works
    with the keyboard and screen readers without script; the first topic starts open.
    ========================================================================== */
-.section_join{--join-gap:3.125%;--join-left:calc(var(--grid-margin) - var(--space-56));position:relative;z-index:2;background:var(--color-bg-surface);color:var(--color-text-primary);padding:0 0 var(--space-64);overflow:clip}
+.section_join{--join-gap:3.125%;--join-left:calc(var(--grid-margin) - var(--space-56));position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:0 0 var(--space-64);overflow:clip}
 /* tatreez backdrop, measured from cambium.com/technology's last testimonial (1920px): the panel starts 15% in, leaves a
    60px (3.125%) gap on the right and 64px at the bottom; three stitch-field blocks show around it: top-left (15% wide,
    64% tall), a right strip (from 20% down) and a bottom strip under the right half, which runs into the footer. */
@@ -942,12 +958,8 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
 .footer_brand{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-24)}
 .footer_logo{display:block;width:120px;height:auto}
 .footer_line{margin:0;max-width:32ch;color:var(--color-text-on-inverse-secondary);text-wrap:pretty}
-.footer_contact{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-4)}
-.footer_contact a{display:inline-block;padding-block:var(--space-8);color:var(--color-text-on-inverse);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--color-border-on-inverse);overflow-wrap:anywhere}
-.footer_contact a svg{display:inline;vertical-align:-1px;margin-inline-start:var(--space-4)}
-@media (hover:hover){.footer_contact a:hover{text-decoration-color:currentColor}}
-.footer_social{display:flex;flex-wrap:wrap;gap:var(--space-8);margin-inline-start:calc(var(--space-12) * -1)}   /* icons optically on the text edge */
-.footer_social a{display:inline-grid;place-items:center;width:var(--size-touch-min);height:var(--size-touch-min);padding:0;border-radius:var(--radius-full);text-decoration:none;color:var(--color-text-on-inverse);transition:background-color .3s var(--ease-out)}
+.footer_social{list-style:none;margin:var(--space-24) 0 0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-4);margin-inline-start:calc(var(--space-12) * -1)}   /* icons optically on the text edge */
+.footer_social a{display:inline-grid;place-items:center;width:var(--size-touch-min);height:var(--size-touch-min);border-radius:var(--radius-full);color:var(--color-text-on-inverse);transition:background-color .3s var(--ease-out)}
 @media (hover:hover){.footer_social a:hover{background:var(--color-border-on-inverse)}}
 .footer_cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--space-48);row-gap:var(--space-48)}
 .footer_col h2{margin:0 0 var(--space-16);color:var(--color-text-on-inverse-secondary)}
@@ -956,9 +968,9 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
 .footer_col a svg{display:inline;vertical-align:-1px;margin-inline-start:var(--space-4)}   /* the arrow stays with the last word */
 @media (hover:hover){.footer_col a:hover{text-decoration:underline;text-underline-offset:4px}}
 .site-footer a:focus-visible{outline:3px solid var(--color-border-focus-on-inverse);outline-offset:3px;border-radius:var(--radius-sm)}
-.footer_bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-16);margin-top:var(--space-96);padding-top:var(--space-24);border-top:1px solid var(--color-border-on-inverse);color:var(--color-text-on-inverse-secondary)}
+.footer_bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-16);margin-top:var(--space-48);padding-top:var(--space-24);border-top:1px solid var(--color-border-on-inverse);color:var(--color-text-on-inverse-secondary)}
 .footer_bottom p{margin:0}
-@media (max-width:991px){.footer_inner{padding-block:var(--space-64) var(--space-32)}.footer_top{grid-template-columns:minmax(0,1fr)}.footer_cols{grid-template-columns:repeat(2,minmax(0,1fr))}.footer_bottom{margin-top:var(--space-64)}}
+@media (max-width:991px){.footer_inner{padding-block:var(--space-64) var(--space-32)}.footer_top{grid-template-columns:minmax(0,1fr)}.footer_cols{grid-template-columns:repeat(2,minmax(0,1fr))}.footer_bottom{margin-top:var(--space-32)}}
 @media (max-width:479px){.footer_cols{grid-template-columns:minmax(0,1fr)}}
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{transition:none!important;animation:none!important}
@@ -1066,8 +1078,8 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
     <section class="section_about" id="about" aria-labelledby="about-title">
       <div class="about_grid" data-split-group>
         <div class="about_aside">
-          <p class="about_eyebrow title3" data-split>About SFG</p>
-          <h2 class="about_title h2 sec-dot" id="about-title" data-split>A Palestinian-led mentorship initiative</h2>
+          <p class="about_eyebrow title2 sec-dot" data-split>About SFG</p>
+          <h2 class="about_title h2" id="about-title" data-split>A Palestinian-led mentorship initiative</h2>
         </div>
         <p class="about_text body1" data-split>Scholarships for Ghazza (SFG) is a Palestinian-led mentorship programme that helps students from Gaza apply for higher education scholarships. With Israel destroying all of Gaza’s universities, students are left with no place to continue their education. Yet for generations, Palestinians have valued education as a path to hope and opportunity. That’s why SFG exists: to guide students through the application process and help them secure scholarships to study abroad.</p>
       </div>
@@ -1080,9 +1092,9 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
   <div class="tl" data-tl>
     <div class="tl_sticky">
       <div class="sb_head" data-split-group>
-        <p class="sb_eyebrow title3" data-split>Our story</p>
+        <p class="sb_eyebrow title2 sec-dot" data-split>Our story</p>
         <div class="sb_title-row">
-          <h2 class="sb_title h2 sec-dot" id="sb-title" data-split>How SFG began</h2>
+          <h2 class="sb_title h2" id="sb-title" data-split>How SFG began</h2>
         </div>
         <div class="sb_sub-row">
           <p class="sb_sub body1" data-split>One scholarship, one promise, and a growing network of mentors.</p>
@@ -1107,7 +1119,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
     <section class="section_wwd" id="what-we-do" aria-label="What we do, and what we don’t do" data-wwd>
       <div class="wwd_stage">
         <div class="wwd_sheet is-do" data-wwd-do>
-          <h2 class="wwd_title h2 sec-dot" data-split>What we do</h2>
+          <h2 class="wwd_title title2 sec-dot" data-split>What we do</h2>
           <ul class="wwd_cols" role="list">
           <li class="wwd_col" style="--i:0" data-split-group>
             <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14.2c2.9.3 5 2.4 5 5.3"/></svg></span>
@@ -1128,7 +1140,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
           <span class="wwd_dim" aria-hidden="true"></span>
         </div>
         <div class="wwd_sheet is-dont" data-wwd-dont data-split-manual>
-          <h2 class="wwd_title h2 sec-dot" data-split="whole">What we <span class="wwd_mark">don’t<svg class="wwd_pen" viewBox="0 0 120 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M3 11 C 30 4, 62 13, 117 6" pathLength="1"/></svg></span> do</h2>
+          <h2 class="wwd_title title2 sec-dot" data-split="whole">What we <span class="wwd_mark">don’t<svg class="wwd_pen" viewBox="0 0 120 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M3 11 C 30 4, 62 13, 117 6" pathLength="1"/></svg></span> do</h2>
           <ul class="wwd_cols" role="list">
           <li class="wwd_col" style="--i:0">
             <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="6" width="19" height="12" rx="1.5"/><circle cx="12" cy="12" r="2.5"/><path d="M6 9.5v5M18 9.5v5"/></svg></span>
@@ -1152,8 +1164,8 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
     <section class="section_how" id="how-it-works" aria-labelledby="how-title" data-how>
       <div class="how_divider" aria-hidden="true"><svg class="how_band" viewBox="0 0 1101.6 25.2" data-tatreez-fit data-reveal-wipe aria-hidden="true" focusable="false"><rect width="1101.6" height="25.2" fill="url(#tatreezBand)"/></svg></div>
       <div class="how_head" data-split-group>
-        <p class="how_eyebrow title3" data-split>How it works</p>
-        <h2 class="how_title h2 sec-dot" id="how-title" data-split>Five steps, one mentor the whole way</h2>
+        <p class="how_eyebrow title2 sec-dot" data-split>How it works</p>
+        <h2 class="how_title h2" id="how-title" data-split>Five steps, one mentor the whole way</h2>
         <p class="how_sub body1" data-split>Free from the first form to the final decision, with a mentor who gives you the skills and confidence to do it yourself.</p>
       </div>
       <div class="how_contain">
@@ -1259,11 +1271,11 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
                   <div class="how_card is-doc">
                     <div class="how_card-top"><span class="title3">Personal statement</span><span class="body3 how_muted">Draft 4</span></div>
                     <span class="how_bar" style="--w:96%"></span><span class="how_bar" style="--w:88%"></span>
-                    <span class="how_bar is-marked" style="--w:72%"><svg class="how_pen" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M1 6 C 20 2, 40 9, 60 5 S 90 3, 99 6"/></svg></span>
+                    <span class="how_bar is-marked" style="--w:72%"><svg class="how_pen" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M1 6 C 20 2, 40 9, 60 5 S 90 3, 99 6" pathLength="1"/></svg></span>
                     <span class="how_bar" style="--w:92%"></span>
                     <span class="how_note body3">Say more about the bridge you designed</span>
                     <span class="how_bar" style="--w:84%"></span><span class="how_bar" style="--w:95%"></span>
-                    <span class="how_bar is-circled" style="--w:40%"><svg class="how_pen" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M70 6 C 40 -2, 4 8, 3 20 C 2 34, 50 40, 82 33 C 100 28, 99 10, 64 5"/></svg></span>
+                    <span class="how_bar is-circled" style="--w:40%"><svg class="how_pen" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M70 6 C 40 -2, 4 8, 3 20 C 2 34, 50 40, 82 33 C 100 28, 99 10, 64 5" pathLength="1"/></svg></span>
                     <span class="how_bar" style="--w:78%"></span><span class="how_bar" style="--w:60%"></span>
                   </div>
                 </div>
@@ -1302,11 +1314,12 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
     <section class="section_results" id="results" aria-labelledby="results-title" data-results data-palette="night">
       <div class="results_stage" data-results-stage>
         <div class="results_intro" data-results-intro data-split-group>
-          <h2 class="results_intro-title h2 sec-dot" id="results-title" data-split>What mentorship made possible</h2>
+          <p class="results_eyebrow title2 sec-dot" data-split>Our results</p>
+          <h2 class="results_intro-title h2" id="results-title" data-split>What mentorship made possible</h2>
           <ul class="results_stats" role="list">
-            <li class="results_stat"><span class="results_number h1" data-count="143">143</span><span class="results_stat-title title" data-split>Scholarship winners</span><span class="results_stat-text body2" data-split>Students who have won fully funded scholarships with SFG mentors so far.</span></li>
-            <li class="results_stat"><span class="results_number h1" data-count="50" data-suffix="+">50+</span><span class="results_stat-title title" data-split>Universities</span><span class="results_stat-text body2" data-split>Including Cambridge, Imperial, UCL, LSE and Trinity College Dublin.</span></li>
-            <li class="results_stat"><span class="results_number h1" data-count="14">14</span><span class="results_stat-title title" data-split>Countries</span><span class="results_stat-text body2" data-split>From the UK and Ireland to Qatar, Malaysia and Singapore.</span></li>
+            <li class="results_stat"><span class="results_number h2" data-count="143">143</span><span class="results_stat-title title1" data-split>Scholarship winners</span><span class="results_stat-text body2" data-split>Students who have won fully funded scholarships with SFG mentors so far.</span></li>
+            <li class="results_stat"><span class="results_number h2" data-count="50" data-suffix="+">50+</span><span class="results_stat-title title1" data-split>Universities</span><span class="results_stat-text body2" data-split>Including Cambridge, Imperial, UCL, LSE and Trinity College Dublin.</span></li>
+            <li class="results_stat"><span class="results_number h2" data-count="14">14</span><span class="results_stat-title title1" data-split>Countries</span><span class="results_stat-text body2" data-split>From the UK and Ireland to Qatar, Malaysia and Singapore.</span></li>
           </ul>
         </div>
         <div class="results_contain">
@@ -1383,7 +1396,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
     <section class="section_voices" id="student-voices" aria-labelledby="voices-title" lang="en" data-voices>
       <div class="voices_pin" data-voices-pin>
         <div class="voices_head">
-          <h2 class="voices_title h2 sec-dot" id="voices-title" data-split>Student voices</h2>
+          <h2 class="voices_title title2 sec-dot" id="voices-title" data-split>Student voices</h2>
           <div class="voices_pager">
             <button class="sb_pager-btn" type="button" data-voices-prev aria-label="Previous story"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(180 12 12)" fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
             <button class="sb_pager-btn" type="button" data-voices-next aria-label="Next story"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
@@ -1494,7 +1507,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
       </dialog>
     </section>
     <section class="section_memory" id="in-remembrance" aria-labelledby="memory-title" lang="en" dir="ltr" data-memory>
-      <h2 class="memory_title h2 sec-dot" id="memory-title" data-split>In Remembrance</h2>
+      <h2 class="memory_title title2 sec-dot" id="memory-title" data-split>In Remembrance</h2>
       <div class="memory_layout">
       <div class="memory_prints">
         <div class="memory_side is-start">
@@ -1525,7 +1538,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
       </div>
     </section>
     <section class="section_mentors" id="mentor-voices" aria-labelledby="mentors-title" lang="en" dir="ltr" data-mentors>
-      <h2 class="mentors_eyebrow title3 sec-dot" id="mentors-title" data-split>Mentor voices</h2>
+      <h2 class="mentors_eyebrow title2 sec-dot" id="mentors-title" data-split>Mentor voices</h2>
       <div class="mentors_grid">
         <p class="mentors_mark" aria-hidden="true">“</p>
         <div class="mentors_slides" data-split-manual>
@@ -1569,8 +1582,8 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
       <div class="join_panel">
       <div class="join_grid">
         <div class="join_ask" data-split-group>
-          <p class="join_eyebrow title3" data-split>Become a mentor</p>
-          <h2 class="join_title h2 sec-dot" id="join-title" data-split>Is mentoring for you?</h2>
+          <p class="join_eyebrow title2 sec-dot" data-split>Become a mentor</p>
+          <h2 class="join_title h2" id="join-title" data-split>Is mentoring for you?</h2>
           <p class="join_lead body1" data-split>If you’ve been through the scholarship application process or have experience guiding others, you could make a huge impact.</p>
           <a class="button-primary title3" href="https://secure.lglforms.com/form_engine/s/g_DgjZr8NO-ar4ZbK8qO7Q" target="_blank" rel="noopener">Become a mentor<span class="sr-only"> (opens the application form in a new tab)</span></a>
         </div>
@@ -1603,12 +1616,11 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
         <div class="footer_brand">
           <img class="footer_logo" src="assets/logo-linen.png" alt="Scholarships for Ghazza" width="89" height="48" />
           <p class="footer_line body2" data-split>A Palestinian-led mentorship initiative helping students from Gaza win fully funded scholarships.</p>
-          <ul class="footer_contact" role="list" aria-label="Contact">
-            <li><a class="body1" href="mailto:scholarshipsforghazza@gmail.com">scholarshipsforghazza@gmail.com</a></li>
-            <li class="footer_social">
-              <a href="https://www.instagram.com/scholarshipsforghazza/" target="_blank" rel="noopener" aria-label="Instagram (opens in a new tab)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.25" cy="6.75" r="1" fill="currentColor" stroke="none"/></svg></a>
-              <a href="https://www.linkedin.com/company/scholarships-for-ghazza-sfg/home/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in a new tab)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V17M8 7.25v.01M11.5 17v-6.5M11.5 13.75c0-1.9 1.15-3.25 2.75-3.25S17 11.7 17 13.75V17"/></svg></a>
-            </li>
+          <ul class="footer_social" role="list" aria-label="Contact and social media">
+            <li><a href="mailto:scholarshipsforghazza@gmail.com" aria-label="Email scholarshipsforghazza@gmail.com"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6" stroke-linecap="round"/></svg></a></li>
+            <li><a href="https://www.instagram.com/scholarshipsforghazza/" target="_blank" rel="noopener" aria-label="Instagram (opens in a new tab)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.25" cy="6.75" r="1" fill="currentColor" stroke="none"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/company/scholarships-for-ghazza-sfg/home/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in a new tab)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V17M8 7.25v.01M11.5 17v-6.5M11.5 13.75c0-1.9 1.15-3.25 2.75-3.25S17 11.7 17 13.75V17"/></svg></a></li>
+            <li><a href="https://www.youtube.com/@ScholarshipsForGhazza" target="_blank" rel="noopener" aria-label="YouTube (opens in a new tab)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.75" y="5.5" width="18.5" height="13" rx="4"/><path d="M10.25 9.25v5.5L15 12z" fill="currentColor"/></svg></a></li>
           </ul>
         </div>
         <nav class="footer_cols" aria-label="Footer">
@@ -1619,6 +1631,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
               <li><a class="body1" href="#how-it-began">Our story</a></li>
               <li><a class="body1" href="#how-it-works">How it works</a></li>
               <li><a class="body1" href="#results">Our impact</a></li>
+              <li><a class="body1" href="https://youtu.be/d8WLmMWsH8Q" target="_blank" rel="noopener">Meet SFG: a video with Ahmed Issa<span class="sr-only"> (opens YouTube in a new tab)</span><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(-45 12 12)" fill="currentColor" d="M13.6709 4.66504C14.7728 6.86859 16.4363 8.53812 17.8438 9.66406C18.5448 10.2249 19.1754 10.6453 19.6279 10.9238C19.8538 11.0628 20.0347 11.1668 20.1572 11.2344C20.2184 11.2681 20.2657 11.2927 20.2959 11.3086C20.3106 11.3163 20.3214 11.3218 20.3281 11.3252C20.3313 11.3268 20.3337 11.3285 20.335 11.3291L21.6768 12L20.335 12.6699L20.3359 12.6709H20.335C20.3337 12.6715 20.3313 12.6732 20.3281 12.6748C20.3214 12.6782 20.3106 12.6837 20.2959 12.6914C20.2657 12.7073 20.2184 12.7319 20.1572 12.7656C20.0347 12.8332 19.8538 12.9372 19.6279 13.0762C19.1754 13.3547 18.5448 13.7751 17.8438 14.3359C16.4363 15.4619 14.7728 17.1314 13.6709 19.335L12.3291 18.665C13.5606 16.2021 15.3971 14.3714 16.9062 13.1641C17.0903 13.0168 17.2706 12.8793 17.4443 12.75H4V11.25H17.4443C17.2706 11.1207 17.0903 10.9832 16.9062 10.8359C15.3971 9.62861 13.5606 7.79788 12.3291 5.33496L13.6709 4.66504Z"/></svg></a></li>
             </ul>
           </div>
           <div class="footer_col">
@@ -2089,7 +2102,7 @@ window.SFGReveal=(function(){
     function sync(){ hin.innerHTML=def.innerHTML; hin.querySelectorAll(".sr-only,[id]").forEach(function(n){ if(n.classList.contains("sr-only")) n.remove(); else n.removeAttribute("id"); }); hin.querySelectorAll("[data-i18n]").forEach(function(n){n.removeAttribute("data-i18n");}); }
     sync(); a.addEventListener("pointerenter",sync);   // the label can change language, so copy it on each hover
   });
-  function links(){ document.querySelectorAll(".how_link,.partners_join,.voices_open,.footer_col a,.footer_contact li:not(.footer_social) a,.sb_credit").forEach(function(a){
+  function links(){ document.querySelectorAll(".how_link,.partners_join,.voices_open,.footer_col a,.sb_credit").forEach(function(a){
     if(a.querySelector(".link-draw_text")) return;
     var t=document.createElement("span"); t.className="link-draw_text";
     [].slice.call(a.childNodes).forEach(function(n){ if(n.nodeName.toLowerCase()!=="svg") t.appendChild(n); });
@@ -2211,6 +2224,27 @@ layout();
     b.setAttribute("viewBox",`0 0 ${w} 25.2`);b.querySelector(":scope > rect").setAttribute("width",w);
   });}
   addEventListener("resize",fit);fit();
+})();
+// ===== How it works · the illustrations play when they come into view =====
+(function(){
+  var plan=[   // [selector inside the card, motion]; listed in the order they play
+    [".is-form",[[".how_card-top","in"],[".how_field","in"],[".how_field .how_bar","grow"],[".how_chip","pop"]]],
+    [".is-match",[[".how_person:first-of-type","left"],[".how_person:last-of-type","right"],[".how_tag","pop"]]],
+    [".is-list",[[".how_card-top","in"],[".how_rows li","in"]]],
+    [".is-doc",[[".how_card-top","in"],[":scope > .how_bar","grow"],[".how_note","in"]]],
+    [".is-submit",[[".how_rows li","in"],[".how_check","pop"],[".how_done .h5","in"]]]
+  ];
+  var medias=[].slice.call(document.querySelectorAll(".how_media"));
+  plan.forEach(function(p){
+    var card=document.querySelector(".how_card"+p[0]); if(!card) return; var n=0;
+    p[1].forEach(function(step){ card.querySelectorAll(step[0]).forEach(function(el){
+      el.classList.add("how-a"); el.setAttribute("data-a",step[1]); el.style.setProperty("--how-k","how-"+step[1]); el.style.setProperty("--a",n++);
+    }); });
+    card.style.setProperty("--pen-d",(.15+n*.12+.4).toFixed(2)+"s");   // the red pen marks after the lines are down
+  });
+  if(!("IntersectionObserver" in window)){ medias.forEach(function(m){m.classList.add("is-play");}); return; }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("is-play"); io.unobserve(e.target); } }); },{threshold:.4});
+  medias.forEach(function(m){io.observe(m);});
 })();
 // ===== How it works · process line v2.0 (after cambium.com/technology "process-line") =====
 // One path through every step's dot: vertical at each dot, an S-curve between the two sides (straight on phones).
