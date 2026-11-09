@@ -50,8 +50,8 @@ Bold = base brand value (red 500 and green 600 are sampled from SFG's own brand 
 | `border/focus` | green/600 | night/heading | Focus ring |
 | `accent/achievement` | ochre/500 | night/achieve | Numbers, map pins, scholarship names |
 | `accent/number` | red/600 | red/400 | Large stat numbers |
-| `text/highlight` | red/600 (= action/primary) | red/400 | The one key word in the About headline |
-| `footer-head/explore` · `/students` · `/mentors` | green/200 · ochre/300 · red/200 | same | Footer column labels, one colour per audience (on `bg/inverse`) |
+| `text/highlight` | green/500 (4.75:1 on linen) | green/300 | Key words in a headline (About: *mentorship initiative*) |
+| `footer-head` | ochre/300 (5.5:1 on green 700) | ochre/300 | Footer column labels, one colour for all |
 | `pen/default` | red/500 | night/thread | Mentor's red-pen marks (signature motion) |
 | `pen/soft` | red/200 | night/thread-soft | Faded marks (memorial section) |
 
@@ -59,7 +59,7 @@ Bold = base brand value (red 500 and green 600 are sampled from SFG's own brand 
 
 ### 1.3 Color rules
 - **Ratio:** about 60% linen/neutrals, 30% green + ink, 10% red.
-- **Red means action.** `action/primary` is used only for "Become a mentor". Don't use red decoratively, except the red-pen motion, the one key word in the About headline (`text/highlight`) and the "For mentors" footer label.
+- **Red means action.** `action/primary` is used only for "Become a mentor". Don't use red decoratively, except the red-pen motion.
 - **Contrast:** white on red/500 is 4.1:1 (fails for normal text), so buttons use **red/600** (5.2:1). Ochre fails as text on light backgrounds, so use `text/achievement` (ochre/700, 4.9:1).
 - **Memorial section:** sand background, ink and muted text, `pen/soft` only. No ochre, no strong red, no CTAs.
 
@@ -313,7 +313,7 @@ Every section opens the same way, in one colour (`text/heading`; on inverse sect
 
 The label is the section's `<h2>` when there is no headline; otherwise the headline is the `<h2>` and the label a `<p>`.
 - Dot size `max(8px, .25em)`, gap `max(8px, .33em)`, centred on the first line (`top: calc(.5lh - size / 2)`). The label is `width: fit-content`, so on a centred label the dot sits beside the text.
-- Desktop: the dot hangs in the margin, so the label stays on the grid line. Phones: the label steps in by dot + gap.
+- The dot sits on the content line, where the headline and details start; the label text steps in by dot + gap (after cambium.com). Same on desktop and phones.
 - **Motion:** the label's lines rise first; the dot scales in (0.5s, `--ease-out-expo`) at the moment the headline and details start to rise. A label with nothing after it brings its dot with it. The dot stays.
 - The memorial section's title has no dot.
 
@@ -326,6 +326,23 @@ After cambium.com. The button clips two layers:
 
 ### 5.4 Button motion: secondary (text links with an arrow)
 After cambium.com's "Arbor Wood Co. →". No underline at rest. On hover a 1/16em line in the text colour draws in from the reading start (`scaleX` 0 → 1, or a background-size sweep for links that wrap), 0.735s, `--ease-smooth`. On leave it retracts toward the end. On touch screens the line stays visible, since there is no hover.
+
+### 5.7 Accordion open / close
+After cambium.com. The body is a grid whose single row animates `grid-template-rows: 0fr → 1fr` (and back) over **0.6s `--ease-smooth`**; an inner wrapper has `min-height:0; overflow:hidden`. The icon is a + whose vertical line rotates −90° onto the horizontal one (+ → −), same timing. Built on native `<details>`: on close the element stays open until the motion ends, then closes. The opened topic's text plays the text reveal.
+
+```css
+.acc_body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease-smooth)}
+.acc_item.is-open .acc_body{grid-template-rows:1fr}
+.acc_body-in{min-height:0;overflow:hidden}
+.acc_plus .is-v{transform-origin:center;transition:transform .6s var(--ease-smooth)}
+.acc_item.is-open .acc_plus .is-v{transform:rotate(-90deg)}
+```
+
+### 5.8 Media reveals
+- **Media uncover** (photos): `clip-path: inset(18% 0 0 0)` → `inset(0)`, 1.3s `--ease-out-expo`, while the image scales 1.18 → 1 over 1.8s.
+- **Wipe** (tatreez bands and stitch fields): `clip-path` opens from the reading start, 1.4s `--ease-out-expo`.
+- **Fade-up** (logos, small tiles): opacity 0 → 1 and 24px → 0, 0.9s `--ease-out-expo`.
+- Pictures sit flat: no border, no shadow.
 
 ### 5.6 Number roll (odometer)
 After cambium.com/impact. Used for stat figures (Our results).

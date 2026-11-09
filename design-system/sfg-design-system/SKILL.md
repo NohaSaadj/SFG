@@ -5,6 +5,22 @@ description: Design tokens and visual rules for the Scholarships for Ghazza (SFG
 
 # SFG Design System
 
+**Version 1.0 (final, locked).** The colours, fonts and the motion catalogue below are fixed. A new page or section reuses them as they are; it does not add a new colour, weight or animation type. Change them only with the owner's sign-off, then bump the version and note it in the README.
+
+## Locked catalogue (summary)
+- **Colours:** green ink (green 800) for all text, faded to 76% for details; linen / paper / sand backgrounds; green 700 for inverse sections and the footer; **red 600 only** for "Become a mentor" (plus the red-pen marks); **ochre** for numbers and achievements; **green 500** (`text/highlight`) for the key words in a headline; **ochre 300** for the footer column labels. Dark mode uses the night tokens.
+- **Fonts:** Thmanyah Serif Display (headings, numbers), Thmanyah Serif Text (body, quotes), Thmanyah Sans (labels, buttons, navigation). Weights: **Regular 400** and **Medium 500** only. Navigation links and large lead paragraphs are Regular; headings, labels and buttons are Medium.
+- **Motion (one of each, nothing else):**
+  1. Text: *Text reveal animation* (lines rise out of a mask), on first appearance while scrolling. Every content text, every card, every section.
+  2. Section label dot: scales in as the headline begins.
+  3. Images: *media uncover* (clip from 18% below + 1.18 → 1 zoom, 1.3s / 1.8s). Patterns and bands: *wipe* (clip from the reading start, 1.4s). Small blocks (logos, tiles): *fade-up* (24px, 0.9s).
+  4. Illustrations: their parts play in order once 40% in view.
+  5. Primary buttons: panel slides up, label shrinks and rises. Secondary links: underline draws in.
+  6. Accordion: body opens/closes by grid rows 0fr ↔ 1fr, 0.6s `--ease-smooth`; the + turns into − (vertical line rotates −90°).
+  7. Numbers: *number roll* (odometer), 2.5s.
+  8. Carousels: the new slide's text re-plays the text reveal.
+  All of it is skipped under `prefers-reduced-motion`.
+
 Single source of truth for how the Scholarships for Ghazza website looks. Always read `references/tokens.md` before writing styles: it contains every color value, the full type scale, layout tokens and ready-to-paste CSS.
 
 ## Workflow
@@ -19,7 +35,7 @@ Single source of truth for how the Scholarships for Ghazza website looks. Always
 
 **Color**
 - Use semantic tokens in components (`--color-bg-page`, `--color-text-heading`, …). Primitives (`--red-500`, `--green-600`, …) exist only to define semantic tokens.
-- Red means action. `--color-action-primary` (red 600) is reserved for the primary call to action, "Become a mentor". Don't use red decoratively. Exceptions: the mentor's red-pen marks (`--color-pen-*`), the one key word in the About headline (`--color-text-highlight`), and the "For mentors" footer label (red 200).
+- Red means action. `--color-action-primary` (red 600) is reserved for the primary call to action, "Become a mentor". Don't use red decoratively. The only exception is the mentor's red-pen marks (`--color-pen-*`).
 - Approximate ratio across a page: 60% linen/neutrals, 30% green + ink, 10% red.
 - Ochre (`--color-accent-achievement`) is for numbers, scholarship names and map pins. For ochre *text* on light backgrounds use `--color-text-achievement` (ochre 700) for contrast.
 - Support dark mode through the provided `prefers-color-scheme` block and `[data-theme]` overrides.
@@ -50,7 +66,7 @@ Single source of truth for how the Scholarships for Ghazza website looks. Always
 
 **Motion and icons** (details in section 5 of `references/tokens.md`)
 - **Text reveal animation:** every piece of content text appears the same way, with its lines rising out of a mask (1.1s, 0.08s apart, ease-out-expo). Hidden content plays when it is shown.
-- **Every section opens the same way:** a label (Title2, 18px) with a dot on its reading-start side, then the headline (H2), then details if needed. The label and headline share one colour. The label writes in first; its dot lands as the headline and details begin. Spacing is fixed: label → headline 16px, headline → details 24px.
+- **Every section opens the same way:** a label (Title2, 18px) with a dot on its reading-start side, then the headline (H2), then details if needed. The label and headline share one colour. The dot sits on the content line (where the headline and details start) and the label text follows it, as on cambium.com. The label writes in first; its dot lands as the headline and details begin. Spacing is fixed: label → headline 16px, headline → details 24px.
 - **Primary buttons:** a darker panel slides up from below while the label shrinks and rises (after cambium.com). **Secondary text links:** no underline at rest, and on hover it draws in from the left.
 - **Number roll (odometer):** stat figures roll up digit by digit from 0 (after cambium.com/impact).
 - **Arrows:** one full-arrow SVG (rotated for ↗ and ↓), and a chevron for carousel previous / next. No text arrows or emoji.
