@@ -19,7 +19,7 @@ Single source of truth for how the Scholarships for Ghazza website looks. Always
 
 **Color**
 - Use semantic tokens in components (`--color-bg-page`, `--color-text-heading`, …). Primitives (`--red-500`, `--green-600`, …) exist only to define semantic tokens.
-- Red means action. `--color-action-primary` (red 600) is reserved for the primary call to action, "Become a mentor". Don't use red decoratively; the only exception is the mentor's red-pen marks (`--color-pen-*`).
+- Red means action. `--color-action-primary` (red 600) is reserved for the primary call to action, "Become a mentor". Don't use red decoratively. Exceptions: the mentor's red-pen marks (`--color-pen-*`), the one key word in the About headline (`--color-text-highlight`), and the "For mentors" footer label (red 200).
 - Approximate ratio across a page: 60% linen/neutrals, 30% green + ink, 10% red.
 - Ochre (`--color-accent-achievement`) is for numbers, scholarship names and map pins. For ochre *text* on light backgrounds use `--color-text-achievement` (ochre 700) for contrast.
 - Support dark mode through the provided `prefers-color-scheme` block and `[data-theme]` overrides.
@@ -50,8 +50,9 @@ Single source of truth for how the Scholarships for Ghazza website looks. Always
 
 **Motion and icons** (details in section 5 of `references/tokens.md`)
 - **Text reveal animation:** every piece of content text appears the same way, with its lines rising out of a mask (1.1s, 0.08s apart, ease-out-expo). Hidden content plays when it is shown.
-- **Every section opens the same way:** a label (Title2, 18px) with a dot on its reading-start side, then the headline (H2), then details if needed. The label and headline share one colour. The dot appears first, then the label writes in.
+- **Every section opens the same way:** a label (Title2, 18px) with a dot on its reading-start side, then the headline (H2), then details if needed. The label and headline share one colour. The label writes in first; its dot lands as the headline and details begin. Spacing is fixed: label → headline 16px, headline → details 24px.
 - **Primary buttons:** a darker panel slides up from below while the label shrinks and rises (after cambium.com). **Secondary text links:** no underline at rest, and on hover it draws in from the left.
+- **Number roll (odometer):** stat figures roll up digit by digit from 0 (after cambium.com/impact).
 - **Arrows:** one full-arrow SVG (rotated for ↗ and ↓), and a chevron for carousel previous / next. No text arrows or emoji.
 
 ## Checklist before finishing
