@@ -306,7 +306,7 @@ The one way text appears on the page (After cambium.com; used by About and Our s
 ```
 
 ### 5.2 Section label and its dot
-Every section opens the same way, in one colour (`text/heading`; on inverse sections `text/on-inverse`):
+Top-level sections (the ones in the navigation, plus Become a mentor) open this way, in one colour (`text/heading`; on inverse sections `text/on-inverse`). The parts of About (Our story, What we do / What we don't, What mentorship made possible) skip the label and dot and open with the headline and details:
 1. **Section label**: Title2 (Sans Medium 18px), with a small round dot on its reading-start side (left in English, right in Arabic) in the same colour.
 2. **Headline**: H2 (Serif Display Medium 48 → 34px), where the section has one.
 3. **Details**: Body1/Body2 in `text/secondary` (the same ink, faded), where needed.
@@ -346,10 +346,11 @@ After cambium.com. The body is a grid whose single row animates `grid-template-r
 
 ### 5.6 Number roll (odometer)
 After cambium.com/impact. Used for stat figures (Our results).
-- Each digit sits in a 1em mask over a strip of 0–9 twice; the strip moves up from 0 to the digit (a 0 rolls a full turn to the second 0). Other characters (`+`, `%`) stay still.
+- Each digit sits in a mask over a strip of 0–9 twice; the strip moves up from 0 to the digit (a 0 rolls a full turn to the second 0). Other characters (`+`, `%`) stay still.
 - **2.5s**, ease-out-cubic `cubic-bezier(.215,.61,.355,1)`. Within a figure the rightmost digit starts first, 0.04s apart; figures start 0.1s apart from the reading start.
 - Starts once, when the row's top reaches 80% of the screen. The figure's text stays available to screen readers (`.sr-only`), the rolling strip is `aria-hidden`.
-- Stat layout: a 1px hairline (ink at 30%) on the reading-start side (on phones, on top), the figure (H1 size, Regular, ochre) at the top, the caption at the bottom (Body3 Medium, uppercase, 0.06em tracking, max 30ch).
+- Stat layout: paper cards (`radius-panel`, 24px padding) on the dark results section: the figure (H2, ochre 700) beside its title (Title1), the description (Body2, faded) 8px under the title; on phones the figure sits above.
+- Each digit cell is 1.4em tall (the mask too, pulled back to 1em with negative margins), so neighbouring digits never bleed into view at rest.
 
 ### 5.5 Arrows
 One arrow shape everywhere, as inline SVG with `fill="currentColor"`: **Full arrow** (→) for links and buttons, rotated −45° for an external link (↗), 90° for "scroll down". **Chevron** for carousel previous / next. Sizes 16, 20 or 28px. Flip with `scaleX(-1)` in RTL.

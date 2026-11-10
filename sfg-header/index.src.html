@@ -94,8 +94,8 @@
       --color-tatreez-primary:var(--red-500);      /* tatreez stitches: the brand's tatreez red */
       --color-tatreez-secondary:var(--ochre-400);
       /* Partners band: the tatreez stitches as a quiet background texture (neutrals only, so logos keep the contrast) */
-      --color-icon-accent-on-inverse:var(--red-400);   /* line icons on the dark "What we do" sheet (red 400 keeps 3:1 on green) */
-      --color-icon-accent:var(--red-600);              /* line icons on light sheets */
+      --color-icon-accent-on-inverse:var(--ochre-300);   /* line icons on the dark "What we do" sheet (5.5:1 on green 700) */
+      --color-icon-accent:var(--ochre-600);            /* line icons on light sheets (3.6:1 on linen) */
       --color-pattern-stitch:var(--neutral-border);--color-pattern-stitch-soft:var(--neutral-sand);
       --color-accent-number:var(--red-600);
       --color-text-pen:var(--red-600);   /* the mentor's handwritten notes: red 500 is 3.9:1 on paper, red 600 is 4.9:1 */
@@ -183,7 +183,7 @@
     .header_logo-img{display:block;height:48px;width:auto}
     .header_nav{display:flex;align-items:center;gap:var(--space-32)}
     .header_nav-list{display:flex;align-items:center;gap:var(--space-24);list-style:none;margin:0;padding:0}
-    .header_nav-link{font-weight:400;display:inline-flex;align-items:center;min-height:var(--size-touch-min);position:relative}
+    .header_nav-link{white-space:nowrap;font-weight:400;display:inline-flex;align-items:center;gap:var(--space-4);min-height:var(--size-touch-min);position:relative}
     .header_nav-link::after{content:"";position:absolute;inset-inline:0;bottom:8px;height:2px;border-radius:2px;background:currentColor;transform:scaleX(0);transform-origin:var(--origin-start,left);transition:transform .35s var(--ease-out)}
     @media (hover:hover){.header_nav-link:hover::after{transform:scaleX(1)}}
     .header_actions{display:flex;align-items:center;gap:var(--space-16)}
@@ -232,15 +232,18 @@
 
     .menu-panel{position:fixed;inset:0;z-index:15;background:var(--color-bg-inverse);color:var(--color-text-on-inverse);padding:var(--space-128) var(--grid-margin) var(--space-48);display:flex;flex-direction:column;gap:var(--space-32);opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s}
     .is-menu-open .menu-panel{opacity:1;visibility:visible}
+    .is-menu-open .intro_begin,.is-menu-open .intro_cue,.is-menu-open .intro_skip,.is-menu-open .intro_viewport{visibility:hidden}   /* the intro's floating lines never show through the open menu */
     .menu-panel_list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-4)}
-    .menu-panel_link{display:flex;align-items:center;min-height:56px;border-bottom:1px solid var(--color-border-on-inverse)}
+    .menu-panel_link{display:flex;align-items:center;gap:var(--space-8);min-height:56px;border-bottom:1px solid var(--color-border-on-inverse)}
     .menu-panel .button-primary{align-self:flex-start}
 
     @media (max-width:1100px){
       .header_nav-list{gap:var(--space-16)}
       .header_nav{gap:var(--space-16)}
     }
-    @media (max-width:991px){
+    html[dir="rtl"] .is-ext svg{transform:scaleX(-1)}
+    @media (max-width:1279px){   /* five links + the button need ~1280px; below that the menu takes over */
+      .header_nav .button-primary{white-space:nowrap}
       .header_nav-list,.header_nav .button-primary{display:none}
       .menu-trigger{display:inline-flex}
       .site-header{padding-block:var(--space-16)}
@@ -350,7 +353,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .wwd_col{padding:0 0 var(--space-8) var(--space-32);border-inline-start:1px solid var(--color-border-on-inverse)}
 .is-dont .wwd_col{border-color:var(--color-border-subtle)}
 .wwd_icon{position:relative;display:block;width:var(--space-48);height:var(--space-48);margin-bottom:var(--space-64)}   /* icon, then a long breath to the title */
-.wwd_line{display:block;width:100%;height:100%;fill:none;stroke:var(--color-icon-accent-on-inverse);stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.wwd_line{display:block;width:100%;height:100%;fill:none;stroke:var(--color-icon-accent-on-inverse);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}   /* the arrows' 1.5/24 weight */
 .is-dont .wwd_line{stroke:var(--color-icon-accent)}
 .wwd_col-title{margin:0 0 var(--space-16)}   /* lighter than the Title default, as asked */
 .wwd_col-text{margin:0;text-wrap:pretty;max-width:32ch;color:var(--color-text-on-inverse-secondary)}   /* Cambium "faded" body */
@@ -632,25 +635,28 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 
 /* Intro: three result cards */
 .results_intro{position:relative;z-index:3;padding:var(--space-128) var(--grid-margin) var(--space-64);text-align:center}
-.results_eyebrow{margin:0 auto var(--title-label-gap);color:var(--results-ink)}
-.results_lead{max-width:54ch;margin:0 auto;font-weight:400;color:var(--results-ink);text-wrap:balance}   /* Regular, four lines on desktop, centred like cambium.com/impact */
-@media (max-width:767px){.results_lead{font-size:var(--h5-size);line-height:var(--h5-lh)}}
-/* Stats after cambium.com/impact: a hairline on the reading-start side, the figure at the top, the caption at the bottom */
-.results_stats{list-style:none;margin:var(--space-128) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--grid-gutter);text-align:start}
-.results_stat{display:flex;flex-direction:column;justify-content:space-between;gap:var(--space-128);padding-inline:var(--space-24);border-inline-start:1px solid color-mix(in srgb,var(--results-ink) 30%,transparent)}
-.results_number{display:block;font:400 var(--h1-size)/1 var(--font-display);letter-spacing:var(--h1-ls);color:var(--results-number);font-variant-numeric:tabular-nums}
-.results_stat-text{display:block;max-width:30ch;margin:0;font:500 var(--body3-size)/1.6 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--results-ink)}
-@media (max-width:767px){
-  .results_stats{grid-template-columns:minmax(0,1fr);row-gap:var(--space-48);margin-top:var(--space-64)}
-  .results_stat{gap:var(--space-48);padding:var(--space-24) 0 0;border-inline-start:0;border-top:1px solid color-mix(in srgb,var(--results-ink) 30%,transparent)}
+.results_intro-title{margin:0 auto;color:var(--results-ink);text-wrap:balance}   /* one line on wide screens; wraps evenly on phones instead of clipping */
+@media (max-width:359px){.results_intro-title{font-size:var(--h5-size);line-height:var(--h5-lh)}}
+.results_stats{list-style:none;margin:var(--space-48) auto 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--grid-gutter);max-width:1120px;text-align:start}
+/* cards: the number (H2, ochre) beside a title (Title1) with its description (Body2, faded) directly under it */
+.results_stat{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-24);row-gap:var(--space-8);align-items:start;align-content:start;
+  padding:var(--space-24);border-radius:10px;background:var(--results-card-bg)}
+.results_number{grid-column:1;grid-row:1 / span 2;color:var(--results-card-number);font-variant-numeric:tabular-nums;line-height:1}   /* H2; rolls up digit by digit */   /* H2 */
+.results_stat-title{grid-column:2;grid-row:1;color:var(--results-card-ink)}                                                         /* Title1 */
+.results_stat-text{grid-column:2;grid-row:2;margin:0;color:var(--results-card-muted);text-wrap:pretty}                             /* Body2 */
+@media (min-width:992px) and (max-width:1439px),(max-width:359px){   /* narrow cards: number on top, then title and description */
+  .results_stat{grid-template-columns:minmax(0,1fr)}
+  .results_number{grid-row:auto;margin-bottom:var(--space-8)}
+  .results_stat-title,.results_stat-text{grid-column:1;grid-row:auto}
 }
+
 /* Number roll (odometer) */
-.odo{display:inline-flex;vertical-align:top;direction:ltr;line-height:1}
-.odo > span{display:block;height:1em}
+.odo{--odo-h:1.4em;display:inline-flex;vertical-align:top;direction:ltr;line-height:1}   /* each digit gets a 1.4em cell, so no neighbour glyph bleeds into the mask */
+.odo > span{display:block;height:var(--odo-h);line-height:var(--odo-h);margin-block:calc((1em - var(--odo-h)) / 2)}
 .odo_mask{overflow:hidden}
 .odo_roll{display:flex;flex-direction:column;will-change:transform;transition:transform 2.5s cubic-bezier(.215,.61,.355,1) var(--od,0s)}
-.odo_roll > span{display:block;height:1em;line-height:1}
-.results_lead,.results_stat-text,.results_title,.results_sub,.results_name{unicode-bidi:plaintext}   /* English copy keeps its punctuation in Arabic mode */
+.odo_roll > span{display:block;height:var(--odo-h);line-height:var(--odo-h)}
+.results_intro-title,.results_stat-title,.results_stat-text,.results_title,.results_sub,.results_name{unicode-bidi:plaintext}   /* English copy keeps its punctuation in Arabic mode */
 
 /* Layout: list on the left, heading and globe on the right (one screen tall) */
 .results_contain{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--grid-gutter);padding-inline:var(--grid-margin);height:100vh}
@@ -755,7 +761,12 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 .voices_quote{margin:0;align-self:center;justify-self:center;max-width:26ch;line-height:1.4;text-align:center;color:var(--voices-ink);text-wrap:balance}
 .voices_quote p{margin:0}
 .is-pinned .voices_quote{opacity:var(--voices-seen,1)}   /* a covered card's cut-off quote fades, so the strip reads as the stack's edge */
-.voices_by{display:flex;flex-direction:column;margin:0}   /* who: name (medium, ink) over university (regular, grey) */
+.voices_by{display:flex;align-items:center;gap:var(--space-12);margin:0}   /* a round photo, then name (medium, ink) over university (regular, grey) */
+.voices_who{display:flex;flex-direction:column;min-width:0}
+.voices_avatar{flex:none;display:grid;place-items:center;width:var(--space-48);height:var(--space-48);border-radius:var(--radius-full);overflow:hidden;
+  background:var(--color-bg-page) no-repeat;background-size:var(--av-w,cover) auto;background-position:var(--av-x,50%) var(--av-y,50%);
+  box-shadow:inset 0 0 0 1px var(--color-border-subtle);color:var(--color-text-heading);font:500 var(--title3-size)/1 var(--font-sans)}   /* the face, cropped from the story photo; initials until a photo exists */
+.voices_avatar.has-photo > span{visibility:hidden}
 .voices_name{color:var(--voices-ink)}
 .voices_uni{color:var(--voices-muted)}
 
@@ -883,16 +894,15 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
    a time: a short line in their words (large) and the rest of the quote (smaller). Below, a rule
    whose fill shows progress, the name on the left and the round pager on the right. No autoplay.
    ========================================================================== */
-.section_mentors{--st-gap:3.125%;--st-left:calc(var(--grid-margin) - var(--space-56));position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:0 0 var(--space-64);overflow:clip}
+.section_mentors{--st-gap:3.125%;--st-left:calc(var(--grid-margin) - var(--space-56));position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);overflow:clip}
 /* tatreez backdrop (after cambium.com/technology's testimonial): the panel starts 56px before the grid margin and leaves a 3.125%
-   gap on the right and 64px at the bottom; three stitch-field blocks show around it: top-left, a right strip and a bottom strip */
+   gap on the right; two stitch-field blocks show beside it (top-left and a right strip) and both end with the section */
 .stitch_field{position:absolute;pointer-events:none}
 .stitch_field svg{display:block;width:100%;height:100%}
 .stitch_field.is-a{top:0;left:0;width:var(--st-left);height:64%}
 .stitch_field.is-b{top:20%;right:0;bottom:0;width:var(--st-gap)}
-.stitch_field.is-c{left:50%;right:0;bottom:0;height:var(--space-64)}
 .mentors_panel{position:relative;margin:0 var(--st-gap) 0 var(--st-left);padding:var(--space-96) calc(var(--grid-margin) - var(--st-gap)) var(--space-128) var(--space-56);background:var(--color-bg-page)}
-@media (max-width:991px){.section_mentors{--st-gap:var(--space-12);--st-left:var(--space-12);padding-bottom:var(--space-32)}.mentors_panel{padding:var(--space-64) calc(var(--grid-margin) - var(--space-12)) var(--space-96)}.stitch_field.is-a{height:45%}.stitch_field.is-c{height:var(--space-32)}}
+@media (max-width:991px){.section_mentors{--st-gap:var(--space-12);--st-left:var(--space-12)}.mentors_panel{padding:var(--space-64) calc(var(--grid-margin) - var(--space-12)) var(--space-96)}.stitch_field.is-a{height:45%}}
 .mentors_eyebrow{margin:0 0 var(--space-64);color:var(--color-text-heading)}
 .mentors_grid{display:grid;grid-template-columns:var(--space-128) minmax(0,56rem);column-gap:var(--space-32)}
 .mentors_mark{margin:0;font:500 9rem/.8 var(--font-display);color:var(--color-border-subtle);user-select:none}   /* decorative */
@@ -1007,8 +1017,9 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
           <ul class="header_nav-list title3">
             <li><a class="header_nav-link" href="#about" data-i18n="navAbout">About</a></li>
             <li><a class="header_nav-link" href="#how-it-works" data-i18n="navHow">How it works</a></li>
+            <li><a class="header_nav-link" href="#student-voices" data-i18n="navVoices">Testimonials</a></li>
             <li><a class="header_nav-link" href="#mentor-voices" data-i18n="navMentors">Mentors</a></li>
-            <li><a class="header_nav-link" href="#how-it-works" data-i18n="navStudents">For students</a></li>
+            <li><a class="header_nav-link is-ext" href="https://docs.google.com/document/d/13uX0ClWeqEinlqcHFDqgCYSa4T1SQ60xR9QBD7iY3Jw/edit?usp=sharing" target="_blank" rel="noopener" hreflang="ar"><span data-i18n="navStudents">Student handbook</span><span class="sr-only" data-i18n="newTab"> (opens in a new tab)</span><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(-45 12 12)" fill="currentColor" d="M13.6709 4.66504C14.7728 6.86859 16.4363 8.53812 17.8438 9.66406C18.5448 10.2249 19.1754 10.6453 19.6279 10.9238C19.8538 11.0628 20.0347 11.1668 20.1572 11.2344C20.2184 11.2681 20.2657 11.2927 20.2959 11.3086C20.3106 11.3163 20.3214 11.3218 20.3281 11.3252C20.3313 11.3268 20.3337 11.3285 20.335 11.3291L21.6768 12L20.335 12.6699L20.3359 12.6709H20.335C20.3337 12.6715 20.3313 12.6732 20.3281 12.6748C20.3214 12.6782 20.3106 12.6837 20.2959 12.6914C20.2657 12.7073 20.2184 12.7319 20.1572 12.7656C20.0347 12.8332 19.8538 12.9372 19.6279 13.0762C19.1754 13.3547 18.5448 13.7751 17.8438 14.3359C16.4363 15.4619 14.7728 17.1314 13.6709 19.335L12.3291 18.665C13.5606 16.2021 15.3971 14.3714 16.9062 13.1641C17.0903 13.0168 17.2706 12.8793 17.4443 12.75H4V11.25H17.4443C17.2706 11.1207 17.0903 10.9832 16.9062 10.8359C15.3971 9.62861 13.5606 7.79788 12.3291 5.33496L13.6709 4.66504Z"/></svg></a></li>
           </ul>
           <div class="header_actions">
             <a class="button-primary title3" href="#become-a-mentor"><span data-i18n="navCta">Become a mentor</span></a>
@@ -1032,8 +1043,9 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
     <ul class="menu-panel_list h5">
       <li><a class="menu-panel_link" href="#about" data-i18n="navAbout">About</a></li>
       <li><a class="menu-panel_link" href="#how-it-works" data-i18n="navHow">How it works</a></li>
+      <li><a class="menu-panel_link" href="#student-voices" data-i18n="navVoices">Testimonials</a></li>
       <li><a class="menu-panel_link" href="#mentor-voices" data-i18n="navMentors">Mentors</a></li>
-      <li><a class="menu-panel_link" href="#how-it-works" data-i18n="navStudents">For students</a></li>
+      <li><a class="menu-panel_link is-ext" href="https://docs.google.com/document/d/13uX0ClWeqEinlqcHFDqgCYSa4T1SQ60xR9QBD7iY3Jw/edit?usp=sharing" target="_blank" rel="noopener" hreflang="ar"><span data-i18n="navStudents">Student handbook</span><span class="sr-only" data-i18n="newTab"> (opens in a new tab)</span><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(-45 12 12)" fill="currentColor" d="M13.6709 4.66504C14.7728 6.86859 16.4363 8.53812 17.8438 9.66406C18.5448 10.2249 19.1754 10.6453 19.6279 10.9238C19.8538 11.0628 20.0347 11.1668 20.1572 11.2344C20.2184 11.2681 20.2657 11.2927 20.2959 11.3086C20.3106 11.3163 20.3214 11.3218 20.3281 11.3252C20.3313 11.3268 20.3337 11.3285 20.335 11.3291L21.6768 12L20.335 12.6699L20.3359 12.6709H20.335C20.3337 12.6715 20.3313 12.6732 20.3281 12.6748C20.3214 12.6782 20.3106 12.6837 20.2959 12.6914C20.2657 12.7073 20.2184 12.7319 20.1572 12.7656C20.0347 12.8332 19.8538 12.9372 19.6279 13.0762C19.1754 13.3547 18.5448 13.7751 17.8438 14.3359C16.4363 15.4619 14.7728 17.1314 13.6709 19.335L12.3291 18.665C13.5606 16.2021 15.3971 14.3714 16.9062 13.1641C17.0903 13.0168 17.2706 12.8793 17.4443 12.75H4V11.25H17.4443C17.2706 11.1207 17.0903 10.9832 16.9062 10.8359C15.3971 9.62861 13.5606 7.79788 12.3291 5.33496L13.6709 4.66504Z"/></svg></a></li>
     </ul>
     <a class="button-primary title3" href="#become-a-mentor"><span data-i18n="navCta">Become a mentor</span></a>
   </nav>
@@ -1105,7 +1117,6 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
   <div class="tl" data-tl>
     <div class="tl_sticky">
       <div class="sb_head" data-split-group>
-        <p class="sb_eyebrow title2 sec-dot" data-split>Our story</p>
         <div class="sb_title-row">
           <h2 class="sb_title h2" id="sb-title" data-split>How SFG began</h2>
         </div>
@@ -1132,7 +1143,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
     <section class="section_wwd" id="what-we-do" aria-label="What we do, and what we don’t do" data-wwd>
       <div class="wwd_stage">
         <div class="wwd_sheet is-do" data-wwd-do>
-          <h2 class="wwd_title title2 sec-dot" data-split>What we do</h2>
+          <h2 class="wwd_title title2" data-split>What we do</h2>
           <ul class="wwd_cols" role="list">
           <li class="wwd_col" style="--i:0" data-split-group>
             <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14.2c2.9.3 5 2.4 5 5.3"/></svg></span>
@@ -1153,7 +1164,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
           <span class="wwd_dim" aria-hidden="true"></span>
         </div>
         <div class="wwd_sheet is-dont" data-wwd-dont data-split-manual>
-          <h2 class="wwd_title title2 sec-dot" data-split="whole">What we <span class="wwd_mark">don’t<svg class="wwd_pen" viewBox="0 0 120 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M3 11 C 30 4, 62 13, 117 6" pathLength="1"/></svg></span> do</h2>
+          <h2 class="wwd_title title2" data-split="whole">What we <span class="wwd_mark">don’t<svg class="wwd_pen" viewBox="0 0 120 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M3 11 C 30 4, 62 13, 117 6" pathLength="1"/></svg></span> do</h2>
           <ul class="wwd_cols" role="list">
           <li class="wwd_col" style="--i:0">
             <span class="wwd_icon"><svg class="wwd_line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="6" width="19" height="12" rx="1.5"/><circle cx="12" cy="12" r="2.5"/><path d="M6 9.5v5M18 9.5v5"/></svg></span>
@@ -1199,7 +1210,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
                 <p class="how_step-text body2" data-split>Tell us what you study, where you hope to go and the degree you are aiming for. SFG is free, always.</p>
                 <div class="how_actions" id="for-students">
                   <a class="how_cta title3" href="https://secure.lglforms.com/form_engine/s/gj0TRCbaEZdlSZIsRp5jKg" target="_blank" rel="noopener">Start your application<span class="sr-only"> (opens the application form in a new tab)</span><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.6709 4.66504C14.7728 6.86859 16.4363 8.53812 17.8438 9.66406C18.5448 10.2249 19.1754 10.6453 19.6279 10.9238C19.8538 11.0628 20.0347 11.1668 20.1572 11.2344C20.2184 11.2681 20.2657 11.2927 20.2959 11.3086C20.3106 11.3163 20.3214 11.3218 20.3281 11.3252C20.3313 11.3268 20.3337 11.3285 20.335 11.3291L21.6768 12L20.335 12.6699L20.3359 12.6709H20.335C20.3337 12.6715 20.3313 12.6732 20.3281 12.6748C20.3214 12.6782 20.3106 12.6837 20.2959 12.6914C20.2657 12.7073 20.2184 12.7319 20.1572 12.7656C20.0347 12.8332 19.8538 12.9372 19.6279 13.0762C19.1754 13.3547 18.5448 13.7751 17.8438 14.3359C16.4363 15.4619 14.7728 17.1314 13.6709 19.335L12.3291 18.665C13.5606 16.2021 15.3971 14.3714 16.9062 13.1641C17.0903 13.0168 17.2706 12.8793 17.4443 12.75H4V11.25H17.4443C17.2706 11.1207 17.0903 10.9832 16.9062 10.8359C15.3971 9.62861 13.5606 7.79788 12.3291 5.33496L13.6709 4.66504Z"/></svg></a>
-                  <a class="how_link body2" hreflang="ar" href="https://docs.google.com/document/d/13uX0ClWeqEinlqcHFDqgCYSa4T1SQ60xR9QBD7iY3Jw/edit?usp=sharing" target="_blank" rel="noopener">Not ready yet? Read our student guide (in Arabic)<span class="sr-only">, opens in a new tab</span><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(-45 12 12)" fill="currentColor" d="M13.6709 4.66504C14.7728 6.86859 16.4363 8.53812 17.8438 9.66406C18.5448 10.2249 19.1754 10.6453 19.6279 10.9238C19.8538 11.0628 20.0347 11.1668 20.1572 11.2344C20.2184 11.2681 20.2657 11.2927 20.2959 11.3086C20.3106 11.3163 20.3214 11.3218 20.3281 11.3252C20.3313 11.3268 20.3337 11.3285 20.335 11.3291L21.6768 12L20.335 12.6699L20.3359 12.6709H20.335C20.3337 12.6715 20.3313 12.6732 20.3281 12.6748C20.3214 12.6782 20.3106 12.6837 20.2959 12.6914C20.2657 12.7073 20.2184 12.7319 20.1572 12.7656C20.0347 12.8332 19.8538 12.9372 19.6279 13.0762C19.1754 13.3547 18.5448 13.7751 17.8438 14.3359C16.4363 15.4619 14.7728 17.1314 13.6709 19.335L12.3291 18.665C13.5606 16.2021 15.3971 14.3714 16.9062 13.1641C17.0903 13.0168 17.2706 12.8793 17.4443 12.75H4V11.25H17.4443C17.2706 11.1207 17.0903 10.9832 16.9062 10.8359C15.3971 9.62861 13.5606 7.79788 12.3291 5.33496L13.6709 4.66504Z"/></svg></a>
+                  <a class="how_link body2" hreflang="ar" href="https://docs.google.com/document/d/13uX0ClWeqEinlqcHFDqgCYSa4T1SQ60xR9QBD7iY3Jw/edit?usp=sharing" target="_blank" rel="noopener">Not ready yet? Read our student handbook (in Arabic)<span class="sr-only">, opens in a new tab</span><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(-45 12 12)" fill="currentColor" d="M13.6709 4.66504C14.7728 6.86859 16.4363 8.53812 17.8438 9.66406C18.5448 10.2249 19.1754 10.6453 19.6279 10.9238C19.8538 11.0628 20.0347 11.1668 20.1572 11.2344C20.2184 11.2681 20.2657 11.2927 20.2959 11.3086C20.3106 11.3163 20.3214 11.3218 20.3281 11.3252C20.3313 11.3268 20.3337 11.3285 20.335 11.3291L21.6768 12L20.335 12.6699L20.3359 12.6709H20.335C20.3337 12.6715 20.3313 12.6732 20.3281 12.6748C20.3214 12.6782 20.3106 12.6837 20.2959 12.6914C20.2657 12.7073 20.2184 12.7319 20.1572 12.7656C20.0347 12.8332 19.8538 12.9372 19.6279 13.0762C19.1754 13.3547 18.5448 13.7751 17.8438 14.3359C16.4363 15.4619 14.7728 17.1314 13.6709 19.335L12.3291 18.665C13.5606 16.2021 15.3971 14.3714 16.9062 13.1641C17.0903 13.0168 17.2706 12.8793 17.4443 12.75H4V11.25H17.4443C17.2706 11.1207 17.0903 10.9832 16.9062 10.8359C15.3971 9.62861 13.5606 7.79788 12.3291 5.33496L13.6709 4.66504Z"/></svg></a>
                 </div>
                 <span class="how_text_bg" aria-hidden="true"></span>
               </div>
@@ -1326,15 +1337,12 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
     </section>
     <section class="section_results" id="results" aria-labelledby="results-title" data-results data-palette="night">
       <div class="results_stage" data-results-stage>
-        <div class="results_intro" data-results-intro>
-          <div class="results_head" data-split-group>
-            <h2 class="results_eyebrow title2 sec-dot" id="results-title" data-split>Our results</h2>
-            <p class="results_lead h3" data-split>Gaza’s universities have been destroyed, but its students keep applying. With a mentor beside them, they have won fully funded places at the world’s best universities, and we are just getting started.</p>
-          </div>
-          <ul class="results_stats" role="list" data-split-group data-odometer-group>
-            <li class="results_stat"><span class="results_number" data-odometer>143</span><span class="results_stat-text" data-split>Students who have won fully funded scholarships with SFG mentors</span></li>
-            <li class="results_stat"><span class="results_number" data-odometer>50+</span><span class="results_stat-text" data-split>Universities, including Cambridge, Imperial, UCL, LSE and Trinity College Dublin</span></li>
-            <li class="results_stat"><span class="results_number" data-odometer>14</span><span class="results_stat-text" data-split>Countries, from the UK and Ireland to Qatar, Malaysia and Singapore</span></li>
+        <div class="results_intro" data-results-intro data-split-group>
+          <h2 class="results_intro-title h2" id="results-title" data-split>What mentorship made possible</h2>
+          <ul class="results_stats" role="list" data-odometer-group>
+            <li class="results_stat"><span class="results_number h2" data-odometer>143</span><span class="results_stat-title title1" data-split>Scholarship winners</span><span class="results_stat-text body2" data-split>Students who have won fully funded scholarships with SFG mentors so far.</span></li>
+            <li class="results_stat"><span class="results_number h2" data-odometer>50+</span><span class="results_stat-title title1" data-split>Universities</span><span class="results_stat-text body2" data-split>Including Cambridge, Imperial, UCL, LSE and Trinity College Dublin.</span></li>
+            <li class="results_stat"><span class="results_number h2" data-odometer>14</span><span class="results_stat-title title1" data-split>Countries</span><span class="results_stat-text body2" data-split>From the UK and Ireland to Qatar, Malaysia and Singapore.</span></li>
           </ul>
         </div>
         <div class="results_contain">
@@ -1421,9 +1429,10 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
           <ul class="voices_list" role="list" data-voices-list>
           <li class="voices_item" data-voices-item data-split-group>
             <figure class="voices_card" aria-labelledby="voice-ola-name" data-voices-photo="assets/voices/ola.webp" data-voices-photo-alt="Ola Aburamadan on a park bench under autumn trees, holding a sign that reads “I can’t keep calm, I’ve been chosen for Chevening!”" data-voices-study="Education and International Development" data-voices-scholarship="Chevening Scholarship">
-              <figcaption class="voices_by">
+              <figcaption class="voices_by"><span class="voices_avatar" aria-hidden="true" style="--av-w:340px;--av-x:-86px;--av-y:-32px"><span>OA</span></span><span class="voices_who">
                 <span class="voices_name title3" data-split id="voice-ola-name">Ola Aburamadan</span>
                 <span class="voices_uni body3" data-split>University College London</span>
+                </span>
               </figcaption>
               <blockquote class="voices_quote h5"><p data-split>“They guided me through every essay, encouraged me when I broke down, and reminded me that my voice and my story mattered.”</p></blockquote>
               <div class="voices_actions">
@@ -1434,9 +1443,10 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
           </li>
           <li class="voices_item" data-voices-item data-split-group>
             <figure class="voices_card" aria-labelledby="voice-shahd-name" data-voices-photo="assets/voices/shahd.webp" data-voices-photo-alt="Shahd Alwahidi in a University of Glasgow hoodie in front of the university’s main building" data-voices-study="Biomedical Engineering" data-voices-scholarship="Fully funded scholarship">
-              <figcaption class="voices_by">
+              <figcaption class="voices_by"><span class="voices_avatar" aria-hidden="true" style="--av-w:600px;--av-x:-307px;--av-y:-125px"><span>SA</span></span><span class="voices_who">
                 <span class="voices_name title3" data-split id="voice-shahd-name">Shahd Alwahidi</span>
                 <span class="voices_uni body3" data-split>University of Glasgow</span>
+                </span>
               </figcaption>
               <blockquote class="voices_quote h5"><p data-split>“He understood when the connection dropped, when I couldn’t focus, when I felt hopeless. Instead, he encouraged me to write freely, to see my story as powerful…”</p></blockquote>
               <div class="voices_actions">
@@ -1447,9 +1457,10 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
           </li>
           <li class="voices_item" data-voices-item data-split-group>
             <figure class="voices_card" aria-labelledby="voice-doaa-name" data-voices-photo="assets/voices/doaa.webp" data-voices-photo-alt="Doaa Nabil Ahmed at the Diamond and Octagon entrance of Ulster University, under a banner naming it UK and Ireland University of the Year" data-voices-study="MA TESOL" data-voices-scholarship="Salam Scholarship">
-              <figcaption class="voices_by">
+              <figcaption class="voices_by"><span class="voices_avatar" aria-hidden="true" style="--av-w:691px;--av-x:-469px;--av-y:-319px"><span>DA</span></span><span class="voices_who">
                 <span class="voices_name title3" data-split id="voice-doaa-name">Doaa Nabil Ahmed</span>
                 <span class="voices_uni body3" data-split>Ulster University</span>
+                </span>
               </figcaption>
               <blockquote class="voices_quote h5"><p data-split>“…I was unsure if I could manage scholarship applications while living with frequent internet outages, long electricity cuts, and the dangers of bombings in Gaza.”</p></blockquote>
               <div class="voices_actions">
@@ -1460,9 +1471,10 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
           </li>
           <li class="voices_item" data-voices-item data-split-group>
             <figure class="voices_card" aria-labelledby="voice-etaf-name" data-voices-photo="assets/voices/etaf.webp" data-voices-photo-alt="Etaf Abu Hadda and her mentor Nour Ali at Heathrow Airport, holding a Palestinian flag between them" data-voices-study="MSc Cyber Security Engineering" data-voices-scholarship="WMG-Bseisu Foundation Scholarship">
-              <figcaption class="voices_by">
+              <figcaption class="voices_by"><span class="voices_avatar" aria-hidden="true" style="--av-w:336px;--av-x:-176px;--av-y:-3px"><span>EA</span></span><span class="voices_who">
                 <span class="voices_name title3" data-split id="voice-etaf-name">Etaf Abu Hadda</span>
                 <span class="voices_uni body3" data-split>University of Warwick</span>
+                </span>
               </figcaption>
               <blockquote class="voices_quote h5"><p data-split>“I still remember our first call—me in a noisy, crowded tent where drones buzzed overhead… Despite the chaos, Nour never gave up on me.”</p></blockquote>
               <div class="voices_actions">
@@ -1473,9 +1485,10 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
           </li>
           <li class="voices_item" data-voices-item data-split-group>
             <figure class="voices_card" aria-labelledby="voice-saher-name" data-voices-study="Mechatronics engineer" data-voices-scholarship="France Excellence Scholarship">
-              <figcaption class="voices_by">
+              <figcaption class="voices_by"><span class="voices_avatar" aria-hidden="true"><span>S</span></span><span class="voices_who">
                 <span class="voices_name title3" data-split id="voice-saher-name">Saher</span>
                 <span class="voices_uni body3" data-split>Studying in France</span>
+                </span>
               </figcaption>
               <blockquote class="voices_quote h5"><p data-split>“I wasn’t sure the mentorship program would add much to my application—but I was wrong.”</p></blockquote>
               <div class="voices_actions">
@@ -1555,7 +1568,6 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
     <section class="section_mentors" id="mentor-voices" aria-labelledby="mentors-title" lang="en" dir="ltr" data-mentors>
       <div class="stitch_field is-a" aria-hidden="true" data-reveal-wipe><svg focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg></div>
       <div class="stitch_field is-b" aria-hidden="true" data-reveal-wipe><svg focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg></div>
-      <div class="stitch_field is-c" aria-hidden="true" data-reveal-wipe><svg focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg></div>
       <div class="mentors_panel">
       <h2 class="mentors_eyebrow title2 sec-dot" id="mentors-title" data-split>Mentor voices</h2>
       <div class="mentors_grid">
@@ -1655,7 +1667,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
             <h2 class="title3" data-split>For students</h2>
             <ul role="list">
               <li><a class="body1" href="https://secure.lglforms.com/form_engine/s/gj0TRCbaEZdlSZIsRp5jKg" target="_blank" rel="noopener">Apply to SFG<span class="sr-only"> (opens in a new tab)</span><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(-45 12 12)" fill="currentColor" d="M13.6709 4.66504C14.7728 6.86859 16.4363 8.53812 17.8438 9.66406C18.5448 10.2249 19.1754 10.6453 19.6279 10.9238C19.8538 11.0628 20.0347 11.1668 20.1572 11.2344C20.2184 11.2681 20.2657 11.2927 20.2959 11.3086C20.3106 11.3163 20.3214 11.3218 20.3281 11.3252C20.3313 11.3268 20.3337 11.3285 20.335 11.3291L21.6768 12L20.335 12.6699L20.3359 12.6709H20.335C20.3337 12.6715 20.3313 12.6732 20.3281 12.6748C20.3214 12.6782 20.3106 12.6837 20.2959 12.6914C20.2657 12.7073 20.2184 12.7319 20.1572 12.7656C20.0347 12.8332 19.8538 12.9372 19.6279 13.0762C19.1754 13.3547 18.5448 13.7751 17.8438 14.3359C16.4363 15.4619 14.7728 17.1314 13.6709 19.335L12.3291 18.665C13.5606 16.2021 15.3971 14.3714 16.9062 13.1641C17.0903 13.0168 17.2706 12.8793 17.4443 12.75H4V11.25H17.4443C17.2706 11.1207 17.0903 10.9832 16.9062 10.8359C15.3971 9.62861 13.5606 7.79788 12.3291 5.33496L13.6709 4.66504Z"/></svg></a></li>
-              <li><a class="body1" href="https://docs.google.com/document/d/13uX0ClWeqEinlqcHFDqgCYSa4T1SQ60xR9QBD7iY3Jw/edit?usp=sharing" target="_blank" rel="noopener" hreflang="ar">Student guide (in Arabic)<span class="sr-only">, opens in a new tab</span><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(-45 12 12)" fill="currentColor" d="M13.6709 4.66504C14.7728 6.86859 16.4363 8.53812 17.8438 9.66406C18.5448 10.2249 19.1754 10.6453 19.6279 10.9238C19.8538 11.0628 20.0347 11.1668 20.1572 11.2344C20.2184 11.2681 20.2657 11.2927 20.2959 11.3086C20.3106 11.3163 20.3214 11.3218 20.3281 11.3252C20.3313 11.3268 20.3337 11.3285 20.335 11.3291L21.6768 12L20.335 12.6699L20.3359 12.6709H20.335C20.3337 12.6715 20.3313 12.6732 20.3281 12.6748C20.3214 12.6782 20.3106 12.6837 20.2959 12.6914C20.2657 12.7073 20.2184 12.7319 20.1572 12.7656C20.0347 12.8332 19.8538 12.9372 19.6279 13.0762C19.1754 13.3547 18.5448 13.7751 17.8438 14.3359C16.4363 15.4619 14.7728 17.1314 13.6709 19.335L12.3291 18.665C13.5606 16.2021 15.3971 14.3714 16.9062 13.1641C17.0903 13.0168 17.2706 12.8793 17.4443 12.75H4V11.25H17.4443C17.2706 11.1207 17.0903 10.9832 16.9062 10.8359C15.3971 9.62861 13.5606 7.79788 12.3291 5.33496L13.6709 4.66504Z"/></svg></a></li>
+              <li><a class="body1" href="https://docs.google.com/document/d/13uX0ClWeqEinlqcHFDqgCYSa4T1SQ60xR9QBD7iY3Jw/edit?usp=sharing" target="_blank" rel="noopener" hreflang="ar">Student handbook (in Arabic)<span class="sr-only">, opens in a new tab</span><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(-45 12 12)" fill="currentColor" d="M13.6709 4.66504C14.7728 6.86859 16.4363 8.53812 17.8438 9.66406C18.5448 10.2249 19.1754 10.6453 19.6279 10.9238C19.8538 11.0628 20.0347 11.1668 20.1572 11.2344C20.2184 11.2681 20.2657 11.2927 20.2959 11.3086C20.3106 11.3163 20.3214 11.3218 20.3281 11.3252C20.3313 11.3268 20.3337 11.3285 20.335 11.3291L21.6768 12L20.335 12.6699L20.3359 12.6709H20.335C20.3337 12.6715 20.3313 12.6732 20.3281 12.6748C20.3214 12.6782 20.3106 12.6837 20.2959 12.6914C20.2657 12.7073 20.2184 12.7319 20.1572 12.7656C20.0347 12.8332 19.8538 12.9372 19.6279 13.0762C19.1754 13.3547 18.5448 13.7751 17.8438 14.3359C16.4363 15.4619 14.7728 17.1314 13.6709 19.335L12.3291 18.665C13.5606 16.2021 15.3971 14.3714 16.9062 13.1641C17.0903 13.0168 17.2706 12.8793 17.4443 12.75H4V11.25H17.4443C17.2706 11.1207 17.0903 10.9832 16.9062 10.8359C15.3971 9.62861 13.5606 7.79788 12.3291 5.33496L13.6709 4.66504Z"/></svg></a></li>
               <li><a class="body1" href="#student-voices">Student voices</a></li>
             </ul>
           </div>
@@ -1726,7 +1738,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
     var I18N = {
       en: {
         skipToContent: "Skip to main content", brandLine1: "Scholarships for Ghazza", brandLine2: "Supporting education through mentorship",
-        navAbout: "About", navHow: "How it works", navMentors: "Mentors", navStudents: "For students", navCta: "Become a mentor",
+        navAbout: "About", navHow: "How it works", navVoices: "Testimonials", navMentors: "Mentors", navStudents: "Student handbook", newTab: " (opens in a new tab)", navCta: "Become a mentor",
         menu: "Menu", skip: "Skip intro", outro: "Here’s how the story begins.", cue: "Scroll",
         partnersTitle: "Our partners", partnersJoin: "Become a partner",
         sentence: "A highly educated Palestine, rebuilt by its own students.",
@@ -1734,7 +1746,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
       },
       ar: {
         skipToContent: "انتقل إلى المحتوى الرئيسي", brandLine1: "منح لغزة", brandLine2: "ندعم التعليم بالإرشاد",
-        navAbout: "من نحن", navHow: "كيف نعمل", navMentors: "المرشدون", navStudents: "للطلاب", navCta: "كن مرشدًا",
+        navAbout: "من نحن", navHow: "كيف نعمل", navVoices: "قصص النجاح", navMentors: "المرشدون", navStudents: "دليل الطالب", newTab: " (يفتح في نافذة جديدة)", navCta: "كن مرشدًا",
         menu: "القائمة", skip: "تخطَّ المقدمة", outro: "هكذا تبدأ الحكاية.", cue: "مرّر للأسفل",
         partnersTitle: "شركاؤنا", partnersJoin: "كن شريكًا",
         sentence: "فلسطين متعلّمة، يعيد بناءها طلابها.",
@@ -2144,6 +2156,11 @@ window.SFGReveal=(function(){
   }); }
   links(); document.addEventListener("DOMContentLoaded",links);   // the story deck adds its credit link later
 })();
+// ===== Student voices: each card's round photo is cropped from its story photo =====
+document.querySelectorAll(".voices_card[data-voices-photo]").forEach(function(c){
+  var a=c.querySelector(".voices_avatar"); if(!a) return;
+  a.style.backgroundImage='url("'+c.getAttribute("data-voices-photo")+'")'; a.classList.add("has-photo");
+});
 // ===== Become a mentor: a topic's points write in when it opens =====
 // Open / close after cambium.com: the body slides open or shut (grid rows 0fr ↔ 1fr, .6s) and the + turns into −.
 // The native <details> stays open while it closes, so the motion is seen, then closes for real.
@@ -2464,7 +2481,7 @@ layout();
     });
     new IntersectionObserver(function(e,o){
       if(!e[0].isIntersecting) return; o.disconnect();
-      grp.querySelectorAll(".odo_roll").forEach(function(r){r.style.transform="translateY(-"+r.dataset.pos+"em)";});
+      grp.querySelectorAll(".odo_roll").forEach(function(r){r.style.transform="translateY(calc(-"+r.dataset.pos+" * var(--odo-h)))";});
     },{rootMargin:"0px 0px -20% 0px"}).observe(grp);   // starts when the row's top reaches 80% of the screen
   })();
 
