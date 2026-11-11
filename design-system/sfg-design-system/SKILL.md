@@ -5,20 +5,22 @@ description: Design tokens and visual rules for the Scholarships for Ghazza (SFG
 
 # SFG Design System
 
-**Version 1.1 (final, locked).** v1.1 (owner sign-off): section dots only on top-level sections, ochre line icons at the arrows' weight, round student photos, five-link navigation, results back to cards. v1.1.1: glass results cards, What we do / don't headlines at H2 with Regular column titles, face cut-outs on a plain circle, the navigation's "Become a mentor" opens the mentor form. The colours, fonts and the motion catalogue below are fixed. A new page or section reuses them as they are; it does not add a new colour, weight or animation type. Change them only with the owner's sign-off, then bump the version and note it in the README.
+**Version 1.2 (final, locked).** v1.2: Cambium eyebrow motion for labels, nav links glide to their section, noho.ink story-panel transitions, 8px button corners, smaller arrows, tatreez band in the Student voices header, no testimonial photos. v1.1 (owner sign-off): section dots only on top-level sections, ochre line icons at the arrows' weight, round student photos, five-link navigation, results back to cards. v1.1.1: glass results cards, What we do / don't headlines at H2 with Regular column titles, face cut-outs on a plain circle, the navigation's "Become a mentor" opens the mentor form. The colours, fonts and the motion catalogue below are fixed. A new page or section reuses them as they are; it does not add a new colour, weight or animation type. Change them only with the owner's sign-off, then bump the version and note it in the README.
 
 ## Locked catalogue (summary)
 - **Colours:** green ink (green 800) for all text, faded to 76% for details; linen / paper / sand backgrounds; green 700 for inverse sections and the footer; **red 600 only** for "Become a mentor" (plus the red-pen marks); **ochre** for numbers and achievements; **green 500** (`text/highlight`) for the key words in a headline; **ochre 300** for the footer column labels; **ochre** for line icons (ochre 300 on green, ochre 600 on light). Dark mode uses the night tokens.
 - **Fonts:** Thmanyah Serif Display (headings, numbers), Thmanyah Serif Text (body, quotes), Thmanyah Sans (labels, buttons, navigation). Weights: **Regular 400** and **Medium 500** only. Navigation links and large lead paragraphs are Regular; headings, labels and buttons are Medium.
 - **Motion (one of each, nothing else):**
   1. Text: *Text reveal animation* (lines rise out of a mask), on first appearance while scrolling. Every content text, every card, every section.
-  2. Section label dot: scales in as the headline begins.
+  2. Section label (after cambium.com's eyebrow): the dot scales in from its start edge and the label slides in from the dot, 0.9s `--ease-smooth`; the headline's lines follow.
+  2b. In-page links (navigation): the page glides to the section in 1–1.6s on `--ease-smooth`, then its text plays. Wheel or touch stops it.
   3. Images: *media uncover* (clip from 18% below + 1.18 → 1 zoom, 1.3s / 1.8s). Patterns and bands: *wipe* (clip from the reading start, 1.4s). Small blocks (logos, tiles): *fade-up* (24px, 0.9s).
   4. Illustrations: their parts play in order once 40% in view.
   5. Primary buttons: panel slides up, label shrinks and rises. Secondary links: underline draws in.
   6. Accordion: body opens/closes by grid rows 0fr ↔ 1fr, 0.6s `--ease-smooth`; the + turns into − (vertical line rotates −90°).
   7. Numbers: *number roll* (odometer), 2.5s.
   8. Carousels: the new slide's text re-plays the text reveal.
+  9. Story panel (after noho.ink): slides in from the side in 0.7s `--ease-smooth`, out in 0.65s in-out. Next / previous story: the text fades up and out (0.3s), a green-700 curtain rises over the photo (0.5s), the story swaps, the curtain leaves through the top (0.6s) uncovering the new photo, and the name writes in again.
   All of it is skipped under `prefers-reduced-motion`.
 
 Single source of truth for how the Scholarships for Ghazza website looks. Always read `references/tokens.md` before writing styles: it contains every color value, the full type scale, layout tokens and ready-to-paste CSS.
@@ -66,15 +68,16 @@ Single source of truth for how the Scholarships for Ghazza website looks. Always
 
 **Icons, photos and navigation**
 - **Line icons** match the arrows: drawn on a 24px grid with a 1.5px stroke, round caps and joins, `fill:none`. Colour: ochre (`--color-icon-accent-on-inverse` ochre 300 on green sheets, `--color-icon-accent` ochre 600 on light ones; both ≥ 3:1).
-- **People photos** in testimonials: a 48px circle (`radius-full`) showing only the face and shoulders, cut out from its background, on a plain `--color-bg-avatar` (green 100) circle, 12px before the name and university. No photo yet: the person's initials (Title3, Medium) in the same circle.
+- **No people photos** beside testimonial names: the name and university stand alone.
 - **Navigation:** About · How it works · Testimonials · Mentors · Student handbook ↗ (external, opens the Arabic handbook in a new tab), then "Become a mentor", which opens the mentor application form in a new tab. Links are Title3 Regular (16/24). Below 1280px the links fold into the menu.
 
 **Motion and icons** (details in section 5 of `references/tokens.md`)
 - **Text reveal animation:** every piece of content text appears the same way, with its lines rising out of a mask (1.1s, 0.08s apart, ease-out-expo). Hidden content plays when it is shown.
-- **Top-level sections** (About, How it works, Student voices, Mentor voices, Become a mentor) open with a label (Title2, 18px) with a dot on its reading-start side, then the headline (H2), then details if needed. **The parts of About** (Our story, What we do / What we don't) have no label and no dot: just the headline (H2) and its details, since About already carries the dot. Our results keeps its label and dot above *What mentorship made possible*. Every section headline is H2, the size of *How SFG’s story began*. Card titles under an H2 (What we do / don't columns) are Regular. In Remembrance has no dot. The label and headline share one colour. The dot sits on the content line (where the headline and details start) and the label text follows it, as on cambium.com. The label writes in first; its dot lands as the headline and details begin. Spacing is fixed: label → headline 16px, headline → details 24px.
+- **Top-level sections** (About, How it works, Student voices, Mentor voices, Become a mentor) open with a label (Title2, 18px) with a dot on its reading-start side, then the headline (H2), then details if needed. **The parts of About** (Our story, What we do / What we don't) have no label and no dot: just the headline (H2) and its details, since About already carries the dot. Our results keeps its label and dot above *What mentorship made possible*. Every section headline is H2, the size of *How SFG’s story began*. Card titles under an H2 (What we do / don't columns) are Regular. In Remembrance has no dot. The label and headline share one colour. The dot sits on the content line (where the headline and details start) and the label text follows it, as on cambium.com. The label and its dot move as one (Cambium eyebrow), then the headline and details write in. Spacing is fixed: label → headline 16px, headline → details 24px.
 - **Primary buttons:** a darker panel slides up from below while the label shrinks and rises (after cambium.com). **Secondary text links:** no underline at rest, and on hover it draws in from the left.
 - **Number roll (odometer):** stat figures roll up digit by digit from 0 (after cambium.com/impact).
-- **Arrows:** one full-arrow SVG (rotated for ↗ and ↓), and a chevron for carousel previous / next. No text arrows or emoji.
+- **Arrows:** one full-arrow SVG (rotated for ↗ and ↓) at 14px in links and buttons, and a 16px chevron for carousel previous / next. No text arrows or emoji.
+- **Buttons:** 8px corners (`--radius-button` = `radius-card`), not pills. Carousel arrows in a section header can stand bare (no circle) with the 48px button kept as the touch target, as in Student voices, where a tatreez band runs from the label to 32px before the arrows.
 
 ## Checklist before finishing
 

@@ -279,7 +279,7 @@ Between 768px and 1439px, scale the margin fluidly (e.g. `--grid-margin: clamp(2
 **Title spacing (one rhythm on every section):** label → headline `--title-label-gap` 16px; headline → details `--title-detail-gap` 24px.
 
 ### 4.3 Radius
-sm 4 · media 6 · card 8 · panel 10 · full 999 (px)
+sm 4 · media 6 · card 8 · panel 10 · full 999 (px). Buttons use `--radius-button` (= card, 8px).
 
 ### 4.4 Touch targets
 **Minimum height 48px** for every interactive element: buttons, link-buttons, toggle options, inputs and icon controls (`--size-touch-min: 48px`). Buttons: Small 48px, Large 52px.
@@ -314,7 +314,7 @@ Top-level sections (the ones in the navigation, plus Become a mentor) open this 
 The label is the section's `<h2>` when there is no headline; otherwise the headline is the `<h2>` and the label a `<p>`.
 - Dot size `max(8px, .25em)`, gap `max(8px, .33em)`, centred on the first line (`top: calc(.5lh - size / 2)`). The label is `width: fit-content`, so on a centred label the dot sits beside the text.
 - The dot sits on the content line, where the headline and details start; the label text steps in by dot + gap (after cambium.com). Same on desktop and phones.
-- **Motion:** the label's lines rise first; the dot scales in (0.5s, `--ease-out-expo`) at the moment the headline and details start to rise. A label with nothing after it brings its dot with it. The dot stays.
+- **Motion (after cambium.com's eyebrow module):** the dot scales 0 → 1 from its start edge, and the label text starts at the dot's position (shifted back by dot + gap) and slides to its place, 0.06s after the dot. Both 0.9s `--ease-smooth`. The label is not split into lines. The headline's lines start 3 stagger steps (0.24s) later. The dot stays.
 - The memorial section's title has no dot.
 
 ### 5.3 Button motion: primary (filled) buttons
@@ -349,11 +349,11 @@ After cambium.com/impact. Used for stat figures (Our results).
 - Each digit sits in a mask over a strip of 0–9 twice; the strip moves up from 0 to the digit (a 0 rolls a full turn to the second 0). Other characters (`+`, `%`) stay still.
 - **2.5s**, ease-out-cubic `cubic-bezier(.215,.61,.355,1)`. Within a figure the rightmost digit starts first, 0.04s apart; figures start 0.1s apart from the reading start.
 - Starts once, when the row's top reaches 80% of the screen. The figure's text stays available to screen readers (`.sr-only`), the rolling strip is `aria-hidden`.
-- Stat layout: glass cards on the dark results section, like the navigation bar: linen at 8% over the section, a 1px linen line at 16%, `backdrop-filter: blur(24px) saturate(1.6)`, `radius-panel`, 24px padding. The figure (H2, ochre 300) sits beside its title (Title1, linen), the description (Body2, linen at 72%) 16px under the title; on phones the figure sits above.
+- Stat layout: glass cards on the dark results section, like the navigation bar: linen at 8% over the section, a 1px linen line at 16%, `backdrop-filter: blur(24px) saturate(1.6)`, `radius-panel`, 24px padding. The figure (H2, ochre 300) sits beside its title (Title1, linen), the description (Body2, linen at 86%) 16px under the title; on phones the figure sits above.
 - Each digit cell is 1.4em tall (the mask too, pulled back to 1em with negative margins), so neighbouring digits never bleed into view at rest.
 
 ### 5.5 Arrows
-One arrow shape everywhere, as inline SVG with `fill="currentColor"`: **Full arrow** (→) for links and buttons, rotated −45° for an external link (↗), 90° for "scroll down". **Chevron** for carousel previous / next. Sizes 16, 20 or 28px. Flip with `scaleX(-1)` in RTL.
+One arrow shape everywhere, as inline SVG with `fill="currentColor"`: **Full arrow** (→) for links and buttons, rotated −45° for an external link (↗), 90° for "scroll down". **Chevron** for carousel previous / next. Sizes: 14px in links and buttons, 16px chevrons in carousels, 28px for large icons. Flip with `scaleX(-1)` in RTL.
 
 ```html
 <!-- Full arrow (right) -->
