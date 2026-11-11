@@ -5,7 +5,7 @@ description: Design tokens and visual rules for the Scholarships for Ghazza (SFG
 
 # SFG Design System
 
-**Version 1.3 (final, locked).** v1.3: bare 24px chevrons everywhere, a thin (14px) tatreez band beside the Student voices and Become a mentor labels, page-colour glass results cards, the links' drawn underline on accordion questions, noho.ink's letter cascade on nav hover, In Remembrance at H2. v1.2: Cambium eyebrow motion for labels, nav links glide to their section, noho.ink story-panel transitions, 8px button corners, smaller arrows, tatreez band in the Student voices header, no testimonial photos. v1.1 (owner sign-off): section dots only on top-level sections, ochre line icons at the arrows' weight, round student photos, five-link navigation, results back to cards. v1.1.1: glass results cards, What we do / don't headlines at H2 with Regular column titles, face cut-outs on a plain circle, the navigation's "Become a mentor" opens the mentor form. The colours, fonts and the motion catalogue below are fixed. A new page or section reuses them as they are; it does not add a new colour, weight or animation type. Change them only with the owner's sign-off, then bump the version and note it in the README.
+**Version 1.4 (final, locked).** v1.4: the Arabic version (RTL, full translation), solid page-colour results cards, the band ends ~14px before the arrow, no rule above the accordion. v1.3: bare 24px chevrons everywhere, a thin (14px) tatreez band beside the Student voices and Become a mentor labels, page-colour glass results cards, the links' drawn underline on accordion questions, noho.ink's letter cascade on nav hover, In Remembrance at H2. v1.2: Cambium eyebrow motion for labels, nav links glide to their section, noho.ink story-panel transitions, 8px button corners, smaller arrows, tatreez band in the Student voices header, no testimonial photos. v1.1 (owner sign-off): section dots only on top-level sections, ochre line icons at the arrows' weight, round student photos, five-link navigation, results back to cards. v1.1.1: glass results cards, What we do / don't headlines at H2 with Regular column titles, face cut-outs on a plain circle, the navigation's "Become a mentor" opens the mentor form. The colours, fonts and the motion catalogue below are fixed. A new page or section reuses them as they are; it does not add a new colour, weight or animation type. Change them only with the owner's sign-off, then bump the version and note it in the README.
 
 ## Locked catalogue (summary)
 - **Colours:** green ink (green 800) for all text, faded to 76% for details; linen / paper / sand backgrounds; green 700 for inverse sections and the footer; **red 600 only** for "Become a mentor" (plus the red-pen marks); **ochre** for numbers and achievements; **green 500** (`text/highlight`) for the key words in a headline; **ochre 300** for the footer column labels; **ochre** for line icons (ochre 300 on green, ochre 600 on light). Dark mode uses the night tokens.
@@ -67,6 +67,13 @@ Single source of truth for how the Scholarships for Ghazza website looks. Always
 - Primary buttons use red 600 with white text (red 500 fails contrast for normal text).
 - Respect `prefers-reduced-motion`: show final states without animation.
 
+**Arabic version (RTL)**
+- One page, two languages. The language switch saves the choice and reloads; the Arabic text is applied before any script measures the page, so line splits, equal-line quotes and the odometer work on the Arabic text. Returning to the same scroll position after a switch.
+- `html[lang=ar][dir=rtl]`; every section and component flips with logical properties (`padding-inline-start`, `inset-inline-*`, `margin-inline-*`). Never `left`/`right` for layout; arrows flip with `scaleX(-1)`.
+- Text aligns to the right (start); centred text stays centred. University names, people's names and scholarships are written in Arabic; acronyms (SFG, UCL, LSE, TESOL, DAAD) stay Latin.
+- Arabic letters stay joined in every motion: the nav cascade rolls Arabic word by word, and the text reveal splits by line, never by letter.
+- The translation is a draft and needs a native Arabic editor before launch.
+
 **Icons, photos and navigation**
 - **Line icons** match the arrows: drawn on a 24px grid with a 1.5px stroke, round caps and joins, `fill:none`. Colour: ochre (`--color-icon-accent-on-inverse` ochre 300 on green sheets, `--color-icon-accent` ochre 600 on light ones; both ≥ 3:1).
 - **No people photos** beside testimonial names: the name and university stand alone.
@@ -78,7 +85,7 @@ Single source of truth for how the Scholarships for Ghazza website looks. Always
 - **Primary buttons:** a darker panel slides up from below while the label shrinks and rises (after cambium.com). **Secondary text links:** no underline at rest, and on hover it draws in from the left.
 - **Number roll (odometer):** stat figures roll up digit by digit from 0 (after cambium.com/impact).
 - **Arrows:** one full-arrow SVG (rotated for ↗ and ↓) at 14px in links and buttons, and a bare 24px chevron (no circle; the 48px button stays the touch target) for every previous / next and the panel's close, nudging 3px in its direction on hover. No text arrows or emoji.
-- **Buttons:** 8px corners (`--radius-button` = `radius-card`), not pills. A thin tatreez band (14px tall, whole motifs) can run from a section label to the edge of its row (Become a mentor) or to 32px before its arrows (Student voices), after cambium.com's "Get inspired". Accordion questions use the links' drawn underline on hover.
+- **Buttons:** 8px corners (`--radius-button` = `radius-card`), not pills. A thin tatreez band (14px tall, whole motifs) can run from a section label to the edge of its row (Become a mentor) or to ~14px before the chevron glyph (Student voices), after cambium.com's "Get inspired". Accordion questions use the links' drawn underline on hover.
 
 ## Checklist before finishing
 

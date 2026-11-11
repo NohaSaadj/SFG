@@ -349,7 +349,7 @@ After cambium.com/impact. Used for stat figures (Our results).
 - Each digit sits in a mask over a strip of 0–9 twice; the strip moves up from 0 to the digit (a 0 rolls a full turn to the second 0). Other characters (`+`, `%`) stay still.
 - **2.5s**, ease-out-cubic `cubic-bezier(.215,.61,.355,1)`. Within a figure the rightmost digit starts first, 0.04s apart; figures start 0.1s apart from the reading start.
 - Starts once, when the row's top reaches 80% of the screen. The figure's text stays available to screen readers (`.sr-only`), the rolling strip is `aria-hidden`.
-- Stat layout: glass cards on the dark results section, like the navigation bar: the page colour at 94% over the section, a 1px page-colour line at 70%, `backdrop-filter: blur(24px) saturate(1.6)`, `radius-panel`, 24px padding. The figure (H2, `text/achievement`) sits beside its title (Title1, `text/primary`), the description (Body2, `text/secondary`) 16px under the title; on phones the figure sits above.
+- Stat layout: solid cards in the page colour (`bg/page`, no transparency) on the dark results section, `radius-panel`, 24px padding. The figure (H2, `text/achievement`, 4.9:1) sits beside its title (Title1, `text/primary`), the description (Body2, `text/secondary`) 16px under the title; on phones the figure sits above.
 - Each digit cell is 1.4em tall (the mask too, pulled back to 1em with negative margins), so neighbouring digits never bleed into view at rest.
 
 ### 5.5 Arrows
