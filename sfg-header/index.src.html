@@ -184,8 +184,13 @@
     .header_nav{display:flex;align-items:center;gap:var(--space-32)}
     .header_nav-list{display:flex;align-items:center;gap:var(--space-24);list-style:none;margin:0;padding:0}
     .header_nav-link{white-space:nowrap;font-weight:400;display:inline-flex;align-items:center;gap:var(--space-4);min-height:var(--size-touch-min);position:relative}
-    .header_nav-link::after{content:"";position:absolute;inset-inline:0;bottom:8px;height:2px;border-radius:2px;background:currentColor;transform:scaleX(0);transform-origin:var(--origin-start,left);transition:transform .35s var(--ease-out)}
-    @media (hover:hover){.header_nav-link:hover::after{transform:scaleX(1)}}
+    .header_nav-link.no-cascade::after{content:"";position:absolute;inset-inline:0;bottom:8px;height:2px;border-radius:2px;background:currentColor;transform:scaleX(0);transform-origin:var(--origin-start,left);transition:transform .35s var(--ease-out)}
+    @media (hover:hover){.header_nav-link.no-cascade:hover::after{transform:scaleX(1)}}
+    /* nav hover after noho.ink: each letter rolls up and its copy rises from below, one after another */
+    .cascade{position:relative;display:inline-block;overflow:hidden;vertical-align:top;height:1lh}
+    .cascade_b{position:absolute;inset:100% 0 auto 0}
+    .cascade_l{display:inline-block;white-space:pre;transition:translate .6s cubic-bezier(.2,0,.1,1) calc(var(--i) * 25ms)}
+    @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.header_nav-link:hover .cascade_l{translate:0 -100%}}
     .header_actions{display:flex;align-items:center;gap:var(--space-16)}
     .button-primary{display:inline-flex;align-items:center;justify-content:center;min-height:var(--size-touch-min);padding-inline:var(--space-24);border-radius:var(--radius-button);background:var(--color-action-primary);color:var(--color-text-on-action);transition:background-color .2s ease,scale .15s ease-out}
     @media (prefers-reduced-motion:no-preference){.button-primary:active,.how_btn:active,.sb_pager-btn:not(:disabled):active{scale:.96}}   /* press feedback */
@@ -468,8 +473,9 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .sb_pager-current{color:var(--color-text-heading)}
 .sb_pager-total{color:var(--color-text-secondary)}
 .sb_pager-nav{display:flex;gap:var(--space-8)}
-.sb_pager-btn{width:var(--size-touch-min);height:var(--size-touch-min);border-radius:var(--radius-full);border:1.5px solid var(--color-action-secondary);background:transparent;color:var(--color-action-secondary);display:grid;place-items:center;cursor:pointer;transition:background-color .2s,scale .15s ease-out}
-@media (hover:hover){.sb_pager-btn:hover{background:var(--color-bg-selected)}}
+.sb_pager-btn{width:var(--size-touch-min);height:var(--size-touch-min);border-radius:var(--radius-sm);border:0;background:transparent;color:var(--color-action-secondary);display:grid;place-items:center;cursor:pointer;transition:background-color .2s,scale .15s ease-out}
+.sb_pager-btn svg{transition:translate .35s var(--ease-smooth)}   /* bare 24px chevrons (after cambium.com); the 48px button is the touch target */
+@media (hover:hover){.sb_pager-btn.is-prev:hover:not(:disabled) svg{translate:-3px 0}.sb_pager-btn.is-next:hover:not(:disabled) svg{translate:3px 0}[dir="rtl"] .sb_pager-btn.is-prev:hover:not(:disabled) svg{translate:3px 0}[dir="rtl"] .sb_pager-btn.is-next:hover:not(:disabled) svg{translate:-3px 0}}
 [dir="rtl"] .sb_pager-btn svg{transform:scaleX(-1)}   /* arrows follow the reading direction */
 .sb_pager-btn:disabled{opacity:.35;cursor:default;background:transparent}
 .sb_pager-btn:focus-visible,.sb_credit:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
@@ -627,7 +633,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
   --results-bg:var(--green-900);--results-glow:radial-gradient(closest-side,rgb(31 93 70 / .9),rgb(24 73 55 / .45) 60%,transparent);
   --results-ink:var(--neutral-linen);--results-name:var(--green-200);--results-active-text:var(--ochre-300);
   --results-eyebrow:var(--results-ink);--results-number:var(--ochre-300);
-  --results-card-bg:rgb(247 242 233 / .08);--results-card-line:rgb(247 242 233 / .16);--results-card-number:var(--ochre-300);--results-card-ink:var(--neutral-linen);--results-card-muted:rgb(247 242 233 / .86);
+  --results-card-bg:color-mix(in srgb,var(--color-bg-page) 94%,transparent);--results-card-line:color-mix(in srgb,var(--color-bg-page) 70%,transparent);--results-card-number:var(--color-text-achievement);--results-card-ink:var(--color-text-primary);--results-card-muted:var(--color-text-secondary);
   --results-dot:#F7F2E9;--results-pin:var(--ochre-300);--results-halo:rgb(247 242 233 / .16);
   --results-pill-bg:var(--neutral-linen);--results-pill-ink:var(--neutral-ink);--results-focus:var(--ochre-300);
   position:relative;z-index:2;background:var(--results-bg);color:var(--results-ink);overflow:clip}
@@ -648,7 +654,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 /* cards: the number (H2, ochre) beside a title (Title1) with its description (Body2, faded) directly under it */
 .results_stat{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-24);row-gap:var(--space-16);align-items:start;align-content:start;
   padding:var(--space-24);border-radius:var(--radius-panel);background:var(--results-card-bg);box-shadow:inset 0 0 0 1px var(--results-card-line);
-  -webkit-backdrop-filter:blur(24px) saturate(1.6);backdrop-filter:blur(24px) saturate(1.6)}   /* glass, like the navigation bar: a light veil over the section */
+  -webkit-backdrop-filter:blur(24px) saturate(1.6);backdrop-filter:blur(24px) saturate(1.6)}   /* glass in the page colour, like the navigation bar: the section shows faintly through */
 .results_number{grid-column:1;grid-row:1 / span 2;color:var(--results-card-number);font-variant-numeric:tabular-nums;line-height:1}   /* H2; rolls up digit by digit */   /* H2 */
 .results_stat-title{grid-column:2;grid-row:1;color:var(--results-card-ink)}                                                         /* Title1 */
 .results_stat-text{grid-column:2;grid-row:2;margin:0;color:var(--results-card-muted);text-wrap:pretty}                             /* Body2 */
@@ -748,10 +754,9 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 .voices_title{margin:0;color:var(--color-text-heading)}
 .voices_pager{display:flex;align-items:center;gap:var(--space-4);flex:none}
 .voices_head{align-items:center}
-.voices_band{flex:1;min-width:0;line-height:0;margin-inline-end:var(--space-32)}   /* the tatreez runs from the label to just before the arrows */
-.voices_pager .sb_pager-btn{border:0;background:none}   /* bare chevrons; the 48px button stays the touch target */
-.voices_pager .sb_pager-btn svg{transition:translate .35s var(--ease-smooth)}
-@media (hover:hover){.voices_pager .sb_pager-btn:hover{background:none}.voices_pager [data-voices-prev]:hover:not(:disabled) svg{translate:-3px 0}.voices_pager [data-voices-next]:hover:not(:disabled) svg{translate:3px 0}}
+.title-band{flex:1;min-width:0;line-height:0;margin-inline-start:var(--space-24)}   /* a thin tatreez band from a section label onward (after cambium.com's "Get inspired") */
+.voices_head .title-band{margin-inline:var(--space-8) var(--space-32)}   /* stops just before the arrows */
+
 .voices_deck{direction:ltr}   /* the testimonials are English; the deck keeps its order in Arabic mode */
 .voices_list{list-style:none;margin:0;padding:0 var(--grid-margin);display:flex;gap:var(--space-16);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--grid-margin);scrollbar-width:none;overscroll-behavior-x:contain}
 .voices_list::-webkit-scrollbar{display:none}
@@ -953,7 +958,8 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
 .join_panel{position:relative;padding:var(--space-128) var(--grid-margin)}
 .join_grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:var(--space-96);align-items:start}
 .join_ask{display:flex;flex-direction:column;align-items:flex-start;gap:var(--title-detail-gap)}
-.join_eyebrow{margin:0 0 calc(var(--title-label-gap) - var(--title-detail-gap));color:var(--color-text-heading)}
+.join_head{display:flex;align-items:center;margin-bottom:var(--title-label-gap)}
+.join_eyebrow{margin:0;flex:none;color:var(--color-text-heading)}
 .join_title{margin:0;color:var(--color-text-primary);text-wrap:balance}
 .join_lead{margin:0;max-width:40ch;color:var(--color-text-secondary);text-wrap:pretty}
 .join_ask .button-primary{margin-top:var(--space-8)}
@@ -980,7 +986,8 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
 .join_note{margin:var(--space-16) 0 0;color:var(--color-text-secondary);text-wrap:pretty}
 .join_big{margin:0;color:var(--color-text-primary)}
 .join_big b{font-weight:inherit;color:var(--color-text-achievement)}
-@media (hover:hover){.join_sum:hover .join_label{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}}
+.join_label{justify-self:start;width:fit-content;background:linear-gradient(currentColor,currentColor) no-repeat right bottom / 0 .0625em;padding-bottom:.0625em;transition:background-size .735s var(--ease-smooth)}   /* the links' drawn underline */
+@media (hover:hover) and (pointer:fine){.join_sum:hover .join_label{background-position:left bottom;background-size:100% .0625em}}
 @media (max-width:991px){
   .join_panel{padding:var(--space-96) var(--grid-margin)}
   .join_grid{grid-template-columns:minmax(0,1fr);row-gap:var(--space-48)}
@@ -1142,8 +1149,8 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
               <div class="sb_pager-top">
                 <p class="sb_pager-count"><span class="sb_pager-current title" data-sb-current>01</span><span class="sb_pager-total title3">/ 05</span></p>
                 <div class="sb_pager-nav">
-                  <button class="sb_pager-btn" type="button" data-sb-prev aria-label="Previous step"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(180 12 12)" fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
-                  <button class="sb_pager-btn" type="button" data-sb-next aria-label="Next step"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
+                  <button class="sb_pager-btn is-prev" type="button" data-sb-prev aria-label="Previous step"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(180 12 12)" fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
+                  <button class="sb_pager-btn is-next" type="button" data-sb-next aria-label="Next step"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
                 </div>
               </div>
               <div class="sb_pager-track" aria-hidden="true"><span class="sb_pager-fill" data-sb-fill></span></div>
@@ -1436,10 +1443,10 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
       <div class="voices_pin" data-voices-pin>
         <div class="voices_head">
           <h2 class="voices_title title2 sec-dot" id="voices-title" data-split>Student voices</h2>
-          <span class="voices_band" aria-hidden="true"><svg class="sb_band" viewBox="0 0 1101.6 25.2" data-tatreez-fit data-reveal-wipe aria-hidden="true" focusable="false"><rect width="1101.6" height="25.2" fill="url(#tatreezBand)"/></svg></span>
+          <span class="title-band" aria-hidden="true"><svg class="sb_band" viewBox="0 0 1101.6 25.2" data-tatreez-fit data-tatreez-h="14" data-reveal-wipe aria-hidden="true" focusable="false"><rect width="1101.6" height="25.2" fill="url(#tatreezBand)"/></svg></span>
           <div class="voices_pager">
-            <button class="sb_pager-btn" type="button" data-voices-prev aria-label="Previous story"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(180 12 12)" fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
-            <button class="sb_pager-btn" type="button" data-voices-next aria-label="Next story"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
+            <button class="sb_pager-btn is-prev" type="button" data-voices-prev aria-label="Previous story"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(180 12 12)" fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
+            <button class="sb_pager-btn is-next" type="button" data-voices-next aria-label="Next story"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
           </div>
         </div>
         <div class="voices_deck" data-voices-deck>
@@ -1522,10 +1529,10 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
         <div class="voices_scroll" data-voices-d-scroll>
           <div class="voices_bar">
             <div class="voices_bar-nav">
-              <button class="sb_pager-btn" type="button" data-voices-d-prev aria-label="Previous story"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(180 12 12)" fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
-              <button class="sb_pager-btn" type="button" data-voices-d-next aria-label="Next story"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
+              <button class="sb_pager-btn is-prev" type="button" data-voices-d-prev aria-label="Previous story"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(180 12 12)" fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
+              <button class="sb_pager-btn is-next" type="button" data-voices-d-next aria-label="Next story"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
             </div>
-            <button class="sb_pager-btn" type="button" data-voices-close aria-label="Close story" autofocus><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+            <button class="sb_pager-btn" type="button" data-voices-close aria-label="Close story" autofocus><svg width="24" height="24" viewBox="0 0 20 20" aria-hidden="true"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
           </div>
           <div class="voices_article" dir="ltr" lang="en">
             <figure class="voices_d-media" data-voices-d-media>
@@ -1553,7 +1560,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
       </dialog>
     </section>
     <section class="section_memory" id="in-remembrance" aria-labelledby="memory-title" lang="en" dir="ltr" data-memory>
-      <h2 class="memory_title title2" id="memory-title" data-split>In Remembrance</h2>
+      <h2 class="memory_title h2" id="memory-title" data-split>In Remembrance</h2>
       <div class="memory_layout">
       <div class="memory_prints">
         <div class="memory_side is-start">
@@ -1616,8 +1623,8 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
               <p class="mentors_by" data-mentor-by aria-hidden="true"><span class="mentors_name title1" data-split>Luis Morales-Navarro, PhD</span><span class="mentors_fact body3" data-split>Mentor since SFG’s first year · three scholars</span></p>
             </div>
             <div class="mentors_pager">
-              <button class="sb_pager-btn" type="button" data-mentors-prev aria-label="Previous mentor" disabled><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(180 12 12)" fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
-              <button class="sb_pager-btn" type="button" data-mentors-next aria-label="Next mentor"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
+              <button class="sb_pager-btn is-prev" type="button" data-mentors-prev aria-label="Previous mentor" disabled><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(180 12 12)" fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
+              <button class="sb_pager-btn is-next" type="button" data-mentors-next aria-label="Next mentor"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8.6709 4.66504C9.77277 6.86859 11.4363 8.53812 12.8438 9.66406C13.5448 10.2249 14.1754 10.6453 14.6279 10.9238C14.8538 11.0628 15.0347 11.1668 15.1572 11.2344C15.2184 11.2681 15.2657 11.2927 15.2959 11.3086C15.3106 11.3163 15.3214 11.3218 15.3281 11.3252C15.3313 11.3268 15.3337 11.3285 15.335 11.3291L16.6768 12L15.335 12.6699L15.3359 12.6709H15.335C15.3337 12.6715 15.3313 12.6732 15.3281 12.6748C15.3214 12.6782 15.3106 12.6837 15.2959 12.6914C15.2657 12.7073 15.2184 12.7319 15.1572 12.7656C15.0347 12.8332 14.8538 12.9372 14.6279 13.0762C14.1754 13.3547 13.5448 13.7751 12.8438 14.3359C11.4363 15.4619 9.77277 17.1314 8.6709 19.335L7.3291 18.665C8.56056 16.2021 10.3971 14.3714 11.9062 13.1641C12.5123 12.6793 13.0708 12.292 13.5234 12C13.0708 11.708 12.5123 11.3207 11.9062 10.8359C10.3971 9.62861 8.56056 7.79788 7.3291 5.33496L8.6709 4.66504Z"/></svg></button>
             </div>
           </div>
           <p class="sr-only" role="status" data-mentors-status></p>
@@ -1627,9 +1634,9 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
     </section>
     <section class="section_join" id="become-a-mentor" aria-labelledby="join-title" lang="en" dir="ltr">
       <div class="join_panel">
+      <div class="join_head" data-split-group><p class="join_eyebrow title2 sec-dot" data-split>Become a mentor</p><span class="title-band" aria-hidden="true"><svg class="sb_band" viewBox="0 0 1101.6 25.2" data-tatreez-fit data-tatreez-h="14" data-reveal-wipe aria-hidden="true" focusable="false"><rect width="1101.6" height="25.2" fill="url(#tatreezBand)"/></svg></span></div>
       <div class="join_grid">
         <div class="join_ask" data-split-group>
-          <p class="join_eyebrow title2 sec-dot" data-split>Become a mentor</p>
           <h2 class="join_title h2" id="join-title" data-split>Is mentoring for you?</h2>
           <p class="join_lead body1" data-split>If you’ve been through the scholarship application process or have experience guiding others, you could make a huge impact.</p>
           <a class="button-primary title3" href="https://secure.lglforms.com/form_engine/s/g_DgjZr8NO-ar4ZbK8qO7Q" target="_blank" rel="noopener">Become a mentor<span class="sr-only"> (opens the application form in a new tab)</span></a>
@@ -2023,6 +2030,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
       root.lang = lang; root.dir = lang === "ar" ? "rtl" : "ltr";
       document.title = dict.title;
       document.querySelectorAll("[data-i18n]").forEach(function (el) { el.textContent = dict[el.getAttribute("data-i18n")]; });
+      if (window.SFGCascade) SFGCascade();
       q("[data-lang-toggle]").setAttribute("aria-label", dict.toggleLabel);
       pics.forEach(function (img) {
         if (!img.hasAttribute("data-mirror-rtl")) return;
@@ -2186,6 +2194,18 @@ document.addEventListener("click",function(e){
     SFGScrollTo(el,function(){ history.replaceState(null,"","#"+id); if(!el.hasAttribute("tabindex")) el.setAttribute("tabindex","-1"); el.focus({preventScroll:true}); });
   },0);
 });
+// ===== Nav links: noho.ink's letter cascade on hover =====
+window.SFGCascade=function(){
+  document.querySelectorAll(".header_nav-link").forEach(function(a){
+    var h=a.hasAttribute("data-i18n")?a:a.querySelector("[data-i18n]:not(.sr-only)"); if(!h||h.querySelector(".cascade")) return;
+    var t=h.textContent, latin=/^[\x00-\x7F’]*$/.test(t);
+    var parts=latin?t.split(""):t.split(/(\s+)/);   // Arabic stays joined: it rolls word by word
+    var line=function(){return parts.map(function(c,i){return '<span class="cascade_l" style="--i:'+i+'">'+c.replace(/&/g,"&amp;").replace(/</g,"&lt;")+'</span>';}).join("");};
+    h.innerHTML='<span class="sr-only"></span><span class="cascade" aria-hidden="true"><span class="cascade_a">'+line()+'</span><span class="cascade_b">'+line()+'</span></span>';
+    h.firstChild.textContent=t;
+  });
+};
+SFGCascade();
 // ===== Button and text-link motion (after cambium.com) =====
 (function(){
   document.querySelectorAll(".button-primary,.how_cta").forEach(function(a){
@@ -2334,7 +2354,7 @@ layout();
 (function(){
   const TILE=367.2,bands=[...document.querySelectorAll("svg[data-tatreez-fit]")];
   function fit(){bands.forEach(b=>{
-    const n=Math.max(1,Math.round(b.parentElement.clientWidth/TILE)),w=(n*TILE).toFixed(1);
+    const h=+b.getAttribute("data-tatreez-h")||25.2,n=Math.max(1,Math.round(b.parentElement.clientWidth*25.2/(h*TILE))),w=(n*TILE).toFixed(1);   /* data-tatreez-h: a thinner band (more, smaller motifs) */
     b.setAttribute("viewBox",`0 0 ${w} 25.2`);b.querySelector(":scope > rect").setAttribute("width",w);
   });}
   addEventListener("resize",fit);fit();
