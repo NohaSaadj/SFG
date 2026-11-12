@@ -156,7 +156,7 @@
     button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
     :focus-visible{outline:2px solid var(--color-border-focus);outline-offset:3px}
     .section_intro :focus-visible,.site-header :focus-visible{outline-color:var(--color-border-focus-on-inverse)}
-    .skip-link{position:absolute;left:var(--space-16);top:-80px;z-index:100;background:var(--color-bg-surface);color:var(--color-text-primary);padding:var(--space-12) var(--space-16);border-radius:var(--radius-card)}
+    .skip-link{position:absolute;inset-inline-start:var(--space-16);top:-80px;z-index:100;background:var(--color-bg-surface);color:var(--color-text-primary);padding:var(--space-12) var(--space-16);border-radius:var(--radius-card)}
     .skip-link:focus{top:var(--space-16)}
     .padding-global{padding-inline:var(--grid-margin)}   /* design-system grid margin: 160px at 1440, 20px on phones */
     .container-large{margin-inline:auto}
@@ -319,7 +319,9 @@
     /* RTL */
     html[dir="rtl"]{--origin-start:right}
     html[dir="rtl"] .intro_poem,html[dir="rtl"] .intro_row p,html[dir="rtl"] .intro_center p,html[dir="rtl"] .intro_start,html[dir="rtl"] .intro_fly{line-height:1.45;letter-spacing:0}
-    html[dir="rtl"] .h1,html[dir="rtl"] .h3{letter-spacing:0}
+    /* Arabic sets on the same scale: tracking is always 0 (it would open the joins), and headings get more leading for the marks above and below */
+    html[dir="rtl"]{--h1-lh:1.35;--h2-lh:1.35;--h3-lh:1.4;--h4-lh:1.45;--h5-lh:1.5;--quote-lh:1.45}   /* body and title leading stay as in the scale */
+    html[dir="rtl"] :lang(ar){letter-spacing:0}
     /* ===== PARTNERS · logo tiles on a field of tatreez stitches (after cambium.com "Trusted by") ===== */
 .section_partners{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-32) var(--grid-margin);overflow:hidden}
 .partners_field{position:absolute;inset:0;width:100%;height:100%;display:block}
@@ -355,7 +357,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .is-dont .wwd_title{color:var(--color-text-heading)}
 /* Three equal columns from margin to margin; the text hugs a short measure so there is room between columns */
 .wwd_cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--space-64);list-style:none;margin:0;padding:0}
-.wwd_col{padding:0 0 var(--space-8) var(--space-32);border-inline-start:1px solid var(--color-border-on-inverse)}
+.wwd_col{padding:0 0 var(--space-8);padding-inline-start:var(--space-32);border-inline-start:1px solid var(--color-border-on-inverse)}
 .is-dont .wwd_col{border-color:var(--color-border-subtle)}
 .wwd_icon{position:relative;display:block;width:var(--space-48);height:var(--space-48);margin-bottom:var(--space-64)}   /* icon, then a long breath to the title */
 .wwd_line{display:block;width:100%;height:100%;fill:none;stroke:var(--color-icon-accent-on-inverse);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}   /* the arrows' 1.5/24 weight */
@@ -378,8 +380,7 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 @media (max-width:767px){
   .wwd_cols{grid-template-columns:1fr;gap:var(--space-48)}
   .wwd_col-text{max-width:none}
-  .wwd_col{padding:0 0 0 var(--space-20)}
-  [dir="rtl"] .wwd_col{padding:0 var(--space-20) 0 0}
+  .wwd_col{padding:0;padding-inline-start:var(--space-20)}
   .wwd_title{margin-bottom:var(--space-48)}
   .wwd_icon{margin-bottom:var(--space-24)}
   .is-static .wwd_sheet{padding-block:var(--space-64)}
@@ -681,6 +682,8 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .results_item{padding-block:var(--space-16);color:var(--results-name);transition:color .8s var(--results-ease)}
 .results_item.is-active{color:var(--results-active-text)}
 .results_name{display:block;font:500 var(--display-size)/var(--display-lh) var(--font-display);letter-spacing:var(--display-ls);text-wrap:balance}
+[dir="rtl"] .results_contain{direction:ltr}   /* the same sides as in English: names on the left, the globe on the right */
+[dir="rtl"] .results_content,[dir="rtl"] .results_markers .results_label{direction:rtl}
 .results_content{grid-column:8 / 13;height:100vh;padding-top:var(--space-96);position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between}
 .results_title{margin:0;color:var(--results-ink);text-wrap:balance}
 .results_sub{margin:var(--space-16) 0 0;max-width:40ch;font-weight:400;color:var(--results-ink)}
@@ -758,7 +761,6 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 .voices_head .title-band{margin-inline:var(--space-8) -29px;pointer-events:none;position:relative;z-index:0}   /* reaches into the 48px button's blank inset: the band ends ~14px before the chevron glyph */
 .voices_pager{position:relative;z-index:1}
 
-.voices_deck{direction:ltr}   /* the testimonials are English; the deck keeps its order in Arabic mode */
 .voices_list{list-style:none;margin:0;padding:0 var(--grid-margin);display:flex;gap:var(--space-16);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--grid-margin);scrollbar-width:none;overscroll-behavior-x:contain}
 .voices_list::-webkit-scrollbar{display:none}
 .voices_item{flex:none;width:var(--voices-w);scroll-snap-align:start;display:flex}
@@ -789,7 +791,7 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
 .section_voices.is-pinned{padding-block:0;display:flex;flex-direction:column;justify-content:center}
 .is-pinned .voices_deck{padding-inline-start:var(--grid-margin);overflow:hidden}
 .is-pinned .voices_list{position:relative;display:block;height:var(--voices-h);padding:0;overflow:visible;scroll-snap-type:none}
-.is-pinned .voices_item{position:absolute;top:0;left:0;width:var(--voices-w);height:var(--voices-h)}
+.is-pinned .voices_item{position:absolute;top:0;inset-inline-start:0;width:var(--voices-w);height:var(--voices-h)}
 .is-pinned .voices_item+.voices_item{will-change:transform}   /* the first card never moves */
 .is-pinned .voices_card{min-height:0;outline:1px solid transparent;outline-offset:-1px}   /* the transparent outline draws an edge in forced-colors mode, without changing the card's size */
 @media (min-width:992px){
@@ -921,10 +923,10 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
    gap on the right; two stitch-field blocks show beside it (top-left and a right strip) and both end with the section */
 .stitch_field{position:absolute;pointer-events:none}
 .stitch_field svg{display:block;width:100%;height:100%}
-.stitch_field.is-a{top:0;left:0;width:var(--st-left);height:64%}
-.stitch_field.is-b{top:20%;right:0;bottom:0;width:var(--st-gap)}
-.mentors_panel{position:relative;margin:0 var(--st-gap) 0 var(--st-left);padding:var(--space-96) calc(var(--grid-margin) - var(--st-gap)) var(--space-128) var(--space-56);background:var(--color-bg-page)}
-@media (max-width:991px){.section_mentors{--st-gap:var(--space-12);--st-left:var(--space-12)}.mentors_panel{padding:var(--space-64) calc(var(--grid-margin) - var(--space-12)) var(--space-96)}.stitch_field.is-a{height:45%}}
+.stitch_field.is-a{top:0;inset-inline-start:0;width:var(--st-left);height:64%}
+.stitch_field.is-b{top:20%;inset-inline-end:0;bottom:0;width:var(--st-gap)}
+.mentors_panel{position:relative;margin:0;margin-inline:var(--st-left) var(--st-gap);padding:var(--space-96) 0 var(--space-128);padding-inline:var(--space-56) calc(var(--grid-margin) - var(--st-gap));background:var(--color-bg-page)}
+@media (max-width:991px){.section_mentors{--st-gap:var(--space-12);--st-left:var(--space-12)}.mentors_panel{padding:var(--space-64) calc(var(--grid-margin) - var(--space-12)) var(--space-96);padding-inline:calc(var(--grid-margin) - var(--space-12))}.stitch_field.is-a{height:45%}}
 .mentors_eyebrow{margin:0 0 var(--space-64);color:var(--color-text-heading)}
 .mentors_grid{display:grid;grid-template-columns:var(--space-128) minmax(0,56rem);column-gap:var(--space-32)}
 .mentors_mark{margin:0;font:500 9rem/.8 var(--font-display);color:var(--color-border-subtle);user-select:none}   /* decorative */
@@ -936,7 +938,7 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 .mentors_more{margin:0;max-width:54ch;text-align:justify;hyphens:auto;color:var(--color-text-secondary);text-wrap:pretty}
 .mentors_foot{grid-column:2;margin-top:var(--space-48)}
 .mentors_rule{position:relative;height:1px;background:var(--color-border-subtle)}
-.mentors_fill{position:absolute;inset:-1px auto -1px 0;width:calc(100% / 3);background:var(--color-text-heading);transition:width .4s var(--ease-out)}
+.mentors_fill{position:absolute;inset-block:-1px;inset-inline-start:0;width:calc(100% / 3);background:var(--color-text-heading);transition:width .4s var(--ease-out)}
 .mentors_row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-24);padding-top:var(--space-24)}
 .mentors_people{display:grid}
 .mentors_by{grid-area:1 / 1;display:flex;flex-direction:column;gap:var(--space-2)}
@@ -1722,14 +1724,14 @@ window.SFG_AR_MAP={
 "How SFG’s story began": "كيف بدأت حكاية SFG",
 "One scholarship, one promise, and a growing network of mentors.": "منحة واحدة، ووعد واحد، وشبكة متنامية من المرشدين.",
 "Next · Back to Gaza": "التالي · العودة إلى غزة",
-"A Chevening scholar": "منحة تشيفنينغ",
-"Ahmed Issa leaves Gaza for Warwick Business School on a fully funded Chevening scholarship.": "يغادر أحمد عيسى غزة إلى كلية وارويك لإدارة الأعمال بمنحة تشيفنينغ ممولة بالكامل.",
+"A Chevening scholar": "حاصل على منحة Chevening",
+"Ahmed Issa leaves Gaza for Warwick Business School on a fully funded Chevening scholarship.": "يغادر أحمد عيسى غزة إلى Warwick Business School بمنحة Chevening ممولة بالكامل.",
 "Back to Gaza": "العودة إلى غزة",
 "He returns home, believing education is how Palestinians will lead and rebuild.": "يعود إلى وطنه مؤمنًا بأن التعليم هو طريق الفلسطينيين إلى القيادة وإعادة البناء.",
 "A promise": "وعد",
 "Ahmed evacuates Gaza with his wife and two sons, and makes a promise: to help Palestinian students win the fully funded scholarships that changed his life.": "يغادر أحمد غزة مع زوجته وابنيه، ويقطع وعدًا: أن يساعد الطلاب الفلسطينيين على الفوز بالمنح الممولة بالكامل التي غيّرت حياته.",
 "SFG begins": "انطلاقة SFG",
-"It starts with one Instagram story: “Want to help Ghazawi students to get a scholarship?” Ahmed asks for volunteers to guide students through their applications, and Scholarships for Ghazza is born.": "بدأ الأمر بقصة واحدة على إنستغرام: «هل تريد مساعدة طلاب غزة في الحصول على منحة؟» طلب أحمد متطوعين يرشدون الطلاب خلال طلباتهم، فوُلدت مبادرة منح لغزة.",
+"It starts with one Instagram story: “Want to help Ghazawi students to get a scholarship?” Ahmed asks for volunteers to guide students through their applications, and Scholarships for Ghazza is born.": "بدأ الأمر بقصة واحدة على Instagram: «هل تريد مساعدة طلاب غزة في الحصول على منحة؟» طلب أحمد متطوعين يرشدون الطلاب خلال طلباتهم، فوُلدت مبادرة منح لغزة.",
 "On Al Jazeera": "على قناة الجزيرة",
 "SFG’s story reaches Al Jazeera’s The Stream, as more students from Gaza win their places.": "تصل حكاية SFG إلى برنامج The Stream على قناة الجزيرة، فيما يفوز مزيد من طلاب غزة بمقاعدهم.",
 "Watch on Al Jazeera’s The Stream": "شاهد الحلقة على The Stream من الجزيرة",
@@ -1737,7 +1739,7 @@ window.SFG_AR_MAP={
 "Mentor": "نرشد",
 "Every student is paired with an academic mentor and an SFG organiser, bringing hope and purpose back to studies the genocide brought to a halt.": "نربط كل طالب بمرشد أكاديمي ومنسّق من SFG، فنعيد الأمل والهدف إلى دراسةٍ أوقفتها الإبادة.",
 "Guide": "نوجّه",
-"Mentors help students curate applications and write strong personal statements, CVs and recommendation letters, then prepare them with mock interviews and English practice for TOEFL, IELTS and Duolingo.": "يساعد المرشدون الطلاب على إعداد طلباتهم وكتابة رسائل شخصية وسير ذاتية وخطابات توصية قوية، ثم يهيّئونهم بمقابلات تجريبية وتدريب على الإنجليزية لاختبارات TOEFL وIELTS وDuolingo.",
+"Mentors help students curate applications and write strong personal statements, CVs and recommendation letters, then prepare them with mock interviews and English practice for TOEFL, IELTS and Duolingo.": "يساعد المرشدون الطلاب على إعداد طلباتهم وكتابة رسائل شخصية وسير ذاتية وخطابات توصية قوية، ثم يهيّئونهم بمقابلات تجريبية وتدريب على الإنجليزية لاختبارات TOEFL و IELTS و Duolingo.",
 "Connect": "نصل",
 "We guide students to existing scholarships and universities abroad, help them choose courses and request fee waivers, and support them as they write to universities and scholarship boards.": "نرشد الطلاب إلى المنح والجامعات المتاحة في الخارج، ونساعدهم على اختيار التخصصات وطلب الإعفاء من الرسوم، وندعمهم في مراسلة الجامعات ولجان المنح.",
 "What we <span class=\"wwd_mark\">don’t§</span> do": "ما <span class=\"wwd_mark\">لا§</span> نفعله",
@@ -1763,7 +1765,7 @@ window.SFG_AR_MAP={
 "Why this degree?": "لماذا هذه الدرجة؟",
 "Continue": "متابعة",
 "Meet your mentor": "تعرّف إلى مرشدك",
-"You join a WhatsApp group with your academic mentor and an SFG organiser, where you share documents, get feedback and stay on track.": "تنضم إلى مجموعة واتساب مع مرشدك الأكاديمي ومنسّق من SFG، تتشاركون فيها المستندات، وتتلقى الملاحظات، وتبقى على المسار.",
+"You join a WhatsApp group with your academic mentor and an SFG organiser, where you share documents, get feedback and stay on track.": "تنضم إلى مجموعة WhatsApp مع مرشدك الأكاديمي ومنسّق من SFG، تتشاركون فيها المستندات، وتتلقى الملاحظات، وتبقى على المسار.",
 "Matched": "تمّت المطابقة",
 "LA": "ل",
 "Lina": "لينا",
@@ -1775,15 +1777,12 @@ window.SFG_AR_MAP={
 "Together you find the existing scholarships worth applying for, check every eligibility requirement and choose your courses.": "تبحثان معًا عن المنح التي تستحق التقديم، وتتحققان من كل شروط الأهلية، وتختاران تخصصاتك.",
 "Your shortlist": "قائمتك المختصرة",
 "4 scholarships": "4 منح",
-"Chevening": "تشيفنينغ",
 "United Kingdom": "المملكة المتحدة",
 "in 12 days": "بعد 12 يومًا",
 "Germany": "ألمانيا",
 "in 3 weeks": "بعد 3 أسابيع",
-"Erasmus Mundus": "إيراسموس موندوس",
 "Europe": "أوروبا",
 "in 2 months": "بعد شهرين",
-"France Excellence": "التميّز الفرنسية",
 "France": "فرنسا",
 "in 4 months": "بعد 4 أشهر",
 "Write, draft by draft": "اكتب، مسودةً بعد مسودة",
@@ -1805,7 +1804,7 @@ window.SFG_AR_MAP={
 "Scholarship winners": "فائزون بالمنح",
 "Students who have won fully funded scholarships with SFG mentors so far.": "طلاب فازوا بمنح ممولة بالكامل مع مرشدي SFG حتى الآن.",
 "Universities": "جامعات",
-"Including Cambridge, Imperial, UCL, LSE and Trinity College Dublin.": "منها كامبريدج وإمبريال وUCL وLSE وكلية ترينيتي دبلن.",
+"Including Cambridge, Imperial, UCL, LSE and Trinity College Dublin.": "منها Cambridge، Imperial، UCL، LSE و Trinity College Dublin.",
 "Countries": "دول",
 "From the UK and Ireland to Qatar, Malaysia and Singapore.": "من المملكة المتحدة وإيرلندا إلى قطر وماليزيا وسنغافورة.",
 "Where our scholars study now": "أين يدرس طلابنا اليوم",
@@ -1828,11 +1827,11 @@ window.SFG_AR_MAP={
 "Read full story<span class=\"sr-only\"> of Ola Aburamadan</span>": "اقرأ القصة كاملة<span class=\"sr-only\"> لعلا أبو رمضان</span>",
 "I’m Ola Aburamadan, an English teacher from Gaza. My story is one of survival, hope, and the power of mentorship.": "أنا علا أبو رمضان، معلّمة لغة إنجليزية من غزة. قصتي قصة نجاة وأمل، وقصة قوة الإرشاد.",
 "When the genocide began, life turned into a daily fight for safety. There were days when I couldn’t sleep because of the bombings. Nights when the sound of explosions replaced silence. I watched schools — the very symbol of hope — turn to rubble. Sometimes, I couldn’t even imagine a future beyond the destruction.": "حين بدأت الإبادة، تحوّلت الحياة إلى معركة يومية من أجل الأمان. كانت هناك أيام لم أستطع فيها النوم بسبب القصف، وليالٍ حلّ فيها صوت الانفجارات محل الصمت. رأيت المدارس — رمز الأمل نفسه — تتحوّل إلى ركام. وأحيانًا لم أستطع حتى أن أتخيّل مستقبلًا بعد الدمار.",
-"Still, I held on to my dream of rebuilding through education. I had founded a small initiative that grew into a school serving more than 5,000 students, later supported by UNICEF. But to make a real change, I needed to learn — and that’s when SFG came into my life.": "ومع ذلك تمسّكت بحلمي في إعادة البناء بالتعليم. كنت قد أسّست مبادرة صغيرة كبرت حتى صارت مدرسة تخدم أكثر من 5,000 طالب، ودعمتها اليونيسف لاحقًا. لكن لأُحدث تغييرًا حقيقيًا كان عليّ أن أتعلّم — وعندها دخلت SFG حياتي.",
-"During the genocide, applying for the Chevening Awards felt impossible. Electricity cuts, weak internet, trauma — everything made the process harder.": "خلال الإبادة، بدا التقديم لمنحة تشيفنينغ مستحيلًا. انقطاع الكهرباء، وضعف الإنترنت، والصدمة — كل شيء جعل الطريق أصعب.",
+"Still, I held on to my dream of rebuilding through education. I had founded a small initiative that grew into a school serving more than 5,000 students, later supported by UNICEF. But to make a real change, I needed to learn — and that’s when SFG came into my life.": "ومع ذلك تمسّكت بحلمي في إعادة البناء بالتعليم. كنت قد أسّست مبادرة صغيرة كبرت حتى صارت مدرسة تخدم أكثر من 5,000 طالب، ودعمتها UNICEF لاحقًا. لكن لأُحدث تغييرًا حقيقيًا كان عليّ أن أتعلّم — وعندها دخلت SFG حياتي.",
+"During the genocide, applying for the Chevening Awards felt impossible. Electricity cuts, weak internet, trauma — everything made the process harder.": "خلال الإبادة، بدا التقديم لمنحة Chevening مستحيلًا. انقطاع الكهرباء، وضعف الإنترنت، والصدمة — كل شيء جعل الطريق أصعب.",
 "Yet, my SFG mentor Beth and the founder, Ahmed Issa, never left my side. They guided me through every essay, encouraged me when I broke down, and reminded me that my voice and my story mattered.": "لكن مرشدتي في SFG، بيث، ومؤسس المبادرة أحمد عيسى لم يتركاني لحظة. أرشداني في كل مقال، وشجّعاني حين انهرت، وذكّراني بأن صوتي وقصتي مهمّان.",
 "SFG even helped me prepare for interviews and offered to cover my English test fees when I couldn’t afford them. They were my light when the world around me went dark.": "بل ساعدتني SFG على الاستعداد للمقابلات، وعرضت أن تغطي رسوم اختبار الإنجليزية حين عجزت عن دفعها. كانوا نوري حين أظلم العالم من حولي.",
-"Today, I’m studying Education and International Development at University College London (UCL) on a fully funded Chevening Scholarship. But this success belongs not only to me — it belongs to those who believed in me when I almost stopped believing in myself.": "اليوم أدرس التعليم والتنمية الدولية في كلية لندن الجامعية (UCL) بمنحة تشيفنينغ ممولة بالكامل. لكن هذا النجاح ليس لي وحدي — إنه لمن آمنوا بي حين كدت أتوقف عن الإيمان بنفسي.",
+"Today, I’m studying Education and International Development at University College London (UCL) on a fully funded Chevening Scholarship. But this success belongs not only to me — it belongs to those who believed in me when I almost stopped believing in myself.": "اليوم أدرس Education and International Development في University College London (UCL) بمنحة Chevening ممولة بالكامل. لكن هذا النجاح ليس لي وحدي — إنه لمن آمنوا بي حين كدت أتوقف عن الإيمان بنفسي.",
 "Shahd Alwahidi": "شهد الواحدي",
 "“He understood when the connection dropped, when I couldn’t focus, when I felt hopeless. Instead, he encouraged me to write freely, to see my story as powerful…”": "«كان يتفهّم حين ينقطع الاتصال، وحين لا أستطيع التركيز، وحين أشعر باليأس. بل شجّعني على الكتابة بحرية، وعلى أن أرى قصتي مصدر قوة…»",
 "Read full story<span class=\"sr-only\"> of Shahd Alwahidi</span>": "اقرأ القصة كاملة<span class=\"sr-only\"> لشهد الواحدي</span>",
@@ -1840,59 +1839,56 @@ window.SFG_AR_MAP={
 "When I joined the Scholarships For Ghazza (SFG) mentorship initiative, I worried my mentor wouldn’t understand the reality I was facing.": "حين انضممت إلى مبادرة منح لغزة (SFG) للإرشاد، خشيت ألّا يفهم مرشدي الواقع الذي أعيشه.",
 "But Chris, my mentor, was patient in ways I didn’t expect. He never rushed me. He understood when the connection dropped, when I couldn’t focus, when I felt hopeless. Instead, he encouraged me to write freely, to see my story as powerful, and to believe that my voice mattered.": "لكن كريس، مرشدي، كان صبورًا بطريقة لم أتوقعها. لم يستعجلني أبدًا. كان يتفهّم حين ينقطع الاتصال، وحين لا أستطيع التركيز، وحين أشعر باليأس. بل شجّعني على الكتابة بحرية، وعلى أن أرى قصتي مصدر قوة، وأن أؤمن بأن صوتي مهم.",
 "At first, I hated the writing process. I didn’t think I was good enough. But Chris guided me step by step—helping me shape raw thoughts into strong personal statements, reminding me to keep going after rejections, and lifting me up when I felt like quitting. Slowly, I started to dream again.": "في البداية كرهت الكتابة، ولم أظن أنني جيدة بما يكفي. لكن كريس أرشدني خطوة بخطوة — ساعدني على تحويل أفكاري الأولى إلى رسائل شخصية قوية، وذكّرني بالاستمرار بعد كل رفض، ورفع معنوياتي كلما شعرت برغبة في الانسحاب. وببطء، بدأت أحلم من جديد.",
-"That support changed everything. I secured a fully funded scholarship at the University of Washington in Seattle, as well as offers from The University of Manchester, the University of Glasgow, University of Leicester, and the University of Alberta. Today, I am pursuing Biomedical Engineering at the University of Glasgow, holding on to the hope and resilience that carried me through this journey.": "غيّر ذلك الدعم كل شيء. حصلت على منحة ممولة بالكامل في جامعة واشنطن في سياتل، إلى جانب قبولات من جامعة مانشستر وجامعة غلاسكو وجامعة ليستر وجامعة ألبرتا. واليوم أدرس الهندسة الطبية الحيوية في جامعة غلاسكو، متمسكة بالأمل والصمود اللذين حملاني خلال هذه الرحلة.",
+"That support changed everything. I secured a fully funded scholarship at the University of Washington in Seattle, as well as offers from The University of Manchester, the University of Glasgow, University of Leicester, and the University of Alberta. Today, I am pursuing Biomedical Engineering at the University of Glasgow, holding on to the hope and resilience that carried me through this journey.": "غيّر ذلك الدعم كل شيء. حصلت على منحة ممولة بالكامل في University of Washington في سياتل، إلى جانب قبولات من The University of Manchester و University of Glasgow و University of Leicester و University of Alberta. واليوم أدرس Biomedical Engineering في University of Glasgow، متمسكة بالأمل والصمود اللذين حملاني خلال هذه الرحلة.",
 "This journey showed me that mentorship is not only about guidance—it’s about patience, kindness, and believing in someone until they can believe in themselves again.": "علّمتني هذه الرحلة أن الإرشاد ليس توجيهًا فحسب — بل صبر ولطف، وإيمان بشخص حتى يعود فيؤمن بنفسه من جديد.",
 "Doaa Nabil Ahmed": "دعاء نبيل أحمد",
 "“…I was unsure if I could manage scholarship applications while living with frequent internet outages, long electricity cuts, and the dangers of bombings in Gaza.”": "«…لم أكن متأكدة من قدرتي على إدارة طلبات المنح وأنا أعيش انقطاعات متكررة للإنترنت، وانقطاعات طويلة للكهرباء، وخطر القصف في غزة.»",
 "Read full story<span class=\"sr-only\"> of Doaa Nabil Ahmed</span>": "اقرأ القصة كاملة<span class=\"sr-only\"> لدعاء نبيل أحمد</span>",
-"My name is Doaa Nabil Ahmed. I hold a Bachelor’s degree in English Language and Literature with a minor in Translation (2023) and a Bachelor’s degree in English Language Education (2025), and I am honored to have been awarded the Salam Scholarship for Palestinian women to pursue an MA in TESOL at Ulster University – Coleraine Campus.": "اسمي دعاء نبيل أحمد. أحمل بكالوريوس في اللغة الإنجليزية وآدابها مع تخصص فرعي في الترجمة (2023)، وبكالوريوس في تعليم اللغة الإنجليزية (2025)، ويشرّفني أنني حصلت على منحة سلام للنساء الفلسطينيات لدراسة ماجستير TESOL في جامعة ألستر – حرم كوليرين.",
+"My name is Doaa Nabil Ahmed. I hold a Bachelor’s degree in English Language and Literature with a minor in Translation (2023) and a Bachelor’s degree in English Language Education (2025), and I am honored to have been awarded the Salam Scholarship for Palestinian women to pursue an MA in TESOL at Ulster University – Coleraine Campus.": "اسمي دعاء نبيل أحمد. أحمل بكالوريوس في اللغة الإنجليزية وآدابها مع تخصص فرعي في الترجمة (2023)، وبكالوريوس في تعليم اللغة الإنجليزية (2025)، ويشرّفني أنني حصلت على Salam Scholarship للنساء الفلسطينيات لدراسة MA TESOL في Ulster University – Coleraine Campus.",
 "Before joining the mentorship programme, I was unsure if I could manage scholarship applications while living with frequent internet outages, long electricity cuts, and the dangers of bombings in Gaza. But the programme gave me something rare: dedicated mentors, supportive peers, and a community that believed in me. With their guidance, I gained the skills, confidence, and resources that helped me secure my scholarship.": "قبل انضمامي إلى برنامج الإرشاد، لم أكن متأكدة من قدرتي على إدارة طلبات المنح وأنا أعيش انقطاعات متكررة للإنترنت، وانقطاعات طويلة للكهرباء، وخطر القصف في غزة. لكن البرنامج منحني شيئًا نادرًا: مرشدين متفانين، وزملاء داعمين، ومجتمعًا آمن بي. وبفضل إرشادهم اكتسبت المهارات والثقة والموارد التي ساعدتني على الفوز بمنحتي.",
 "This experience showed me how powerful mentorship can be in transforming lives. That is why I wholeheartedly encourage more mentors to join this initiative. Your guidance does not only help students achieve academic goals—it gives hope, resilience, and the belief that even under the hardest circumstances, dreams are still possible.": "أرتني هذه التجربة كم يستطيع الإرشاد أن يغيّر الحياة. لهذا أشجّع من كل قلبي مزيدًا من المرشدين على الانضمام إلى هذه المبادرة. إرشادكم لا يساعد الطلاب على تحقيق أهدافهم الأكاديمية فحسب — بل يمنحهم الأمل والصمود، والإيمان بأن الأحلام ممكنة حتى في أصعب الظروف.",
 "Etaf Abu Hadda": "عطاف أبو حدة",
 "“I still remember our first call—me in a noisy, crowded tent where drones buzzed overhead… Despite the chaos, Nour never gave up on me.”": "«ما زلت أذكر أول مكالمة بيننا — أنا في خيمة مزدحمة صاخبة تحوم فوقها الطائرات المسيّرة… ورغم الفوضى، لم تتخلَّ نور عني أبدًا.»",
 "Read full story<span class=\"sr-only\"> of Etaf Abu Hadda</span>": "اقرأ القصة كاملة<span class=\"sr-only\"> لعطاف أبو حدة</span>",
-"My name is Etaf Abu Hadda, 26 years old from Gaza. I graduated with honours in Information Security Engineering and worked in cybersecurity with UNRWA, UNICC, and Medical Aid for Palestinians (MAP). Amid the Gaza genocide, I balanced volunteering in humanitarian relief with chasing my academic dream.": "اسمي عطاف أبو حدة، عمري 26 عامًا، من غزة. تخرّجت بامتياز في هندسة أمن المعلومات، وعملت في الأمن السيبراني مع الأونروا وUNICC ومنظمة العون الطبي للفلسطينيين (MAP). وفي خضمّ الإبادة على غزة، وازنت بين التطوع في الإغاثة الإنسانية وملاحقة حلمي الأكاديمي.",
+"My name is Etaf Abu Hadda, 26 years old from Gaza. I graduated with honours in Information Security Engineering and worked in cybersecurity with UNRWA, UNICC, and Medical Aid for Palestinians (MAP). Amid the Gaza genocide, I balanced volunteering in humanitarian relief with chasing my academic dream.": "اسمي عطاف أبو حدة، عمري 26 عامًا، من غزة. تخرّجت بامتياز في هندسة أمن المعلومات، وعملت في الأمن السيبراني مع UNRWA و UNICC و Medical Aid for Palestinians (MAP). وفي خضمّ الإبادة على غزة، وازنت بين التطوع في الإغاثة الإنسانية وملاحقة حلمي الأكاديمي.",
 "Living in a tent in Mawasi Khanyounis with no electricity or internet, I kept applying for scholarships—walking long distances to shared workspaces I couldn’t afford. That’s when the Scholarships for Ghazza mentorship programme stepped in—covering my workspace subscription, my English test fees, and, most importantly, connecting me with a mentor who believed in me.": "كنت أعيش في خيمة في مواصي خانيونس بلا كهرباء ولا إنترنت، وواصلت التقديم للمنح — أمشي مسافات طويلة إلى مساحات عمل مشتركة لا أقدر على تكلفتها. وعندها جاء برنامج الإرشاد في منح لغزة، فغطّى اشتراكي في مساحة العمل ورسوم اختبار الإنجليزية، والأهم أنه ربطني بمرشدة آمنت بي.",
 "My mentor, Nour Ali, guided me through drafts, gave thoughtful feedback, and encouraged me when applications were rejected. I still remember our first call—me in a noisy, crowded tent where drones buzzed overhead, making it almost impossible to hear. Despite the chaos, Nour never gave up on me. With her support, I kept going.": "أرشدتني مرشدتي نور علي خلال المسودات، وقدّمت لي ملاحظات مدروسة، وشجّعتني حين رُفضت طلباتي. ما زلت أذكر أول مكالمة بيننا — أنا في خيمة مزدحمة صاخبة تحوم فوقها الطائرات المسيّرة، حتى كاد السمع يستحيل. ورغم الفوضى، لم تتخلَّ نور عني أبدًا. وبدعمها واصلت الطريق.",
-"Not every application was successful, but together we refined my essays, explored MSc programmes, and built resilience. Against all odds, I was blessed to be awarded the WMG-Bseisu Foundation Scholarship 2025 to study MSc Cyber Security Engineering at the University of Warwick.": "لم تنجح كل الطلبات، لكننا معًا صقلنا مقالاتي، واستكشفنا برامج الماجستير، وبنينا الصمود. ورغم كل الصعاب، رُزقت بمنحة مؤسسة WMG-بسيسو لعام 2025 لدراسة ماجستير هندسة الأمن السيبراني في جامعة وارويك.",
-"This mentorship gave me more than academic support—it gave me hope, resilience, and a global community. And meeting Nour in person at Heathrow last week was a powerful reminder that mentorship truly changes lives.": "منحني هذا الإرشاد أكثر من دعم أكاديمي — منحني الأمل والصمود ومجتمعًا عالميًا. وكان لقائي بنور وجهًا لوجه في مطار هيثرو الأسبوع الماضي تذكيرًا قويًا بأن الإرشاد يغيّر الحياة حقًا.",
+"Not every application was successful, but together we refined my essays, explored MSc programmes, and built resilience. Against all odds, I was blessed to be awarded the WMG-Bseisu Foundation Scholarship 2025 to study MSc Cyber Security Engineering at the University of Warwick.": "لم تنجح كل الطلبات، لكننا معًا صقلنا مقالاتي، واستكشفنا برامج الماجستير، وبنينا الصمود. ورغم كل الصعاب، رُزقت بمنحة WMG-Bseisu Foundation Scholarship 2025 لدراسة MSc Cyber Security Engineering في University of Warwick.",
+"This mentorship gave me more than academic support—it gave me hope, resilience, and a global community. And meeting Nour in person at Heathrow last week was a powerful reminder that mentorship truly changes lives.": "منحني هذا الإرشاد أكثر من دعم أكاديمي — منحني الأمل والصمود ومجتمعًا عالميًا. وكان لقائي بنور وجهًا لوجه في مطار Heathrow الأسبوع الماضي تذكيرًا قويًا بأن الإرشاد يغيّر الحياة حقًا.",
 "Saher": "ساهر",
 "Studying in France": "يدرس في فرنسا",
 "“I wasn’t sure the mentorship program would add much to my application—but I was wrong.”": "«لم أكن متأكدًا أن برنامج الإرشاد سيضيف الكثير إلى طلبي — لكنني كنت مخطئًا.»",
 "Read full story<span class=\"sr-only\"> of Saher</span>": "اقرأ القصة كاملة<span class=\"sr-only\"> لساهر</span>",
 "As a Mechatronics Engineer with diverse technical and leadership experience, I initially believed my strong academic background, certifications, and expertise were enough to secure a scholarship. I wasn’t sure the mentorship program would add much to my application—but I was wrong.": "بصفتي مهندس ميكاترونكس بخبرة تقنية وقيادية متنوعة، ظننت في البداية أن خلفيتي الأكاديمية القوية وشهاداتي وخبرتي تكفي للفوز بمنحة. لم أكن متأكدًا أن برنامج الإرشاد سيضيف الكثير إلى طلبي — لكنني كنت مخطئًا.",
 "Through Scholarships for Ghazza, I learned how to refine my CV, structure a compelling personal statement, and present my achievements effectively. The small details—clear storytelling, avoiding overly complex language, and maintaining a natural flow—made a huge difference. Having a foreign mentor review my documents provided a fresh perspective I wouldn’t have considered otherwise.": "مع منح لغزة تعلّمت كيف أصقل سيرتي الذاتية، وأبني رسالة شخصية مقنعة، وأعرض إنجازاتي بفعالية. التفاصيل الصغيرة — السرد الواضح، وتجنّب اللغة المعقدة، والحفاظ على تدفق طبيعي — صنعت فرقًا كبيرًا. ومنحتني مراجعة مرشد أجنبي لمستنداتي منظورًا جديدًا ما كنت لأنتبه إليه وحدي.",
-"I was fortunate to secure the France Excellence Scholarship, and I now see how much the program has grown, offering scholarship databases, English improvement communities, and continuous engagement with mentors and peers. This program saves students the hassle of navigating the process alone and significantly strengthens their applications.": "كنت محظوظًا بالفوز بمنحة التميّز الفرنسية، وأرى اليوم كم كبر البرنامج: قواعد بيانات للمنح، ومجتمعات لتحسين الإنجليزية، وتواصل مستمر مع المرشدين والزملاء. يوفّر هذا البرنامج على الطلاب عناء خوض الطريق وحدهم، ويقوّي طلباتهم كثيرًا.",
+"I was fortunate to secure the France Excellence Scholarship, and I now see how much the program has grown, offering scholarship databases, English improvement communities, and continuous engagement with mentors and peers. This program saves students the hassle of navigating the process alone and significantly strengthens their applications.": "كنت محظوظًا بالفوز بمنحة France Excellence Scholarship، وأرى اليوم كم كبر البرنامج: قواعد بيانات للمنح، ومجتمعات لتحسين الإنجليزية، وتواصل مستمر مع المرشدين والزملاء. يوفّر هذا البرنامج على الطلاب عناء خوض الطريق وحدهم، ويقوّي طلباتهم كثيرًا.",
 "Read": "اقرأ",
 "Programme": "البرنامج",
 "University": "الجامعة",
 "In Remembrance": "في الذاكرة",
 "Dalia and Sally Obaid": "داليا وسالي عبيد",
-"Accepted to a PhD at the University of Waterloo": "قُبلتا في برنامج الدكتوراه في جامعة واترلو",
+"Accepted to a PhD at the University of Waterloo": "قُبلتا في برنامج الدكتوراه في University of Waterloo",
 "Sha’ban A-Dalo": "شعبان الدلو",
 "Applying for scholarships to study abroad": "كان يتقدّم لمنح للدراسة في الخارج",
 "Nada Issa, with her father, also martyred": "ندى عيسى، مع والدها الذي استُشهد أيضًا",
-"Preparing to study for an MBA": "كانت تستعد لدراسة ماجستير إدارة الأعمال",
+"Preparing to study for an MBA": "كانت تستعد لدراسة MBA",
 "In the spirit of the SfG community and the mission that unites us, we always remember with deep sorrow our mentees <span class=\"memory_keep\">Sha’ban A-Dalo</span>, Dalia Obaid, her twin sister Sally Obaid, and Nada Issa, who were martyred during the Israeli genocide on Gaza. Sha’ban, Dalia, Sally, and Nada were brilliant young students striving to obtain scholarships to pursue their education abroad in a stable and supportive environment after the brutal genocide on Gaza destroyed their universities and placed them under unimaginable circumstances. Despite all the horrors they endured, they never gave up. They insisted on achieving their dreams and securing their right to a <span class=\"memory_keep\">high-quality</span> education — a right each and every human being deserves.": "انطلاقًا من روح مجتمع SFG والرسالة التي تجمعنا، نستذكر دائمًا بحزن عميق طلابنا شعبان الدلو، وداليا عبيد وتوأمها سالي عبيد، وندى عيسى، الذين استُشهدوا خلال الإبادة الإسرائيلية على غزة. كان شعبان وداليا وسالي وندى طلابًا شبابًا متميزين يسعون إلى منح لمواصلة تعليمهم في الخارج في بيئة مستقرة وداعمة، بعد أن دمّرت الإبادة الوحشية على غزة جامعاتهم ووضعتهم في ظروف لا يمكن تخيّلها. ورغم كل الأهوال التي عاشوها، لم يستسلموا قط. أصرّوا على تحقيق أحلامهم ونيل حقهم في تعليم عالي الجودة — حقٍّ يستحقه كل إنسان.",
-"However, the Zionist forces did not allow that dream to continue. As with so many stories of Gaza’s martyrs, people with normal lives, loving families and friends, and great ambitions, their stories ended in tragedy. The occupation forces attacked Sha’ban’s family tent near <span class=\"memory_keep\">Al-Aqsa</span> Hospital in <span class=\"memory_keep\">Deir al-Balah</span> and burned him alive along with several of his family members. They also killed Dalia and her twin sister Sally, who had both been accepted into a PhD program at the University of Waterloo in Canada, while they were in the process of applying for study permits and preparing to cross the Rafah border into Egypt. Nada was also martyred during the genocide while preparing to pursue graduate studies in business and management. A talented translator and project coordinator, she combined language, strategy, and leadership in her work and dreamed of continuing her education through an MBA to contribute to her community’s development.": "لكن القوات الصهيونية لم تسمح لذلك الحلم بأن يستمر. وكحال قصص كثيرة لشهداء غزة، أناسٍ عاشوا حياة عادية مع عائلات وأصدقاء محبّين وطموحات كبيرة، انتهت قصصهم بمأساة. هاجمت قوات الاحتلال خيمة عائلة شعبان قرب مستشفى الأقصى في دير البلح، وأحرقته حيًّا مع عدد من أفراد عائلته. وقتلت أيضًا داليا وتوأمها سالي، اللتين قُبلتا في برنامج الدكتوراه في جامعة واترلو في كندا، بينما كانتا تستكملان إجراءات تصاريح الدراسة وتستعدان لعبور معبر رفح إلى مصر. واستُشهدت ندى أيضًا خلال الإبادة بينما كانت تستعد لمواصلة دراساتها العليا في إدارة الأعمال. كانت مترجمة ومنسّقة مشاريع موهوبة، جمعت في عملها بين اللغة والاستراتيجية والقيادة، وحلمت بمواصلة تعليمها بماجستير إدارة الأعمال لتسهم في تنمية مجتمعها.",
+"However, the Zionist forces did not allow that dream to continue. As with so many stories of Gaza’s martyrs, people with normal lives, loving families and friends, and great ambitions, their stories ended in tragedy. The occupation forces attacked Sha’ban’s family tent near <span class=\"memory_keep\">Al-Aqsa</span> Hospital in <span class=\"memory_keep\">Deir al-Balah</span> and burned him alive along with several of his family members. They also killed Dalia and her twin sister Sally, who had both been accepted into a PhD program at the University of Waterloo in Canada, while they were in the process of applying for study permits and preparing to cross the Rafah border into Egypt. Nada was also martyred during the genocide while preparing to pursue graduate studies in business and management. A talented translator and project coordinator, she combined language, strategy, and leadership in her work and dreamed of continuing her education through an MBA to contribute to her community’s development.": "لكن القوات الصهيونية لم تسمح لذلك الحلم بأن يستمر. وكحال قصص كثيرة لشهداء غزة، أناسٍ عاشوا حياة عادية مع عائلات وأصدقاء محبّين وطموحات كبيرة، انتهت قصصهم بمأساة. هاجمت قوات الاحتلال خيمة عائلة شعبان قرب مستشفى الأقصى في دير البلح، وأحرقته حيًّا مع عدد من أفراد عائلته. وقتلت أيضًا داليا وتوأمها سالي، اللتين قُبلتا في برنامج الدكتوراه في University of Waterloo في كندا، بينما كانتا تستكملان إجراءات تصاريح الدراسة وتستعدان لعبور معبر رفح إلى مصر. واستُشهدت ندى أيضًا خلال الإبادة بينما كانت تستعد لمواصلة دراساتها العليا في إدارة الأعمال. كانت مترجمة ومنسّقة مشاريع موهوبة، جمعت في عملها بين اللغة والاستراتيجية والقيادة، وحلمت بمواصلة تعليمها بدراسة MBA لتسهم في تنمية مجتمعها.",
 "Today, we dedicate this page to the memory of Sha’ban, Dalia, Sally, and Nada, four of our brightest mentees whose dreams and determination continue to inspire us. Through this work, and through every effort to help Gazan students access education and rebuild their futures, we honour their lives, their ambitions, and their unshakable belief in hope and learning. We pray that Allah (SWT) has mercy upon them and grants them <span class=\"memory_keep\">Jannat al-Firdaws</span>. Ameen.": "اليوم نهدي هذه الصفحة إلى ذكرى شعبان وداليا وسالي وندى، أربعة من ألمع طلابنا، لا تزال أحلامهم وعزيمتهم تلهمنا. ومن خلال هذا العمل، وكل جهد لمساعدة طلاب غزة على الوصول إلى التعليم وإعادة بناء مستقبلهم، نكرّم حياتهم وطموحاتهم وإيمانهم الراسخ بالأمل والتعلّم. نسأل الله أن يتغمّدهم برحمته ويسكنهم جنات الفردوس. آمين.",
 "Ahmed Issa": "أحمد عيسى",
 "Initiative Founder": "مؤسس المبادرة",
 "Mentor voices": "أصوات المرشدين",
 "…one of the most rewarding volunteering experiences I’ve ever had.": "…واحدة من أكثر تجارب التطوع التي خضتها إثراءً.",
 "If you have any experience with universities, scholarships, or standardized English tests and would like to put that to good use supporting Gazan students in achieving their goals, I can’t recommend volunteering with SFG enough.": "إن كانت لديك أي خبرة في الجامعات أو المنح أو اختبارات الإنجليزية المعيارية، وتودّ أن تسخّرها لدعم طلاب غزة في تحقيق أهدافهم، فلا أستطيع أن أوصي بالتطوع مع SFG بما يكفي.",
-"Claire Ramsay, Mentor for eight months": "كلير رامزي، مرشدة منذ ثمانية أشهر",
+"Claire Ramsay, Mentor for eight months": "Claire Ramsay، مرشدة منذ ثمانية أشهر",
 "For the third academic year in a row, I am proud to keep volunteering.": "للعام الأكاديمي الثالث على التوالي، أفخر بمواصلة التطوع.",
 "My very first student, who I couldn’t be more proud of, successfully obtained a fully funded scholarship. My other two brilliant students keep receiving offers from top universities.": "حصل أول طالب أرشدته، ولا يمكن أن أكون أكثر فخرًا به، على منحة ممولة بالكامل. وما زال طالباي المتميزان الآخران يتلقيان عروض قبول من أفضل الجامعات.",
-"Elisa Giammarini, PhD, FHEA, Mentor for three academic years · three students": "إليسا جاماريني، PhD، FHEA، مرشدة منذ ثلاثة أعوام أكاديمية · ثلاثة طلاب",
+"Elisa Giammarini, PhD, FHEA, Mentor for three academic years · three students": "Elisa Giammarini, PhD, FHEA، مرشدة منذ ثلاثة أعوام أكاديمية · ثلاثة طلاب",
 "…it was incredibly fulfilling to see them thrive.": "…كان مُرضيًا جدًا أن أراهم يزدهرون.",
 "I was privileged to mentor three students that obtained scholarships in Ireland, the UK, and Italy during the first year of SFG. Last summer I met one of my former mentees in London.": "تشرّفت بإرشاد ثلاثة طلاب حصلوا على منح في إيرلندا والمملكة المتحدة وإيطاليا خلال العام الأول لـ SFG. وفي الصيف الماضي التقيت بأحد طلابي السابقين في لندن.",
-"Luis Morales-Navarro, PhD, Mentor since SFG’s first year · three scholars": "لويس موراليس-نافارو، PhD، مرشد منذ العام الأول لـ SFG · ثلاثة طلاب فازوا بمنح",
-"Claire Ramsay": "كلير رامزي",
+"Luis Morales-Navarro, PhD, Mentor since SFG’s first year · three scholars": "Luis Morales-Navarro, PhD، مرشد منذ العام الأول لـ SFG · ثلاثة طلاب فازوا بمنح",
 "Mentor for eight months": "مرشدة منذ ثمانية أشهر",
-"Elisa Giammarini, PhD, FHEA": "إليسا جاماريني، PhD، FHEA",
 "Mentor for three academic years · three students": "مرشدة منذ ثلاثة أعوام أكاديمية · ثلاثة طلاب",
-"Luis Morales-Navarro, PhD": "لويس موراليس-نافارو، PhD",
 "Mentor since SFG’s first year · three scholars": "مرشد منذ العام الأول لـ SFG · ثلاثة طلاب فازوا بمنح",
 "Become a mentor": "كن مرشدًا",
 "Is mentoring for you?": "هل الإرشاد مناسب لك؟",
@@ -1909,7 +1905,7 @@ window.SFG_AR_MAP={
 "Build their English confidence": "تبني ثقتهم بالإنجليزية",
 "You guide. They write.": "أنت ترشد، وهم يكتبون.",
 "How we support you": "كيف ندعمك",
-"A WhatsApp group with an SFG organiser": "مجموعة واتساب مع منسّق من SFG",
+"A WhatsApp group with an SFG organiser": "مجموعة WhatsApp مع منسّق من SFG",
 "Weekly support calls": "مكالمات دعم أسبوعية",
 "Clear mentor guidelines": "إرشادات واضحة للمرشدين",
 "You’re never on your own.": "لن تكون وحدك أبدًا.",
@@ -1920,7 +1916,7 @@ window.SFG_AR_MAP={
 "Explore": "استكشف",
 "Our story": "حكايتنا",
 "Our impact": "أثرنا",
-"Meet SFG: a video with Ahmed Issa<span class=\"sr-only\"> (opens YouTube in a new tab)</span>": "تعرّف إلى SFG: فيديو مع أحمد عيسى<span class=\"sr-only\"> (يفتح يوتيوب في نافذة جديدة)</span>",
+"Meet SFG: a video with Ahmed Issa<span class=\"sr-only\"> (opens YouTube in a new tab)</span>": "تعرّف إلى SFG: فيديو مع أحمد عيسى<span class=\"sr-only\"> (يفتح YouTube في نافذة جديدة)</span>",
 "For students": "للطلاب",
 "Apply to SFG<span class=\"sr-only\"> (opens in a new tab)</span>": "قدّم إلى SFG<span class=\"sr-only\"> (يفتح في نافذة جديدة)</span>",
 "Student handbook (in Arabic)<span class=\"sr-only\">, opens in a new tab</span>": "دليل الطالب (بالعربية)<span class=\"sr-only\">، يفتح في نافذة جديدة</span>",
@@ -1929,67 +1925,13 @@ window.SFG_AR_MAP={
 "Our partners": "شركاؤنا",
 "© 2026 Scholarships for Ghazza": "© 2026 منح لغزة",
 "In memory of Sha’ban, Dalia, Sally and Nada": "في ذكرى شعبان وداليا وسالي وندى",
-"University of Cambridge": "جامعة كامبريدج",
-"Imperial College London": "إمبريال كوليدج لندن",
-"University College London": "كلية لندن الجامعية",
-"London School of Economics": "كلية لندن للاقتصاد",
-"King’s College London": "كينغز كوليدج لندن",
-"University of Edinburgh": "جامعة إدنبرة",
-"University of Warwick": "جامعة وارويك",
-"University of St Andrews": "جامعة سانت أندروز",
-"Durham University": "جامعة دورهام",
-"University of Glasgow": "جامعة غلاسكو",
-"University of Bristol": "جامعة بريستول",
-"University of York": "جامعة يورك",
-"University of Exeter": "جامعة إكستر",
-"University of Birmingham": "جامعة برمنغهام",
-"University of Leeds": "جامعة ليدز",
-"University of Liverpool": "جامعة ليفربول",
-"University of Sheffield": "جامعة شيفيلد",
-"University of Sussex": "جامعة ساسكس",
-"University of Reading": "جامعة ريدينغ",
-"University of Leicester": "جامعة ليستر",
-"University of Aberdeen": "جامعة أبردين",
-"Ulster University": "جامعة ألستر",
-"SOAS University of London": "سواس، جامعة لندن",
-"Goldsmiths, University of London": "غولدسميثس، جامعة لندن",
-"Royal College of Art": "الكلية الملكية للفنون",
-"Oxford Centre for Islamic Studies": "مركز أكسفورد للدراسات الإسلامية",
-"Trinity College Dublin": "كلية ترينيتي دبلن",
-"University College Dublin": "كلية دبلن الجامعية",
-"Dublin City University": "جامعة مدينة دبلن",
-"Mary Immaculate College": "كلية ماري إيماكيوليت",
-"National College of Art and Design": "الكلية الوطنية للفنون والتصميم",
-"South East Technological University": "جامعة ساوث إيست التكنولوجية",
-"University of Washington": "جامعة واشنطن",
-"University of Tennessee": "جامعة تينيسي",
-"National University of Singapore": "جامعة سنغافورة الوطنية",
-"Singapore University of Social Sciences": "جامعة سنغافورة للعلوم الاجتماعية",
-"University of Amsterdam": "جامعة أمستردام",
-"Vrije Universiteit Brussel": "جامعة بروكسل الحرة",
-"Université Paris-Saclay": "جامعة باريس ساكلاي",
-"Grenoble École de Management": "كلية غرونوبل للإدارة",
-"IAE Savoie Mont-Blanc": "IAE سافوا مون بلان",
-"Université de Lille": "جامعة ليل",
-"University of Bologna": "جامعة بولونيا",
-"University of Milan": "جامعة ميلانو",
-"University of Genoa": "جامعة جنوة",
-"University of Eastern Piedmont": "جامعة شرق بيدمونت",
-"University of Molise": "جامعة موليزي",
-"University of Salerno": "جامعة ساليرنو",
-"University of Camerino": "جامعة كاميرينو",
-"University of Debrecen": "جامعة ديبريسن",
-"Hamad Bin Khalifa University": "جامعة حمد بن خليفة",
-"Egypt-Japan University of Science and Technology": "الجامعة المصرية اليابانية للعلوم والتكنولوجيا",
-"Phoenix Space": "Phoenix Space",
-"The Amjad & Suha Bseisu Foundation": "مؤسسة أمجد وسهى بسيسو",
 "Story steps": "خطوات الحكاية",
 "Previous step": "الخطوة السابقة",
 "Next step": "الخطوة التالية",
-"Ahmed Issa holding his certificate in the foyer of Warwick Business School": "أحمد عيسى يحمل شهادته في بهو كلية وارويك لإدارة الأعمال",
+"Ahmed Issa holding his certificate in the foyer of Warwick Business School": "أحمد عيسى يحمل شهادته في بهو Warwick Business School",
 "Ahmed in a light blue shirt, smiling at his office desk in Gaza": "أحمد بقميص أزرق فاتح يبتسم على مكتبه في غزة",
 "A notebook of handwritten plans on a café table, beside a blue-and-white teapot": "دفتر خطط مكتوبة بخط اليد على طاولة مقهى، بجانب إبريق شاي أزرق وأبيض",
-"Ahmed’s Instagram story asking for volunteer mentors, over a photo of a boy writing in a notebook outdoors": "قصة أحمد على إنستغرام يطلب فيها مرشدين متطوعين، فوق صورة صبي يكتب في دفتر في الهواء الطلق",
+"Ahmed’s Instagram story asking for volunteer mentors, over a photo of a boy writing in a notebook outdoors": "قصة أحمد على Instagram يطلب فيها مرشدين متطوعين، فوق صورة صبي يكتب في دفتر في الهواء الطلق",
 "Ahmed Issa speaking on Al Jazeera’s The Stream": "أحمد عيسى يتحدث في برنامج The Stream على الجزيرة",
 "What we do, and what we don’t do": "ما نفعله، وما لا نفعله",
 "Illustration: a short student application form": "رسم توضيحي: استمارة قصيرة لطلب طالب",
@@ -1999,36 +1941,28 @@ window.SFG_AR_MAP={
 "Illustration: a checklist of mock interviews and a submitted application": "رسم توضيحي: قائمة مقابلات تجريبية وطلب تم تقديمه",
 "Previous story": "القصة السابقة",
 "Next story": "القصة التالية",
-"Education and International Development": "التعليم والتنمية الدولية",
-"Chevening Scholarship": "منحة تشيفنينغ",
-"Ola Aburamadan on a park bench under autumn trees, holding a sign that reads “I can’t keep calm, I’ve been chosen for Chevening!”": "علا أبو رمضان على مقعد في حديقة تحت أشجار خريفية، تحمل لافتة كُتب عليها «لا أستطيع الهدوء، لقد اختِرت لمنحة تشيفنينغ!»",
-"Biomedical Engineering": "الهندسة الطبية الحيوية",
+"Ola Aburamadan on a park bench under autumn trees, holding a sign that reads “I can’t keep calm, I’ve been chosen for Chevening!”": "علا أبو رمضان على مقعد في حديقة تحت أشجار خريفية، تحمل لافتة كُتب عليها “I can’t keep calm, I’ve been chosen for Chevening!”",
 "Fully funded scholarship": "منحة ممولة بالكامل",
-"Shahd Alwahidi in a University of Glasgow hoodie in front of the university’s main building": "شهد الواحدي بسترة جامعة غلاسكو أمام المبنى الرئيسي للجامعة",
-"MA TESOL": "ماجستير TESOL",
-"Salam Scholarship": "منحة سلام",
-"Doaa Nabil Ahmed at the Diamond and Octagon entrance of Ulster University, under a banner naming it UK and Ireland University of the Year": "دعاء نبيل أحمد عند مدخل جامعة ألستر، تحت لافتة تسمّيها جامعة العام في المملكة المتحدة وإيرلندا",
-"MSc Cyber Security Engineering": "ماجستير هندسة الأمن السيبراني",
-"WMG-Bseisu Foundation Scholarship": "منحة مؤسسة WMG-بسيسو",
-"Etaf Abu Hadda and her mentor Nour Ali at Heathrow Airport, holding a Palestinian flag between them": "عطاف أبو حدة ومرشدتها نور علي في مطار هيثرو، تحملان العلم الفلسطيني بينهما",
+"Shahd Alwahidi in a University of Glasgow hoodie in front of the university’s main building": "شهد الواحدي بسترة University of Glasgow أمام المبنى الرئيسي للجامعة",
+"Doaa Nabil Ahmed at the Diamond and Octagon entrance of Ulster University, under a banner naming it UK and Ireland University of the Year": "دعاء نبيل أحمد عند مدخل Diamond and Octagon في Ulster University، تحت لافتة تسمّيها جامعة العام في المملكة المتحدة وإيرلندا",
+"Etaf Abu Hadda and her mentor Nour Ali at Heathrow Airport, holding a Palestinian flag between them": "عطاف أبو حدة ومرشدتها نور علي في مطار Heathrow، تحملان العلم الفلسطيني بينهما",
 "Mechatronics engineer": "مهندس ميكاترونكس",
-"France Excellence Scholarship": "منحة التميّز الفرنسية",
 "Close story": "إغلاق القصة",
 "Twin sisters Dalia and Sally Obaid in graduation gowns and keffiyeh stoles, holding their certificates": "التوأمان داليا وسالي عبيد بثوبَي التخرج ووشاحَي الكوفية، تحملان شهادتيهما",
 "Sha’ban A-Dalo sitting in front of a destroyed building": "شعبان الدلو جالسًا أمام مبنى مدمّر",
 "Nada Issa in her graduation gown, placing her graduation cap on her father’s head": "ندى عيسى بثوب التخرج تضع قبعة التخرج على رأس والدها",
 "A letter from Ahmed Issa": "رسالة من أحمد عيسى",
-"Mentor 1 of 3: Claire Ramsay": "المرشد 1 من 3: كلير رامزي",
-"Mentor 2 of 3: Elisa Giammarini, PhD, FHEA": "المرشد 2 من 3: إليسا جاماريني، PhD، FHEA",
-"Mentor 3 of 3: Luis Morales-Navarro, PhD": "المرشد 3 من 3: لويس موراليس-نافارو، PhD",
+"Mentor 1 of 3: Claire Ramsay": "المرشد 1 من 3: Claire Ramsay",
+"Mentor 2 of 3: Elisa Giammarini, PhD, FHEA": "المرشد 2 من 3: Elisa Giammarini, PhD, FHEA",
+"Mentor 3 of 3: Luis Morales-Navarro, PhD": "المرشد 3 من 3: Luis Morales-Navarro, PhD",
 "Previous mentor": "المرشد السابق",
 "Next mentor": "المرشد التالي",
 "Scholarships for Ghazza": "منح لغزة",
 "Contact and social media": "التواصل ووسائل التواصل الاجتماعي",
 "Email scholarshipsforghazza@gmail.com": "راسلنا على scholarshipsforghazza@gmail.com",
-"Instagram (opens in a new tab)": "إنستغرام (يفتح في نافذة جديدة)",
-"LinkedIn (opens in a new tab)": "لينكدإن (يفتح في نافذة جديدة)",
-"YouTube (opens in a new tab)": "يوتيوب (يفتح في نافذة جديدة)",
+"Instagram (opens in a new tab)": "Instagram (يفتح في نافذة جديدة)",
+"LinkedIn (opens in a new tab)": "LinkedIn (يفتح في نافذة جديدة)",
+"YouTube (opens in a new tab)": "YouTube (يفتح في نافذة جديدة)",
 "Footer": "تذييل الصفحة",
 "Main": "الرئيسية",
 "Menu": "القائمة",
@@ -2042,7 +1976,7 @@ window.SFG_AR_MAP={
 "Read full story<span class=\"sr-only\"> of Doaa Nabil Ahmed</span>§": "اقرأ القصة كاملة<span class=\"sr-only\"> لدعاء نبيل أحمد</span>§",
 "Read full story<span class=\"sr-only\"> of Etaf Abu Hadda</span>§": "اقرأ القصة كاملة<span class=\"sr-only\"> لعطاف أبو حدة</span>§",
 "Read full story<span class=\"sr-only\"> of Saher</span>§": "اقرأ القصة كاملة<span class=\"sr-only\"> لساهر</span>§",
-"Meet SFG: a video with Ahmed Issa<span class=\"sr-only\"> (opens YouTube in a new tab)</span>§": "تعرّف إلى SFG: فيديو مع أحمد عيسى<span class=\"sr-only\"> (يفتح يوتيوب في نافذة جديدة)</span>§",
+"Meet SFG: a video with Ahmed Issa<span class=\"sr-only\"> (opens YouTube in a new tab)</span>§": "تعرّف إلى SFG: فيديو مع أحمد عيسى<span class=\"sr-only\"> (يفتح YouTube في نافذة جديدة)</span>§",
 "Apply to SFG<span class=\"sr-only\"> (opens in a new tab)</span>§": "قدّم إلى SFG<span class=\"sr-only\"> (يفتح في نافذة جديدة)</span>§",
 "Student handbook (in Arabic)<span class=\"sr-only\">, opens in a new tab</span>§": "دليل الطالب (بالعربية)<span class=\"sr-only\">، يفتح في نافذة جديدة</span>§",
 "Become a mentor<span class=\"sr-only\"> (opens in a new tab)</span>§": "كن مرشدًا<span class=\"sr-only\"> (يفتح في نافذة جديدة)</span>§"
@@ -2070,7 +2004,8 @@ window.SFG_AR_MAP={
       if(c.matches(SKIP)) return;
       if(c.tagName==="TEMPLATE"){ walk(c.content); return; }
       var direct=[].some.call(c.childNodes,function(t){ return t.nodeType===3&&t.textContent.trim(); });
-      if(direct){ var a=M[key(c)]; if(a!=null) put(c,a); return; }
+      if(direct){ var a=M[key(c)]; if(a!=null) put(c,a); else if(/[A-Za-z]{2}/.test(c.textContent)&&!/[\u0600-\u06FF]/.test(c.textContent)) c.setAttribute("lang","en");   // names kept in English are marked as English
+        return; }
       walk(c);
     });
   }
@@ -3185,7 +3120,7 @@ layout();
     section.parentNode.insertBefore(spacer, section);
     spacer.appendChild(section);
 
-    var on = false, w = 0, cw = 0, padL = 0, lastTarget = 0, start = 0, dist = 0;
+    var on = false, w = 0, cw = 0, padL = 0, lastTarget = 0, start = 0, dist = 0, rtl = false, sgn = 1;
     var target = 0, shown = 0, raf = 0, current = -1;
     var hover = items.map(function () { return { p: 0, to: 0 }; });
     function ease(t) { return 1 - (1 - t) * (1 - t); }   // power1.out, per card, as in GSAP's default
@@ -3196,7 +3131,7 @@ layout();
       on = want;
       if (!on) {
         spacer.style.height = section.style.position = section.style.top = section.style.minHeight = "";
-        items.forEach(function (it) { it.style.left = it.style.transform = ""; it.firstElementChild.style.width = it.firstElementChild.style.transform = ""; });
+        items.forEach(function (it) { it.style.left = it.style.insetInlineStart = it.style.transform = ""; it.firstElementChild.style.width = it.firstElementChild.style.transform = ""; });
         onStrip();
         return;
       }
@@ -3205,7 +3140,8 @@ layout();
       w = items[0].offsetWidth;
       cw = deck.clientWidth;
       padL = parseFloat(getComputedStyle(deck).paddingLeft);
-      items.forEach(function (it, i) { it.style.left = i * w + "px"; });
+      rtl = getComputedStyle(deck).direction === "rtl"; sgn = rtl ? -1 : 1;   // in Arabic the deck starts at the right and the cards travel the other way
+      items.forEach(function (it, i) { it.style.left = ""; it.style.insetInlineStart = i * w + "px"; });
       // the last card lands with its right edge on the right grid margin (the list starts at the left margin)
       lastTarget = (cw - 2 * padL - w) - (n - 1) * w;
       dist = (n - 1) * vh;
@@ -3242,12 +3178,13 @@ layout();
         h.p += (h.to - h.p) * 0.2;
         if (Math.abs(h.to - h.p) < 1e-3) h.p = h.to;
         var grow = 0.1 * w * h.p;
-        it.style.transform = "translate3d(" + xFor(i, T) + "px,0,0)";
-        it.firstElementChild.style.transform = grow ? "translate3d(" + -grow + "px,0,0)" : "";
+        it.style.transform = "translate3d(" + sgn * xFor(i, T) + "px,0,0)";
+        it.firstElementChild.style.transform = grow ? "translate3d(" + -sgn * grow + "px,0,0)" : "";
       });
       // how much of each card is uncovered (1 = all of it); below half, its quote fades to 55%
       items.forEach(function (it, i) {
-        var seen = i === n - 1 ? 1 : (items[i + 1].getBoundingClientRect().left - it.firstElementChild.getBoundingClientRect().left) / w;
+        var a = it.firstElementChild.getBoundingClientRect(), nx = i === n - 1 ? null : items[i + 1].getBoundingClientRect();
+        var seen = !nx ? 1 : (rtl ? a.right - nx.right : nx.left - a.left) / w;
         var k = Math.min(1, Math.max(0, (seen - 0.25) / 0.5));
         it.style.setProperty("--voices-seen", (0.55 + 0.45 * k).toFixed(3));   // 55% floor keeps 3.6:1 (large text needs 3:1)
       });
@@ -3275,7 +3212,8 @@ layout();
       var card = it.firstElementChild;
       card.addEventListener("mouseenter", function () {
         if (!on || !finePointer.matches) return;
-        if (card.getBoundingClientRect().left + w - 0.1 * w > items[i + 1].getBoundingClientRect().left) { hover[i].to = 1; onScroll(); if (!raf) raf = requestAnimationFrame(tick); }
+        var c = card.getBoundingClientRect(), nx = items[i + 1].getBoundingClientRect();
+        if (rtl ? c.right - 0.9 * w < nx.right : c.left + 0.9 * w > nx.left) { hover[i].to = 1; onScroll(); if (!raf) raf = requestAnimationFrame(tick); }
       });
       card.addEventListener("mouseleave", function () { hover[i].to = 0; if (!raf) raf = requestAnimationFrame(tick); });
     });
