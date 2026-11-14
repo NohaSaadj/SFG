@@ -955,6 +955,38 @@ html.voices-lock body{overflow:hidden}   /* propagates to the viewport, so the p
 html:not(.js) .mentors_pager,html:not(.js) .mentors_rule{display:none}
 html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bottom:var(--space-32)}   /* without script, everything is listed */
 @media (max-width:991px){.mentors_eyebrow{margin-bottom:var(--space-32)}.mentors_grid{grid-template-columns:minmax(0,1fr);row-gap:var(--space-8)}.mentors_mark{font-size:5rem}.mentors_foot{grid-column:1;margin-top:var(--space-32)}.mentors_row{align-items:flex-start;flex-direction:column}}
+
+/* ==========================================================================
+   Our team (after cambium.com's supply-chain marquee): a sand panel inside the page margin, the H2 centred, then a row of
+   paper cards (name and role above, LinkedIn at the end of that row, a square photo below) drifting at 40px/s.
+   Drag to throw it; it eases back to its drift. Pauses off screen, on hover/focus and with the Pause button (WCAG 2.2.2).
+   Reduced motion: a plain scrollable row.
+   ========================================================================== */
+.section_team{position:relative;z-index:2;background:var(--color-bg-page);padding:var(--space-24) var(--space-24) var(--space-64)}
+.team_panel{display:flex;flex-direction:column;align-items:center;gap:var(--space-64);padding-block:var(--space-128) var(--space-48);border-radius:var(--radius-panel);background:var(--color-bg-surface-alt);overflow:clip}
+.team_title{margin:0;max-width:20ch;text-align:center;color:var(--color-text-heading);text-wrap:balance}
+.team_marquee{width:100%;overflow:hidden;touch-action:pan-y;cursor:grab;-webkit-user-select:none;user-select:none}
+.team_marquee.is-drag{cursor:grabbing}
+.team_list{display:flex;gap:var(--space-12);width:max-content;list-style:none;margin:0;padding:0 var(--space-12);will-change:transform}
+.team_item{flex:none}
+.team_card{display:flex;flex-direction:column;gap:var(--space-8);margin:0;padding:var(--space-8);border-radius:var(--space-12);background:var(--color-bg-surface)}
+.team_top{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-12);padding:var(--space-8) var(--space-8) var(--space-4) var(--space-12)}
+[dir="rtl"] .team_top{padding-inline:var(--space-12) var(--space-8)}
+.team_who{min-width:0}
+.team_name{margin:0;color:var(--color-text-heading)}
+.team_role{margin:var(--space-2) 0 0;color:var(--color-text-secondary)}
+.team_linkedin{flex:none;display:grid;place-items:center;width:var(--size-touch-min);height:var(--size-touch-min);margin:calc(var(--space-8) * -1);margin-inline-start:0;border-radius:var(--radius-sm);color:var(--color-action-secondary);transition:color .2s}
+@media (hover:hover){.team_linkedin:hover{color:var(--color-action-secondary-hover)}}
+.team_linkedin:focus-visible,.team_pause:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:2px}
+.team_visual{position:relative;width:24.5rem;aspect-ratio:1;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-bg-page)}
+.team_visual img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+.team_field{position:absolute;inset:0;width:100%;height:100%}
+.team_initials{position:absolute;inset:0;margin:auto;display:grid;place-items:center;width:var(--space-96);height:var(--space-96);border-radius:var(--radius-full);background:var(--color-bg-surface);color:var(--color-text-heading)}
+.team_pause{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);padding-inline:var(--space-12);border:0;border-radius:var(--radius-sm);background:none;color:var(--color-action-secondary);cursor:pointer}
+.team_pause .is-play{display:none}.team_pause[aria-pressed="true"] .is-play{display:inline}.team_pause[aria-pressed="true"] .is-pause{display:none}
+@media (max-width:767px){.section_team{padding:var(--space-12) var(--space-12) var(--space-48)}.team_panel{gap:var(--space-32);padding-block:var(--space-64) var(--space-24)}.team_visual{width:15rem}}
+@media (prefers-reduced-motion:reduce){.team_marquee{overflow-x:auto;cursor:auto;scroll-snap-type:x mandatory}.team_item{scroll-snap-align:start}.team_pause{display:none}}
+
 /* ==========================================================================
    Become a mentor (after beckleyretreats.com "Why Beckley"): the ask and the one red button on the
    left, four short topics as an accordion on the right. Native <details>/<summary>, so it works
@@ -1171,6 +1203,75 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
     </div>
   </div>
 </section>
+
+
+    <!-- Our team (after cambium.com's "supply chain" marquee): a sand panel, the heading centred, then cards that drift sideways
+         and can be dragged. One list in the page; the script adds hidden copies for the loop. Data: name, role, photo, LinkedIn.
+         Entries marked data-placeholder are waiting for the real names, roles, photos and LinkedIn links. -->
+    <section class="section_team" id="our-team" aria-labelledby="team-title" data-team>
+      <div class="team_panel">
+        <h2 class="team_title h2" id="team-title" data-split>The people behind SFG</h2>
+        <div class="team_marquee" data-team-marquee>
+          <ul class="team_list" role="list" data-team-list>
+            <li class="team_item">
+              <article class="team_card">
+                <div class="team_top">
+                  <div class="team_who"><h3 class="team_name title2">Ahmed Issa</h3><p class="team_role body3">Founder</p></div>
+                  
+                </div>
+                <div class="team_visual"><img src="assets/story/gaza.jpg" alt="" width="392" height="392" loading="lazy" decoding="async" draggable="false" style="object-position:50% 30%" /></div>
+              </article>
+            </li>
+            <li class="team_item" data-placeholder>
+              <article class="team_card">
+                <div class="team_top">
+                  <div class="team_who"><h3 class="team_name title2">Name Surname</h3><p class="team_role body3">Role</p></div>
+                  
+                </div>
+                <div class="team_visual"><svg class="team_field" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg><span class="team_initials h3" aria-hidden="true">NS</span></div>
+              </article>
+            </li>
+            <li class="team_item" data-placeholder>
+              <article class="team_card">
+                <div class="team_top">
+                  <div class="team_who"><h3 class="team_name title2">Name Surname</h3><p class="team_role body3">Role</p></div>
+                  
+                </div>
+                <div class="team_visual"><svg class="team_field" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg><span class="team_initials h3" aria-hidden="true">NS</span></div>
+              </article>
+            </li>
+            <li class="team_item" data-placeholder>
+              <article class="team_card">
+                <div class="team_top">
+                  <div class="team_who"><h3 class="team_name title2">Name Surname</h3><p class="team_role body3">Role</p></div>
+                  
+                </div>
+                <div class="team_visual"><svg class="team_field" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg><span class="team_initials h3" aria-hidden="true">NS</span></div>
+              </article>
+            </li>
+            <li class="team_item" data-placeholder>
+              <article class="team_card">
+                <div class="team_top">
+                  <div class="team_who"><h3 class="team_name title2">Name Surname</h3><p class="team_role body3">Role</p></div>
+                  
+                </div>
+                <div class="team_visual"><svg class="team_field" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg><span class="team_initials h3" aria-hidden="true">NS</span></div>
+              </article>
+            </li>
+            <li class="team_item" data-placeholder>
+              <article class="team_card">
+                <div class="team_top">
+                  <div class="team_who"><h3 class="team_name title2">Name Surname</h3><p class="team_role body3">Role</p></div>
+                  
+                </div>
+                <div class="team_visual"><svg class="team_field" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg><span class="team_initials h3" aria-hidden="true">NS</span></div>
+              </article>
+            </li>
+          </ul>
+        </div>
+        <button class="team_pause title3" type="button" data-team-pause aria-pressed="false"><svg class="team_pause-ic" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path class="is-pause" fill="currentColor" d="M4 3h2.5v10H4zM9.5 3H12v10H9.5z"/><path class="is-play" fill="currentColor" d="M4.5 2.8 13 8l-8.5 5.2z"/></svg><span data-team-pause-label>Pause</span></button>
+      </div>
+    </section>
 
     <section class="section_wwd" id="what-we-do" aria-label="What we do, and what we don’t do" data-wwd>
       <div class="wwd_stage">
@@ -1692,6 +1793,7 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
             <ul role="list">
               <li><a class="body1" href="#about">About SFG</a></li>
               <li><a class="body1" href="#how-it-began">Our story</a></li>
+              <li><a class="body1" href="#our-team">Our team</a></li>
               <li><a class="body1" href="#how-it-works">How it works</a></li>
               <li><a class="body1" href="#results">Our impact</a></li>
               <li><a class="body1" href="https://youtu.be/d8WLmMWsH8Q" target="_blank" rel="noopener">Meet SFG: a video with Ahmed Issa<span class="sr-only"> (opens YouTube in a new tab)</span><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(-45 12 12)" fill="currentColor" d="M13.6709 4.66504C14.7728 6.86859 16.4363 8.53812 17.8438 9.66406C18.5448 10.2249 19.1754 10.6453 19.6279 10.9238C19.8538 11.0628 20.0347 11.1668 20.1572 11.2344C20.2184 11.2681 20.2657 11.2927 20.2959 11.3086C20.3106 11.3163 20.3214 11.3218 20.3281 11.3252C20.3313 11.3268 20.3337 11.3285 20.335 11.3291L21.6768 12L20.335 12.6699L20.3359 12.6709H20.335C20.3337 12.6715 20.3313 12.6732 20.3281 12.6748C20.3214 12.6782 20.3106 12.6837 20.2959 12.6914C20.2657 12.7073 20.2184 12.7319 20.1572 12.7656C20.0347 12.8332 19.8538 12.9372 19.6279 13.0762C19.1754 13.3547 18.5448 13.7751 17.8438 14.3359C16.4363 15.4619 14.7728 17.1314 13.6709 19.335L12.3291 18.665C13.5606 16.2021 15.3971 14.3714 16.9062 13.1641C17.0903 13.0168 17.2706 12.8793 17.4443 12.75H4V11.25H17.4443C17.2706 11.1207 17.0903 10.9832 16.9062 10.8359C15.3971 9.62861 13.5606 7.79788 12.3291 5.33496L13.6709 4.66504Z"/></svg></a></li>
@@ -2235,6 +2337,53 @@ SFGCascade();
     a.insertBefore(t,a.firstChild); a.classList.add("link-draw");
   }); }
   links(); document.addEventListener("DOMContentLoaded",links);   // the story deck adds its credit link later
+})();
+// ===== Our team · draggable marquee (after cambium.com: 80px/s there; 40px/s here so faces can be read) =====
+(function(){
+  var sec=document.querySelector("[data-team]"); if(!sec) return;
+  var box=sec.querySelector("[data-team-marquee]"), list=sec.querySelector("[data-team-list]"), btn=sec.querySelector("[data-team-pause]"), lbl=sec.querySelector("[data-team-pause-label]");
+  var reduce=matchMedia("(prefers-reduced-motion: reduce)"), T=window.SFGT||String;
+  lbl.textContent=T("Pause");
+  if(reduce.matches) return;
+  var originals=[].slice.call(list.children), SPEED=40, dir, setW=0, x=0, v=0, base=0, raf=0, last=0;
+  var visible=false, hovered=false, focused=false, paused=false, drag=null;
+  function build(){
+    list.querySelectorAll("[data-clone]").forEach(function(c){c.remove();});
+    dir=getComputedStyle(box).direction==="rtl"?1:-1;   // English drifts left; Arabic drifts right, as the reading runs
+    setW=list.scrollWidth;   // one set: the cards plus the list's inline padding
+    var copies=Math.max(1,Math.ceil(box.clientWidth/setW)+1);
+    for(var k=0;k<copies;k++) originals.forEach(function(li){var c=li.cloneNode(true); c.setAttribute("data-clone",""); c.setAttribute("aria-hidden","true"); c.inert=true; list.appendChild(c);});
+    base=dir*SPEED; v=base;
+  }
+  function wrap(){ x=((x%setW)+setW)%setW; if(dir<0) x-=setW; }   // keep x inside one set so the loop never shows a seam
+  function frame(t){
+    raf=0; var dt=Math.min(.05,(t-(last||t))/1000); last=t;
+    var target=(paused||hovered||focused)?0:base;
+    if(!drag){ v+=(target-v)*Math.min(1,dt*2); x+=v*dt; wrap(); }   // eases back to the drift after a throw, like the reference's 1s return
+    list.style.transform="translate3d("+x.toFixed(2)+"px,0,0)";
+    if(visible) raf=requestAnimationFrame(frame); else last=0;
+  }
+  function kick(){ if(!raf&&visible) raf=requestAnimationFrame(frame); }
+  new IntersectionObserver(function(e){ visible=e[0].isIntersecting; if(visible) kick(); }).observe(box);
+  box.addEventListener("pointerenter",function(e){ if(e.pointerType==="mouse") hovered=true; });
+  box.addEventListener("pointerleave",function(){ hovered=false; });
+  sec.addEventListener("focusin",function(){ focused=true; }); sec.addEventListener("focusout",function(){ focused=false; });
+  btn.addEventListener("click",function(){ paused=!paused; btn.setAttribute("aria-pressed",String(paused)); lbl.textContent=T(paused?"Play":"Pause"); kick(); });
+  // drag: the row follows the pointer; on release it keeps the throw's speed and eases back to its drift
+  box.addEventListener("pointerdown",function(e){ if(e.button) return; drag={x0:e.clientX,y0:e.clientY,x:x,t:performance.now(),px:e.clientX,v:0,on:false,id:e.pointerId}; });
+  box.addEventListener("pointermove",function(e){
+    if(!drag||e.pointerId!==drag.id) return;
+    var dx=e.clientX-drag.x0;
+    if(!drag.on){ if(Math.abs(dx)<6) return; if(Math.abs(e.clientY-drag.y0)>Math.abs(dx)){ drag=null; return; } drag.on=true; box.classList.add("is-drag"); box.setPointerCapture(e.pointerId); }
+    var now=performance.now(), dt=Math.max(1,now-drag.t); drag.v=(e.clientX-drag.px)/dt*1000; drag.px=e.clientX; drag.t=now;
+    x=drag.x+dx; wrap(); kick();
+  });
+  function end(){ if(!drag) return; if(drag.on){ v=Math.max(-2000,Math.min(2000,drag.v)); box.classList.remove("is-drag"); } drag=null; kick(); }
+  box.addEventListener("pointerup",end); box.addEventListener("pointercancel",end);
+  box.addEventListener("click",function(e){ if(box.classList.contains("was-drag")) e.preventDefault(); },true);
+  box.addEventListener("dragstart",function(e){ e.preventDefault(); });
+  var rz; addEventListener("resize",function(){ clearTimeout(rz); rz=setTimeout(function(){ build(); wrap(); kick(); },200); });
+  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(function(){ build(); wrap(); kick(); });
 })();
 // ===== Become a mentor: a topic's points write in when it opens =====
 // Open / close after cambium.com: the body slides open or shut (grid rows 0fr ↔ 1fr, .6s) and the + turns into −.
