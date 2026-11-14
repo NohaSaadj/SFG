@@ -63,6 +63,8 @@
 .results_content{grid-column:8 / 13;height:100vh;padding-top:var(--space-96);position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between}
 .results_title{margin:0;color:var(--results-ink);text-wrap:balance}
 .results_sub{margin:var(--space-16) 0 0;max-width:40ch;font-weight:400;color:var(--results-ink)}
+.results_more{display:none;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-top:var(--space-16);padding:0 var(--space-16);border:1px solid currentColor;border-radius:var(--radius-button);background:none;color:var(--results-ink);cursor:pointer}
+.results_more:focus-visible{outline:3px solid var(--results-focus);outline-offset:3px}
 .results_globe-slot{position:relative;flex:none;align-self:center;width:calc(min(100vw,100vh) * .8);aspect-ratio:1;margin-bottom:calc(-22 / 1080 * 100vh)}
 .results_globe{position:absolute;left:50%;top:50%;width:var(--g-size,100%);height:var(--g-size,100%);transform:translate(-50%,-50%);will-change:transform}
 .results_globe::before{content:"";position:absolute;inset:-18%;background:var(--results-glow);pointer-events:none}   /* the glow travels with the globe */
@@ -105,9 +107,11 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
   .results_stats{grid-template-columns:1fr}
   .results_contain{display:flex;flex-direction:column;gap:var(--space-64);height:auto;padding-block:var(--space-96) 0}
   .results_content{height:auto;padding-top:0;order:-1;display:block}
-  .results_globe-slot{width:min(100%,480px);margin:var(--space-48) auto 0}
+  .results_globe-slot{width:min(82%,480px);margin:var(--space-48) auto 0}   /* room on both sides for the country labels */
   .results_list-wrap{height:auto;overflow:visible;-webkit-mask:none;mask:none;padding-bottom:var(--space-96)}
-  .results_name{font-size:var(--h4-size)}   /* Display in a long list steps down to the H4 size on phones */
+  .results_name{font-size:var(--h4-size)}
+  .results_list:not(.is-all) .results_item:nth-child(n+11){display:none}   /* phones: ten names, then "Show all" (52 names would be nine screens) */
+  .results_more{display:inline-flex}   /* Display in a long list steps down to the H4 size on phones */
   .results_label{font-size:var(--body3-size);line-height:var(--body3-lh)}
 }
 @media (prefers-reduced-motion:reduce){

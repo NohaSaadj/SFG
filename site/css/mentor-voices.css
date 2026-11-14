@@ -22,6 +22,7 @@
 .js .mentors_slide:not(.is-current){opacity:0;visibility:hidden}
 .mentors_line{margin:0;text-align:justify;color:var(--color-text-primary)}
 .mentors_more{margin:0;max-width:54ch;text-align:justify;hyphens:auto;color:var(--color-text-secondary);text-wrap:pretty}
+@media (max-width:767px){.mentors_line,.mentors_more{text-align:start;hyphens:manual}.mentors_line .st-line .st-in,.mentors_more .st-line .st-in{text-align-last:auto!important}}   /* phones: ragged lines; justifying a 300px measure opens wide gaps */
 .mentors_foot{grid-column:2;margin-top:var(--space-48)}
 .mentors_rule{position:relative;height:1px;background:var(--color-border-subtle)}
 .mentors_fill{position:absolute;inset-block:-1px;inset-inline-start:0;width:calc(100% / 3);background:var(--color-text-heading);transition:width .4s var(--ease-out)}

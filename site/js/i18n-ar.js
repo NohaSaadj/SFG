@@ -261,6 +261,8 @@ window.SFG_AR_MAP={
 "of": "من",
 "Pause": "إيقاف مؤقت",
 "Play": "تشغيل",
+"Show all universities": "عرض كل الجامعات",
+"Show fewer": "عرض أقل",
 "Read full story<span class=\"sr-only\"> of Ola Aburamadan</span>§": "اقرأ القصة كاملة<span class=\"sr-only\"> لعلا أبو رمضان</span>§",
 "Read full story<span class=\"sr-only\"> of Shahd Alwahidi</span>§": "اقرأ القصة كاملة<span class=\"sr-only\"> لشهد الواحدي</span>§",
 "Read full story<span class=\"sr-only\"> of Doaa Nabil Ahmed</span>§": "اقرأ القصة كاملة<span class=\"sr-only\"> لدعاء نبيل أحمد</span>§",

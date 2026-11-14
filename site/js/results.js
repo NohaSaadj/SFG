@@ -28,6 +28,10 @@
   var stage=root.querySelector("[data-results-stage]"), intro=root.querySelector("[data-results-intro]"), slot=root.querySelector("[data-results-slot]");
   var gEl=root.querySelector("[data-results-globe]"), fades=[].slice.call(root.querySelectorAll("[data-results-fade]"));
   var wrapEl=root.querySelector(".results_list-wrap"), track=root.querySelector("[data-results-track]"), list=root.querySelector("[data-results-list]");
+  // phones: the list shows ten names until "Show all universities" is pressed
+  var more=root.querySelector("[data-results-more]"), moreLbl=root.querySelector("[data-results-more-label]"), T0=window.SFGT||String;
+  if(more){ moreLbl.textContent=T0("Show all universities");
+    more.addEventListener("click",function(){ var all=list.classList.toggle("is-all"); more.setAttribute("aria-expanded",String(all)); moreLbl.textContent=T0(all?"Show fewer":"Show all universities"); }); }
   var items=[].slice.call(list.children), N=items.length, layer=root.querySelector("[data-results-markers]");
 
   // two hidden copies around the real list make the loop seamless

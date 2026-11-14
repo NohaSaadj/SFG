@@ -82,10 +82,10 @@
     <section class="section_intro" data-intro aria-label="Introduction">
       <div class="intro_bg-list" data-intro-bgs>
         <!-- Wide 1920×1080 frames. Order matters: LSE is last and carries the ending. object-position keeps each student in view on narrow screens. -->
-        <img class="intro_bg" src="assets/images/intro/student-1.webp" alt="" style="object-position:66% 50%" />
-        <img class="intro_bg" src="assets/images/intro/student-2.webp" alt="" style="object-position:50% 50%" />
-        <img class="intro_bg" src="assets/images/intro/student-3.webp" alt="" style="object-position:71% 50%" />
-        <img class="intro_bg" src="assets/images/intro/student-4.webp" data-mirror-rtl data-pos-rtl="29% 50%" alt="" style="object-position:71% 50%" />
+        <img class="intro_bg" src="assets/images/intro/student-1.webp" srcset="assets/images/intro/student-1-960.webp 960w, assets/images/intro/student-1.webp 1920w" sizes="100vw" alt="" style="object-position:66% 50%" />
+        <img class="intro_bg" src="assets/images/intro/student-2.webp" srcset="assets/images/intro/student-2-960.webp 960w, assets/images/intro/student-2.webp 1920w" sizes="100vw" alt="" style="object-position:50% 50%" />
+        <img class="intro_bg" src="assets/images/intro/student-3.webp" srcset="assets/images/intro/student-3-960.webp 960w, assets/images/intro/student-3.webp 1920w" sizes="100vw" alt="" style="object-position:71% 50%" />
+        <img class="intro_bg" src="assets/images/intro/student-4.webp" srcset="assets/images/intro/student-4-960.webp 960w, assets/images/intro/student-4.webp 1920w" sizes="100vw" data-mirror-rtl data-pos-rtl="29% 50%" alt="" style="object-position:71% 50%" />
       </div>
       <div class="intro_scrim" aria-hidden="true"></div>
 
@@ -182,7 +182,7 @@
                   <div class="team_who"><h3 class="team_name title2">Ahmed Issa</h3><p class="team_role body3">Founder</p></div>
                   
                 </div>
-                <div class="team_visual"><img src="assets/images/story/gaza.jpg" alt="" width="392" height="392" loading="lazy" decoding="async" draggable="false" style="object-position:50% 30%" /></div>
+                <div class="team_visual"><img src="assets/images/team/ahmed-issa.webp" alt="" width="392" height="392" loading="lazy" decoding="async" draggable="false" /></div>
               </article>
             </li>
             <li class="team_item" data-placeholder>
@@ -498,6 +498,7 @@
               <li class="results_item" data-country="qa"><span class="results_name">Hamad Bin Khalifa University</span></li>
               <li class="results_item" data-country="eg"><span class="results_name">Egypt-Japan University of Science and Technology</span></li>
             </ol>
+            <button class="results_more title3" type="button" data-results-more aria-expanded="false"><span data-results-more-label>Show all universities</span></button>
             </div>
           </div>
           <div class="results_content">

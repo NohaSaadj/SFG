@@ -15,6 +15,7 @@
 .footer_col h2{margin:0 0 var(--space-12);color:var(--color-footer-head)}
 .footer_col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
 .footer_col a{display:inline-block;padding-block:var(--space-4);color:var(--color-text-on-inverse);text-decoration:none;text-wrap:balance}
+@media (pointer:coarse){.footer_col a{padding-block:var(--space-8)}}   /* touch: 44px rows (28px line + 2 × 8px) */
 .footer_col a svg{display:inline;vertical-align:-1px;margin-inline-start:var(--space-4)}   /* the arrow stays with the last word */
 @media (hover:hover){.footer_col a:hover{text-decoration:underline;text-underline-offset:4px}}
 .site-footer a:focus-visible{outline:3px solid var(--color-border-focus-on-inverse);outline-offset:3px;border-radius:var(--radius-sm)}
