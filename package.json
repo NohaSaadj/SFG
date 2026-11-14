@@ -1,0 +1,20 @@
+{
+  "name": "scholarships-for-ghazza-site",
+  "private": true,
+  "description": "QA tooling for the static site in site/. The site itself has no dependencies.",
+  "scripts": {
+    "serve": "python3 -m http.server 8080 --directory site",
+    "build:standalone": "python3 tools/build_standalone.py",
+    "qa:a11y": "node tools/qa/axe.js",
+    "qa:mobile": "node tools/qa/mobile-audit.js 360 noshots",
+    "qa:structure": "node tools/qa/structure.js",
+    "qa:html": "html-validate -c tools/qa/html-validate.json site/index.html",
+    "qa:lighthouse": "lighthouse http://localhost:8080/ --only-categories=performance,accessibility,best-practices,seo --view"
+  },
+  "devDependencies": {
+    "axe-core": "4.10.2",
+    "html-validate": "9.4.0",
+    "lighthouse": "12.2.1",
+    "playwright": "1.48.2"
+  }
+}

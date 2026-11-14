@@ -51,7 +51,7 @@
       menu: "Menu", skip: "Skip intro", outro: "Here’s how the story begins.", cue: "Scroll",
       partnersTitle: "Our partners", partnersJoin: "Become a partner",
       sentence: "A highly educated Palestine, rebuilt by its own students.",
-      toggleLabel: "Switch to Arabic", title: "Scholarships for Ghazza"
+      toggleLabel: "Switch to Arabic", title: "Scholarships for Ghazza · Mentorship for students from Gaza"
     },
     ar: {
       skipToContent: "انتقل إلى المحتوى الرئيسي", brandLine1: "منح لغزة", brandLine2: "ندعم التعليم بالإرشاد",
@@ -59,7 +59,7 @@
       menu: "القائمة", skip: "تخطَّ المقدمة", outro: "هكذا تبدأ الحكاية.", cue: "مرّر للأسفل",
       partnersTitle: "شركاؤنا", partnersJoin: "كن شريكًا",
       sentence: "فلسطين متعلّمة، يعيد بناءها طلابها.",
-      toggleLabel: "Switch to English", title: "منح لغزة"
+      toggleLabel: "Switch to English", title: "منح لغزة · إرشاد لطلاب غزة"
     }
   };
 
@@ -315,7 +315,7 @@
     document.title = dict.title;
     document.querySelectorAll("[data-i18n]").forEach(function (el) { el.textContent = dict[el.getAttribute("data-i18n")]; });
     if (window.SFGCascade) SFGCascade();
-    q("[data-lang-toggle]").setAttribute("aria-label", dict.toggleLabel);
+    q("[data-lang-toggle]").setAttribute("aria-label", "EN ع, " + dict.toggleLabel);   // the name starts with the visible text (WCAG 2.5.3)
     pics.forEach(function (img) {
       if (!img.hasAttribute("data-mirror-rtl")) return;
       if (!img.dataset.posLtr) img.dataset.posLtr = img.style.objectPosition;
@@ -327,7 +327,7 @@
       localStorage.setItem("sfg-lang", lang === "ar" ? "en" : "ar");
       if (finished) sessionStorage.setItem("sfg-restore", String(Math.round(scrollY)));
     } catch (e) {}
-    location.reload();
+    var u = new URL(location.href); u.searchParams.set("lang", lang === "ar" ? "en" : "ar"); location.replace(u.href);   // the address always names the language shown
   });
 
   // ---- Menu + header state ----------------------------------------------
@@ -348,7 +348,7 @@
   window.addEventListener("scroll", function () { header.classList.toggle("is-solid", window.scrollY > window.innerHeight - 80); }, { passive: true });
   var rz; window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { var r = M ? s / M.end : 0; measure(); if (M) s = target = r * M.end; }, 120); });
 
-  try { lang = localStorage.getItem("sfg-lang") === "ar" ? "ar" : "en"; } catch (e) {}
+  lang = window.SFGLang === "ar" ? "ar" : "en";   // decided once by js/i18n-ar.js (?lang=, then the saved choice)
   applyStrings();
   // Boot after fonts settle so measurements are right.
   (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () {

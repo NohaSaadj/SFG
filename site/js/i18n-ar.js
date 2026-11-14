@@ -274,7 +274,9 @@ window.SFG_AR_MAP={
 "Become a mentor<span class=\"sr-only\"> (opens in a new tab)</span>§": "كن مرشدًا<span class=\"sr-only\"> (يفتح في نافذة جديدة)</span>§"
 };
 (function(){
-  var lang="en"; try{ if(localStorage.getItem("sfg-lang")==="ar") lang="ar"; }catch(e){}
+  // ?lang=ar or ?lang=en in the address wins (shareable, indexable Arabic URL); otherwise the reader's last choice
+  var lang="en", q=/[?&]lang=(ar|en)(?![a-z])/.exec(location.search);
+  try{ if(q){ lang=q[1]; localStorage.setItem("sfg-lang",lang); } else if(localStorage.getItem("sfg-lang")==="ar") lang="ar"; }catch(e){ if(q) lang=q[1]; }
   var M=window.SFG_AR_MAP;
   window.SFGLang=lang;
   window.SFGT=function(s){ return lang==="ar"&&M[s]!=null?M[s]:s; };   // used by the scripts that build text

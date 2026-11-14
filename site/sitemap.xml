@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SITE_URL: replace https://www.scholarshipsforghazza.org/ with the real domain before launch -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.scholarshipsforghazza.org/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.scholarshipsforghazza.org/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.scholarshipsforghazza.org/?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.scholarshipsforghazza.org/" />
+  </url>
+  <url>
+    <loc>https://www.scholarshipsforghazza.org/?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.scholarshipsforghazza.org/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.scholarshipsforghazza.org/?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.scholarshipsforghazza.org/" />
+  </url>
+</urlset>
