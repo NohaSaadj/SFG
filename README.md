@@ -57,7 +57,7 @@ What each CSS and JS file does, the order they load in, and the rules for changi
 
 | # | Section | `id` | CSS | JS |
 |---|---|---|---|---|
-| 1 | Header and menu | `site-header` | header.css | intro.js, nav-cascade.js, scroll-to.js |
+| 1 | Header, menu, Save battery panel | `site-header` | header.css, settings.css | intro.js, nav-cascade.js, scroll-to.js, settings.js, boot.js |
 | 2 | Intro (scroll-told story) | — | intro.css | intro.js |
 | 3 | Partners | `partners` | partners.css | — |
 | 4 | About SFG | `about` | about.css | reveal.js |

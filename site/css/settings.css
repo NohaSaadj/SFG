@@ -1,0 +1,37 @@
+/* ==========================================================================
+   Save battery (after noho.ink's energy menu): an icon button in the header opens a panel under it with two
+   switches for the whole page (Reduce motion, Dark mode) and a usage badge. Paper surface, 10px radius,
+   48px targets; the switches are role="switch".
+   ========================================================================== */
+.prefs-btn{display:inline-grid;place-items:center;width:var(--size-touch-min);height:var(--size-touch-min);padding:0;border:0;border-radius:var(--radius-sm);background:none;color:inherit;cursor:pointer;flex:none;transition:background-color .2s}
+@media (hover:hover){.prefs-btn:hover{background:color-mix(in srgb,currentColor 12%,transparent)}}
+.prefs-btn[aria-expanded="true"]{background:color-mix(in srgb,currentColor 16%,transparent)}
+.prefs-btn:focus-visible{outline:3px solid var(--color-border-focus-on-inverse);outline-offset:2px}
+.site-header.is-solid .prefs-btn:focus-visible{outline-color:var(--color-border-focus)}
+
+.prefs{position:fixed;z-index:25;top:72px;inset-inline:var(--grid-margin);display:flex;justify-content:flex-end;pointer-events:none}
+.prefs[hidden]{display:none}
+.prefs_inner{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:var(--space-32) var(--space-48);width:min(100%,760px);padding:var(--space-32) calc(var(--space-48) + var(--space-16)) var(--space-32) var(--space-32);border-radius:var(--radius-panel);background:var(--color-bg-surface);color:var(--color-text-primary);box-shadow:0 1px 0 var(--color-border-subtle),0 24px 48px rgb(13 38 29 / .18);pointer-events:auto}
+[dir="rtl"] .prefs_inner{padding-inline:var(--space-32) calc(var(--space-48) + var(--space-16))}
+.prefs_intro{display:flex;flex-direction:column;justify-content:space-between;gap:var(--space-16)}
+.prefs_title{display:flex;align-items:center;gap:var(--space-12);margin:0;color:var(--color-text-heading)}
+.prefs_badge{padding:var(--space-2) var(--space-8);border-radius:var(--radius-full);background:var(--color-bg-surface-alt);color:var(--color-text-primary)}
+.prefs_badge[data-level="2"]{background:var(--green-100);color:var(--green-800)}
+.prefs_lead,.prefs_desc{margin:0;color:var(--color-text-secondary);text-wrap:pretty}
+.prefs_rows{display:flex;flex-direction:column;gap:var(--space-24)}
+.prefs_row{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-24)}
+.prefs_label{margin:0 0 var(--space-4);color:var(--color-text-heading)}
+.prefs_switch{position:relative;flex:none;width:var(--size-touch-min);height:var(--size-touch-min);margin:calc(var(--space-12) * -1) calc(var(--space-4) * -1) 0;padding:0;border:0;background:none;cursor:pointer}
+.prefs_switch::before{content:"";position:absolute;inset:12px 2px;border-radius:var(--radius-full);border:1.5px solid var(--color-text-primary);background:transparent;transition:background-color .25s var(--ease-out)}
+.prefs_knob{position:absolute;top:17px;inset-inline-start:7px;width:14px;height:14px;border-radius:50%;background:var(--color-text-primary);transition:translate .3s var(--ease-out),background-color .25s}
+.prefs_switch[aria-checked="true"]::before{background:var(--color-text-primary)}
+.prefs_switch[aria-checked="true"] .prefs_knob{translate:20px 0;background:var(--color-bg-surface)}
+[dir="rtl"] .prefs_switch[aria-checked="true"] .prefs_knob{translate:-20px 0}
+.prefs_switch:focus-visible,.prefs_close:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:2px;border-radius:var(--radius-sm)}
+.prefs_close{position:absolute;top:var(--space-8);inset-inline-end:var(--space-8);display:grid;place-items:center;width:var(--size-touch-min);height:var(--size-touch-min);padding:0;border:0;border-radius:var(--radius-sm);background:none;color:var(--color-text-primary);cursor:pointer}
+@media (max-width:767px){
+  .prefs{inset-inline:var(--space-12)}
+  .prefs_inner{grid-template-columns:minmax(0,1fr);gap:var(--space-24);padding:var(--space-24) var(--space-24) var(--space-24)}
+  .prefs_intro{padding-inline-end:var(--space-48)}
+}
+@media (prefers-reduced-motion:reduce){.prefs_switch::before,.prefs_knob{transition:none}}

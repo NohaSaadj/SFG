@@ -37,6 +37,12 @@ The scripts accept `BASE=https://staging.example/` to test a deployed copy.
 - [ ] **Become a mentor:** the accordion opens and closes smoothly; a hovered question draws its underline
 - [ ] **Footer:** every link works, and the icons open the right profiles
 
+### Save battery panel
+- [ ] The battery button opens the panel under the header; Esc, × and a click outside close it
+- [ ] *Reduce motion* reloads at the same place, and every section is still afterwards (no text reveal, the team row and globe stop); the badge reads *Medium* or *Low*; turning it off restores motion
+- [ ] *Dark mode* switches at once and is remembered after a reload; the system theme is used until it is changed
+- [ ] With the browser's *Data saver* on, motion starts reduced
+
 ### Accessibility
 - [ ] Keyboard only: Tab reaches every control in order; focus is always visible; nothing traps focus except the open story panel and menu
 - [ ] Screen reader (VoiceOver, NVDA): headings make a sensible outline; the language switch says "EN ع, Switch to Arabic"; story changes are announced

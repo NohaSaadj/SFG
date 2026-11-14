@@ -61,6 +61,7 @@
   <link rel="stylesheet" href="css/team.css" />
   <link rel="stylesheet" href="css/become-a-mentor.css" />
   <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/settings.css" />
 </head>
 <body>
   <a class="skip-link title3" href="#main-content" data-i18n="skipToContent">Skip to main content</a>
@@ -84,6 +85,7 @@
           </ul>
           <div class="header_actions">
             <a class="button-primary title3" href="https://secure.lglforms.com/form_engine/s/g_DgjZr8NO-ar4ZbK8qO7Q" target="_blank" rel="noopener noreferrer"><span data-i18n="navCta">Become a mentor</span><span class="sr-only" data-i18n="newTab"> (opens in a new tab)</span></a>
+            <button class="prefs-btn" type="button" data-prefs-toggle aria-expanded="false" aria-controls="prefs-panel"><span class="sr-only" data-i18n="prefsBtn">Save battery: motion and dark mode</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 10.5v3"/><path d="M11.5 9 9 12.5h3.5L10 15"/></svg></button>
             <button class="lang-toggle" type="button" data-lang-toggle aria-label="EN ع, Switch to Arabic">
               <span class="lang-toggle_pill" aria-hidden="true">
                 <span class="lang-toggle_opt" data-lang="en" lang="en">EN</span>
@@ -99,6 +101,28 @@
       </div>
     </div>
   </header>
+
+
+  <!-- Save battery panel (js/settings.js): reduce motion and dark mode for the whole page, kept on this device -->
+  <div class="prefs" id="prefs-panel" role="region" aria-labelledby="prefs-title" hidden>
+    <div class="prefs_inner">
+      <div class="prefs_intro">
+        <p class="prefs_title title1" id="prefs-title"><span data-i18n="prefsTitle">Battery use</span> <span class="prefs_badge title3" data-prefs-level>High</span></p>
+        <p class="prefs_lead body3" data-i18n="prefsLead">Turning off motion and switching to dark mode make this page lighter on your phone’s battery and processor.</p>
+      </div>
+      <div class="prefs_rows">
+        <div class="prefs_row">
+          <div class="prefs_text"><p class="prefs_label title2" id="prefs-motion" data-i18n="prefsMotion">Reduce motion</p><p class="prefs_desc body3" id="prefs-motion-d" data-i18n="prefsMotionDesc">Stops moving text, drifting rows and the spinning globe. Everything stays on the page.</p></div>
+          <button class="prefs_switch" type="button" role="switch" aria-checked="false" aria-labelledby="prefs-motion" aria-describedby="prefs-motion-d" data-pref="motion"><span class="prefs_knob"></span></button>
+        </div>
+        <div class="prefs_row">
+          <div class="prefs_text"><p class="prefs_label title2" id="prefs-theme" data-i18n="prefsDark">Dark mode</p><p class="prefs_desc body3" id="prefs-theme-d" data-i18n="prefsDarkDesc">Uses less power on OLED and AMOLED screens.</p></div>
+          <button class="prefs_switch" type="button" role="switch" aria-checked="false" aria-labelledby="prefs-theme" aria-describedby="prefs-theme-d" data-pref="theme"><span class="prefs_knob"></span></button>
+        </div>
+      </div>
+      <button class="prefs_close" type="button" data-prefs-close><span class="sr-only" data-i18n="prefsClose">Close</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+  </div>
 
   <nav class="menu-panel" id="menu-panel" aria-label="Menu">
     <ul class="menu-panel_list h5">
@@ -822,6 +846,7 @@
     </div>
   </footer>
   <script src="js/i18n-ar.js"></script>
+  <script src="js/settings.js"></script>
 
   <script src="js/intro.js"></script>
   <script src="js/reveal.js"></script>

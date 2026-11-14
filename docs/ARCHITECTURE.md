@@ -9,7 +9,7 @@ How the code in `site/` is organised, why, and how to change it without breaking
 3. **Tokens only.** Colours, type, spacing, radius and easing come from `css/tokens.css` (the SFG design system). Components use semantic tokens such as `--color-text-primary`, never raw hex values.
 4. **Progressive enhancement.** The page reads fully without JavaScript. `js/boot.js` adds `html.js` before first paint, and only then does CSS hide what the scripts will reveal.
 5. **Logical properties.** Layout uses `inline-start` and `inline-end`, never `left` and `right`, so the Arabic page mirrors on its own.
-6. **Motion is optional.** Every animation is skipped under `prefers-reduced-motion: reduce`.
+6. **Motion is optional.** Every animation is skipped under `prefers-reduced-motion: reduce`, whether it comes from the system or from the site's own *Reduce motion* switch (Save battery panel). The switch works without touching any section: `boot.js` makes every `matchMedia('(prefers-reduced-motion: …)')` answer with the reader's choice, and `settings.js` re-points the matching `@media` rules. **So a section only has to support the system setting, and the switch comes for free.**
 7. **No inline JavaScript.** Scripts are files, which lets the Content Security Policy use `script-src 'self'`. The one inline `<script>` is JSON-LD data, which never runs.
 
 ## Load order
@@ -37,13 +37,15 @@ Order matters, because the CSS cascade and the scripts depend on what came befor
 | 15 | `team.css` | Team marquee |
 | 16 | `become-a-mentor.css` | Ask, accordion, tatreez band |
 | 17 | `footer.css` | Footer |
+| 18 | `settings.css` | Save battery button and panel (Reduce motion, Dark mode switches) |
 
 ### JavaScript (end of `<body>`)
 
 | # | File | Exposes | Depends on |
 |---|---|---|---|
-| — | `boot.js` (in `<head>`) | `html.js` class | — |
+| — | `boot.js` (in `<head>`) | `html.js` class, `data-theme`, `SFGMotion`; answers `matchMedia(prefers-reduced-motion)` with the reader's choice | — |
 | 1 | `i18n-ar.js` | `SFG_AR_MAP`, `SFGLang`, `SFGT(text)` | — (**must run first**) |
+| 1b | `settings.js` | — (re-points reduced-motion CSS rules; the Save battery panel) | `SFGMotion`, `SFGT` |
 | 2 | `intro.js` | — | `SFGLang`, `SFGCascade`, `SFGScrollTo` (both optional) |
 | 3 | `reveal.js` | `SFGReveal.play()`, `.observe()` | — |
 | 4 | `scroll-to.js` | `SFGScrollTo(el, done)` | — |
