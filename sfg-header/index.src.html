@@ -100,7 +100,6 @@
       --color-accent-number:var(--red-600);
       --color-text-pen:var(--red-600);   /* the mentor's handwritten notes: red 500 is 3.9:1 on paper, red 600 is 4.9:1 */
       --color-text-on-inverse-secondary:rgb(247 242 233 / .72);   /* faded body on the inverse green (5.6:1) */
-      --color-border-control:var(--neutral-ink);--color-bg-control:rgb(255 255 255 / .72);--color-bg-control-knob:var(--neutral-white);   /* language toggle */
       
       --h2-size:clamp(2.125rem,3.4vw,3rem);--h2-lh:1.167;--h2-ls:-.0167em;
       --title-size:1.75rem;--title-lh:1.2857;   /* 28/36 */
@@ -192,6 +191,8 @@
     .cascade_l{display:inline-block;white-space:pre;transition:translate .6s cubic-bezier(.2,0,.1,1) calc(var(--i) * 25ms)}
     @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.header_nav-link:hover .cascade_l{translate:0 -100%}}
     .header_actions{display:flex;align-items:center;gap:var(--space-16)}
+    html[dir="rtl"] .header_nav{flex:1;margin-inline-start:var(--space-24)}   /* Arabic: the tabs start at the right, beside the logo; the button and language switch sit at the far left */
+    html[dir="rtl"] .header_actions{margin-inline-start:auto}
     .button-primary{display:inline-flex;align-items:center;justify-content:center;min-height:var(--size-touch-min);padding-inline:var(--space-24);border-radius:var(--radius-button);background:var(--color-action-primary);color:var(--color-text-on-action);transition:background-color .2s ease,scale .15s ease-out}
     @media (prefers-reduced-motion:no-preference){.button-primary:active,.how_btn:active,.sb_pager-btn:not(:disabled):active{scale:.96}}   /* press feedback */
     /* Button motion (after cambium.com): on hover a darker panel slides up from below while the label shrinks and rises */
@@ -214,17 +215,20 @@
     @media (hover:hover) and (pointer:fine){.link-draw:hover .link-draw_text,.voices_item:hover .link-draw_text{background-position:left bottom;background-size:100% .0625em}}
     @media (hover:none),(pointer:coarse){.link-draw_text{background-size:100% .0625em}}   /* touch: keep the line visible, since there is no hover */
 
-    /* Language toggle (cloned pill with sliding knob) */
-    .lang-toggle{position:relative;display:inline-flex;align-items:center;width:84px;height:var(--size-touch-min);flex:none}
-    .lang-toggle_track{position:absolute;inset:var(--space-8) 0;border-radius:var(--radius-full);border:1px solid var(--color-border-control);background:var(--color-bg-control)}
-    .lang-toggle_label{position:absolute;top:50%;transform:translateY(-50%);font:500 var(--title3-size)/1 var(--font-sans);color:var(--color-text-on-panel);transition:opacity .3s ease}
-    .lang-toggle_label[data-lang="en"]{left:var(--space-12)}
-    .lang-toggle_label[data-lang="ar"]{right:var(--space-16);font-size:var(--title2-size)}
-    .lang-toggle_knob{position:absolute;top:50%;left:5px;width:26px;height:26px;margin-top:-13px;border-radius:50%;background:var(--color-bg-control-knob);border:1px solid var(--color-border-control);transition:transform .45s var(--ease-out)}
-    /* Knob covers the current language and shows the other one */
-    html[lang="en"] .lang-toggle_label[data-lang="en"]{opacity:0}
-    html[lang="ar"] .lang-toggle_knob{transform:translateX(47px)}
-    html[lang="ar"] .lang-toggle_label[data-lang="ar"]{opacity:0}
+    /* Language switch: a pill holding both languages; the current one sits in a filled circle (the pill and circle take the header's ink) */
+    .site-header{--lang-fill:var(--color-text-on-inverse);--lang-on:var(--color-bg-inverse)}   /* the filled circle and the text inside it */
+    .site-header.is-solid{--lang-fill:var(--color-text-glass);--lang-on:var(--color-bg-page)}
+    .is-menu-open .site-header.is-solid{--lang-fill:var(--color-text-on-inverse);--lang-on:var(--color-bg-inverse)}
+    .lang-toggle{display:inline-grid;place-items:center;min-width:var(--size-touch-min);height:var(--size-touch-min);padding:0;border:0;background:none;color:inherit;cursor:pointer;flex:none}
+    .lang-toggle_pill{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2);border:1px solid currentColor;border-radius:var(--radius-full)}
+    .lang-toggle_opt{display:grid;place-items:center;min-width:32px;height:32px;padding-inline:var(--space-4);border-radius:var(--radius-full);font:500 var(--title3-size)/1 var(--font-sans);transition:background-color .3s var(--ease-out),color .3s var(--ease-out)}
+    .lang-toggle_opt[data-lang="ar"]{font-size:var(--title2-size)}
+    html[lang="en"] .lang-toggle_opt[data-lang="en"],html[lang="ar"] .lang-toggle_opt[data-lang="ar"]{background:var(--lang-fill)}
+    html[lang="en"] .lang-toggle_opt[data-lang="en"]{color:var(--lang-on)}
+    html[lang="ar"] .lang-toggle_opt[data-lang="ar"]{color:var(--lang-on)}
+    @media (hover:hover){.lang-toggle:hover .lang-toggle_pill{background:color-mix(in srgb,currentColor 12%,transparent)}}
+    .lang-toggle:focus-visible{outline:3px solid var(--color-border-focus-on-inverse);outline-offset:2px;border-radius:var(--radius-full)}
+    .site-header.is-solid .lang-toggle:focus-visible{outline-color:var(--color-border-focus)}
 
     /* Mobile menu trigger (cloned "Menu" + hamburger) */
     .menu-trigger{display:none;align-items:center;gap:var(--space-12);min-height:var(--size-touch-min);min-width:var(--size-touch-min)}
@@ -273,6 +277,8 @@
     /* The paragraph hides from the middle of the screen up (as in the reference); --mask-from/--mask-to are set per frame */
     .intro_viewport{--mask-from:0%;--mask-to:0%;position:absolute;inset:0;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent var(--mask-from),#000 var(--mask-to),#000 90%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,transparent var(--mask-from),#000 var(--mask-to),#000 90%,transparent 100%)}
     .intro_text{position:absolute;inset-inline:0;top:0;will-change:transform}
+    /* The intro is a told story: Serif Text Regular (a book voice) at the H1 size, for the paragraph, the gathered sentence and the closing line */
+    .intro_poem,.intro_row p,.intro_center p,.intro_start,.intro_fly,.intro_begin{font-family:var(--font-text);font-weight:400}
     .intro_poem{margin:0 auto;max-width:1000px;color:var(--color-text-on-inverse);text-shadow:0 1px 14px rgb(0 0 0 / .35)}
     .intro_poem .poem_word{opacity:var(--poem-text);transition:opacity 1s ease}
     .intro_poem .poem_key{display:inline-block;opacity:1;transition:opacity 1s ease}
@@ -436,7 +442,6 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 /* ===== SECTION 2 · HOW SFG BEGAN · horizontal timeline (after De Coene) ===== */
 #how-it-began{--tl-col:calc((100vw - 2*var(--grid-margin) - 11*var(--grid-gutter))/12);position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding-bottom:var(--space-64)}   /* same linen as About; the tatreez hem marks the change */
 .sb_head{padding:0;padding-inline-start:var(--grid-margin)}   /* inside the pinned area, so the pager stays in view */   /* no right padding: the band reaches the page edge */
-.sb_title-row{display:flex;align-items:center;gap:var(--space-24)}   /* "How SFG began" + tatreez band to the page edge */
 .sb_title{margin:0;flex:none;color:var(--color-text-heading)}
 /* Tatreez band (traced from the supplied motif), repeated to fill the rest of the title row */
 /* The band now opens the section as a full-width stitched hem, away from the heading and pager */
@@ -446,7 +451,8 @@ html[dir="rtl"] .partners_join svg{transform:scaleX(-1)}
 .sb_band .tz-b{fill:var(--color-tatreez-secondary)}
 .sb_sub{margin:var(--title-detail-gap) 0 0;text-wrap:pretty;max-width:40ch;color:var(--color-text-secondary)}
 /* Description on the left, pager on the right, on one line */
-.sb_sub-row{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-48);padding-inline-end:var(--grid-margin)}
+.sb_sub-row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-48);padding-inline-end:var(--grid-margin)}   /* the title block is centred against the timeline pager */
+.sb_lead{min-width:0}
 
 /* Pinned while the page scrolls down; the steps move sideways. The script sets .tl's height to the track's overflow. */
 .tl{position:relative}
@@ -1050,10 +1056,10 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
           <div class="header_actions">
             <a class="button-primary title3" href="https://secure.lglforms.com/form_engine/s/g_DgjZr8NO-ar4ZbK8qO7Q" target="_blank" rel="noopener"><span data-i18n="navCta">Become a mentor</span><span class="sr-only" data-i18n="newTab"> (opens in a new tab)</span></a>
             <button class="lang-toggle" type="button" data-lang-toggle aria-label="Switch to Arabic">
-              <span class="lang-toggle_track"></span>
-              <span class="lang-toggle_label" data-lang="en" lang="en">EN</span>
-              <span class="lang-toggle_label" data-lang="ar" lang="ar">ع</span>
-              <span class="lang-toggle_knob"></span>
+              <span class="lang-toggle_pill" aria-hidden="true">
+                <span class="lang-toggle_opt" data-lang="en" lang="en">EN</span>
+                <span class="lang-toggle_opt" data-lang="ar" lang="ar">ع</span>
+              </span>
             </button>
             <button class="menu-trigger title1" type="button" data-menu-trigger aria-expanded="false" aria-controls="menu-panel">
               <span class="menu-trigger_text" data-i18n="menu">Menu</span>
@@ -1143,11 +1149,11 @@ html:not(.js) .mentors_slide,html:not(.js) .mentors_by{grid-area:auto;margin-bot
   <div class="tl" data-tl>
     <div class="tl_sticky">
       <div class="sb_head" data-split-group>
-        <div class="sb_title-row">
-          <h2 class="sb_title h2" id="sb-title" data-split>How SFG’s story began</h2>
-        </div>
         <div class="sb_sub-row">
-          <p class="sb_sub body1" data-split>One scholarship, one promise, and a growing network of mentors.</p>
+          <div class="sb_lead">
+            <h2 class="sb_title h2" id="sb-title" data-split>How SFG’s story began</h2>
+            <p class="sb_sub body1" data-split>One scholarship, one promise, and a growing network of mentors.</p>
+          </div>
             <nav class="sb_pager" aria-label="Story steps">
               <div class="sb_pager-top">
                 <p class="sb_pager-count"><span class="sb_pager-current title" data-sb-current>01</span><span class="sb_pager-total title3">/ 05</span></p>
@@ -2651,7 +2657,7 @@ layout();
       section.style.minHeight = vh + "px";
       w = items[0].offsetWidth;
       cw = deck.clientWidth;
-      padL = parseFloat(getComputedStyle(deck).paddingLeft);
+      padL = parseFloat(getComputedStyle(deck).paddingInlineStart);
       rtl = getComputedStyle(deck).direction === "rtl"; sgn = rtl ? -1 : 1;   // in Arabic the deck starts at the right and the cards travel the other way
       items.forEach(function (it, i) { it.style.left = ""; it.style.insetInlineStart = i * w + "px"; });
       // the last card lands with its right edge on the right grid margin (the list starts at the left margin)
