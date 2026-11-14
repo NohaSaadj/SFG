@@ -1,0 +1,66 @@
+/* ===== SECTION 2 · HOW SFG BEGAN · horizontal timeline (after De Coene) ===== */
+#how-it-began{--tl-col:calc((100vw - 2*var(--grid-margin) - 11*var(--grid-gutter))/12);position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding-bottom:var(--space-64)}   /* same linen as About; the tatreez hem marks the change */
+.sb_head{padding:0;padding-inline-start:var(--grid-margin)}   /* inside the pinned area, so the pager stays in view */   /* no right padding: the band reaches the page edge */
+.sb_title{margin:0;flex:none;color:var(--color-text-heading)}
+/* Tatreez band (traced from the supplied motif), repeated to fill the rest of the title row */
+/* The band now opens the section as a full-width stitched hem, away from the heading and pager */
+.sb_hem{line-height:0;padding:0 var(--grid-margin)}   /* margin to margin, like How it works */
+.sb_band{width:100%;height:auto;display:block}
+.sb_band .tz-a{fill:var(--color-tatreez-primary)}
+.sb_band .tz-b{fill:var(--color-tatreez-secondary)}
+.sb_sub{margin:var(--title-detail-gap) 0 0;text-wrap:pretty;max-width:40ch;color:var(--color-text-secondary)}
+/* Description on the left, pager on the right, on one line */
+.sb_sub-row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-48);padding-inline-end:var(--grid-margin)}   /* the title block is centred against the timeline pager */
+.sb_lead{min-width:0}
+
+/* Pinned while the page scrolls down; the steps move sideways. The script sets .tl's height to the track's overflow. */
+.tl{position:relative}
+.tl_sticky{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;overflow:clip;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);row-gap:var(--space-96);padding:var(--space-96) 0 var(--space-48)}
+.tl{padding-top:var(--space-32)}   /* hem, then 128px to the heading (32 + the pinned area's 96) */
+.tl_track{--tl-h:min(52vh,480px);justify-self:start;align-self:start;display:flex;align-items:center;gap:var(--space-128);width:max-content;padding-inline:var(--grid-margin);will-change:transform}
+.tl_step{display:flex;align-items:center;gap:var(--space-64);flex:none}
+.tl_text{width:calc(4*var(--tl-col) + 3*var(--grid-gutter));flex:none}
+/* The year leads each step: ochre, faded until its step is the current one */
+.tl_year{margin:0 0 var(--space-16);color:var(--color-text-secondary);transition:color .6s ease}   /* muted until its step is current (5.4:1), then ochre */
+.tl_step.is-active .tl_year{color:var(--color-text-achievement)}
+.tl_title{margin:0;color:var(--color-text-primary)}
+.tl_body{margin:var(--space-12) 0 0;text-wrap:pretty;color:var(--color-text-secondary);max-width:44ch}
+/* Every photo at the same height and its own width: portraits narrow, Al Jazeera wide, nothing cropped */
+.tl_media{margin:0;flex:none;height:var(--tl-h);border-radius:var(--radius-media);overflow:hidden}
+.tl_media img{display:block;height:100%;width:auto}
+.tl_media.is-mosaic{display:grid;grid-template:1fr 1fr / repeat(3,1fr);gap:var(--space-4);aspect-ratio:3/2;border-radius:0}   /* six scholars, 3 × 2 */
+.tl_media.is-mosaic img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm)}
+.sb_credit{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-top:var(--space-16);color:var(--color-action-secondary);text-decoration:underline;text-underline-offset:4px;font:500 var(--title3-size)/var(--title3-lh) var(--font-sans)}
+/* Pager (from the previous version): "01 / 05", previous/next, progress line and the next step's name.
+   It sits at the top of the pinned area, on the same left line as the section's description. */
+.sb_pager{flex:none;width:calc(4*var(--tl-col) + 3*var(--grid-gutter))}
+.sb_pager-top{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-16)}
+.sb_pager-count{display:flex;align-items:baseline;gap:var(--space-8);margin:0}
+.sb_pager-current{color:var(--color-text-heading)}
+.sb_pager-total{color:var(--color-text-secondary)}
+.sb_pager-nav{display:flex;gap:var(--space-8)}
+.sb_pager-btn{width:var(--size-touch-min);height:var(--size-touch-min);border-radius:var(--radius-sm);border:0;background:transparent;color:var(--color-action-secondary);display:grid;place-items:center;cursor:pointer;transition:background-color .2s,scale .15s ease-out}
+.sb_pager-btn svg{transition:translate .35s var(--ease-smooth)}   /* bare 24px chevrons (after cambium.com); the 48px button is the touch target */
+@media (hover:hover){.sb_pager-btn.is-prev:hover:not(:disabled) svg{translate:-3px 0}.sb_pager-btn.is-next:hover:not(:disabled) svg{translate:3px 0}[dir="rtl"] .sb_pager-btn.is-prev:hover:not(:disabled) svg{translate:3px 0}[dir="rtl"] .sb_pager-btn.is-next:hover:not(:disabled) svg{translate:-3px 0}}
+[dir="rtl"] .sb_pager-btn svg{transform:scaleX(-1)}   /* arrows follow the reading direction */
+.sb_pager-btn:disabled{opacity:.35;cursor:default;background:transparent}
+.sb_pager-btn:focus-visible,.sb_credit:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
+.sb_pager-track{position:relative;height:2px;margin-top:var(--space-12);background:var(--color-border-subtle)}
+.sb_pager-fill{position:absolute;inset-inline-start:0;top:0;bottom:0;width:0;background:var(--color-text-heading);transition:width .5s cubic-bezier(.22,.61,.36,1)}
+.sb_pager-caption{margin:var(--space-12) 0 0;color:var(--color-text-secondary)}
+
+/* Phones and tablets: a swipe track with the year bar on top */
+@media (max-width:991px){
+  .sb_head{padding:var(--space-64) 0 var(--space-48);padding-inline-start:var(--grid-margin)}
+  .sb_sub-row{flex-direction:column;align-items:stretch;gap:var(--space-24)}
+  .tl{height:auto!important}
+  .tl_sticky{position:static;height:auto;overflow:visible;display:flex;flex-direction:column;row-gap:0;padding:0 0 var(--space-64)}
+  .sb_pager{width:auto}
+  .tl_track::-webkit-scrollbar{display:none}
+  .tl_track{width:auto;align-self:stretch;transform:none!important;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--grid-margin);gap:var(--space-24);align-items:flex-start;scrollbar-width:none}
+  .tl_step{flex:0 0 100%;flex-direction:column;align-items:stretch;gap:var(--space-24);scroll-snap-align:start}
+  .tl_text{width:auto}
+  .tl_media{height:auto;width:100%}
+  .tl_media img{width:100%;height:auto}
+  .tl_media.is-mosaic{height:auto}
+}

@@ -1,0 +1,28 @@
+/* ==========================================================================
+   Footer: the inverse green, after the stitch field. Its content rises into place as the footer comes into view
+   (a scroll-linked reveal, as on cambium.com); no movement with reduced motion.
+   ========================================================================== */
+.site-footer{position:relative;z-index:2;overflow:clip;background:var(--color-bg-inverse);color:var(--color-text-on-inverse)}
+.footer_inner{padding:var(--space-96) var(--grid-margin) var(--space-48);will-change:transform}
+.footer_top{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);column-gap:var(--space-96);row-gap:var(--space-64)}
+.footer_brand{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-24)}
+.footer_logo{display:block;width:120px;height:auto}
+.footer_line{margin:0;max-width:32ch;color:var(--color-text-on-inverse-secondary);text-wrap:pretty}
+.footer_social{list-style:none;margin:var(--space-24) 0 0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-4);margin-inline-start:calc(var(--space-12) * -1)}   /* icons optically on the text edge */
+.footer_social a{display:inline-grid;place-items:center;width:var(--size-touch-min);height:var(--size-touch-min);color:var(--color-text-on-inverse);transition:opacity .3s var(--ease-out),translate .3s var(--ease-out)}   /* the glyph only; the 48px box stays as the touch target */
+@media (hover:hover){.footer_social a:hover{opacity:.72;translate:0 -2px}}
+.footer_cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--space-48);row-gap:var(--space-48)}
+.footer_col h2{margin:0 0 var(--space-12);color:var(--color-footer-head)}
+.footer_col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.footer_col a{display:inline-block;padding-block:var(--space-4);color:var(--color-text-on-inverse);text-decoration:none;text-wrap:balance}
+.footer_col a svg{display:inline;vertical-align:-1px;margin-inline-start:var(--space-4)}   /* the arrow stays with the last word */
+@media (hover:hover){.footer_col a:hover{text-decoration:underline;text-underline-offset:4px}}
+.site-footer a:focus-visible{outline:3px solid var(--color-border-focus-on-inverse);outline-offset:3px;border-radius:var(--radius-sm)}
+.footer_bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-16);margin-top:var(--space-48);padding-top:var(--space-24);border-top:1px solid var(--color-border-on-inverse);color:var(--color-text-on-inverse-secondary)}
+.footer_bottom p{margin:0}
+@media (max-width:991px){.footer_inner{padding-block:var(--space-64) var(--space-32)}.footer_top{grid-template-columns:minmax(0,1fr)}.footer_cols{grid-template-columns:repeat(2,minmax(0,1fr))}.footer_bottom{margin-top:var(--space-32)}}
+@media (max-width:479px){.footer_cols{grid-template-columns:minmax(0,1fr)}}
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{transition:none!important;animation:none!important}
+      .intro_begin{place-items:end center;padding-bottom:var(--space-128)}
+    }

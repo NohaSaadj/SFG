@@ -1,0 +1,98 @@
+/* ==========================================================
+   Header (cloned structure, SFG content)
+   ========================================================== */
+.site-header{position:fixed;inset:0 0 auto 0;z-index:20;padding-block:var(--space-24);color:var(--color-text-on-inverse);opacity:0;transition:opacity 1s ease,background-color .4s ease,box-shadow .4s ease,padding .4s ease}
+.site-header.is-ready{opacity:1}
+/* Glass navbar above the sections once the page scrolls */
+.site-header.is-solid{background:var(--color-bg-glass);color:var(--color-text-glass);-webkit-backdrop-filter:blur(24px) saturate(1.6);backdrop-filter:blur(24px) saturate(1.6);box-shadow:0 1px 0 var(--color-border-glass);padding-block:var(--space-12)}
+.site-header.is-solid :focus-visible{outline-color:var(--color-border-focus)}
+.header_logo-img.is-ink{display:none}
+.site-header.is-solid .header_logo-img.is-ink{display:var(--glass-logo-ink)}
+.site-header.is-solid .header_logo-img.is-linen{display:var(--glass-logo-linen)}
+/* Menu open on top of the glass: back to the dark header */
+.is-menu-open .site-header.is-solid{background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;color:var(--color-text-on-inverse)}
+.is-menu-open .site-header.is-solid .header_logo-img.is-ink{display:none}
+.is-menu-open .site-header.is-solid .header_logo-img.is-linen{display:block}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.site-header.is-solid{background:var(--color-bg-page)}}
+.header_inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-24)}
+.header_brand{display:flex;align-items:center;gap:var(--space-12);min-height:var(--size-touch-min)}
+.header_logo-img{display:block;height:48px;width:auto}
+.header_nav{display:flex;align-items:center;gap:var(--space-32)}
+.header_nav-list{display:flex;align-items:center;gap:var(--space-24);list-style:none;margin:0;padding:0}
+.header_nav-link{white-space:nowrap;font-weight:400;display:inline-flex;align-items:center;gap:var(--space-4);min-height:var(--size-touch-min);position:relative}
+.header_nav-link.no-cascade::after{content:"";position:absolute;inset-inline:0;bottom:8px;height:2px;border-radius:2px;background:currentColor;transform:scaleX(0);transform-origin:var(--origin-start,left);transition:transform .35s var(--ease-out)}
+@media (hover:hover){.header_nav-link.no-cascade:hover::after{transform:scaleX(1)}}
+/* nav hover after noho.ink: each letter rolls up and its copy rises from below, one after another */
+.cascade{position:relative;display:inline-block;overflow:hidden;vertical-align:top;height:1lh}
+.cascade_b{position:absolute;inset:100% 0 auto 0}
+.cascade_l{display:inline-block;white-space:pre;transition:translate .6s cubic-bezier(.2,0,.1,1) calc(var(--i) * 25ms)}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.header_nav-link:hover .cascade_l{translate:0 -100%}}
+.header_actions{display:flex;align-items:center;gap:var(--space-16)}
+html[dir="rtl"] .header_nav{flex:1;margin-inline-start:var(--space-24)}   /* Arabic: the tabs start at the right, beside the logo; the button and language switch sit at the far left */
+html[dir="rtl"] .header_actions{margin-inline-start:auto}
+.button-primary{display:inline-flex;align-items:center;justify-content:center;min-height:var(--size-touch-min);padding-inline:var(--space-24);border-radius:var(--radius-button);background:var(--color-action-primary);color:var(--color-text-on-action);transition:background-color .2s ease,scale .15s ease-out}
+@media (prefers-reduced-motion:no-preference){.button-primary:active,.how_btn:active,.sb_pager-btn:not(:disabled):active{scale:.96}}   /* press feedback */
+/* Button motion (after cambium.com): on hover a darker panel slides up from below while the label shrinks and rises */
+.btn-roll{position:relative;overflow:clip;isolation:isolate}
+.btn-roll_def{display:inline-flex;align-items:center;gap:inherit;transition:translate .45s var(--ease-smooth),scale .45s var(--ease-smooth)}
+.btn-roll_hov{position:absolute;inset:0;z-index:-1;display:flex;align-items:center;justify-content:center;gap:inherit;padding-inline:inherit;background:var(--btn-hover);translate:0 calc(100% + 1px);transition:translate .45s var(--ease-smooth);pointer-events:none}
+.btn-roll_hov-in{display:inline-flex;align-items:center;gap:inherit;translate:0 25%;transition:translate .45s var(--ease-smooth)}
+.btn-roll .btn-roll_def{position:relative;z-index:-2}
+.button-primary{--btn-hover:var(--color-action-primary-hover)}
+.how_cta{--btn-hover:var(--color-action-secondary-hover)}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .btn-roll:hover .btn-roll_def{transition-duration:.95s;translate:0 -25%;scale:.85}
+  .btn-roll:hover .btn-roll_hov{transition-delay:50ms;translate:0}
+  .btn-roll:hover .btn-roll_hov-in{transition-delay:65ms;translate:0}
+}
+@media (hover:hover) and (prefers-reduced-motion:reduce){.button-primary:hover{background:var(--color-action-primary-hover)}.how_cta:hover{background:var(--color-action-secondary-hover)}}
+/* Text-link motion (after cambium.com's "Arbor Wood Co. →"): no underline at rest; on hover it draws in from the left and leaves to the right */
+.link-draw{text-decoration:none!important}
+.link-draw_text{background:linear-gradient(currentColor,currentColor) no-repeat right bottom / 0 .0625em;padding-bottom:.0625em;transition:background-size .735s var(--ease-smooth)}
+@media (hover:hover) and (pointer:fine){.link-draw:hover .link-draw_text,.voices_item:hover .link-draw_text{background-position:left bottom;background-size:100% .0625em}}
+@media (hover:none),(pointer:coarse){.link-draw_text{background-size:100% .0625em}}   /* touch: keep the line visible, since there is no hover */
+
+/* Language switch: a pill holding both languages; the current one sits in a filled circle (the pill and circle take the header's ink) */
+.site-header{--lang-fill:var(--color-text-on-inverse);--lang-on:var(--color-bg-inverse)}   /* the filled circle and the text inside it */
+.site-header.is-solid{--lang-fill:var(--color-text-glass);--lang-on:var(--color-bg-page)}
+.is-menu-open .site-header.is-solid{--lang-fill:var(--color-text-on-inverse);--lang-on:var(--color-bg-inverse)}
+.lang-toggle{display:inline-grid;place-items:center;min-width:var(--size-touch-min);height:var(--size-touch-min);padding:0;border:0;background:none;color:inherit;cursor:pointer;flex:none}
+.lang-toggle_pill{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2);border:1px solid currentColor;border-radius:var(--radius-full)}
+.lang-toggle_opt{display:grid;place-items:center;min-width:32px;height:32px;padding-inline:var(--space-4);border-radius:var(--radius-full);font:500 var(--title3-size)/1 var(--font-sans);transition:background-color .3s var(--ease-out),color .3s var(--ease-out)}
+.lang-toggle_opt[data-lang="ar"]{font-size:var(--title2-size)}
+html[lang="en"] .lang-toggle_opt[data-lang="en"],html[lang="ar"] .lang-toggle_opt[data-lang="ar"]{background:var(--lang-fill)}
+html[lang="en"] .lang-toggle_opt[data-lang="en"]{color:var(--lang-on)}
+html[lang="ar"] .lang-toggle_opt[data-lang="ar"]{color:var(--lang-on)}
+@media (hover:hover){.lang-toggle:hover .lang-toggle_pill{background:color-mix(in srgb,currentColor 12%,transparent)}}
+.lang-toggle:focus-visible{outline:3px solid var(--color-border-focus-on-inverse);outline-offset:2px;border-radius:var(--radius-full)}
+.site-header.is-solid .lang-toggle:focus-visible{outline-color:var(--color-border-focus)}
+
+/* Mobile menu trigger (cloned "Menu" + hamburger) */
+.menu-trigger{display:none;align-items:center;gap:var(--space-12);min-height:var(--size-touch-min);min-width:var(--size-touch-min)}
+.menu-trigger_lines{position:relative;width:32px;height:20px}
+.menu-trigger_line{position:absolute;inset-inline:0;height:2px;background:currentColor;border-radius:2px;transition:transform .35s var(--ease-out),top .35s var(--ease-out),opacity .2s}
+.menu-trigger_line:nth-child(1){top:0}.menu-trigger_line:nth-child(2){top:9px}.menu-trigger_line:nth-child(3){top:18px}
+.is-menu-open .menu-trigger_line:nth-child(1){top:9px;transform:rotate(45deg)}
+.is-menu-open .menu-trigger_line:nth-child(2){opacity:0}
+.is-menu-open .menu-trigger_line:nth-child(3){top:9px;transform:rotate(-45deg)}
+
+.menu-panel{position:fixed;inset:0;z-index:15;background:var(--color-bg-inverse);color:var(--color-text-on-inverse);padding:var(--space-128) var(--grid-margin) var(--space-48);display:flex;flex-direction:column;gap:var(--space-32);opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s}
+.is-menu-open .menu-panel{opacity:1;visibility:visible}
+.is-menu-open .intro_begin,.is-menu-open .intro_cue,.is-menu-open .intro_skip,.is-menu-open .intro_viewport{visibility:hidden}   /* the intro's floating lines never show through the open menu */
+.menu-panel_list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-4)}
+.menu-panel_link{display:flex;align-items:center;gap:var(--space-8);min-height:56px;border-bottom:1px solid var(--color-border-on-inverse)}
+.menu-panel .button-primary{align-self:flex-start}
+
+@media (max-width:1100px){
+  .header_nav-list{gap:var(--space-16)}
+  .header_nav{gap:var(--space-16)}
+}
+html[dir="rtl"] .is-ext svg{transform:scaleX(-1)}
+@media (max-width:1279px){   /* five links + the button need ~1280px; below that the menu takes over */
+  .header_nav .button-primary{white-space:nowrap}
+  .header_nav-list,.header_nav .button-primary{display:none}
+  .menu-trigger{display:inline-flex}
+  .site-header{padding-block:var(--space-16)}
+}
+@media (max-width:600px){.header_logo-img{height:40px}}
+@media (max-width:420px){.menu-trigger_text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}   /* hidden visually, still the button's name */

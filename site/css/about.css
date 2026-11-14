@@ -1,0 +1,13 @@
+/* ===== ABOUT SFG · paragraph fills word by word as you scroll ===== */
+.section_about{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary);padding:var(--space-128) var(--grid-margin)}
+.about_grid{display:grid;grid-template-columns:repeat(var(--grid-columns),minmax(0,1fr));column-gap:var(--grid-gutter);align-items:start}
+.about_text{grid-column:7 / span 5;margin:0;text-wrap:pretty;color:var(--color-text-secondary)}
+.about_aside{grid-column:1 / span 5}
+.about_eyebrow,.sb_eyebrow{margin:0 0 var(--title-label-gap);color:var(--color-text-heading)}
+.about_title{margin:0;color:var(--color-text-heading)}
+.text-mark{color:var(--color-text-highlight)}
+@media (max-width:991px){
+  .section_about{padding:var(--space-96) var(--grid-margin)}
+  .about_aside{grid-column:1 / -1;margin-bottom:var(--title-detail-gap)}
+  .about_text{grid-column:1 / -1}
+}

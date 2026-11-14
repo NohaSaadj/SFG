@@ -1,0 +1,39 @@
+/* ===== WHAT WE DO / WHAT WE DON'T DO · two sheets: the second slides up over the first as you scroll ===== */
+.section_wwd{position:relative;z-index:2;height:260vh;background:var(--color-bg-surface-alt)}
+.wwd_stage{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden}
+.wwd_sheet{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:var(--space-96) var(--grid-margin) var(--space-64);will-change:transform}
+.wwd_sheet.is-do{background:var(--color-bg-inverse);color:var(--color-text-on-inverse);transform-origin:50% 0}
+.wwd_sheet.is-dont{background:var(--color-bg-page);color:var(--color-text-primary);border-radius:var(--radius-panel) var(--radius-panel) 0 0;transform:translateY(100%);box-shadow:0 -24px 48px rgb(13 38 29 / .18)}
+.wwd_dim{position:absolute;inset:0;background:var(--color-bg-inverse);opacity:0;pointer-events:none}
+.wwd_title{margin:0 0 var(--space-64)}   /* Cambium: H1, then a wide gap to the cards */
+.is-dont .wwd_title{color:var(--color-text-heading)}
+/* Three equal columns from margin to margin; the text hugs a short measure so there is room between columns */
+.wwd_cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--space-64);list-style:none;margin:0;padding:0}
+.wwd_col{padding:0 0 var(--space-8);padding-inline-start:var(--space-32);border-inline-start:1px solid var(--color-border-on-inverse)}
+.is-dont .wwd_col{border-color:var(--color-border-subtle)}
+.wwd_icon{position:relative;display:block;width:var(--space-48);height:var(--space-48);margin-bottom:var(--space-64)}   /* icon, then a long breath to the title */
+.wwd_line{display:block;width:100%;height:100%;fill:none;stroke:var(--color-icon-accent-on-inverse);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}   /* the arrows' 1.5/24 weight */
+.is-dont .wwd_line{stroke:var(--color-icon-accent)}
+.wwd_col-title{margin:0 0 var(--space-16);font-weight:400}   /* Regular: the H2 above carries the weight */
+.wwd_col-text{margin:0;text-wrap:pretty;max-width:32ch;color:var(--color-text-on-inverse-secondary)}   /* Cambium "faded" body */
+.is-dont .wwd_col-text{color:var(--color-text-secondary);opacity:1}
+/* The mentor's red pen: strikes the "don't" icons and underlines "don't" once the sheet has arrived */
+.wwd_pen path{fill:none;stroke:var(--color-pen-default);stroke-width:3;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .7s var(--ease-out-expo)}
+.wwd_mark{position:relative;white-space:nowrap}
+.wwd_pen{position:absolute;inset-inline:-4%;bottom:-.18em;width:108%;height:.32em;overflow:visible}
+.is-dont.is-in .wwd_pen path{stroke-dashoffset:0;transition-delay:.9s}   /* after the title has written in */
+
+/* Static fallback (reduced motion, small screens, or content taller than the screen): two sheets in a row */
+.section_wwd.is-static{height:auto}
+.is-static .wwd_stage{position:static;height:auto;overflow:visible}
+.is-static .wwd_sheet{position:relative;inset:auto;transform:none!important;padding-block:var(--space-96)}
+.is-static .wwd_sheet.is-dont{margin-top:calc(-1 * var(--radius-panel));box-shadow:none}
+.is-static .wwd_dim{display:none}
+@media (max-width:767px){
+  .wwd_cols{grid-template-columns:1fr;gap:var(--space-48)}
+  .wwd_col-text{max-width:none}
+  .wwd_col{padding:0;padding-inline-start:var(--space-20)}
+  .wwd_title{margin-bottom:var(--space-48)}
+  .wwd_icon{margin-bottom:var(--space-24)}
+  .is-static .wwd_sheet{padding-block:var(--space-64)}
+}

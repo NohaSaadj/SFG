@@ -1,0 +1,16 @@
+/* ==========================================================
+   Base
+   ========================================================== */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{margin:0;background:var(--color-bg-inverse);color:var(--color-text-primary);font:400 var(--body2-size)/var(--body2-lh) var(--font-text);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--color-border-focus);outline-offset:3px}
+.section_intro :focus-visible,.site-header :focus-visible{outline-color:var(--color-border-focus-on-inverse)}
+.skip-link{position:absolute;inset-inline-start:var(--space-16);top:-80px;z-index:100;background:var(--color-bg-surface);color:var(--color-text-primary);padding:var(--space-12) var(--space-16);border-radius:var(--radius-card)}
+.skip-link:focus{top:var(--space-16)}
+.padding-global{padding-inline:var(--grid-margin)}   /* design-system grid margin: 160px at 1440, 20px on phones */
+.container-large{margin-inline:auto}
+@media (max-width:767px){:root{--grid-columns:4;--grid-gutter:24px;--grid-margin:20px}}

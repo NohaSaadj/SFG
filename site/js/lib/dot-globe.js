@@ -97,7 +97,10 @@
     img.onload = function () {
       var c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
       var x = c.getContext('2d'); x.drawImage(img, 0, 0);
-      var d = x.getImageData(0, 0, c.width, c.height).data, W = c.width, H = c.height;
+      var d;
+      try { d = x.getImageData(0, 0, c.width, c.height).data; }
+      catch (e) { return; }   // the page was opened from disk (file://), where the browser forbids reading pixels: the globe simply stays empty
+      var W = c.width, H = c.height;
       var all = icosphere(o.detail), keep = [];
       for (var i = 0; i < all.length; i += 3) {
         var X = all[i], Y = all[i + 1], Z = all[i + 2];

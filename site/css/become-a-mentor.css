@@ -1,0 +1,46 @@
+/* ==========================================================================
+   Become a mentor (after beckleyretreats.com "Why Beckley"): the ask and the one red button on the
+   left, four short topics as an accordion on the right. Native <details>/<summary>, so it works
+   with the keyboard and screen readers without script; the first topic starts open.
+   ========================================================================== */
+.section_join{position:relative;z-index:2;background:var(--color-bg-page);color:var(--color-text-primary)}   /* plain: the stitch field moved to Mentor voices */
+/* tatreez backdrop, measured from cambium.com/technology's last testimonial (1920px): the panel starts 15% in, leaves a
+   60px (3.125%) gap on the right and 64px at the bottom; three stitch-field blocks show around it: top-left (15% wide,
+   64% tall), a right strip (from 20% down) and a bottom strip under the right half, which runs into the footer. */
+.join_panel{position:relative;padding:var(--space-128) var(--grid-margin)}
+.join_grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:var(--space-96);align-items:start}
+.join_ask{display:flex;flex-direction:column;align-items:flex-start;gap:var(--title-detail-gap)}
+.join_head{display:flex;align-items:center;margin-bottom:var(--title-label-gap)}
+.join_eyebrow{margin:0;flex:none;color:var(--color-text-heading)}
+.join_title{margin:0;color:var(--color-text-primary);text-wrap:balance}
+.join_lead{margin:0;max-width:40ch;color:var(--color-text-secondary);text-wrap:pretty}
+.join_ask .button-primary{margin-top:var(--space-8)}
+.section_join .button-primary:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px}
+.join_list{list-style:none;margin:0;padding:0}
+.join_item{border-bottom:1px solid var(--color-border-subtle)}
+.join_sum{display:grid;grid-template-columns:minmax(0,1fr) 24px;align-items:center;column-gap:var(--space-20);min-height:var(--size-touch-min);padding:var(--space-24) 0;cursor:pointer;list-style:none;color:var(--color-text-primary)}
+.join_sum::-webkit-details-marker{display:none}
+.join_sum:focus-visible{outline:3px solid var(--color-border-focus);outline-offset:3px;border-radius:var(--radius-sm)}
+.join_plus{color:var(--color-action-secondary)}
+.join_plus path.is-v{transform-origin:12px 12px;transition:transform .6s var(--ease-smooth)}
+.join_item[open] .join_plus path.is-v{transform:rotate(-90deg)}   /* + turns into − (after cambium.com) */
+.js .join_item:not(.is-open) .join_plus path.is-v{transform:none}
+/* open / close after cambium.com: the body's grid row grows from 0fr to 1fr, .6s --ease-smooth */
+.join_body{display:grid;grid-template-rows:1fr}
+.js .join_body{grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease-smooth)}
+.js .join_item.is-open .join_body{grid-template-rows:1fr}
+.join_body-in{min-height:0;overflow:hidden}
+.join_body-c{padding:0 0 var(--space-32)}
+@media (prefers-reduced-motion:reduce){.js .join_body,.join_plus path.is-v{transition:none}}
+.join_points{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-8)}
+.join_points li{position:relative;padding-inline-start:var(--space-20);color:var(--color-text-primary);text-wrap:pretty}
+.join_points li::before{content:"";position:absolute;inset-inline-start:0;top:.7em;width:6px;height:6px;border-radius:var(--radius-full);background:var(--color-action-secondary)}
+.join_note{margin:var(--space-16) 0 0;color:var(--color-text-secondary);text-wrap:pretty}
+.join_big{margin:0;color:var(--color-text-primary)}
+.join_big b{font-weight:inherit;color:var(--color-text-achievement)}
+.join_label{justify-self:start;width:fit-content;background:linear-gradient(currentColor,currentColor) no-repeat right bottom / 0 .0625em;padding-bottom:.0625em;transition:background-size .735s var(--ease-smooth)}   /* the links' drawn underline */
+@media (hover:hover) and (pointer:fine){.join_sum:hover .join_label{background-position:left bottom;background-size:100% .0625em}}
+@media (max-width:991px){
+  .join_panel{padding:var(--space-96) var(--grid-margin)}
+  .join_grid{grid-template-columns:minmax(0,1fr);row-gap:var(--space-48)}
+}
