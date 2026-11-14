@@ -49,6 +49,9 @@ def main() -> None:
 
     html, n_css = re.subn(r'<link rel="stylesheet" href="(css/[\w.-]+)"\s*/?>', css, html)
     html, n_js = re.subn(r'<script src="(js/[\w./-]+)"></script>', js, html)
+    # srcset lists several images per attribute; one file has no other sizes to offer, so keep its fallback src only
+    html = re.sub(r'\s(?:srcset|sizes)="[^"]*"', "", html)
+    html = re.sub(r'\s*<link rel="preload" as="image"[^>]*>', "", html)
     html = inline_images(html, SITE)
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(html)
