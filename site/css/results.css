@@ -63,6 +63,20 @@
 .results_content{grid-column:8 / 13;height:100vh;padding-top:var(--space-96);position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between}
 .results_title{margin:0;color:var(--results-ink);text-wrap:balance}
 .results_sub{margin:var(--space-16) 0 0;max-width:40ch;font-weight:400;color:var(--results-ink)}
+/* Country filter (static list only: phones, tablets, reduced motion) */
+.results_filter{display:none;margin-top:var(--space-32)}
+.section_results.is-static-list .results_filter{display:block}
+.results_filter-label{margin:0 0 var(--space-12);color:var(--results-ink)}
+.results_chips{display:flex;gap:var(--space-8);margin-inline:calc(var(--grid-margin) * -1);padding:var(--space-4) var(--grid-margin);overflow-x:auto;scrollbar-width:none;scroll-padding-inline:var(--grid-margin)}   /* one swipeable row, so the list stays right under it */
+.results_chips::-webkit-scrollbar{display:none}
+.results_chip{flex:none}
+.results_chip{display:inline-flex;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);padding:0 var(--space-16);border:1px solid color-mix(in srgb,var(--results-ink) 45%,transparent);border-radius:var(--radius-full);background:none;color:var(--results-ink);cursor:pointer;transition:background-color .2s,border-color .2s}
+.results_chip-n{opacity:.72;font-variant-numeric:tabular-nums}
+.results_chip[aria-pressed="true"]{background:var(--results-pin);border-color:var(--results-pin);color:var(--results-pill-ink)}
+.results_chip[aria-pressed="true"] .results_chip-n{opacity:.8}
+.results_chip:focus-visible{outline:3px solid var(--results-focus);outline-offset:2px}
+.results_list.is-filtered .results_item:not(.is-match){display:none}
+.results_list.is-filtered ~ .results_more{display:none}
 .results_more{display:none;align-items:center;gap:var(--space-8);min-height:var(--size-touch-min);margin-top:var(--space-16);padding:0 var(--space-16);border:1px solid currentColor;border-radius:var(--radius-button);background:none;color:var(--results-ink);cursor:pointer}
 .results_more:focus-visible{outline:3px solid var(--results-focus);outline-offset:3px}
 .results_globe-slot{position:relative;flex:none;align-self:center;width:calc(min(100vw,100vh) * .8);aspect-ratio:1;margin-bottom:calc(-22 / 1080 * 100vh)}
@@ -110,9 +124,11 @@ button.results_marker .results_label{text-decoration:underline;text-decoration-t
   .results_globe-slot{width:min(82%,480px);margin:var(--space-48) auto 0}   /* room on both sides for the country labels */
   .results_list-wrap{height:auto;overflow:visible;-webkit-mask:none;mask:none;padding-bottom:var(--space-96)}
   .results_name{font-size:var(--h4-size)}
-  .results_list:not(.is-all) .results_item:nth-child(n+11){display:none}   /* phones: ten names, then "Show all" (52 names would be nine screens) */
+  .results_list:not(.is-all):not(.is-filtered) .results_item:nth-child(n+11){display:none}   /* phones: ten names, then "Show all" (52 names would be nine screens) */
   .results_more{display:inline-flex}   /* Display in a long list steps down to the H4 size on phones */
   .results_label{font-size:var(--body3-size);line-height:var(--body3-lh)}
+  .results_markers .results_marker{pointer-events:none!important}   /* on a phone the chips filter; markers only show where */
+  .results_marker:not(.is-active) .results_label{display:none}      /* only the chosen country is named, so labels never pile up or clip */
 }
 @media (prefers-reduced-motion:reduce){
   .results_contain{height:auto;padding-block:var(--space-128)}

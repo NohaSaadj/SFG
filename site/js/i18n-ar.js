@@ -1,6 +1,15 @@
 /*! SFG Arabic: the page's text in Arabic (draft; to be reviewed by a native Arabic editor).
     Keys are the English text of each unit (an element holding text directly; inline SVGs read as "§"). */
 window.SFG_AR_MAP={
+"Universities by country": "الجامعات حسب الدولة",
+"All": "الكل",
+"Universities in": "الجامعات في",
+"Showing all universities": "عرض كل الجامعات",
+"Photos of our mentees, scroll sideways": "صور طلابنا، مرّر جانبيًا",
+"Matchmaking Lead": "مسؤولة المطابقة",
+"Reem Alarrouqi": "ريم العروقي",
+"Yaman Qabaja": "يمان قبجة",
+"Reem Zaqout": "ريم زقوت",
 "About SFG": "من نحن",
 "A Palestinian-led <span class=\"text-mark\">mentorship initiative</span>": "<span class=\"text-mark\">مبادرة إرشاد</span> بقيادة فلسطينية",
 "Scholarships for Ghazza (SFG) is a Palestinian-led mentorship programme that helps students from Gaza apply for higher education scholarships. With Israel destroying all of Gaza’s universities, students are left with no place to continue their education. Yet for generations, Palestinians have valued education as a path to hope and opportunity. That’s why SFG exists: to guide students through the application process and help them secure scholarships to study abroad.": "منح لغزة (SFG) برنامج إرشاد بقيادة فلسطينية يساعد طلاب غزة على التقدّم للمنح الدراسية في التعليم العالي. بعد أن دمّرت إسرائيل جامعات غزة كلها، لم يبقَ للطلاب مكان يكملون فيه تعليمهم. ومع ذلك، ظلّ الفلسطينيون جيلًا بعد جيل يرون في التعليم طريقًا إلى الأمل والفرص. لهذا وُجدت SFG: لنرشد الطلاب خلال مراحل التقديم، ونساعدهم على الفوز بمنح للدراسة في الخارج.",

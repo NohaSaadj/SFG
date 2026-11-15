@@ -43,4 +43,13 @@
   .js .section_memory.is-in .memory_print{opacity:1;translate:0 0}   /* the photos settle once */
 }
 @media (max-width:991px){.section_memory{padding-block:var(--space-96)}.memory_title{margin-bottom:var(--space-48)}}
-@media (max-width:599px){.memory_prints{margin-bottom:var(--space-32)}.memory_print{width:calc((100% - var(--space-16)) / 2)}.memory_print figcaption{min-height:7.5rem}}   /* two photos, then one, all the same width */
+/* Phones: one row the reader swipes, the next photo peeking at the edge (the row reaches the screen edge, the first photo
+   sits on the page margin). Same size and order as on desktop; nothing is hidden for long, three photos at most. */
+@media (max-width:767px){
+  .memory_prints{flex-wrap:nowrap;justify-content:flex-start;gap:var(--space-12);margin:0 calc(var(--grid-margin) * -1) var(--space-32);padding-inline:var(--grid-margin);
+    overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--grid-margin);scrollbar-width:none;overscroll-behavior-x:contain}
+  .memory_prints::-webkit-scrollbar{display:none}
+  .memory_print{flex:0 0 72%;scroll-snap-align:start}
+  .memory_print figcaption{min-height:5.5rem}
+  .memory_prints:focus-visible{outline:3px solid var(--color-border-focus-on-inverse);outline-offset:-3px}
+}

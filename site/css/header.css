@@ -88,7 +88,7 @@ html[lang="ar"] .lang-toggle_opt[data-lang="ar"]{color:var(--lang-on)}
   .header_nav{gap:var(--space-16)}
 }
 html[dir="rtl"] .is-ext svg{transform:scaleX(-1)}
-@media (max-width:1279px){   /* five links + the button need ~1280px; below that the menu takes over */
+@media (max-width:1365px){   /* five links, Become a mentor, Save battery and the language switch need ~1366px; below that the menu takes over */
   .header_nav .button-primary{white-space:nowrap}
   .header_nav-list,.header_nav .button-primary{display:none}
   .menu-trigger{display:inline-flex}

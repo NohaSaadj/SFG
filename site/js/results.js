@@ -38,13 +38,25 @@
   var clones=[0,1].map(function(){var c=list.cloneNode(true); c.removeAttribute("data-results-list"); c.setAttribute("aria-hidden","true"); c.classList.add("results_clone"); return c;});
   var all=[], loop=false;
   function setLoop(on){
-    loop=on;
+    loop=on; root.classList.toggle("is-static-list",!on);
     if(on&&!clones[0].parentNode){track.insertBefore(clones[0],list); track.appendChild(clones[1]);}
     if(!on&&clones[0].parentNode){clones.forEach(function(c){c.remove();}); track.style.transform="";}
     all=on?[].slice.call(clones[0].children).concat(items,[].slice.call(clones[1].children)):items.slice();
   }
 
-  var has={}; items.forEach(function(li){has[li.dataset.country]=true;});
+  var has={}, count={}; items.forEach(function(li){var k=li.dataset.country; has[k]=true; count[k]=(count[k]||0)+1;});
+  // country chips: the dependable way to filter on a phone (globe markers are small and crowd around Europe)
+  var chipBox=root.querySelector("[data-results-chips]"), status=root.querySelector("[data-results-status]"), chips=[];
+  if(chipBox){
+    var order=Object.keys(count).sort(function(a,b){return count[b]-count[a];});
+    [null].concat(order).forEach(function(k){
+      var b=document.createElement("button"); b.type="button"; b.className="results_chip title3"; b.setAttribute("aria-pressed",String(k===null));
+      if(k){ b.dataset.k=k; b.innerHTML='<span></span> <span class="results_chip-n"></span>'; b.firstChild.textContent=T0(COUNTRIES[k].name); b.lastChild.textContent=count[k]; }
+      else b.textContent=T0("All");
+      b.addEventListener("click",function(){ var t=k||picked; if(t) goTo(t); });   // "All" clears; a country chip toggles
+      chipBox.appendChild(b); chips.push(b);
+    });
+  }
   var markers=keys.map(function(k){
     var c=COUNTRIES[k], anchor=document.createElement("div"), fade=document.createElement("div"), m=document.createElement(has[k]?"button":"span");
     anchor.className="results_anchor"; fade.className="results_fade";
@@ -137,13 +149,21 @@
     return best;
   }
   function paint(){
-    all.forEach(function(li){li.classList.toggle("is-active",li.dataset.country===picked);});
+    all.forEach(function(li){li.classList.toggle("is-active",loop&&li.dataset.country===picked);});   // static list: filtered instead of highlighted
+    list.classList.toggle("is-filtered",!loop&&!!picked);
+    items.forEach(function(li){li.classList.toggle("is-match",li.dataset.country===picked);});
+    chips.forEach(function(c){c.setAttribute("aria-pressed",String((c.dataset.k||null)===picked));});
     markers.forEach(function(m){var a=m.k===picked; m.el.classList.toggle("is-active",a); m.core.classList.toggle("is-active",a); if(m.el.tagName==="BUTTON")m.el.setAttribute("aria-pressed",a);});
   }
   function goTo(k){
     var idx=items.findIndex(function(li){return li.dataset.country===k;}); if(idx<0)return;
-    picked=picked===k?null:k; paint(); if(!picked)return;
-    if(!loop){var li=items[idx]; scrollTo({top:li.getBoundingClientRect().top+scrollY-innerHeight/2+li.offsetHeight/2,behavior:reduce.matches?"auto":"smooth"}); return;}
+    picked=picked===k?null:k; paint(); if(!picked){ status.textContent=T0("Showing all universities"); return; }
+    if(!loop){   // filtered in place: say what changed; if the list starts below the screen, bring its start up (never scroll up)
+      status.textContent=T0("Universities in")+" "+T0(COUNTRIES[k].name)+": "+count[k];
+      var top=list.getBoundingClientRect().top;
+      if(top>innerHeight*.8) scrollTo({top:scrollY+top-innerHeight*.45,behavior:reduce.matches?"auto":"smooth"});
+      return;
+    }
     var cur=nearest(), to=idx; [idx,idx+N,idx+2*N].forEach(function(c){if(Math.abs(c-cur)<Math.abs(to-cur))to=c;});
     var y=0; for(var j=0;j<to;j++)y+=all[j].offsetHeight;
     tween={from:offset,to:y+all[to].offsetHeight/2-wrapEl.clientHeight/2,t0:performance.now(),dur:900}; resumeAt=Infinity;

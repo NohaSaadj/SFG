@@ -48,7 +48,7 @@
     en: {
       skipToContent: "Skip to main content", brandLine1: "Scholarships for Ghazza", brandLine2: "Supporting education through mentorship",
       navAbout: "About", navHow: "How it works", navVoices: "Testimonials", navMentors: "Mentors", navStudents: "Student handbook", newTab: " (opens in a new tab)", navCta: "Become a mentor",
-      prefsBtn: "Save battery: motion and dark mode", prefsTitle: "Battery use", prefsLead: "Turning off motion and switching to dark mode make this page lighter on your phone’s battery and processor.", prefsMotion: "Reduce motion", prefsMotionDesc: "Stops moving text, drifting rows and the spinning globe. Everything stays on the page.", prefsDark: "Dark mode", prefsDarkDesc: "Uses less power on OLED and AMOLED screens.", prefsClose: "Close",
+      prefsBtn: "Save battery", prefsTitle: "Save battery", prefsLead: "Turning off motion and switching to dark mode make this page lighter on your phone’s battery and processor.", prefsMotion: "Reduce motion", prefsMotionDesc: "Stops moving text, drifting rows and the spinning globe. Everything stays on the page.", prefsDark: "Dark mode", prefsDarkDesc: "Uses less power on OLED and AMOLED screens.", prefsClose: "Close",
         menu: "Menu", skip: "Skip intro", outro: "Here’s how the story begins.", cue: "Scroll",
       partnersTitle: "Our partners", partnersJoin: "Become a partner",
       sentence: "A highly educated Palestine, rebuilt by its own students.",
@@ -57,7 +57,7 @@
     ar: {
       skipToContent: "انتقل إلى المحتوى الرئيسي", brandLine1: "منح لغزة", brandLine2: "ندعم التعليم بالإرشاد",
       navAbout: "من نحن", navHow: "كيف نعمل", navVoices: "قصص النجاح", navMentors: "المرشدون", navStudents: "دليل الطالب", newTab: " (يفتح في نافذة جديدة)", navCta: "كن مرشدًا",
-      prefsBtn: "توفير البطارية: الحركة والوضع الداكن", prefsTitle: "استهلاك البطارية", prefsLead: "إيقاف الحركة والتبديل إلى الوضع الداكن يخفّفان هذه الصفحة على بطارية هاتفك ومعالجه.", prefsMotion: "تقليل الحركة", prefsMotionDesc: "يوقف النصوص المتحركة والصفوف المنزلقة والكرة الأرضية الدوّارة. يبقى كل المحتوى على الصفحة.", prefsDark: "الوضع الداكن", prefsDarkDesc: "يستهلك طاقة أقل على شاشات OLED و AMOLED.", prefsClose: "إغلاق",
+      prefsBtn: "توفير البطارية", prefsTitle: "توفير البطارية", prefsLead: "إيقاف الحركة والتبديل إلى الوضع الداكن يخفّفان هذه الصفحة على بطارية هاتفك ومعالجه.", prefsMotion: "تقليل الحركة", prefsMotionDesc: "يوقف النصوص المتحركة والصفوف المنزلقة والكرة الأرضية الدوّارة. يبقى كل المحتوى على الصفحة.", prefsDark: "الوضع الداكن", prefsDarkDesc: "يستهلك طاقة أقل على شاشات OLED و AMOLED.", prefsClose: "إغلاق",
         menu: "القائمة", skip: "تخطَّ المقدمة", outro: "هكذا تبدأ الحكاية.", cue: "مرّر للأسفل",
       partnersTitle: "شركاؤنا", partnersJoin: "كن شريكًا",
       sentence: "فلسطين متعلّمة، يعيد بناءها طلابها.",

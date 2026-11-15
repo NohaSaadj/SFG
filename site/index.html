@@ -85,7 +85,7 @@
           </ul>
           <div class="header_actions">
             <a class="button-primary title3" href="https://secure.lglforms.com/form_engine/s/g_DgjZr8NO-ar4ZbK8qO7Q" target="_blank" rel="noopener noreferrer"><span data-i18n="navCta">Become a mentor</span><span class="sr-only" data-i18n="newTab"> (opens in a new tab)</span></a>
-            <button class="prefs-btn" type="button" data-prefs-toggle aria-expanded="false" aria-controls="prefs-panel"><span class="sr-only" data-i18n="prefsBtn">Save battery: motion and dark mode</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 10.5v3"/><path d="M11.5 9 9 12.5h3.5L10 15"/></svg></button>
+            <button class="prefs-btn title3" type="button" data-prefs-toggle aria-expanded="false" aria-controls="prefs-panel"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 10.5v3"/><path d="M11.5 9 9 12.5h3.5L10 15"/></svg><span data-i18n="prefsBtn">Save battery</span><span class="prefs-btn_on" data-prefs-on aria-hidden="true" hidden></span></button>
             <button class="lang-toggle" type="button" data-lang-toggle aria-label="EN ع, Switch to Arabic">
               <span class="lang-toggle_pill" aria-hidden="true">
                 <span class="lang-toggle_opt" data-lang="en" lang="en">EN</span>
@@ -107,7 +107,7 @@
   <div class="prefs" id="prefs-panel" role="region" aria-labelledby="prefs-title" hidden>
     <div class="prefs_inner">
       <div class="prefs_intro">
-        <p class="prefs_title title1" id="prefs-title"><span data-i18n="prefsTitle">Battery use</span> <span class="prefs_badge title3" data-prefs-level>High</span></p>
+        <p class="prefs_title title1" id="prefs-title"><span data-i18n="prefsTitle">Save battery</span> <span class="prefs_badge title3" data-prefs-level>High</span></p>
         <p class="prefs_lead body3" data-i18n="prefsLead">Turning off motion and switching to dark mode make this page lighter on your phone’s battery and processor.</p>
       </div>
       <div class="prefs_rows">
@@ -132,6 +132,17 @@
       <li><a class="menu-panel_link" href="#mentor-voices" data-i18n="navMentors">Mentors</a></li>
       <li><a class="menu-panel_link is-ext" href="https://docs.google.com/document/d/13uX0ClWeqEinlqcHFDqgCYSa4T1SQ60xR9QBD7iY3Jw/edit?usp=sharing" target="_blank" rel="noopener noreferrer" hreflang="ar"><span data-i18n="navStudents">Student handbook</span><span class="sr-only" data-i18n="newTab"> (opens in a new tab)</span><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="rotate(-45 12 12)" fill="currentColor" d="M13.6709 4.66504C14.7728 6.86859 16.4363 8.53812 17.8438 9.66406C18.5448 10.2249 19.1754 10.6453 19.6279 10.9238C19.8538 11.0628 20.0347 11.1668 20.1572 11.2344C20.2184 11.2681 20.2657 11.2927 20.2959 11.3086C20.3106 11.3163 20.3214 11.3218 20.3281 11.3252C20.3313 11.3268 20.3337 11.3285 20.335 11.3291L21.6768 12L20.335 12.6699L20.3359 12.6709H20.335C20.3337 12.6715 20.3313 12.6732 20.3281 12.6748C20.3214 12.6782 20.3106 12.6837 20.2959 12.6914C20.2657 12.7073 20.2184 12.7319 20.1572 12.7656C20.0347 12.8332 19.8538 12.9372 19.6279 13.0762C19.1754 13.3547 18.5448 13.7751 17.8438 14.3359C16.4363 15.4619 14.7728 17.1314 13.6709 19.335L12.3291 18.665C13.5606 16.2021 15.3971 14.3714 16.9062 13.1641C17.0903 13.0168 17.2706 12.8793 17.4443 12.75H4V11.25H17.4443C17.2706 11.1207 17.0903 10.9832 16.9062 10.8359C15.3971 9.62861 13.5606 7.79788 12.3291 5.33496L13.6709 4.66504Z"/></svg></a></li>
     </ul>
+    <div class="menu-prefs" role="group" aria-labelledby="mprefs-title">
+      <p class="menu-prefs_title title1" id="mprefs-title"><span data-i18n="prefsTitle">Save battery</span> <span class="prefs_badge title3" data-prefs-level>High</span></p>
+        <div class="prefs_row">
+          <div class="prefs_text"><p class="prefs_label title2" id="mprefs-motion" data-i18n="prefsMotion">Reduce motion</p><p class="prefs_desc body3" id="mprefs-motion-d" data-i18n="prefsMotionDesc">Stops moving text, drifting rows and the spinning globe. Everything stays on the page.</p></div>
+          <button class="prefs_switch" type="button" role="switch" aria-checked="false" aria-labelledby="mprefs-motion" aria-describedby="mprefs-motion-d" data-pref="motion"><span class="prefs_knob"></span></button>
+        </div>
+        <div class="prefs_row">
+          <div class="prefs_text"><p class="prefs_label title2" id="mprefs-theme" data-i18n="prefsDark">Dark mode</p><p class="prefs_desc body3" id="mprefs-theme-d" data-i18n="prefsDarkDesc">Uses less power on OLED and AMOLED screens.</p></div>
+          <button class="prefs_switch" type="button" role="switch" aria-checked="false" aria-labelledby="mprefs-theme" aria-describedby="mprefs-theme-d" data-pref="theme"><span class="prefs_knob"></span></button>
+        </div>
+    </div>
     <a class="button-primary title3" href="https://secure.lglforms.com/form_engine/s/g_DgjZr8NO-ar4ZbK8qO7Q" target="_blank" rel="noopener noreferrer"><span data-i18n="navCta">Become a mentor</span><span class="sr-only" data-i18n="newTab"> (opens in a new tab)</span></a>
   </nav>
 
@@ -238,59 +249,44 @@
               <article class="team_card">
                 <div class="team_top">
                   <div class="team_who"><h3 class="team_name title2">Ahmed Issa</h3><p class="team_role body3">Founder</p></div>
-                  
+                  <!-- LinkedIn: when the profile URL is known, add here
+                       <a class="team_linkedin" href="https://www.linkedin.com/in/…" target="_blank" rel="noopener noreferrer" aria-label="Ahmed Issa on LinkedIn (opens in a new tab)">(icon, see docs/ARCHITECTURE.md)</a> -->
                 </div>
                 <div class="team_visual"><img src="assets/images/team/ahmed-issa.webp" alt="" width="392" height="392" loading="lazy" decoding="async" draggable="false" /></div>
               </article>
             </li>
-            <li class="team_item" data-placeholder>
+            <li class="team_item">
               <article class="team_card">
                 <div class="team_top">
-                  <div class="team_who"><h3 class="team_name title2">Name Surname</h3><p class="team_role body3">Role</p></div>
-                  
+                  <div class="team_who"><h3 class="team_name title2">Reem Alarrouqi</h3><p class="team_role body3">Matchmaking Lead</p></div>
+                  <!-- LinkedIn: when the profile URL is known, add here
+                       <a class="team_linkedin" href="https://www.linkedin.com/in/…" target="_blank" rel="noopener noreferrer" aria-label="Reem Alarrouqi on LinkedIn (opens in a new tab)">(icon, see docs/ARCHITECTURE.md)</a> -->
                 </div>
-                <div class="team_visual"><svg class="team_field" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg><span class="team_initials h3" aria-hidden="true">NS</span></div>
+                <div class="team_visual"><img src="assets/images/team/reem-alarrouqi.webp" alt="" width="392" height="392" loading="lazy" decoding="async" draggable="false" /></div>
               </article>
             </li>
-            <li class="team_item" data-placeholder>
+            <li class="team_item">
               <article class="team_card">
                 <div class="team_top">
-                  <div class="team_who"><h3 class="team_name title2">Name Surname</h3><p class="team_role body3">Role</p></div>
-                  
+                  <div class="team_who"><h3 class="team_name title2">Yaman Qabaja</h3><p class="team_role body3">Matchmaking Lead</p></div>
+                  <!-- LinkedIn: when the profile URL is known, add here
+                       <a class="team_linkedin" href="https://www.linkedin.com/in/…" target="_blank" rel="noopener noreferrer" aria-label="Yaman Qabaja on LinkedIn (opens in a new tab)">(icon, see docs/ARCHITECTURE.md)</a> -->
                 </div>
-                <div class="team_visual"><svg class="team_field" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg><span class="team_initials h3" aria-hidden="true">NS</span></div>
+                <div class="team_visual"><img src="assets/images/team/yaman-qabaja.webp" alt="" width="392" height="392" loading="lazy" decoding="async" draggable="false" /></div>
               </article>
             </li>
-            <li class="team_item" data-placeholder>
+            <li class="team_item">
               <article class="team_card">
                 <div class="team_top">
-                  <div class="team_who"><h3 class="team_name title2">Name Surname</h3><p class="team_role body3">Role</p></div>
-                  
+                  <div class="team_who"><h3 class="team_name title2">Reem Zaqout</h3><p class="team_role body3">Matchmaking Lead</p></div>
+                  <!-- LinkedIn: when the profile URL is known, add here
+                       <a class="team_linkedin" href="https://www.linkedin.com/in/…" target="_blank" rel="noopener noreferrer" aria-label="Reem Zaqout on LinkedIn (opens in a new tab)">(icon, see docs/ARCHITECTURE.md)</a> -->
                 </div>
-                <div class="team_visual"><svg class="team_field" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg><span class="team_initials h3" aria-hidden="true">NS</span></div>
-              </article>
-            </li>
-            <li class="team_item" data-placeholder>
-              <article class="team_card">
-                <div class="team_top">
-                  <div class="team_who"><h3 class="team_name title2">Name Surname</h3><p class="team_role body3">Role</p></div>
-                  
-                </div>
-                <div class="team_visual"><svg class="team_field" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg><span class="team_initials h3" aria-hidden="true">NS</span></div>
-              </article>
-            </li>
-            <li class="team_item" data-placeholder>
-              <article class="team_card">
-                <div class="team_top">
-                  <div class="team_who"><h3 class="team_name title2">Name Surname</h3><p class="team_role body3">Role</p></div>
-                  
-                </div>
-                <div class="team_visual"><svg class="team_field" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#stitchField)"/></svg><span class="team_initials h3" aria-hidden="true">NS</span></div>
+                <div class="team_visual"><img src="assets/images/team/reem-zaqout.webp" alt="" width="392" height="392" loading="lazy" decoding="async" draggable="false" /></div>
               </article>
             </li>
           </ul>
         </div>
-        <button class="team_pause title3" type="button" data-team-pause aria-pressed="false"><svg class="team_pause-ic" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path class="is-pause" fill="currentColor" d="M4 3h2.5v10H4zM9.5 3H12v10H9.5z"/><path class="is-play" fill="currentColor" d="M4.5 2.8 13 8l-8.5 5.2z"/></svg><span data-team-pause-label>Pause</span></button>
       </div>
     </section>
 
@@ -566,6 +562,11 @@
             </div>
             <div class="results_globe-slot" data-results-slot>
               <div class="results_globe" data-results-globe aria-hidden="true"><canvas class="results_canvas"></canvas><div class="results_markers" data-results-markers></div></div>
+            </div>
+            <div class="results_filter" data-results-filter>
+              <p class="results_filter-label title3" id="results-filter-label">Universities by country</p>
+              <div class="results_chips" role="group" aria-labelledby="results-filter-label" data-results-chips></div>
+              <p class="sr-only" role="status" data-results-status></p>
             </div>
           </div>
         </div>

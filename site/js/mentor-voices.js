@@ -48,6 +48,18 @@
     if (say) status.textContent = slides[k].getAttribute("aria-label");
     if (seen && k !== was) reveal();
   }
+  // swipe: a horizontal flick of 40px or more on the quote moves one mentor, in the reading direction
+  var box = sec.querySelector(".mentors_slides"), sx = null, sy = 0;
+  if (box) {
+    box.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+    box.addEventListener("touchend", function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null;
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      var fwd = document.documentElement.dir === "rtl" ? dx > 0 : dx < 0;
+      if (fwd && !next.disabled) show(k + 1, true); else if (!fwd && !prev.disabled) show(k - 1, true);
+    }, { passive: true });
+  }
   prev.addEventListener("click", function () { show(k - 1, true); if (prev.disabled) next.focus(); });
   next.addEventListener("click", function () { show(k + 1, true); if (next.disabled) prev.focus(); });
   show(0, false);

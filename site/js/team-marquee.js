@@ -1,12 +1,13 @@
 // ===== Our team · draggable marquee (after cambium.com: 80px/s there; 40px/s here so faces can be read) =====
+// Stops on hover and keyboard focus. The page-wide "Save battery › Reduce motion" switch (js/settings.js) turns it into a still,
+// scrollable row: that is the way to stop it for good (WCAG 2.2.2), so the section has no pause button of its own.
 (function(){
   var sec=document.querySelector("[data-team]"); if(!sec) return;
-  var box=sec.querySelector("[data-team-marquee]"), list=sec.querySelector("[data-team-list]"), btn=sec.querySelector("[data-team-pause]"), lbl=sec.querySelector("[data-team-pause-label]");
-  var reduce=matchMedia("(prefers-reduced-motion: reduce)"), T=window.SFGT||String;
-  lbl.textContent=T("Pause");
+  var box=sec.querySelector("[data-team-marquee]"), list=sec.querySelector("[data-team-list]");
+  var reduce=matchMedia("(prefers-reduced-motion: reduce)");
   if(reduce.matches) return;
   var originals=[].slice.call(list.children), SPEED=40, dir, setW=0, x=0, v=0, base=0, raf=0, last=0;
-  var visible=false, hovered=false, focused=false, paused=false, drag=null;
+  var visible=false, hovered=false, focused=false, drag=null;
   function build(){
     list.querySelectorAll("[data-clone]").forEach(function(c){c.remove();});
     dir=getComputedStyle(box).direction==="rtl"?1:-1;   // English drifts left; Arabic drifts right, as the reading runs
@@ -18,7 +19,7 @@
   function wrap(){ x=((x%setW)+setW)%setW; if(dir<0) x-=setW; }   // keep x inside one set so the loop never shows a seam
   function frame(t){
     raf=0; var dt=Math.min(.05,(t-(last||t))/1000); last=t;
-    var target=(paused||hovered||focused)?0:base;
+    var target=(hovered||focused)?0:base;
     if(!drag){ v+=(target-v)*Math.min(1,dt*2); x+=v*dt; wrap(); }   // eases back to the drift after a throw, like the reference's 1s return
     list.style.transform="translate3d("+x.toFixed(2)+"px,0,0)";
     if(visible) raf=requestAnimationFrame(frame); else last=0;
@@ -28,7 +29,6 @@
   box.addEventListener("pointerenter",function(e){ if(e.pointerType==="mouse") hovered=true; });
   box.addEventListener("pointerleave",function(){ hovered=false; });
   sec.addEventListener("focusin",function(){ focused=true; }); sec.addEventListener("focusout",function(){ focused=false; });
-  btn.addEventListener("click",function(){ paused=!paused; btn.setAttribute("aria-pressed",String(paused)); lbl.textContent=T(paused?"Play":"Pause"); kick(); });
   // drag: the row follows the pointer; on release it keeps the throw's speed and eases back to its drift
   box.addEventListener("pointerdown",function(e){ if(e.button) return; drag={x0:e.clientX,y0:e.clientY,x:x,t:performance.now(),px:e.clientX,v:0,on:false,id:e.pointerId}; });
   box.addEventListener("pointermove",function(e){

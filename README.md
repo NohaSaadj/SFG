@@ -93,6 +93,8 @@ The brand typeface is **Thmanyah** (Serif Display, Serif Text, Sans). Its licenc
 | Lighthouse, desktop | Lighthouse 12 | Perf 92 · A11y 100 · Best practices 100 · SEO 100 |
 | HTML | html-validate 9 (recommended) | 0 errors |
 | Mobile, 360px | custom Playwright audit | No tap target under 44px, no text under 14px, no horizontal scroll |
+
+The header shows every link from 1366px wide; below that the links and the *Save battery* switches fold into the menu.
 | Links and IDs | Playwright | No duplicate IDs, no broken in-page links, one `h1` |
 
 Mobile performance is held back by the intro by design: its opening holds for 2s before the story plays, which counts against Largest Contentful Paint. How to repeat every check is in [docs/QA.md](docs/QA.md).

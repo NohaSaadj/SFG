@@ -37,7 +37,7 @@ Order matters, because the CSS cascade and the scripts depend on what came befor
 | 15 | `team.css` | Team marquee |
 | 16 | `become-a-mentor.css` | Ask, accordion, tatreez band |
 | 17 | `footer.css` | Footer |
-| 18 | `settings.css` | Save battery button and panel (Reduce motion, Dark mode switches) |
+| 18 | `settings.css` | Save battery: labelled header button and panel from 1366px; the same switches inside the menu below 1366px |
 
 ### JavaScript (end of `<body>`)
 
