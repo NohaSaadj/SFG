@@ -15,7 +15,7 @@
 .is-menu-open .site-header.is-solid .header_logo-img.is-linen{display:block}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.site-header.is-solid{background:var(--color-bg-page)}}
 .header_inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-24)}
-.header_brand{display:flex;align-items:center;gap:var(--space-12);min-height:var(--size-touch-min)}
+.header_brand{flex:none;display:flex;align-items:center;gap:var(--space-12);min-height:var(--size-touch-min)}   /* the logo never shrinks */
 .header_logo-img{display:block;height:48px;width:auto}
 .header_nav{display:flex;align-items:center;gap:var(--space-32)}
 .header_nav-list{display:flex;align-items:center;gap:var(--space-24);list-style:none;margin:0;padding:0}
@@ -28,6 +28,7 @@
 .cascade_l{display:inline-block;white-space:pre;transition:translate .6s cubic-bezier(.2,0,.1,1) calc(var(--i) * 25ms)}
 @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.header_nav-link:hover .cascade_l{translate:0 -100%}}
 .header_actions{display:flex;align-items:center;gap:var(--space-16)}
+.header_actions .button-primary{white-space:nowrap}   /* the label never wraps; below 1366px the nav folds into the menu instead */
 html[dir="rtl"] .header_nav{flex:1;margin-inline-start:var(--space-24)}   /* Arabic: the tabs start at the right, beside the logo; the button and language switch sit at the far left */
 html[dir="rtl"] .header_actions{margin-inline-start:auto}
 .button-primary{display:inline-flex;align-items:center;justify-content:center;min-height:var(--size-touch-min);padding-inline:var(--space-24);border-radius:var(--radius-button);background:var(--color-action-primary);color:var(--color-text-on-action);transition:background-color .2s ease,scale .15s ease-out}

@@ -44,3 +44,5 @@
 .menu-prefs .prefs_row{gap:var(--space-16)}
 .menu-prefs .prefs_switch:focus-visible{outline-color:var(--color-border-focus)}
 @media (max-width:1365px){.prefs-btn{display:none}.menu-prefs{display:flex}}
+/* 1366–1599px: the English header is ~90px too wide with the words, so the button keeps its icon and its name, not the visible words */
+@media (min-width:1366px) and (max-width:1599px){html:not([lang="ar"]) .prefs-btn{padding-inline:var(--space-12)}html:not([lang="ar"]) .prefs-btn_label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
